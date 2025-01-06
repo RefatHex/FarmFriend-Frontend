@@ -2,175 +2,206 @@
 <html lang="en">
 
 <head>
-  <title>User Login</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Glass Login Design</title>
   <style>
-    /* Body styling */
-    body {
-      background-color: #1c1c1e;
-      /* Dark background */
-      background-image: url('images/login.jpg');
-      /* Replace with your image */
-      background-size: cover;
-      background-position: center;
-      color: white;
-      font-family: 'Arial', sans-serif;
+    /* Reset styles */
+    * {
       margin: 0;
       padding: 0;
-      height: 100vh;
-      position: relative;
-      /* Necessary for the ::before pseudo-element */
+      box-sizing: border-box;
     }
 
-    /* Pseudo-element to blur the background image */
+    /* Fullscreen background */
+    body {
+      height: 100vh;
+      background-image: url("assets/images/loinbg.jpg");
+      background-size: cover;
+      background-position: center;
+      font-family: 'Montserrat', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+    }
+
+    /* Add shadow to background */
     body::before {
-      content: "";
+      content: '';
       position: absolute;
       top: 0;
       left: 0;
       right: 0;
       bottom: 0;
-      background: inherit;
-      filter: blur(8px);
-      /* Apply blur effect */
+      background: rgba(0, 0, 0, 0.3);
+      /* Shadow overlay */
       z-index: -1;
-      /* Send the pseudo-element behind the content */
+
+      /* Make sure the shadow stays behind the content */
     }
 
-    .full-container {
-      display: flex;
-      flex-direction: column;
-      height: 100%;
-    }
-
-    .content {
-      flex: 1;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .form_ {
-      width: 400px;
-      background-color: rgba(0, 0, 0, 0.7);
-      /* Semi-transparent black */
-      color: white;
-      padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
-      position: relative;
-      top: -50px;
-    }
-
-    .form_ h4 {
+    /* Glass effect container */
+    .login-container {
+      background: rgba(255, 255, 255, 0.3);
+      /* Lightened the background for better visibility */
+      backdrop-filter: blur(8px);
+      /* Slight blur effect */
+      border-radius: 16px;
+      padding: 40px 50px;
+      width: 380px;
+      /* Slightly wider for more space */
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
       text-align: center;
-      margin-bottom: 20px;
-      font-weight: bold;
-      font-size: 24px;
+      margin: auto;
+      position: relative;
+
+      /* Ensure this stays on top of background */
+      z-index: 1;
     }
 
-    .form-control {
-      background-color: #2e2e2e;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      padding: 10px;
+    .login-container h2 {
+      margin-bottom: 30px;
+      /* More space between elements */
+      font-size: 2rem;
+      font-weight: 600;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
     }
 
-    .form-control:focus {
-      border-color: #007bff;
-      box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
-      background-color: #1c1c1e;
-    }
-
-    .form-control:hover {
-      background-color: #333;
-    }
-
-    .btn-submit {
-      background-color: #007bff;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      font-size: 16px;
-      font-weight: bold;
-      border-radius: 5px;
+    /* Input fields */
+    .login-container input {
       width: 100%;
-      margin-top: 20px;
-    }
-
-    .btn-submit:hover {
-      background-color: #0056b3;
-      cursor: pointer;
-      box-shadow: 0 4px 10px rgba(0, 91, 179, 0.5);
-      transition: all 0.3s ease;
-    }
-
-    /* Navbar styling */
-    nav.navbar {
-      background: linear-gradient(to right, #3b6e3d, #2f4f2f);
-      /* Dark green gradient */
+      padding: 14px;
+      margin: 12px 0;
       border: none;
-      border-radius: 0;
-      margin-bottom: 0;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.5);
+      color: #333;
+      font-size: 1rem;
     }
 
-    nav.navbar a {
-      color: #fff !important;
-      font-weight: bold;
-      font-size: 16px;
+    .login-container input::placeholder {
+      color: #333;
     }
 
-    nav.navbar a:hover {
-      background-color: rgba(255, 255, 255, 0.2) !important;
-      color: #fff !important;
-      transition: all 0.3s ease;
-      border-radius: 5px;
-      padding: 5px 10px;
+    .login-container input:focus {
+      outline: none;
+      background: rgba(255, 255, 255, 0.6);
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+    }
+
+    /* Login submit button */
+    .login-container button {
+      width: 100%;
+      padding: 14px;
+      margin-top: 20px;
+      font-size: 1rem;
+      color: #fff;
+      background: linear-gradient(to right, #1e90ff, #4facfe);
+      border: none;
+      border-radius: 8px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .login-container button:hover {
+      transform: scale(1.02);
+      box-shadow: 0 8px 20px rgba(30, 144, 255, 0.3);
+    }
+
+    /* Remember Me Checkbox */
+    .toggle {
+      display: flex;
+      align-items: center;
+      justify-content: left;
+      margin: 18px 0;
+      font-size: 1rem;
+      color: hwb(0 0% 100%);
+    }
+
+    .toggle input[type="checkbox"] {
+      width: 20px;
+      height: 20px;
+      border: 2px solid #1e90ff;
+      border-radius: 4px;
+      margin-right: 12px;
+      background: transparent;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .toggle input[type="checkbox"]:checked {
+      background: #1e90ff;
+      border-color: #1c86ee;
+    }
+
+    .toggle label {
+      color: #000000;
+      cursor: pointer;
+    }
+
+    /* Add more space below Remember Me */
+    .toggle+.options {
+      margin-top: 40px;
+      /* Increased margin for more space */
+    }
+
+    /* Remove hover from links */
+    .login-container .options a {
+      color: #1e90ff;
+      text-decoration: none;
+      font-size: 1rem;
+    }
+
+    .login-container .options a:hover {
+      text-decoration: underline;
+    }
+
+    /* Responsive design */
+    @media (max-width: 600px) {
+      .login-container {
+        width: 90%;
+        padding: 30px 40px;
+      }
+
+      .login-container h2 {
+        font-size: 1.5rem;
+      }
+
+      .login-container input,
+      .login-container button {
+        font-size: 0.9rem;
+      }
+
+      .toggle {
+        font-size: 1rem;
+      }
     }
   </style>
 </head>
 
 <body>
-
-  <div class="full-container">
-    <nav class="navbar navbar-inverse">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <a class="navbar-brand" href="http://localhost/hm/home.php">FARM FRIEND</a>
-        </div>
-        <ul class="nav navbar-nav">
-          <li class="active"><a href="http://localhost/hm/login.php">Login</a></li>
-          <li><a href="http://localhost/hm/signup.php">Sign Up</a></li>
-        </ul>
+  <div class="login-container">
+    <h2>Login</h2>
+    <form action="#" method="POST">
+      <input type="text" name="username" placeholder="Username" required>
+      <input type="password" name="password" placeholder="Password" required>
+      <div class="toggle">
+        <input type="checkbox" id="remember" name="remember">
+        <label for="remember">Remember Me</label>
       </div>
-    </nav>
+      <button type="submit">Login</button>
+      <br> <!-- Added line break for spacing -->
+    </form>
+    <div class="options">
+      <br>
 
-    <div class="content">
-      <div class="form_">
-        <h4>User Login</h4>
-        <form action="logpross.php" method="POST">
-          <div class="form-group">
-            <label for="u2">Email</label>
-            <input type="email" class="form-control" id="u2" name="u2" placeholder="Enter Email" required>
-          </div>
-          <div class="form-group">
-            <label for="u4">Password</label>
-            <input type="password" class="form-control" id="u4" name="u4" placeholder="Enter Password" required>
-          </div>
-          <button type="submit" class="btn-submit">Login</button>
-        </form>
-      </div>
+      <p>Not you? <a href="#">Switch account</a></p>
+      <br> <!-- Added line break for spacing -->
+      <p>Don't have an account? <a href="signup.html">Sign Up</a></p>
     </div>
   </div>
-
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
 </body>
 
 </html>

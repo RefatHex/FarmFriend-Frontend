@@ -1,206 +1,163 @@
-<!DOCTYPE HTML>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
-  <meta charset="utf-8">
-  <title>Sign up</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign-Up</title>
   <style>
-    /* Body styling */
-    body {
-      background-color: #1c1c1e;
-      /* Dark background */
-      background-image: url('images/signup.jpg');
-      /* Replace with your image */
-      background-size: cover;
-      background-position: center;
-      color: white;
-      font-family: 'Arial', sans-serif;
+    /* Reset styles */
+    * {
       margin: 0;
       padding: 0;
-      height: 100vh;
-      position: relative;
-      /* Necessary for the ::before pseudo-element */
+      box-sizing: border-box;
     }
 
-    /* Pseudo-element to blur the background image */
+    /* Fullscreen background */
+    body {
+      height: 100vh;
+      background-image: url("assets/images/loginbg2.jpg");
+      background-size: cover;
+      background-position: center;
+      font-family: 'Montserrat', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* Add shadow to background */
     body::before {
-      content: "";
+      content: '';
       position: absolute;
       top: 0;
       left: 0;
       right: 0;
       bottom: 0;
-      background: inherit;
-      filter: blur(8px);
-      /* Apply blur effect */
+      background: rgba(0, 0, 0, 0.3);
+      /* Shadow overlay */
       z-index: -1;
-      /* Send the pseudo-element behind the content */
+      /* Make sure the shadow stays behind the content */
     }
 
-    .full-container {
-      display: flex;
-      flex-direction: column;
-      height: 100%;
-    }
-
-    .content {
-      flex: 1;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin-top: -80px;
-    }
-
-    .form_ {
-      width: 400px;
-      background-color: rgba(0, 0, 0, 0.7);
-      /* Semi-transparent black */
-      color: white;
-      padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
-      position: relative;
-    }
-
-    .form_ h4 {
+    /* Glass effect container */
+    .signup-container {
+      background: rgba(255, 255, 255, 0.3);
+      /* Lightened the background for better visibility */
+      backdrop-filter: blur(8px);
+      /* Slight blur effect */
+      border-radius: 16px;
+      padding: 40px 50px;
+      width: 380px;
+      /* Slightly wider for more space */
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
       text-align: center;
-      margin-bottom: 20px;
-      font-weight: bold;
-      font-size: 24px;
+      margin: auto;
+      position: relative;
+      /* Ensure this stays on top of background */
+      z-index: 1;
     }
 
-    .form-control {
-      background-color: #2e2e2e;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      padding: 10px;
+    .signup-container h2 {
+      margin-bottom: 30px;
+      /* More space between elements */
+      font-size: 2rem;
+      font-weight: 600;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
     }
 
-    .form-control:focus {
-      border-color: #007bff;
-      box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
-      background-color: #1c1c1e;
-    }
-
-    .form-control:hover {
-      background-color: #333;
-    }
-
-    .btn-submit {
-      background-color: #007bff;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      font-size: 16px;
-      font-weight: bold;
-      border-radius: 5px;
+    /* Input fields */
+    .signup-container input {
       width: 100%;
+      padding: 14px;
+      margin: 12px 0;
+      border: none;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.5);
+      color: #333;
+      font-size: 1rem;
+    }
+
+    .signup-container input::placeholder {
+      color: #333;
+    }
+
+    .signup-container input:focus {
+      outline: none;
+      background: rgba(255, 255, 255, 0.6);
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+    }
+
+    /* Sign-Up submit button */
+    .signup-container button {
+      width: 100%;
+      padding: 14px;
+      margin-top: 20px;
+      font-size: 1rem;
+      color: #fff;
+      background: linear-gradient(to right, #1e90ff, #4facfe);
+      border: none;
+      border-radius: 8px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .signup-container button:hover {
+      transform: scale(1.02);
+      box-shadow: 0 8px 20px rgba(30, 144, 255, 0.3);
+    }
+
+    /* Already have an account link */
+    .signin-link {
       margin-top: 20px;
     }
 
-    .btn-submit:hover {
-      background-color: #0056b3;
-      cursor: pointer;
-      box-shadow: 0 4px 10px rgba(0, 91, 179, 0.5);
-      transition: all 0.3s ease;
+    .signin-link a {
+      color: #1e90ff;
+      text-decoration: none;
+      font-size: 1rem;
     }
 
-    /* Navbar styling */
-    nav.navbar {
-      background: linear-gradient(to right, #3b6e3d, #2f4f2f);
-      /* Dark green gradient */
-      border: none;
-      border-radius: 0;
-      margin-bottom: 0;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    .signin-link a:hover {
+      text-decoration: underline;
     }
 
-    nav.navbar a {
-      color: #fff !important;
-      font-weight: bold;
-      font-size: 16px;
-    }
+    /* Responsive design */
+    @media (max-width: 600px) {
+      .signup-container {
+        width: 90%;
+        padding: 30px 40px;
+      }
 
-    nav.navbar a:hover {
-      background-color: rgba(255, 255, 255, 0.2) !important;
-      color: #fff !important;
-      transition: all 0.3s ease;
-      border-radius: 5px;
-      padding: 5px 10px;
-    }
+      .signup-container h2 {
+        font-size: 1.5rem;
+      }
 
-    .form-group {
-      margin-bottom: 20px;
+      .signup-container input,
+      .signup-container button {
+        font-size: 0.9rem;
+      }
     }
   </style>
 </head>
 
 <body>
+  <div class="signup-container">
+    <h2>Sign-Up</h2>
+    <form action="#" method="POST">
+      <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+      <input type="email" id="email" name="email" placeholder="Enter your email" required>
+      <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
+      <input type="password" id="password" name="password" placeholder="Create a password" required>
+      <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm your password" required>
 
-  <div class="full-container">
-    <nav class="navbar navbar-inverse">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <a class="navbar-brand" href="http://localhost/hm/home.php">FARM FRIEND</a>
-        </div>
-        <ul class="nav navbar-nav">
-          <li><a href="http://localhost/hm/login.php">Login</a></li>
-          <li class="active"><a href="http://localhost/hm/signup.php">Sign Up</a></li>
-        </ul>
-      </div>
-    </nav>
+      <button type="submit">Sign Up</button>
+    </form>
 
-    <div class="content">
-      <div class="form_">
-        <h4>User Signup</h4>
-
-        <form action="reg.php" method="POST">
-          <div class="form-group">
-            <label for="u1">User Name: </label>
-            <input type="name" class="form-control" id="u1" name="u1" placeholder="Enter Your Name" required>
-          </div>
-
-          <div class="form-group">
-            <label for="u2">Email: </label>
-            <input type="email" class="form-control" id="u2" name="u2" placeholder="Enter Your Email here"
-              title="Give Valid Email" required>
-          </div>
-
-          <div class="form-group">
-            <label for="u3">Mobile Number: </label>
-            <input type="tel" class="form-control" id="u3" name="u3" placeholder="Enter Your Mobile Number" required>
-          </div>
-
-          <div class="form-group">
-            <label for="u4">Password: </label>
-            <input type="password" class="form-control" id="u4" name="u4" placeholder="Enter Password" required>
-          </div>
-
-          <!-- Dropdown for user type -->
-          <div class="form-group">
-            <label for="user_type">Role: </label>
-            <select class="form-control" id="user_type" name="user_type" required>
-              <option value="" disabled selected>Please select a role</option>
-              <option value="farmer">Farmer</option>
-              <option value="equipment_renter">Equipment Renter</option>
-              <option value="agronomist">Agronomist</option>
-              <option value="storage_owner">Storage Owner</option>
-            </select>
-          </div>
-
-          <button type="submit" class="btn-submit">Sign Up</button>
-        </form>
-      </div>
+    <div class="signin-link">
+      <p>Already have an account? <a href="login.html">Sign In</a></p>
     </div>
   </div>
-
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
 </body>
 
 </html>

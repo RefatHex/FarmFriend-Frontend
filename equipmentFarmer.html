@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Bookings - Farmer Portal</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f9f9f9;
+    }
+
+    header {
+      background-image: url("assets/images/myBooking.jpg");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      height: 70vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-align: center;
+      position: relative;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      /* Add a dark overlay to the image */
+      z-index: 1;
+    }
+
+    .header-text {
+      position: relative;
+      z-index: 2;
+      background-color: rgba(0, 0, 0, 0.7);
+      /* Semi-transparent background */
+      padding: 20px 40px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .header-text h1 {
+      font-size: 3rem;
+      font-weight: bold;
+      margin: 0;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: #4CAF50;
+      /* Highlight color for the main text */
+    }
+
+    .header-text p {
+      margin-top: 10px;
+      font-size: 1.2rem;
+      font-weight: 300;
+      color: #f0f0f0;
+      /* Subtle color for the subtitle */
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: hsla(0, 0%, 85%, 0.145);
+      border-bottom: 1px solid #ddd;
+      display: flex;
+      justify-content: center;
+      padding: 10px 0;
+      z-index: 1000;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    nav a {
+      color: black;
+      padding: 14px 20px;
+      text-decoration: none;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      background-color: #ddd;
+      color: black;
+    }
+
+    .container {
+      padding: 20px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .booking-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    .booking-item {
+      background-color: white;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      padding: 15px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    }
+
+    .booking-item img {
+      max-width: 100%;
+      border-radius: 5px;
+    }
+
+    .booking-item h3 {
+      margin: 10px 0;
+      color: #4CAF50;
+    }
+
+    .booking-item p {
+      margin: 5px 0;
+      color: #555;
+    }
+
+    .booking-item:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    footer {
+      text-align: center;
+      padding: 10px 0;
+      background-color: #333;
+      color: white;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="header-text">
+      <h1>My Bookings</h1>
+      <p>Manage all your equipment reservations in one place</p>
+    </div>
+  </header>
+
+  <nav id="navbar">
+    <a href="index.html">Home</a>
+    <a href="rentalFarmer.html">Equipment</a>
+    <a href="contact.html">Contact Us</a>
+  </nav>
+
+  <div class="container">
+    <h2>Your Bookings</h2>
+
+    <!-- If there are no bookings -->
+    <!-- Uncomment this section if the user has no bookings -->
+    <!-- <p>You have no active bookings at the moment.</p> -->
+
+    <!-- List of bookings -->
+    <div class="booking-list">
+      <!-- Booking 1 -->
+      <div class="booking-item">
+        <img src="assets/images/tractor.jpg" alt="Tractor">
+        <h3>Tractor</h3>
+        <p>Booking Date: 2025-01-05</p>
+        <p>Rental Period: 3 Days</p>
+        <p>Total Cost: $300</p>
+      </div>
+
+      <!-- Booking 2 -->
+      <div class="booking-item">
+        <img src="assets/images/seeder.jpg" alt="Seeder">
+        <h3>Seeder</h3>
+        <p>Booking Date: 2025-01-03</p>
+        <p>Rental Period: 2 Days</p>
+        <p>Total Cost: $100</p>
+      </div>
+
+      <!-- Booking 3 -->
+      <div class="booking-item">
+        <img src="assets/images/harvester.jpg" alt="Harvester">
+        <h3>Harvester</h3>
+        <p>Booking Date: 2025-01-01</p>
+        <p>Rental Period: 5 Days</p>
+        <p>Total Cost: $750</p>
+      </div>
+
+      <!-- Booking 4 -->
+      <div class="booking-item">
+        <img src="assets/images/plow.jpg" alt="Plow">
+        <h3>Plow</h3>
+        <p>Booking Date: 2025-01-07</p>
+        <p>Rental Period: 4 Days</p>
+        <p>Total Cost: $200</p>
+      </div>
+
+      <!-- Booking 5 -->
+      <div class="booking-item">
+        <img src="assets/images/spray.jpg" alt="Sprayer">
+        <h3>Sprayer</h3>
+        <p>Booking Date: 2025-01-08</p>
+        <p>Rental Period: 2 Days</p>
+        <p>Total Cost: $150</p>
+      </div>
+
+      <!-- Booking 6 -->
+      <div class="booking-item">
+        <img src="assets/images/baler.jpg" alt="Baler">
+        <h3>Baler</h3>
+        <p>Booking Date: 2025-01-06</p>
+        <p>Rental Period: 3 Days</p>
+        <p>Total Cost: $350</p>
+      </div>
+
+      <!-- Booking 7 -->
+      <div class="booking-item">
+        <img src="assets/images/loader.jpg" alt="Loader">
+        <h3>Loader</h3>
+        <p>Booking Date: 2025-01-04</p>
+        <p>Rental Period: 6 Days</p>
+        <p>Total Cost: $450</p>
+      </div>
+
+      <!-- Booking 8 -->
+      <div class="booking-item">
+        <img src="assets/images/irrigator.jpg" alt="Irrigator">
+        <h3>Irrigator</h3>
+        <p>Booking Date: 2025-01-02</p>
+        <p>Rental Period: 7 Days</p>
+        <p>Total Cost: $500</p>
+      </div>
+
+      <!-- Booking 9 -->
+      <div class="booking-item">
+        <img src="assets/images/harrow.png" alt="Harrow">
+        <h3>Harrow</h3>
+        <p>Booking Date: 2025-01-09</p>
+        <p>Rental Period: 3 Days</p>
+        <p>Total Cost: $250</p>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Agricultural Equipment Rental System. All rights reserved.</p>
+  </footer>
+
+  <script>
+    let lastScrollTop = 0;
+    const navbar = document.getElementById('navbar');
+
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+      if (scrollTop > lastScrollTop) {
+        // Scrolling down - hide navbar
+        navbar.style.transform = 'translateY(-100%)';
+      } else {
+        // Scrolling up - show navbar
+        navbar.style.transform = 'translateY(0)';
+      }
+
+      lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // Prevent negative values
+    });
+  </script>
+</body>
+
+</html>

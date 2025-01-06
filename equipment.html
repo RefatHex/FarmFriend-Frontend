@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Available Equipment - Agricultural Equipment Rental</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f9f9f9;
+    }
+
+    /* New Header Style with Gradient Overlay */
+    header {
+      position: relative;
+      background-image: url("assets/images/loginbg3.jpg");
+      background-size: cover;
+      background-position: center;
+      height: 80vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: white;
+    }
+
+    header::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      /* Dark overlay for readability */
+      z-index: 1;
+    }
+
+    header .content {
+      z-index: 2;
+      font-weight: bold;
+      color: white;
+      text-transform: uppercase;
+    }
+
+    header h1 {
+      font-size: 3.5em;
+      margin: 0;
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+    }
+
+    header h2 {
+      font-size: 1.8em;
+      margin-top: 10px;
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+    }
+
+    header .cta-btn {
+      background-color: #4CAF50;
+      color: white;
+      padding: 15px 30px;
+      font-size: 1.2em;
+      border-radius: 5px;
+      text-decoration: none;
+      margin-top: 20px;
+      display: inline-block;
+      transition: all 0.3s ease;
+    }
+
+    header .cta-btn:hover {
+      background-color: #45a049;
+      transform: translateY(-5px);
+    }
+
+    /* Navigation Bar */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: transparent;
+      /* Make the background transparent */
+      border-bottom: 1px solid rgba(255, 255, 255, 0.6);
+      /* Light border for visibility */
+      display: flex;
+      justify-content: space-evenly;
+      /* Use space-evenly for closely spaced items */
+      padding: 10px 0;
+      /* Reduced padding for closer options */
+      z-index: 1000;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    nav a {
+      color: white;
+      /* Change text color to white for visibility on dark backgrounds */
+      padding: 10px 15px;
+      /* Adjusted padding for closer options */
+      text-decoration: none;
+      text-align: center;
+      font-weight: bold;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    nav a:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+      /* Light hover effect */
+      color: white;
+      transform: scale(1.05);
+    }
+
+    .container {
+      padding: 20px;
+      max-width: 1200px;
+      margin: auto;
+      margin-top: 80px;
+    }
+
+    .equipment-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    .equipment-item {
+      background-color: white;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      padding: 15px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      transition: transform 0.2s ease-in-out;
+    }
+
+    .equipment-item img {
+      max-width: 100%;
+      border-radius: 5px;
+    }
+
+    .equipment-item h3 {
+      margin: 10px 0;
+    }
+
+    .equipment-item p {
+      margin: 5px 0;
+    }
+
+    .equipment-item:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .btn {
+      display: inline-block;
+      background-color: #4CAF50;
+      color: white;
+      padding: 12px 25px;
+      text-decoration: none;
+      border-radius: 5px;
+      font-size: 16px;
+      font-weight: bold;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    .btn:hover {
+      background-color: #45a049;
+      transform: scale(1.05);
+    }
+
+    .btn:active {
+      background-color: #3e8e41;
+      transform: scale(0.98);
+    }
+
+    footer {
+      text-align: center;
+      padding: 10px 0;
+      background-color: #333;
+      color: white;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="content">
+      <h1>FarmFriend Agricultural Equipment Rental</h1>
+      <h2>Your Trusted Source for Farming Equipment</h2>
+      <a href="equipment.html" class="cta-btn">Browse Equipment</a>
+    </div>
+  </header>
+
+  <nav id="navbar">
+    <a href="index.html">Home</a>
+    <a href="equipmentFarmer.html">My Bookings</a>
+    <a href="contact.html">Contact Us</a>
+  </nav>
+
+  <div class="container">
+    <h2>Available Equipment</h2>
+    <div class="equipment-list">
+      <!-- Existing Equipment Items -->
+      <div class="equipment-item">
+        <img src="assets/images/tractor.jpg" alt="Tractor">
+        <h3>Tractor</h3>
+        <p>Powerful and efficient tractor for your farming needs.</p>
+        <p>Rent: $100/day</p>
+        <a href="#" class="btn">Book Now</a>
+      </div>
+
+      <div class="equipment-item">
+        <img src="assets/images/seeder.jpg" alt="Seeder">
+        <h3>Seeder</h3>
+        <p>Efficient seeder to make sowing easy and fast.</p>
+        <p>Rent: $50/day</p>
+        <a href="#" class="btn">Book Now</a>
+      </div>
+
+      <div class="equipment-item">
+        <img src="assets/images/harvester.jpg" alt="Harvester">
+        <h3>Harvester</h3>
+        <p>High-quality harvester for efficient harvesting.</p>
+        <p>Rent: $150/day</p>
+        <a href="#" class="btn">Book Now</a>
+      </div>
+
+      <!-- New Equipment Items -->
+      <div class="equipment-item">
+        <img src="assets/images/plow.jpg" alt="Plow">
+        <h3>Plow</h3>
+        <p>Perfect for turning the soil and preparing your fields.</p>
+        <p>Rent: $75/day</p>
+        <a href="#" class="btn">Book Now</a>
+      </div>
+
+      <div class="equipment-item">
+        <img src="assets/images/spray.jpg" alt="Sprayer">
+        <h3>Sprayer</h3>
+        <p>Spray your fields with precision for optimal growth.</p>
+        <p>Rent: $60/day</p>
+        <a href="#" class="btn">Book Now</a>
+      </div>
+
+      <div class="equipment-item">
+        <img src="assets/images/baler.jpg" alt="Baler">
+        <h3>Baler</h3>
+        <p>Ideal for creating hay bales and other bundled crops.</p>
+        <p>Rent: $120/day</p>
+        <a href="#" class="btn">Book Now</a>
+      </div>
+
+      <div class="equipment-item">
+        <img src="assets/images/loader.jpg" alt="Loader">
+        <h3>Loader</h3>
+        <p>Efficient loader for moving materials around your farm.</p>
+        <p>Rent: $110/day</p>
+        <a href="#" class="btn">Book Now</a>
+      </div>
+
+      <div class="equipment-item">
+        <img src="assets/images/irrigator.jpg" alt="Irrigator">
+        <h3>Irrigator</h3>
+        <p>Water your crops evenly and efficiently.</p>
+        <p>Rent: $80/day</p>
+        <a href="#" class="btn">Book Now</a>
+      </div>
+
+      <div class="equipment-item">
+        <img src="assets/images/harrow.png" alt="Harrow">
+        <h3>Harrow</h3>
+        <p>Prepare your fields for sowing with our harrow equipment.</p>
+        <p>Rent: $70/day</p>
+        <a href="#" class="btn">Book Now</a>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Agricultural Equipment Rental System. All rights reserved.</p>
+  </footer>
+
+  <script>
+    let lastScrollTop = 0;
+    const navbar = document.getElementById('navbar');
+
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+      if (scrollTop > lastScrollTop) {
+        // Scrolling down
+        navbar.style.transform = 'translateY(-100%)';
+      } else {
+        // Scrolling up
+        navbar.style.transform = 'translateY(0)';
+      }
+
+      lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // For Mobile or negative scrolling
+    });
+  </script>
+</body>
+
+</html>

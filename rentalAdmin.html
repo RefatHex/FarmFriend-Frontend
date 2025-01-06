@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agriculture Equipment Rental</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+
+    header {
+      background: #4CAF50;
+      color: white;
+      padding: 1rem 0;
+      text-align: center;
+    }
+
+    .sidebar {
+      width: 200px;
+      background: #333;
+      color: white;
+      position: fixed;
+      height: 100%;
+      overflow: auto;
+    }
+
+    .sidebar a {
+      display: block;
+      color: white;
+      text-decoration: none;
+      padding: 15px;
+    }
+
+    .sidebar a:hover {
+      background: #575757;
+    }
+
+    .main-content {
+      margin-left: 200px;
+      padding: 20px;
+    }
+
+    .dashboard-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      text-align: center;
+    }
+
+    .card h3 {
+      margin: 0;
+    }
+
+    .card a {
+      display: block;
+      margin-top: 10px;
+      text-decoration: none;
+      color: #4CAF50;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+    }
+
+    table,
+    th,
+    td {
+      border: 1px solid #ddd;
+    }
+
+    th,
+    td {
+      padding: 10px;
+      text-align: left;
+    }
+
+    th {
+      background: #4CAF50;
+      color: white;
+    }
+
+    .action-buttons button {
+      padding: 5px 10px;
+      margin-right: 5px;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+
+    .action-buttons .edit {
+      background: #4CAF50;
+      color: white;
+    }
+
+    .action-buttons .delete {
+      background: #f44336;
+      color: white;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>Agriculture Equipment Rental Management System</h1>
+  </header>
+
+  <div class="sidebar">
+    <a href="#dashboard">Dashboard</a>
+    <a href="#category">Category</a>
+    <a href="#subcategory">Sub-Category</a>
+    <a href="#products">Products</a>
+    <a href="#bookings">Bookings</a>
+    <a href="#users">Registered Users</a>
+    <a href="#reports">Reports</a>
+  </div>
+
+  <div class="main-content">
+    <section id="dashboard">
+      <h2>Admin Dashboard</h2>
+      <div class="dashboard-cards">
+        <div class="card" style="background-color: #2196F3; color: white;">
+          <h3>Total Products</h3>
+          <p>11</p>
+          <a href="#">View</a>
+        </div>
+        <div class="card" style="background-color: #4CAF50; color: white;">
+          <h3>New Bookings</h3>
+          <p>4</p>
+          <a href="#">View</a>
+        </div>
+        <div class="card" style="background-color: #f44336; color: white;">
+          <h3>Approved Bookings</h3>
+          <p>5</p>
+          <a href="#">View</a>
+        </div>
+        <div class="card" style="background-color: #FFC107; color: black;">
+          <h3>Unapproved Bookings</h3>
+          <p>1</p>
+          <a href="#">View</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="products">
+      <h2>Manage Products</h2>
+      <table>
+        <tr>
+          <th>S.NO</th>
+          <th>Product Name</th>
+          <th>Model Number</th>
+          <th>Rent Price (per day)</th>
+          <th>Creation Date</th>
+          <th>Action</th>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>WOLF GARTEN BATTERY MOWER</td>
+          <td>LYCOS 40/400 M</td>
+          <td>500</td>
+          <td>2024-08-13</td>
+          <td class="action-buttons">
+            <button class="edit">Edit</button>
+            <button class="delete">Delete</button>
+          </td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Wolf Garten TT 350S</td>
+          <td>TT 350S</td>
+          <td>100</td>
+          <td>2024-08-13</td>
+          <td class="action-buttons">
+            <button class="edit">Edit</button>
+            <button class="delete">Delete</button>
+          </td>
+        </tr>
+      </table>
+    </section>
+
+    <section id="booking-details">
+      <h2>Booking Details</h2>
+      <table>
+        <tr>
+          <th>Field</th>
+          <th>Details</th>
+        </tr>
+        <tr>
+          <td>Full Name</td>
+          <td>Abir Rahwan</td>
+        </tr>
+        <tr>
+          <td>Email</td>
+          <td>abir@gmail.com</td>
+        </tr>
+        <tr>
+          <td>Mobile Number</td>
+          <td>2556444557</td>
+        </tr>
+        <tr>
+          <td>Product Name</td>
+          <td>WOLF GARTEN BATTERY MOWER</td>
+        </tr>
+        <tr>
+          <td>Category</td>
+          <td>Brush Cutters</td>
+        </tr>
+        <tr>
+          <td>Booking Date</td>
+          <td>2022-07-12</td>
+        </tr>
+      </table>
+    </section>
+  </div>
+
+</body>
+
+</html>
