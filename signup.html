@@ -162,12 +162,6 @@
   <div class="signup-container">
     <h2>Sign-Up</h2>
     <form action="#" method="POST" enctype="multipart/form-data">
-      <input type="text" id="name" name="name" placeholder="Enter your full name" required>
-      <input type="email" id="email" name="email" placeholder="Enter your email" required>
-      <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
-      <input type="password" id="password" name="password" placeholder="Create a password" required>
-      <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm your password" required>
-
       <!-- Dropdown for role selection -->
       <select id="role" name="role" onchange="showAdditionalFields()" required>
         <option value="" disabled selected>Select your role</option>
@@ -176,6 +170,12 @@
         <option value="storage_owner">Storage Owner</option>
         <option value="equipment_renter">Equipment Renter</option>
       </select>
+
+      <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+      <input type="email" id="email" name="email" placeholder="Enter your email" required>
+      <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
+      <input type="password" id="password" name="password" placeholder="Create a password" required>
+      <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm your password" required>
 
       <!-- Additional fields -->
       <div id="additional-fields" class="additional-fields">
@@ -205,7 +205,7 @@
             <input type="file" name="picture" accept="image/*" required>
           `;
           break;
-          case "agronomist":
+        case "agronomist":
           fieldsHTML = `
             <input type="date" name="dob" placeholder="Date of Birth" required>
             <textarea name="address" placeholder="Address" required></textarea>
@@ -222,14 +222,16 @@
             <input type="file" name="picture" accept="image/*" required>
           `;
           break;
-        case "equipment_renter":
+          case "equipment_renter":
           fieldsHTML = `
             <input type="date" name="dob" placeholder="Date of Birth" required>
             <textarea name="address" placeholder="Address" required></textarea>
+            <textarea name="equipment_types" placeholder="Equipment Types Available for Rent" required style="height: 100px; resize: none;"></textarea>
             <input type="file" name="picture" accept="image/*" required>
           `;
           break;
         default:
+          fields
           fieldsHTML = "";
       }
 
