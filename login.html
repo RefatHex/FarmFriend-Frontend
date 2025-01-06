@@ -21,9 +21,9 @@
       background-position: center;
       font-family: 'Montserrat', sans-serif;
       display: flex;
-      justify-content: center;
+      flex-direction: column;
       align-items: center;
-
+      justify-content: center;
     }
 
     /* Add shadow to background */
@@ -34,41 +34,69 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background: rgba(0, 0, 0, 0.3);
-      /* Shadow overlay */
+      background: rgba(104, 102, 102, 0.3);
       z-index: -1;
+    }
 
-      /* Make sure the shadow stays behind the content */
+    /* Navigation bar */
+    .navbar {
+      position: fixed;
+      top: -60px;
+      /* Hide initially */
+      width: 100%;
+      background: rgba(255, 255, 255, 0.15);
+      /* Light transparent background */
+      backdrop-filter: blur(10px);
+      /* Glassy effect */
+      padding: 10px 20px;
+      display: flex;
+      justify-content: center;
+      z-index: 10;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+      /* Subtle shadow */
+      border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+      /* Subtle border */
+      transition: top 0.4s ease;
+      /* Smooth transition */
+    }
+
+    .navbar a {
+      color: #fff;
+      text-decoration: none;
+      margin: 0 15px;
+      font-size: 1rem;
+      text-transform: uppercase;
+      transition: color 0.3s ease, background-color 0.3s ease;
+      padding: 8px 16px;
+      border-radius: 4px;
+    }
+
+    .navbar a:hover {
+      color: #000;
+      background-color: rgba(255, 255, 255, 0.7);
     }
 
     /* Glass effect container */
     .login-container {
       background: rgba(255, 255, 255, 0.3);
-      /* Lightened the background for better visibility */
       backdrop-filter: blur(8px);
-      /* Slight blur effect */
       border-radius: 16px;
       padding: 40px 50px;
       width: 380px;
-      /* Slightly wider for more space */
       box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
       text-align: center;
       margin: auto;
       position: relative;
-
-      /* Ensure this stays on top of background */
       z-index: 1;
     }
 
     .login-container h2 {
       margin-bottom: 30px;
-      /* More space between elements */
       font-size: 2rem;
       font-weight: 600;
       text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
     }
 
-    /* Input fields */
     .login-container input {
       width: 100%;
       padding: 14px;
@@ -78,6 +106,7 @@
       background: rgba(255, 255, 255, 0.5);
       color: #333;
       font-size: 1rem;
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
     }
 
     .login-container input::placeholder {
@@ -90,14 +119,13 @@
       box-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
     }
 
-    /* Login submit button */
     .login-container button {
       width: 100%;
       padding: 14px;
       margin-top: 20px;
       font-size: 1rem;
       color: #fff;
-      background: linear-gradient(to right, #1e90ff, #4facfe);
+      background: linear-gradient(to right, #564bef, #4facfe);
       border: none;
       border-radius: 8px;
       text-transform: uppercase;
@@ -106,11 +134,10 @@
     }
 
     .login-container button:hover {
-      transform: scale(1.02);
-      box-shadow: 0 8px 20px rgba(30, 144, 255, 0.3);
+      transform: scale(1.05);
+      box-shadow: 0 8px 20px rgba(30, 144, 255, 0.5);
     }
 
-    /* Remember Me Checkbox */
     .toggle {
       display: flex;
       align-items: center;
@@ -141,24 +168,22 @@
       cursor: pointer;
     }
 
-    /* Add more space below Remember Me */
     .toggle+.options {
       margin-top: 40px;
-      /* Increased margin for more space */
     }
 
-    /* Remove hover from links */
     .login-container .options a {
-      color: #1e90ff;
+      color: #0099ff;
       text-decoration: none;
       font-size: 1rem;
+      transition: color 0.3s ease;
     }
 
     .login-container .options a:hover {
       text-decoration: underline;
+      color: #000;
     }
 
-    /* Responsive design */
     @media (max-width: 600px) {
       .login-container {
         width: 90%;
@@ -182,6 +207,12 @@
 </head>
 
 <body>
+  <div class="navbar">
+    <a href="index.html">Home</a>
+    <a href="contact.html">Contact</a>
+    <a href="about.html">About</a>
+  </div>
+
   <div class="login-container">
     <h2>Login</h2>
     <form action="#" method="POST">
@@ -192,16 +223,27 @@
         <label for="remember">Remember Me</label>
       </div>
       <button type="submit">Login</button>
-      <br> <!-- Added line break for spacing -->
     </form>
     <div class="options">
       <br>
-
       <p>Not you? <a href="#">Switch account</a></p>
-      <br> <!-- Added line break for spacing -->
+      <br>
       <p>Don't have an account? <a href="signup.html">Sign Up</a></p>
     </div>
   </div>
+
+  <script>
+    const navbar = document.querySelector('.navbar');
+
+    // Show navbar when mouse enters top of the page
+    document.addEventListener('mousemove', (e) => {
+      if (e.clientY < 50) {
+        navbar.style.top = '0'; // Show navbar
+      } else {
+        navbar.style.top = '-60px'; // Hide navbar
+      }
+    });
+  </script>
 </body>
 
 </html>
