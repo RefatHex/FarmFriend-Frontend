@@ -34,39 +34,34 @@
       right: 0;
       bottom: 0;
       background: rgba(0, 0, 0, 0.3);
-      /* Shadow overlay */
       z-index: -1;
-      /* Make sure the shadow stays behind the content */
     }
 
     /* Glass effect container */
     .signup-container {
       background: rgba(255, 255, 255, 0.3);
-      /* Lightened the background for better visibility */
       backdrop-filter: blur(8px);
-      /* Slight blur effect */
       border-radius: 16px;
       padding: 40px 50px;
-      width: 380px;
-      /* Slightly wider for more space */
+      width: 400px;
       box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
       text-align: center;
       margin: auto;
       position: relative;
-      /* Ensure this stays on top of background */
       z-index: 1;
     }
 
     .signup-container h2 {
       margin-bottom: 30px;
-      /* More space between elements */
       font-size: 2rem;
       font-weight: 600;
       text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
     }
 
     /* Input fields */
-    .signup-container input {
+    .signup-container input,
+    .signup-container select,
+    .signup-container textarea {
       width: 100%;
       padding: 14px;
       margin: 12px 0;
@@ -77,17 +72,26 @@
       font-size: 1rem;
     }
 
-    .signup-container input::placeholder {
+    .signup-container input::placeholder,
+    .signup-container select,
+    .signup-container textarea::placeholder {
       color: #333;
     }
 
-    .signup-container input:focus {
+    .signup-container input:focus,
+    .signup-container select:focus,
+    .signup-container textarea:focus {
       outline: none;
       background: rgba(255, 255, 255, 0.6);
       box-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
     }
 
-    /* Sign-Up submit button */
+    .signup-container textarea {
+      height: 80px;
+      resize: none;
+    }
+
+    /* Submit button */
     .signup-container button {
       width: 100%;
       padding: 14px;
@@ -97,7 +101,6 @@
       background: linear-gradient(to right, #1e90ff, #4facfe);
       border: none;
       border-radius: 8px;
-      text-transform: uppercase;
       cursor: pointer;
       transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
@@ -107,7 +110,6 @@
       box-shadow: 0 8px 20px rgba(30, 144, 255, 0.3);
     }
 
-    /* Already have an account link */
     .signin-link {
       margin-top: 20px;
     }
@@ -138,18 +140,47 @@
         font-size: 0.9rem;
       }
     }
+
+    .additional-fields {
+      display: none;
+      animation: fadeIn 0.3s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
   </style>
 </head>
 
 <body>
   <div class="signup-container">
     <h2>Sign-Up</h2>
-    <form action="#" method="POST">
+    <form action="#" method="POST" enctype="multipart/form-data">
       <input type="text" id="name" name="name" placeholder="Enter your full name" required>
       <input type="email" id="email" name="email" placeholder="Enter your email" required>
       <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
       <input type="password" id="password" name="password" placeholder="Create a password" required>
       <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm your password" required>
+
+      <!-- Dropdown for role selection -->
+      <select id="role" name="role" onchange="showAdditionalFields()" required>
+        <option value="" disabled selected>Select your role</option>
+        <option value="farmer">Farmer</option>
+        <option value="agronomist">Agronomist</option>
+        <option value="storage_owner">Storage Owner</option>
+        <option value="equipment_renter">Equipment Renter</option>
+      </select>
+
+      <!-- Additional fields -->
+      <div id="additional-fields" class="additional-fields">
+        <!-- Dynamic content goes here -->
+      </div>
 
       <button type="submit">Sign Up</button>
     </form>
@@ -158,6 +189,54 @@
       <p>Already have an account? <a href="login.html">Sign In</a></p>
     </div>
   </div>
+
+  <script>
+    function showAdditionalFields() {
+      const role = document.getElementById("role").value;
+      const additionalFields = document.getElementById("additional-fields");
+      let fieldsHTML = "";
+
+      switch (role) {
+        case "farmer":
+          fieldsHTML = `
+            <input type="date" name="dob" placeholder="Date of Birth" required>
+            <textarea name="address" placeholder="Address" required></textarea>
+            <input type="number" name="field_size" placeholder="Field Size (in hectares)" required>
+            <input type="file" name="picture" accept="image/*" required>
+          `;
+          break;
+          case "agronomist":
+          fieldsHTML = `
+            <input type="date" name="dob" placeholder="Date of Birth" required>
+            <textarea name="address" placeholder="Address" required></textarea>
+            <input type="text" name="specialty" placeholder="Specialty" required>
+            <input type="number" name="experience" placeholder="Experience (in years)" required min="0">
+            <input type="file" name="picture" accept="image/*" required>
+          `;
+          break;
+        case "storage_owner":
+          fieldsHTML = `
+            <input type="date" name="dob" placeholder="Date of Birth" required>
+            <textarea name="address" placeholder="Location Address" required></textarea>
+            <input type="number" name="storage_capacity" placeholder="Storage Capacity (in tonnes)" required>
+            <input type="file" name="picture" accept="image/*" required>
+          `;
+          break;
+        case "equipment_renter":
+          fieldsHTML = `
+            <input type="date" name="dob" placeholder="Date of Birth" required>
+            <textarea name="address" placeholder="Address" required></textarea>
+            <input type="file" name="picture" accept="image/*" required>
+          `;
+          break;
+        default:
+          fieldsHTML = "";
+      }
+
+      additionalFields.innerHTML = fieldsHTML;
+      additionalFields.style.display = fieldsHTML ? "block" : "none";
+    }
+  </script>
 </body>
 
 </html>
