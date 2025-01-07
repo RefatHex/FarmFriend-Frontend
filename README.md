@@ -1,4 +1,4 @@
-﻿# FirmFriend-Frontend
+﻿# FarmFriend-Frontend
 Think about the most common occupation in Bangladesh. Now think about the most
  underdeveloped and overlooked one. The answer to both of them is Agriculture and
  Farming. Even though there are many initiatives to increase the production from the fields,
