@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Agricultural Equipment Rental - Farmer Portal</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" />
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -101,28 +102,37 @@
   <header>
     <nav id="navbar">
       <a href="index.html">Home</a>
-      <a href="equipment.html">Equipment</a> <!-- Link to the new equipment page -->
+      <a href="equipment.html">Equipment</a>
       <a href="equipmentFarmer.html#bookings">My Bookings</a>
       <a href="contact.html">Contact Us</a>
     </nav>
     <div>
-      <h1>Welcome to the FarmFriend Agricultural Equipment Booking Portal</h1>
-      <h2>Gateway to Modern Farming</h2>
-      <a href="equipment.html" class="btn">Read More</a> <!-- Now links to equipment.html -->
+      <h1 data-aos="fade-down">Welcome to the FarmFriend Agricultural Equipment Booking Portal</h1>
+      <h2 data-aos="fade-up">Gateway to Modern Farming</h2>
+      <a href="equipment.html" class="btn" data-aos="zoom-in">Read More</a>
     </div>
   </header>
 
   <div class="container">
-    <h2>Manage Your Bookings</h2>
-    <p>Welcome, Farmer! You can book agricultural equipment here.</p>
+    <h2 data-aos="fade-right">Manage Your Bookings</h2>
+    <p data-aos="fade-left">Welcome, Farmer! You can book agricultural equipment here.</p>
     <!-- Add your booking management details here -->
   </div>
 
   <footer>
-    <p>&copy; 2025 Agricultural Equipment Rental System of FarmFriend. All rights reserved.</p>
+    <p data-aos="fade-up">&copy; 2025 Agricultural Equipment Rental System of FarmFriend. All rights reserved.</p>
   </footer>
 
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
   <script>
+    // Initialize AOS
+    AOS.init({
+      duration: 1000, // Animation duration
+      offset: 200, // Offset for triggering animations
+      once: true // Animate only once
+    });
+
+    // Navbar scroll-hide behavior
     let lastScrollTop = 0;
     const navbar = document.getElementById('navbar');
 
