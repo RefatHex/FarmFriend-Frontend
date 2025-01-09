@@ -1,295 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign-Up</title>
+    <link rel="stylesheet" href="signup.css" />
+  </head>
+  <body>
+    <header id="header">Sign Up - Join Our Platform</header>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sign-Up</title>
-  <style>
-    /* Reset styles */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    <!-- Fullscreen background video -->
+    <video class="video-background" autoplay loop muted>
+      <source src="assets/video/demo.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
 
-    /* Fullscreen background */
-    body {
-      height: 100vh;
-      font-family: 'Montserrat', sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 0 10px;
-      position: relative;
-      overflow: hidden;
-      background-color: #f0f0f0;
-    }
+    <div class="slider-container">
+      <!-- Right side: Sign-Up Form -->
+      <div class="right">
+        <form id="signupForm">
+          <h3>Select your role:</h3>
+          <select
+            id="role"
+            name="role"
+            onchange="showAdditionalFields()"
+            required
+          >
+            <option value="" disabled selected>Select your role</option>
+            <option value="farmer">Farmer</option>
+            <option value="agronomist">Agronomist</option>
+            <option value="storage_owner">Storage Owner</option>
+            <option value="equipment_renter">Equipment Renter</option>
+            <option value="distributor">Distributor</option>
+            <option value="consultant">Consultant</option>
+            <option value="researcher">Researcher</option>
+          </select>
 
-    /* Fullscreen video background */
-    .video-background {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      z-index: -1;
-    }
-
-    /* Fixed Header */
-    header {
-      width: 100%;
-      background-color: transparent;
-      /* Fully transparent background */
-      color: white;
-      text-align: center;
-      padding: 15px 0;
-      position: fixed;
-      top: 0;
-      left: 0;
-      z-index: 1000;
-      font-size: 1.4rem;
-      box-shadow: none;
-      /* Remove any shadow initially */
-      transition: all 0.3s ease-in-out;
-    }
-
-    /* Header Hover Effect */
-    header:hover {
-      background-color: rgba(51, 51, 51, 0.7);
-      /* Semi-transparent background on hover */
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-      /* Shadow on hover */
-    }
-
-    /* Responsive Design for Header */
-    @media (max-width: 900px) {
-      header {
-        font-size: 1.2rem;
-        /* Smaller font size for mobile */
-        padding: 12px 0;
-        /* Adjust padding for smaller screens */
-      }
-    }
-
-    @media (max-width: 600px) {
-      header {
-        font-size: 1rem;
-        /* Even smaller font size for smaller devices */
-        padding: 10px 0;
-      }
-    }
-
-    /* Container for the form */
-    .slider-container {
-      display: flex;
-      max-width: 600px;
-      width: 100%;
-      background: rgba(255, 255, 255, 0.3);
-      border-radius: 12px;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-      overflow: hidden;
-      height: auto;
-      margin-top: 70px;
-      padding: 20px;
-    }
-
-    /* Right side: Form section */
-    .slider-container .right {
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      background-color: rgba(255, 255, 255, 0);
-      padding: 15px;
-      border-radius: 8px;
-      box-shadow: none;
-      max-height: 600px;
-      overflow-y: auto;
-      scrollbar-width: thin;
-      scrollbar-color: rgba(0, 0, 0, 0.3) rgba(255, 255, 255, 0);
-    }
-
-    .slider-container .right::-webkit-scrollbar {
-      width: 0;
-    }
-
-    .slider-container .right:hover::-webkit-scrollbar {
-      width: 6px;
-    }
-
-    .slider-container .right::-webkit-scrollbar-thumb {
-      background-color: rgba(0, 0, 0, 0.5);
-      border-radius: 10px;
-    }
-
-    /* Sign-up form elements */
-    form {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-    }
-
-    input,
-    select,
-    textarea {
-      padding: 12px;
-      border-radius: 6px;
-      border: 1px solid rgba(255, 255, 255, 0.5);
-      font-size: 0.95rem;
-      width: 100%;
-      margin-bottom: 15px;
-      background: rgba(255, 255, 255, 0.2);
-      transition: all 0.3s ease;
-    }
-
-    /* Focus effect on form elements */
-    input:focus,
-    select:focus,
-    textarea:focus {
-      border-color: #1e90ff;
-      box-shadow: 0 0 8px rgba(30, 144, 255, 0.5);
-    }
-
-    /* Submit button */
-    button {
-      padding: 14px;
-      font-size: 1rem;
-      color: #fff;
-      background: linear-gradient(to right, #1e90ff, #4facfe);
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: transform 0.2s ease;
-      width: 100%;
-    }
-
-    button:hover {
-      transform: scale(1.05);
-    }
-
-    /* Footer */
-    footer {
-      width: 100%;
-      background-color: rgba(51, 51, 51, 0.8);
-      color: white;
-      text-align: center;
-      padding: 10px 0;
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      z-index: 1000;
-    }
-
-    /* Responsive Design */
-    @media (max-width: 900px) {
-      .slider-container {
-        flex-direction: column;
-        padding: 20px;
-      }
-
-      .slider-container .right {
-        width: 100%;
-      }
-    }
-  </style>
-</head>
-
-<body>
-  <header id="header">Sign Up - Join Our Platform</header>
-
-  <!-- Fullscreen background video -->
-  <video class="video-background" autoplay loop muted>
-    <source src="assets/video/demo.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
-
-  <div class="slider-container">
-    <!-- Right side: Sign-Up Form -->
-    <div class="right">
-      <form id="signupForm">
-        <!-- Role Selection -->
-        <h3 style="color: white;">Select your role:</h3>
-        <select id="role" name="role" onchange="showAdditionalFields()" required>
-          <option value="" disabled selected>Select your role</option>
-          <option value="farmer">Farmer</option>
-          <option value="agronomist">Agronomist</option>
-          <option value="storage_owner">Storage Owner</option>
-          <option value="equipment_renter">Equipment Renter</option>
-          <option value="distributor">Distributor</option>
-          <option value="consultant">Consultant</option>
-          <option value="researcher">Researcher</option>
-        </select>
-
-        <!-- Personal Info -->
-        <input type="text" id="name" name="name" placeholder="Full Name" required>
-        <input type="email" id="email" name="email" placeholder="Email" required>
-        <input type="tel" id="phone" name="phone" placeholder="Phone Number" required>
-
-        <!-- Password Setup -->
-        <input type="password" id="password" name="password" placeholder="Password" required>
-        <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm Password" required>
-
-        <!-- Dynamic Fields based on role -->
-        <div id="additional-fields"></div>
-
-        <!-- Submit Button -->
-        <button type="submit" id="submitBtn">Sign Up</button>
-      </form>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            placeholder="Full Name"
+            required
+          />
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Email"
+            required
+          />
+          <input
+            type="tel"
+            id="phone"
+            name="phone"
+            placeholder="Phone Number"
+            required
+          />
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Password"
+            required
+          />
+          <input
+            type="password"
+            id="confirm-password"
+            name="confirm-password"
+            placeholder="Confirm Password"
+            required
+          />
+          <div id="additional-fields"></div>
+          <button type="submit" id="submitBtn">Sign Up</button>
+        </form>
+      </div>
     </div>
-  </div>
 
-  <footer>© 2025 Your Platform. All rights reserved.</footer>
+    <footer>© 2025 Your Platform. All rights reserved.</footer>
 
-  <script>
-    // Dynamically show additional fields based on the role
-    function showAdditionalFields() {
-      const role = document.getElementById("role").value;
-      const additionalFields = document.getElementById("additional-fields");
-      let fieldsHTML = "";
-
-      switch (role) {
-        case "farmer":
-          fieldsHTML = ` 
-            <input type="date" name="dob" placeholder="Date of Birth" required>
-            <textarea name="address" placeholder="Address" required></textarea>
-            <input type="number" name="field_size" placeholder="Field Size (in hectares)" required>
-            <input type="file" name="picture" accept="image/*" required>
-          `;
-          break;
-        case "agronomist":
-          fieldsHTML = ` 
-            <input type="date" name="dob" placeholder="Date of Birth" required>
-            <textarea name="address" placeholder="Address" required></textarea>
-            <input type="text" name="specialty" placeholder="Specialty" required>
-            <input type="number" name="experience" placeholder="Experience (in years)" required min="0">
-            <input type="file" name="picture" accept="image/*" required>
-          `;
-          break;
-        case "storage_owner":
-          fieldsHTML = ` 
-            <input type="date" name="dob" placeholder="Date of Birth" required>
-            <textarea name="address" placeholder="Location Address" required></textarea>
-            <input type="number" name="storage_capacity" placeholder="Storage Capacity (in tonnes)" required>
-            <input type="file" name="picture" accept="image/*" required>
-          `;
-          break;
-        case "equipment_renter":
-          fieldsHTML = ` 
-            <input type="date" name="dob" placeholder="Date of Birth" required>
-            <textarea name="address" placeholder="Address" required></textarea>
-            <textarea name="equipment_types" placeholder="Equipment Types Available for Rent" required></textarea>
-            <input type="file" name="picture" accept="image/*" required>
-          `;
-          break;
-        default:
-          fieldsHTML = "";
-      }
-
-      additionalFields.innerHTML = fieldsHTML;
-    }
-  </script>
-</body>
-
+    <script src="signup.js"></script>
+  </body>
 </html>
