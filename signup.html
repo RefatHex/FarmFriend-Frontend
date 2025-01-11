@@ -1,84 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sign-Up</title>
-    <link rel="stylesheet" href="signup.css" />
-  </head>
-  <body>
-    <header id="header">Sign Up - Join Our Platform</header>
 
-    <!-- Fullscreen background video -->
-    <video class="video-background" autoplay loop muted>
-      <source src="assets/video/demo.mp4" type="video/mp4" />
-      Your browser does not support the video tag.
-    </video>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sign-Up</title>
+  <link rel="stylesheet" href="signup.css" />
+</head>
 
-    <div class="slider-container">
-      <!-- Right side: Sign-Up Form -->
-      <div class="right">
-        <form id="signupForm">
-          <h3>Select your role:</h3>
-          <select
-            id="role"
-            name="role"
-            onchange="showAdditionalFields()"
-            required
-          >
-            <option value="" disabled selected>Select your role</option>
-            <option value="farmer">Farmer</option>
-            <option value="agronomist">Agronomist</option>
-            <option value="storage_owner">Storage Owner</option>
-            <option value="equipment_renter">Equipment Renter</option>
-            <option value="distributor">Distributor</option>
-            <option value="consultant">Consultant</option>
-            <option value="researcher">Researcher</option>
-          </select>
+<body>
+  <header id="header">Sign Up - Join Our Platform</header>
 
-          <input
-            type="text"
-            id="name"
-            name="name"
-            placeholder="Full Name"
-            required
-          />
-          <input
-            type="email"
-            id="email"
-            name="email"
-            placeholder="Email"
-            required
-          />
-          <input
-            type="tel"
-            id="phone"
-            name="phone"
-            placeholder="Phone Number"
-            required
-          />
-          <input
-            type="password"
-            id="password"
-            name="password"
-            placeholder="Password"
-            required
-          />
-          <input
-            type="password"
-            id="confirm-password"
-            name="confirm-password"
-            placeholder="Confirm Password"
-            required
-          />
-          <div id="additional-fields"></div>
-          <button type="submit" id="submitBtn">Sign Up</button>
-        </form>
-      </div>
+  <!-- Fullscreen background video -->
+  <video class="video-background" autoplay loop muted>
+    <source src="assets/video/demo.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
+
+  <div class="slider-container">
+    <!-- Right side: Sign-Up Form -->
+    <div class="right">
+      <form id="signupForm">
+        <h3>Select your role:</h3>
+        <select id="role" name="role" onchange="showAdditionalFields()" required>
+          <option value="" disabled selected>Select your role</option>
+          <option value="farmer">Farmer</option>
+          <option value="agronomist">Agronomist</option>
+          <option value="storage_owner">Storage Owner</option>
+          <option value="equipment_renter">Equipment Renter</option>
+          <option value="distributor">Distributor</option>
+          <option value="consultant">Consultant</option>
+          <option value="researcher">Researcher</option>
+        </select>
+
+        <input type="text" id="name" name="name" placeholder="Full Name" required />
+        <input type="email" id="email" name="email" placeholder="Email" required />
+        <input type="tel" id="phone" name="phone" placeholder="Phone Number" required />
+        <input type="password" id="password" name="password" placeholder="Password" required />
+        <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm Password" required />
+        <div id="additional-fields"></div>
+        <button type="submit" id="submitBtn">Sign Up</button>
+      </form>
     </div>
+  </div>
 
-    <footer>© 2025 Your Platform. All rights reserved.</footer>
+  <footer>© 2025 Your Platform. All rights reserved.</footer>
 
-    <script src="signup.js"></script>
-  </body>
+  <script src="signup.js"></script>
+</body>
+
 </html>
