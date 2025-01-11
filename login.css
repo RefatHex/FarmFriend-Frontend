@@ -1,0 +1,169 @@
+/* Reset styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Fullscreen background */
+body {
+  height: 100vh;
+  background-image: url("assets/images/loinbg.jpg");
+  background-size: cover;
+  background-position: center;
+  font-family: "Montserrat", sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+body::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(104, 102, 102, 0.3);
+  z-index: -1;
+}
+
+/* Navigation bar */
+.navbar {
+  position: fixed;
+  top: -60px;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  padding: 10px 20px;
+  display: flex;
+  justify-content: center;
+  z-index: 10;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  transition: top 0.4s ease;
+}
+
+.navbar a {
+  color: #fff;
+  text-decoration: none;
+  margin: 0 15px;
+  font-size: 1rem;
+  text-transform: uppercase;
+  padding: 8px 16px;
+  border-radius: 4px;
+  transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+.navbar a:hover {
+  color: #000;
+  background-color: rgba(255, 255, 255, 0.7);
+}
+
+/* Glass effect container */
+.login-container {
+  background: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(8px);
+  border-radius: 16px;
+  padding: 40px 50px;
+  width: 380px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.login-container h2 {
+  margin-bottom: 30px;
+  font-size: 2rem;
+  font-weight: 600;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.login-container input {
+  width: 100%;
+  padding: 14px;
+  margin: 12px 0;
+  border: none;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.5);
+  color: #333;
+  font-size: 1rem;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.login-container input::placeholder {
+  color: #333;
+}
+
+.login-container input:focus {
+  outline: none;
+  background: rgba(255, 255, 255, 0.6);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+}
+
+.login-container button {
+  width: 100%;
+  padding: 14px;
+  margin-top: 20px;
+  font-size: 1rem;
+  color: #fff;
+  background: linear-gradient(to right, #564bef, #4facfe);
+  border: none;
+  border-radius: 8px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.login-container button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(30, 144, 255, 0.5);
+}
+
+.toggle {
+  display: flex;
+  align-items: center;
+  margin: 18px 0;
+  font-size: 1rem;
+}
+
+.toggle input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  margin-right: 12px;
+  cursor: pointer;
+}
+
+.toggle label {
+  cursor: pointer;
+}
+
+.login-container .options a {
+  color: #0099ff;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: color 0.3s ease;
+}
+
+.login-container .options a:hover {
+  text-decoration: underline;
+  color: #000;
+}
+
+@media (max-width: 600px) {
+  .login-container {
+    width: 90%;
+    padding: 30px 40px;
+  }
+
+  .login-container h2 {
+    font-size: 1.5rem;
+  }
+
+  .login-container input,
+  .login-container button {
+    font-size: 0.9rem;
+  }
+}
