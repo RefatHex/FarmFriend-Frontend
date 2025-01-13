@@ -1,3 +1,4 @@
+// Select the login form
 const loginForm = document.querySelector("form");
 
 loginForm.addEventListener("submit", async (event) => {
@@ -25,7 +26,15 @@ loginForm.addEventListener("submit", async (event) => {
 
     if (response.ok) {
       const data = await response.json();
-      alert("Login successful!");
+
+      // Display success alert with SweetAlert2
+      Swal.fire({
+        icon: "success",
+        title: "Login Successful!",
+        text: "Welcome back, " + username + "!",
+        showConfirmButton: true,
+      });
+
       console.log("Response:", data);
 
       // Save the main user ID in localStorage
@@ -53,16 +62,35 @@ loginForm.addEventListener("submit", async (event) => {
       });
 
       console.log("Additional details saved in localStorage.");
+      
       // Redirect to another page
-      window.location.href = "contact.html";
+      setTimeout(() => {
+        window.location.href = "contact.html";
+      }, 1500); // Delay to let the alert display
+
     } else {
       const errorData = await response.json();
-      alert("Login failed: " + errorData.detail);
+
+      // Display error alert with SweetAlert2
+      Swal.fire({
+        icon: "error",
+        title: "Login Failed!",
+        text: errorData.detail || "Invalid credentials. Please try again.",
+        showConfirmButton: true,
+      });
+
       console.error("Error:", errorData);
     }
   } catch (error) {
     console.error("An error occurred:", error);
-    alert("An error occurred while logging in. Please try again.");
+
+    // Display general error alert with SweetAlert2
+    Swal.fire({
+      icon: "error",
+      title: "Error!",
+      text: "An error occurred while logging in. Please try again.",
+      showConfirmButton: true,
+    });
   }
 });
 
@@ -96,7 +124,3 @@ async function fetchDetails(endpoint, userId) {
 
   return null; // Return null if fetch fails
 }
-//localStorage.getItem("userId");
-//localStorage.getItem("farmersId");
-//localStorage.getItem("rent-ownersId");
-//localStorage.getItem("agronomistsId");

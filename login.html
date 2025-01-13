@@ -5,15 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Glass Login Design</title>
     <link rel="stylesheet" href="login.css" />
+    <!-- SweetAlert2 Library -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   </head>
 
   <body>
+    <!-- Navbar -->
     <div class="navbar">
       <a href="index.html">Home</a>
       <a href="contact.html">Contact</a>
       <a href="about.html">About</a>
     </div>
 
+    <!-- Login Form -->
     <div class="login-container">
       <h2>Login</h2>
       <form action="#" method="POST">
@@ -28,14 +32,19 @@
           <input type="checkbox" id="remember" name="remember" />
           <label for="remember">Remember Me</label>
         </div>
-        <button type="submit">Login</button>
+        <!-- Added spacing for the button -->
+        <button type="submit" style="margin-top: 2px;">Login</button>
       </form>
-      <div class="options">
+
+      <!-- Added spacing for the text links -->
+      <div class="options" style="margin-top: 15px;">
         <p>Not you? <a href="#">Switch account</a></p>
+        <div class="options" style="margin-top: 10px;"></div>
         <p>Don't have an account? <a href="signup.html">Sign Up</a></p>
       </div>
     </div>
 
+    <!-- Login JS -->
     <script src="login.js"></script>
   </body>
 </html>
