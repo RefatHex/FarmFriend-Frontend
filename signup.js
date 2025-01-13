@@ -140,7 +140,7 @@ async function handleFormSubmit(event) {
       throw new Error("Invalid role selected or role not supported.");
     }
 
-    console.log("Role Payload:", rolePayload); // Debug the payload
+    console.log("Role Payload:", rolePayload);
 
     const roleResponse = await fetch(roleUrl, {
       method: "POST",
