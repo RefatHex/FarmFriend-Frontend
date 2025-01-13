@@ -63,9 +63,15 @@ loginForm.addEventListener("submit", async (event) => {
 
       console.log("Additional details saved in localStorage.");
       
-      // Redirect to another page
+      // Redirect based on role
       setTimeout(() => {
-        window.location.href = "contact.html";
+        if (data.is_rent_owner) {
+          // Redirect to rentalAdmin.html if user is a rentOwner
+          window.location.href = "rentalAdmin.html";
+        } else {
+          // Redirect to the default page
+          window.location.href = "contact.html";
+        }
       }, 1500); // Delay to let the alert display
 
     } else {
