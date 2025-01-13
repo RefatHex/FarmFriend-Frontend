@@ -26,6 +26,8 @@
       position: relative;
       padding: 20px;
       transition: padding 0.3s ease;
+      margin-top: 60px;
+      /* To avoid overlap with navbar */
     }
 
     header h1 {
@@ -207,14 +209,6 @@
 
 <body>
 
-  <!-- Header Section -->
-  <header>
-    <div>
-      <h1>FarmFriend - Admin Panel</h1>
-      <h2>Your One-Stop Solution for Agricultural Equipment Management</h2>
-    </div>
-  </header>
-
   <!-- Navbar -->
   <nav id="navbar">
     <ul>
@@ -223,8 +217,18 @@
       <li><a href="#bookings" onclick="showSection('bookings')">Bookings</a></li>
       <li><a href="#users" onclick="showSection('users')">Users</a></li>
       <li><a href="#reports" onclick="showSection('reports')">Reports</a></li>
+      <!-- Link to adminAgriInstruments.html -->
+      <li><a href="adminAgriInstruments.html" target="_blank">Upload Instrument</a></li>
     </ul>
   </nav>
+
+  <!-- Header Section -->
+  <header>
+    <div>
+      <h1>FarmFriend - Admin Panel</h1>
+      <h2>Your One-Stop Solution for Agricultural Equipment Management</h2>
+    </div>
+  </header>
 
   <!-- Main Content -->
   <div class="main-container">
@@ -248,7 +252,19 @@
     <section id="bookings">
       <h2>Bookings List</h2>
       <div class="section-container" id="bookingsContainer">
-        <!-- Dynamic Booking Cards will be added here -->
+        <!-- Dynamic Booking Cards with demo values -->
+        <div class="card">
+          <h3>John Doe</h3>
+          <p>Product: Battery Mower</p>
+          <p>Date: 2025-01-10</p>
+          <p>Status: Confirmed</p>
+        </div>
+        <div class="card">
+          <h3>Alice Smith</h3>
+          <p>Product: Tractor</p>
+          <p>Date: 2025-01-15</p>
+          <p>Status: Pending</p>
+        </div>
       </div>
     </section>
 
@@ -256,7 +272,17 @@
     <section id="users">
       <h2>Users List</h2>
       <div class="section-container" id="usersContainer">
-        <!-- Dynamic User Cards will be added here -->
+        <!-- Dynamic User Cards with demo values -->
+        <div class="card">
+          <h3>John Doe</h3>
+          <p>Email: john.doe@example.com</p>
+          <p>Status: Active</p>
+        </div>
+        <div class="card">
+          <h3>Alice Smith</h3>
+          <p>Email: alice.smith@example.com</p>
+          <p>Status: Inactive</p>
+        </div>
       </div>
     </section>
 
@@ -264,7 +290,15 @@
     <section id="reports">
       <h2>Reports</h2>
       <div class="section-container" id="reportsContainer">
-        <!-- Dynamic Report Cards will be added here -->
+        <!-- Dynamic Report Cards with demo values -->
+        <div class="card">
+          <h3>Monthly Revenue</h3>
+          <p>Status: Pending</p>
+        </div>
+        <div class="card">
+          <h3>Annual User Growth</h3>
+          <p>Status: Completed</p>
+        </div>
       </div>
     </section>
   </div>
@@ -297,18 +331,17 @@
       ]
     };
 
-    // Load sections from API (simulated)
+    // Load Dashboard Data
     window.onload = function () {
       // Load Dashboard Data
       const dashboardContainer = document.getElementById("dashboardContainer");
       apiData.dashboard.forEach(item => {
         const card = document.createElement('div');
         card.classList.add('card');
-        card.innerHTML = `
-          <h3>${item.title}</h3>
+        card.innerHTML =
+          `<h3>${item.title}</h3>
           <p>${item.description}</p>
-          <div class="price">${item.count}</div>
-        `;
+          <div class="price">${item.count}</div>`;
         dashboardContainer.appendChild(card);
       });
 
@@ -317,52 +350,12 @@
       apiData.products.forEach(product => {
         const card = document.createElement('div');
         card.classList.add('card');
-        card.innerHTML = `
-          <img src="${product.imageUrl}" alt="${product.name}">
+        card.innerHTML =
+          `<img src="${product.imageUrl}" alt="${product.name}">
           <h3>${product.name}</h3>
           <p>${product.description}</p>
-          <div class="price">${product.price}</div>
-        `;
+          <div class="price">${product.price}</div>`;
         productsContainer.appendChild(card);
-      });
-
-      // Load Bookings Data
-      const bookingsContainer = document.getElementById("bookingsContainer");
-      apiData.bookings.forEach(booking => {
-        const card = document.createElement('div');
-        card.classList.add('card');
-        card.innerHTML = `
-          <h3>Booking by ${booking.name}</h3>
-          <p>Product: ${booking.product}</p>
-          <p>Date: ${booking.date}</p>
-          <div class="price">Status: ${booking.status}</div>
-        `;
-        bookingsContainer.appendChild(card);
-      });
-
-      // Load Users Data
-      const usersContainer = document.getElementById("usersContainer");
-      apiData.users.forEach(user => {
-        const card = document.createElement('div');
-        card.classList.add('card');
-        card.innerHTML = `
-          <h3>${user.name}</h3>
-          <p>Email: ${user.email}</p>
-          <div class="price">Status: ${user.status}</div>
-        `;
-        usersContainer.appendChild(card);
-      });
-
-      // Load Reports Data
-      const reportsContainer = document.getElementById("reportsContainer");
-      apiData.reports.forEach(report => {
-        const card = document.createElement('div');
-        card.classList.add('card');
-        card.innerHTML = `
-          <h3>${report.title}</h3>
-          <div class="price">Status: ${report.status}</div>
-        `;
-        reportsContainer.appendChild(card);
       });
     };
 
@@ -373,7 +366,7 @@
         section.classList.remove("active");
       });
 
-      const activeLink = document.querySelector(`nav ul li a.active`);
+      const activeLink = document.querySelector("nav ul li a.active");
       if (activeLink) {
         activeLink.classList.remove("active");
       }
@@ -389,6 +382,7 @@
       }
     }
   </script>
+
 </body>
 
 </html>
