@@ -41,7 +41,7 @@ function showAdditionalFields() {
       `;
       break;
     default:
-      fieldsHTML = "";
+      fieldsHTML = ""; // Clear additional fields if no role is selected
   }
 
   additionalFields.innerHTML = fieldsHTML;
@@ -51,10 +51,23 @@ function showAdditionalFields() {
 async function handleFormSubmit(event) {
   event.preventDefault(); // Prevent default form submission
 
+  // Get form values
   const role = document.getElementById("role").value;
   const username = document.getElementById("name").value;
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
+  const confirmPassword = document.getElementById("confirm-password").value;
+
+  // Check if passwords match
+  if (password !== confirmPassword) {
+    Swal.fire({
+      icon: "error",
+      title: "Passwords Mismatch",
+      text: "Your passwords do not match. Please try again.",
+      confirmButtonText: "OK",
+    });
+    return;
+  }
 
   // General user payload
   const userPayload = {
@@ -79,65 +92,69 @@ async function handleFormSubmit(event) {
     if (!userResponse.ok) {
       const errorText = await userResponse.text();
       console.error("User Error Response:", errorText);
-      throw new Error("Failed to save user information");
+      throw new Error("Failed to save user information.");
     }
 
     const userData = await userResponse.json();
     console.log("User Created Successfully:", userData);
 
-    // Ensure user ID is correctly extracted as an integer
-    const userId = userData.id;
+    const userId = userData.id; // Ensure user ID is an integer
 
     // Role-specific payloads
     let rolePayload;
     let roleUrl;
 
-    if (role === "farmer") {
-      rolePayload = {
-        user: userId, // Send as integer
-        name: username,
-        dob: document.getElementById("dob").value,
-        address: document.getElementById("address").value,
-        field_size: parseFloat(document.getElementById("field_size").value),
-        average_rating: 4.5,
-      };
-      roleUrl = "http://localhost:8000/farmers/farmers/";
-    } else if (role === "storage_owner") {
-      rolePayload = {
-        user: userId, // Send as integer
-        name: username,
-        dob: document.getElementById("dob").value,
-        contact: document.getElementById("contact").value,
-        address: document.getElementById("address").value,
-      };
-      roleUrl = "http://localhost:8000/storage/storage-owners/";
-    } else if (role === "equipment_renter") {
-      rolePayload = {
-        user: userId, // Send as integer
-        name: username,
-        dob: document.getElementById("dob").value,
-        contact: document.getElementById("contact").value,
-        address: document.getElementById("address").value,
-        no_of_deals: 0,
-      };
-      roleUrl = "http://localhost:8000/rentals/rent-owners/";
-    } else if (role === "agronomist") {
-      rolePayload = {
-        user: userId, // Send as integer
-        name: username,
-        dob: document.getElementById("dob").value,
-        contact: document.getElementById("contact").value,
-        address: document.getElementById("address").value,
-        specialty: document.getElementById("specialty").value,
-        years_of_experience: parseInt(
-          document.getElementById("years_of_experience").value,
-          10
-        ),
-        availability: document.getElementById("availability").checked,
-      };
-      roleUrl = "http://localhost:8000/consultations/agronomists/";
-    } else {
-      throw new Error("Invalid role selected or role not supported.");
+    switch (role) {
+      case "farmer":
+        rolePayload = {
+          user: userId,
+          name: username,
+          dob: document.getElementById("dob").value,
+          address: document.getElementById("address").value,
+          field_size: parseFloat(document.getElementById("field_size").value),
+          average_rating: 4.5,
+        };
+        roleUrl = "http://localhost:8000/farmers/farmers/";
+        break;
+      case "storage_owner":
+        rolePayload = {
+          user: userId,
+          name: username,
+          dob: document.getElementById("dob").value,
+          contact: document.getElementById("contact").value,
+          address: document.getElementById("address").value,
+        };
+        roleUrl = "http://localhost:8000/storage/storage-owners/";
+        break;
+      case "equipment_renter":
+        rolePayload = {
+          user: userId,
+          name: username,
+          dob: document.getElementById("dob").value,
+          contact: document.getElementById("contact").value,
+          address: document.getElementById("address").value,
+          no_of_deals: 0,
+        };
+        roleUrl = "http://localhost:8000/rentals/rent-owners/";
+        break;
+      case "agronomist":
+        rolePayload = {
+          user: userId,
+          name: username,
+          dob: document.getElementById("dob").value,
+          contact: document.getElementById("contact").value,
+          address: document.getElementById("address").value,
+          specialty: document.getElementById("specialty").value,
+          years_of_experience: parseInt(
+            document.getElementById("years_of_experience").value,
+            10
+          ),
+          availability: document.getElementById("availability").checked,
+        };
+        roleUrl = "http://localhost:8000/consultations/agronomists/";
+        break;
+      default:
+        throw new Error("Invalid role selected.");
     }
 
     console.log("Role Payload:", rolePayload);
@@ -153,18 +170,35 @@ async function handleFormSubmit(event) {
     if (!roleResponse.ok) {
       const errorText = await roleResponse.text();
       console.error("Role Error Response:", errorText);
-      alert(`Failed to save ${role} information: ${errorText}`);
+      Swal.fire({
+        icon: "error",
+        title: "Signup Failed",
+        text: `Failed to save ${role} information. ${errorText}`,
+        confirmButtonText: "Try Again",
+      });
       return;
     }
 
     console.log(`${role} account created successfully.`);
 
     // Redirect after successful signup
-    alert("Signup successful! Redirecting to contact page...");
-    window.location.href = "contact.html";
+    Swal.fire({
+      icon: "success",
+      title: "Signup Successful",
+      text: "Your account has been created! Redirecting to Login page...",
+      timer: 3000,
+      showConfirmButton: false,
+    }).then(() => {
+      window.location.href = "login.html";
+    });
   } catch (error) {
     console.error("Error:", error);
-    alert("An error occurred while saving information.");
+    Swal.fire({
+      icon: "error",
+      title: "Error",
+      text: "An error occurred while saving information. Please try again.",
+      confirmButtonText: "OK",
+    });
   }
 }
 
