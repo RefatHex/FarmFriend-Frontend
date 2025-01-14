@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin - Agricultural Instruments</title>
+    <!-- Keep your existing stylesheet -->
+    <link rel="stylesheet" href="rentAdmin.css" />
+  </head>
+
+  <body>
+    <header>
+      <h1>Admin Panel - Agricultural Instruments</h1>
+      <div class="nav-buttons">
+        <a href="index.html">Home</a>
+        <a href="rentalAdmin.html">Admin Page</a>
+      </div>
+    </header>
+
+    <div class="container">
+      <h1>Post a New Instrument</h1>
+      <form id="categoryForm" method="post" enctype="multipart/form-data">
+        <label for="categoryType">Select Category</label>
+        <select id="categoryType" name="categoryType" required>
+          <option value="">--Select a Category--</option>
+          <option value="Tractors">Tractors</option>
+          <option value="Plows">Plows</option>
+          <option value="Harrows">Harrows</option>
+          <option value="Sprayers">Sprayers</option>
+          <option value="Seeders">Seeders</option>
+        </select>
+
+        <label for="categoryDescription">Description</label>
+        <textarea
+          id="categoryDescription"
+          name="categoryDescription"
+          placeholder="Enter category description"
+          required
+        ></textarea>
+
+        <label for="categoryImage">Upload Photo</label>
+        <input
+          type="file"
+          id="categoryImage"
+          name="categoryImage"
+          accept="image/*"
+          required
+        />
+
+        <label for="categoryPrice">Price Per Day</label>
+        <input
+          type="number"
+          id="categoryPrice"
+          name="categoryPrice"
+          placeholder="Enter price per day"
+          required
+        />
+
+        <label for="categoryQuantity">Available Quantity</label>
+        <input
+          type="number"
+          id="categoryQuantity"
+          name="categoryQuantity"
+          placeholder="Enter quantity available"
+          required
+        />
+
+        <button type="submit">Post Instrument</button>
+      </form>
+
+      <div class="category-list" id="categoryList">
+        <h2>Available Instruments</h2>
+        <!-- Dynamic items will be added here via JavaScript -->
+      </div>
+    </div>
+
+    <!-- Link to your separate JavaScript file -->
+    <script src="rentAdmin.js"></script>
+  </body>
+</html>

@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:8000/rentals/rent-item-gigs/";
+const API_URL = "http://localhost:8000/rentals/rent-items/";
 let nextUrl = null;
 let prevUrl = null;
 
