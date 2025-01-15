@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin - Storage Facility</title>
+    <!-- Keep your existing stylesheet -->
+    <link rel="stylesheet" href="rentAdmin.css" />
+  </head>
+
+  <body>
+    <header>
+      <h1>Admin Panel - Storage Facility</h1>
+      <div class="nav-buttons">
+        <a href="index.html">Home</a>
+        <a href="storageAdmin.html">Admin Page</a>
+      </div>
+    </header>
+
+    <div class="container">
+      <h1>Post a New Storage Detail</h1>
+      <form id="categoryForm" method="post" enctype="multipart/form-data">
+        <label for="location">Enter Location</label>
+        <input type="text" id="location" name="location" placeholder="Enter storage facility address" required>
+
+
+        <label for="categoryDescription">Description</label>
+        <textarea
+          id="categoryDescription"
+          name="categoryDescription"
+          placeholder="Enter storage facility description"
+          required
+        ></textarea>
+
+        <label for="categoryImage">Upload Photo</label>
+        <input
+          type="file"
+          id="categoryImage"
+          name="categoryImage"
+          accept="image/*"
+          required
+        />
+
+        <label for="categoryPrice">Price Per Day</label>
+        <input
+          type="number"
+          id="categoryPrice"
+          name="categoryPrice"
+          placeholder="Enter price per day"
+          required
+        />
+
+        <label for="categoryQuantity">Storage Capacity</label>
+        <div style="display: flex; align-items: center;">
+          <input
+            type="number"
+            id="categoryQuantity"
+            name="categoryQuantity"
+            placeholder="Enter capacity in tonnes"
+            min="0"
+            required
+            style="margin-right: 5px;"
+          />
+          <span>tonnes</span>
+        </div>
+        
+
+        <button type="submit">Post Storage Detail</button>
+      </form>
+
+      <div class="category-list" id="categoryList">
+        <h2>Available Storage Facility</h2>
+        <!-- Dynamic items will be added here via JavaScript -->
+      </div>
+    </div>
+
+    <!-- Link to your separate JavaScript file -->
+    <script src="storageAdmin.js"></script>
+  </body>
+</html>
