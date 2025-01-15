@@ -26,7 +26,7 @@ async function fetchAndRenderGigs(url = API_URL) {
 
       card.innerHTML = `
         <img src="${imageUrl}" alt="${gig.title}" />
-        <h3>${gig.title}</h3>
+        <h3>${gig.product_name}</h3>
         <p>${gig.description}</p>
         <div class="price">Price: $${gig.price}/day</div>
         <button class="btn-booking" onclick="openModal('${gig.title}', ${gig.price})">Book Now</button>
@@ -59,5 +59,4 @@ document.getElementById("prevButton").addEventListener("click", () => {
   }
 });
 
-// Fetch and render the first page of gigs on page load
 fetchAndRenderGigs();

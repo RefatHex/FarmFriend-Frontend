@@ -1,4 +1,38 @@
+/**************************************
+ * login.js (Edited to use role_count)
+ **************************************/
+
+//-----------------------------
+// Cookie Helper Functions
+//-----------------------------
+function setCookie(name, value, days) {
+  let expires = "";
+  if (days) {
+    const date = new Date();
+    date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
+    expires = "; expires=" + date.toUTCString();
+  }
+  document.cookie = name + "=" + (value || "") + expires + "; path=/";
+}
+
+function getCookie(name) {
+  const nameEQ = name + "=";
+  const ca = document.cookie.split(";");
+  for (let i = 0; i < ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) === " ") {
+      c = c.substring(1, c.length);
+    }
+    if (c.indexOf(nameEQ) === 0) {
+      return c.substring(nameEQ.length, c.length);
+    }
+  }
+  return null;
+}
+
+//-----------------------------
 // Select the login form
+//-----------------------------
 const loginForm = document.querySelector("form");
 
 loginForm.addEventListener("submit", async (event) => {
@@ -37,43 +71,73 @@ loginForm.addEventListener("submit", async (event) => {
 
       console.log("Response:", data);
 
-      // Save the main user ID in localStorage
-      localStorage.setItem("userId", data.id);
+      // Save the main user ID in a cookie (valid for 7 days)
+      setCookie("userId", data.id, 7);
 
-      // Check and fetch additional details if applicable
+      // ------------------------------
+      // Fetch additional details
+      // ------------------------------
       const detailsToFetch = [];
-
-      if (data.is_farmer)
+      if (data.is_farmer) {
         detailsToFetch.push(fetchDetails("farmers/farmers", data.id));
-      if (data.is_rent_owner)
+      }
+      if (data.is_rent_owner) {
         detailsToFetch.push(fetchDetails("rentals/rent-owners", data.id));
-      if (data.is_storage_owner)
+      }
+      if (data.is_storage_owner) {
         detailsToFetch.push(fetchDetails("storage/storage-owners", data.id));
-      if (data.is_agronomist)
+      }
+      if (data.is_agronomist) {
         detailsToFetch.push(fetchDetails("consultations/agronomists", data.id));
+      }
 
       const results = await Promise.all(detailsToFetch);
 
-      // Save the respective IDs in localStorage
       results.forEach((result) => {
         if (result) {
-          localStorage.setItem(`${result.type}Id`, result.id);
+          // e.g., 'farmersId', 'rent-ownersId', 'storage-ownersId', 'agronomistsId'
+          setCookie(`${result.type}Id`, result.id, 7);
         }
       });
 
-      console.log("Additional details saved in localStorage.");
-      
-      // Redirect based on role
+      results.forEach((result) => {
+        if (result) {
+          console.log(
+            `${result.type}Id cookie:`,
+            getCookie(`${result.type}Id`)
+          );
+        }
+      });
+
+      console.log("Additional details saved in cookies.");
+
+      // ------------------------------
+      // Decide redirect logic based on role_count
+      // ------------------------------
       setTimeout(() => {
-        if (data.is_rent_owner) {
-          // Redirect to rentalAdmin.html if user is a rentOwner
-          window.location.href = "rentalAdmin.html";
+        if (data.role_count > 1) {
+          // If user has multiple roles, go to a popup page to choose
+          window.location.href = "popup.html";
+        } else if (data.role_count === 1) {
+          // Exactly one role -> find which one is true and redirect
+          if (data.is_farmer) {
+            window.location.href = "farmerDashboard.html";
+          } else if (data.is_rent_owner) {
+            window.location.href = "rentalAdmin.html";
+          } else if (data.is_storage_owner) {
+            window.location.href = "storageDashboard.html";
+          } else if (data.is_agronomist) {
+            window.location.href = "agronomistDashboard.html";
+          } else {
+            // If something is off, fallback
+            window.location.href = "contact.html";
+          }
         } else {
-          // Redirect to the default page
+          // role_count === 0 or not recognized
+          // e.g., no roles -> fallback or contact page
           window.location.href = "contact.html";
         }
       }, 1500); // Delay to let the alert display
-
     } else {
       const errorData = await response.json();
 
@@ -100,7 +164,9 @@ loginForm.addEventListener("submit", async (event) => {
   }
 });
 
-// Function to fetch details based on user type
+/**
+ * Helper to fetch details for a specific role endpoint
+ */
 async function fetchDetails(endpoint, userId) {
   const apiUrl = `http://127.0.0.1:8000/${endpoint}/${userId}/`;
   try {
@@ -114,7 +180,8 @@ async function fetchDetails(endpoint, userId) {
     if (response.ok) {
       const data = await response.json();
       console.log(`Fetched ${endpoint} details:`, data);
-      return { type: endpoint.split("/")[1], id: data.id }; // Save type and ID
+      // e.g., return { type: "farmers", id: 123 }
+      return { type: endpoint.split("/")[1], id: data.id };
     } else {
       console.error(
         `Failed to fetch ${endpoint} details:`,
@@ -128,5 +195,5 @@ async function fetchDetails(endpoint, userId) {
     );
   }
 
-  return null; // Return null if fetch fails
+  return null;
 }

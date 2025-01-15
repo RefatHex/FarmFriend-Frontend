@@ -1,44 +1,68 @@
-// rentAdmin.js
-
-// Grab relevant DOM elements
 const form = document.getElementById("categoryForm");
 const categoryList = document.getElementById("categoryList");
+
+rent_owner = getCookie("rent-ownersId");
+console.log("Rent owner ID:", rent_owner);
+
+let currentEditProductId = null;
+const editModalEl = document.getElementById("editModal");
+
+const closeEditModalBtn = document.getElementById("closeEditModal");
+const cancelEditModalBtn = document.getElementById("cancelEditModal");
+
+function showEditModal() {
+  editModalEl.style.display = "block";
+  editModalEl.classList.add("show");
+}
+
+function hideEditModal() {
+  editModalEl.style.display = "none";
+  editModalEl.classList.remove("show");
+}
+
+closeEditModalBtn.addEventListener("click", hideEditModal);
+cancelEditModalBtn.addEventListener("click", hideEditModal);
 
 // ============== FETCH & DISPLAY PRODUCTS ==============
 async function fetchAvailableProducts() {
   try {
     const response = await fetch(
-      "http://localhost:8000/rentals/rent-items/?rent_owner=1"
+      `http://localhost:8000/rentals/rent-items-with-user/?rent_owner=${rent_owner}`
     );
     if (response.ok) {
       const data = await response.json();
       const products = data.results;
       categoryList.innerHTML = "";
 
+      const heading = document.createElement("h3");
+      heading.textContent = "Available Instruments";
+      categoryList.appendChild(heading);
+
       products.forEach((product) => {
         const productItem = document.createElement("div");
         productItem.className = "category-item";
 
         productItem.innerHTML = `
-          <img src="${
-            product.image || "assets/images/default-product.jpg"
-          }" alt="${product.product_name}">
+          <img 
+            src="${product.image || "assets/images/default-product.jpg"}"
+            alt="${product.product_name}"
+          >
           <div class="category-item-content">
-              <h3>${product.product_name}</h3> 
-              <p>${product.description}</p>
-              <p><strong>Price Per Day:</strong> $${product.price}</p>
-              <p><strong>Owner:</strong> ${product.rent_owner.name}</p>
-              <p><strong>Contact:</strong> ${product.rent_owner.contact}</p>
-              <p><strong>Deals Completed:</strong> ${
-                product.rent_owner.no_of_deals
-              }</p>
-              <p><strong>Next Available Date:</strong> ${
-                product.availabilityDate || "N/A"
-              }</p>
+            <h4>${product.product_name}</h4>
+            <p>${product.description}</p>
+            <p><strong>Price Per Day:</strong> $${product.price}</p>
+            <p><strong>Owner:</strong> ${product.rent_owner.name}</p>
+            <p><strong>Contact:</strong> ${product.rent_owner.contact}</p>
+            <p><strong>Deals Completed:</strong> ${
+              product.rent_owner.no_of_deals
+            }</p>
+            <p><strong>Available:</strong> ${
+              product.is_available ? "Yes" : "No"
+            }</p>
           </div>
           <div class="category-item-actions">
-              <button class="edit">Edit</button>
-              <button class="remove">Remove</button>
+            <button class="edit btn btn-sm btn-warning">Edit</button>
+            <button class="remove btn btn-sm btn-danger">Remove</button>
           </div>
         `;
 
@@ -53,6 +77,25 @@ async function fetchAvailableProducts() {
           if (confirmDelete) {
             deleteProduct(product.id);
           }
+        });
+
+        // ============== EDIT BUTTON ==============
+        const editButton = productItem.querySelector(".edit");
+        editButton.addEventListener("click", () => {
+          currentEditProductId = product.id;
+
+          document.getElementById("editProductId").value = product.id;
+          document.getElementById("editCategoryType").value =
+            product.product_name;
+          document.getElementById("editCategoryDescription").value =
+            product.description;
+          document.getElementById("editCategoryPrice").value = product.price;
+          document.getElementById("editCategoryQuantity").value =
+            product.quantity;
+          document.getElementById("editIsAvailable").value =
+            product.is_available ? "true" : "false";
+
+          showEditModal();
         });
       });
     } else {
@@ -77,7 +120,7 @@ async function deleteProduct(productId) {
     );
     if (response.ok) {
       alert("Product removed successfully.");
-      fetchAvailableProducts(); // Refresh list
+      fetchAvailableProducts();
     } else {
       console.error("Failed to remove the product:", await response.text());
       alert("Failed to remove the product. Please try again.");
@@ -100,12 +143,13 @@ form.addEventListener("submit", async (event) => {
 
   if (type && description && price && quantity && image) {
     const formData = new FormData();
-    formData.append("rent_owner", 1);
+    formData.append("is_available", "True");
+
+    formData.append("rent_owner", rent_owner || 1);
     formData.append("product_name", type);
     formData.append("description", description);
     formData.append("price", price);
     formData.append("quantity", quantity);
-    formData.append("is_available", true);
     formData.append("image", image);
 
     try {
@@ -118,14 +162,14 @@ form.addEventListener("submit", async (event) => {
       );
 
       if (response.ok) {
-        console.log("Gig posted successfully:", await response.json());
+        console.log("Instrument posted successfully:", await response.json());
         fetchAvailableProducts(); // Refresh list
       } else {
-        console.error("Failed to post gig:", await response.text());
-        alert("Failed to post gig. Please try again.");
+        console.error("Failed to post instrument:", await response.text());
+        alert("Failed to post instrument. Please try again.");
       }
     } catch (error) {
-      console.error("Error posting gig:", error);
+      console.error("Error posting instrument:", error);
       alert("An error occurred. Please try again later.");
     }
 
@@ -135,5 +179,70 @@ form.addEventListener("submit", async (event) => {
   }
 });
 
+// ============== EDIT FORM SUBMISSION (PATCH EXISTING ITEM) ==============
+const editForm = document.getElementById("editForm");
+editForm.addEventListener("submit", async (event) => {
+  event.preventDefault();
+
+  const productId = currentEditProductId;
+  if (!productId) {
+    alert("No product selected for editing.");
+    return;
+  }
+
+  const updatedCategoryType = document.getElementById("editCategoryType").value;
+  const updatedDescription = document.getElementById(
+    "editCategoryDescription"
+  ).value;
+  const updatedPrice = document.getElementById("editCategoryPrice").value;
+  const updatedQuantity = document.getElementById("editCategoryQuantity").value;
+  const updatedIsAvailableString =
+    document.getElementById("editIsAvailable").value === "true"
+      ? "True"
+      : "False";
+
+  const updatedImageFile =
+    document.getElementById("editCategoryImage").files[0];
+
+  const formData = new FormData();
+  formData.append("product_name", updatedCategoryType);
+  formData.append("description", updatedDescription);
+  formData.append("price", updatedPrice);
+  formData.append("quantity", updatedQuantity);
+  formData.append("is_available", updatedIsAvailableString);
+
+  if (updatedImageFile) {
+    formData.append("image", updatedImageFile);
+  }
+
+  try {
+    const response = await fetch(
+      `http://localhost:8000/rentals/rent-items/${productId}/`,
+      {
+        method: "PATCH",
+        body: formData,
+      }
+    );
+
+    if (response.ok) {
+      alert("Product updated successfully.");
+      // Hide the modal
+      hideEditModal();
+      // Refresh
+      fetchAvailableProducts();
+    } else {
+      console.error("Failed to update the product:", await response.text());
+      alert("Failed to update the product. Please try again.");
+    }
+  } catch (error) {
+    console.error("Error updating product:", error);
+    alert("An error occurred. Please try again later.");
+  }
+});
+
 // ============== INITIAL LOAD ==============
 fetchAvailableProducts();
+
+// Optional: Clear cookies for debugging
+// deleteCookie("rent-ownersId");
+// etc.

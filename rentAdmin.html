@@ -4,8 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Admin - Agricultural Instruments</title>
-    <!-- Keep your existing stylesheet -->
     <link rel="stylesheet" href="rentAdmin.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+    />
   </head>
 
   <body>
@@ -17,64 +20,218 @@
       </div>
     </header>
 
-    <div class="container">
-      <h1>Post a New Instrument</h1>
+    <div class="container mt-4">
+      <h2>Post a New Instrument</h2>
       <form id="categoryForm" method="post" enctype="multipart/form-data">
-        <label for="categoryType">Select Category</label>
-        <select id="categoryType" name="categoryType" required>
-          <option value="">--Select a Category--</option>
-          <option value="Tractors">Tractors</option>
-          <option value="Plows">Plows</option>
-          <option value="Harrows">Harrows</option>
-          <option value="Sprayers">Sprayers</option>
-          <option value="Seeders">Seeders</option>
-        </select>
+        <div class="mb-3">
+          <label for="categoryType" class="form-label">Select Category</label>
+          <select
+            id="categoryType"
+            name="categoryType"
+            class="form-select"
+            required
+          >
+            <option value="">--Select a Category--</option>
+            <option value="Tractors">Tractors</option>
+            <option value="Plows">Plows</option>
+            <option value="Harrows">Harrows</option>
+            <option value="Sprayers">Sprayers</option>
+            <option value="Seeders">Seeders</option>
+          </select>
+        </div>
 
-        <label for="categoryDescription">Description</label>
-        <textarea
-          id="categoryDescription"
-          name="categoryDescription"
-          placeholder="Enter category description"
-          required
-        ></textarea>
+        <div class="mb-3">
+          <label for="categoryDescription" class="form-label"
+            >Description</label
+          >
+          <textarea
+            id="categoryDescription"
+            name="categoryDescription"
+            class="form-control"
+            placeholder="Enter category description"
+            required
+          ></textarea>
+        </div>
 
-        <label for="categoryImage">Upload Photo</label>
-        <input
-          type="file"
-          id="categoryImage"
-          name="categoryImage"
-          accept="image/*"
-          required
-        />
+        <div class="mb-3">
+          <label for="categoryImage" class="form-label">Upload Photo</label>
+          <input
+            type="file"
+            id="categoryImage"
+            name="categoryImage"
+            class="form-control"
+            accept="image/*"
+            required
+          />
+        </div>
 
-        <label for="categoryPrice">Price Per Day</label>
-        <input
-          type="number"
-          id="categoryPrice"
-          name="categoryPrice"
-          placeholder="Enter price per day"
-          required
-        />
+        <div class="mb-3">
+          <label for="categoryPrice" class="form-label">Price Per Day</label>
+          <input
+            type="number"
+            id="categoryPrice"
+            name="categoryPrice"
+            class="form-control"
+            placeholder="Enter price per day"
+            required
+          />
+        </div>
 
-        <label for="categoryQuantity">Available Quantity</label>
-        <input
-          type="number"
-          id="categoryQuantity"
-          name="categoryQuantity"
-          placeholder="Enter quantity available"
-          required
-        />
+        <div class="mb-3">
+          <label for="categoryQuantity" class="form-label"
+            >Available Quantity</label
+          >
+          <input
+            type="number"
+            id="categoryQuantity"
+            name="categoryQuantity"
+            class="form-control"
+            placeholder="Enter quantity available"
+            required
+          />
+        </div>
 
-        <button type="submit">Post Instrument</button>
+        <button type="submit" class="btn btn-primary">Post Instrument</button>
       </form>
 
-      <div class="category-list" id="categoryList">
-        <h2>Available Instruments</h2>
+      <div class="category-list mt-5" id="categoryList">
+        <h3>Available Instruments</h3>
         <!-- Dynamic items will be added here via JavaScript -->
       </div>
     </div>
 
-    <!-- Link to your separate JavaScript file -->
+    <!-- The Edit Modal (Bootstrap styling, but we'll manually handle show/hide in JS) -->
+    <div
+      class="modal fade"
+      id="editModal"
+      tabindex="-1"
+      aria-labelledby="editModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <form id="editForm">
+            <div class="modal-header">
+              <h5 class="modal-title" id="editModalLabel">Edit Instrument</h5>
+              <!-- We will manually hide the modal in JS, but keep this button for the “X” icon -->
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+                id="closeEditModal"
+              ></button>
+            </div>
+
+            <div class="modal-body">
+              <input type="hidden" id="editProductId" />
+
+              <div class="mb-3">
+                <label for="editCategoryType" class="form-label"
+                  >Category</label
+                >
+                <select
+                  id="editCategoryType"
+                  name="editCategoryType"
+                  class="form-select"
+                  required
+                >
+                  <option value="Tractors">Tractors</option>
+                  <option value="Plows">Plows</option>
+                  <option value="Harrows">Harrows</option>
+                  <option value="Sprayers">Sprayers</option>
+                  <option value="Seeders">Seeders</option>
+                </select>
+              </div>
+
+              <div class="mb-3">
+                <label for="editCategoryDescription" class="form-label"
+                  >Description</label
+                >
+                <textarea
+                  id="editCategoryDescription"
+                  name="editCategoryDescription"
+                  class="form-control"
+                  required
+                ></textarea>
+              </div>
+
+              <div class="mb-3">
+                <label for="editCategoryImage" class="form-label"
+                  >Change Photo</label
+                >
+                <input
+                  type="file"
+                  id="editCategoryImage"
+                  name="editCategoryImage"
+                  class="form-control"
+                  accept="image/*"
+                />
+              </div>
+
+              <div class="mb-3">
+                <label for="editCategoryPrice" class="form-label"
+                  >Price Per Day</label
+                >
+                <input
+                  type="number"
+                  id="editCategoryPrice"
+                  name="editCategoryPrice"
+                  class="form-control"
+                  required
+                />
+              </div>
+
+              <div class="mb-3">
+                <label for="editCategoryQuantity" class="form-label"
+                  >Available Quantity</label
+                >
+                <input
+                  type="number"
+                  id="editCategoryQuantity"
+                  name="editCategoryQuantity"
+                  class="form-control"
+                  required
+                />
+              </div>
+
+              <div class="mb-3">
+                <label for="editIsAvailable" class="form-label"
+                  >Is Available?</label
+                >
+                <select
+                  id="editIsAvailable"
+                  name="editIsAvailable"
+                  class="form-select"
+                  required
+                >
+                  <option value="true">Yes</option>
+                  <option value="false">No</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                id="cancelEditModal"
+              >
+                Cancel
+              </button>
+              <button type="submit" class="btn btn-primary">
+                Save Changes
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="cookieHelpers.js"></script>
     <script src="rentAdmin.js"></script>
+    <!-- We are still loading Bootstrap for its CSS classes (and icons), but we won't use its JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>
