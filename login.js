@@ -121,13 +121,13 @@ loginForm.addEventListener("submit", async (event) => {
         } else if (data.role_count === 1) {
           // Exactly one role -> find which one is true and redirect
           if (data.is_farmer) {
-            window.location.href = "farmerDashboard.html";
+            window.location.href = "farmerLandingPage.html";
           } else if (data.is_rent_owner) {
             window.location.href = "rentalAdmin.html";
           } else if (data.is_storage_owner) {
-            window.location.href = "storageDashboard.html";
+            window.location.href = "storageAdmin.html";
           } else if (data.is_agronomist) {
-            window.location.href = "agronomistDashboard.html";
+            window.location.href = "expertAdmin.html";
           } else {
             // If something is off, fallback
             window.location.href = "contact.html";

@@ -208,17 +208,14 @@
 </head>
 
 <body>
-
   <!-- Navbar -->
-  <nav id="navbar">
-    <ul>
-      <li><a href="#dashboard" class="active" onclick="showSection('dashboard')">Dashboard</a></li>
-      <li><a href="#bookings" onclick="showSection('bookings')">Bookings</a></li>
-      <li><a href="#users" onclick="showSection('users')">Users</a></li>
-      <li><a href="#reports" onclick="showSection('reports')">Reports</a></li>
-      <!-- Link to adminAgriInstruments.html -->
-      <li><a href="storageDetailsAdmin.html" target="_blank">Upload Storage Details</a></li>
-    </ul>
+  <nav id="navbar" style="background-color: #333; display: flex; justify-content: space-between; align-items: center; padding: 10px 20px;">
+    <h1 class="navbar-logo" style="margin: 0;">
+      <span style="color: white;">Farm</span><span style="color: orange;">Friend</span>
+    </h1>
+    <button class="profile-button" onclick="redirectToProfile()" style="background: none; border: none; cursor: pointer;margin-right: 50px;">
+      <img src="assets/images/profile.png" alt="Profile" class="profile-icon" style="width: 30px; height: 30px; border-radius: 50%;">
+    </button>
   </nav>
 
   <!-- Header Section -->
@@ -231,157 +228,97 @@
 
   <!-- Main Content -->
   <div class="main-container">
-    <!-- Dashboard Section -->
-    <section id="dashboard" class="active">
-      <h2>Dashboard Overview</h2>
-      <div class="section-container" id="dashboardContainer">
-        <!-- Dynamic Dashboard Cards will be added here -->
-      </div>
-    </section>
+    <!-- FarmFriend Overview Section -->
+    <section id="farmfriend" class="active">
+      <h2>Dashboard</h2>
+      <div class="section-container" id="farmfriendContainer" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px;">
 
-    <!-- Products Section -->
-    <section id="products">
-      <h2>Products List</h2>
-      <div class="section-container" id="productsContainer">
-        <!-- Dynamic Product Cards will be added here -->
-      </div>
-    </section>
+        <!-- Running Orders -->
+        <div class="card">
+          <h3>Running Orders</h3>
+          <p>Number of ongoing orders</p>
+          <div class="price" id="runningOrders">25</div>
+        </div>
 
-    <!-- Bookings Section -->
-    <section id="bookings">
-      <h2>Bookings List</h2>
-      <div class="section-container" id="bookingsContainer">
-        <!-- Dynamic Booking Cards with demo values -->
+        <!-- Monthly Earnings -->
         <div class="card">
-          <h3>John Doe</h3>
-          <p>Product: Battery Mower</p>
-          <p>Date: 2025-01-10</p>
-          <p>Status: Confirmed</p>
+          <h3>Monthly Earnings</h3>
+          <p>Earnings for this month</p>
+          <div class="price" id="monthlyEarnings">$5,000</div>
         </div>
-        <div class="card">
-          <h3>Alice Smith</h3>
-          <p>Product: Tractor</p>
-          <p>Date: 2025-01-15</p>
-          <p>Status: Pending</p>
-        </div>
-      </div>
-    </section>
 
-    <!-- Users Section -->
-    <section id="users">
-      <h2>Users List</h2>
-      <div class="section-container" id="usersContainer">
-        <!-- Dynamic User Cards with demo values -->
+        <!-- Yearly Earnings -->
         <div class="card">
-          <h3>John Doe</h3>
-          <p>Email: john.doe@example.com</p>
-          <p>Status: Active</p>
+          <h3>Yearly Earnings</h3>
+          <p>Earnings for this year</p>
+          <div class="price" id="yearlyEarnings">$60,000</div>
         </div>
-        <div class="card">
-          <h3>Alice Smith</h3>
-          <p>Email: alice.smith@example.com</p>
-          <p>Status: Inactive</p>
-        </div>
-      </div>
-    </section>
 
-    <!-- Reports Section -->
-    <section id="reports">
-      <h2>Reports</h2>
-      <div class="section-container" id="reportsContainer">
-        <!-- Dynamic Report Cards with demo values -->
+        <!-- Total Income -->
         <div class="card">
-          <h3>Monthly Revenue</h3>
-          <p>Status: Pending</p>
+          <h3>Total Income</h3>
+          <p>Total income earned</p>
+          <div class="price" id="totalIncome">$150,000</div>
         </div>
-        <div class="card">
-          <h3>Annual User Growth</h3>
-          <p>Status: Completed</p>
+
+        <!-- Upload Storage Details (Clickable to navigate to storage details page) -->
+        <a href="storageDetailsAdmin.html" class="card" style="text-decoration: none; color: inherit;">
+          <h3>Upload Storage Details</h3>
+          <p>Add or update storage details.</p>
+        </a>
+
+        <!-- Total Bookings (Shows a list of bookings when clicked) -->
+        <div class="card" id="totalBookingsCard" onclick="toggleBookingsList()">
+          <h3>Total Bookings</h3>
+          <p>Total bookings made</p>
+          <div class="price" id="totalBookings">120</div>
+        </div>
+
+        <!-- Bookings List (Initially hidden) -->
+        <div id="bookingsList" style="display: none; grid-column: span 2; padding: 10px; border: 1px solid #ddd; border-radius: 5px; background-color: #f9f9f9;">
+          <h3>All Bookings</h3>
+          <ul>
+            <li>Booking 1: 10/01/2025 - Storage A</li>
+            <li>Booking 2: 12/01/2025 - Storage B</li>
+            <li>Booking 3: 15/01/2025 - Storage C</li>
+            <li>Booking 4: 18/01/2025 - Storage A</li>
+            <li>Booking 5: 20/01/2025 - Storage D</li>
+            <!-- Add more booking entries as needed -->
+          </ul>
         </div>
       </div>
     </section>
   </div>
 
-  <!-- Script for Navbar Behavior and Section Toggle -->
+  <!-- Script for Dynamic Updates -->
   <script>
-    // Simulate API call with sample data for Dashboard, Products, Bookings, Users, and Reports
-    const apiData = {
-      dashboard: [
-        { title: "Total Products", count: 50, description: "Total products available for rent" },
-        { title: "Total Users", count: 200, description: "Number of active users" },
-        { title: "Total Bookings", count: 120, description: "Total number of bookings made" },
-        { title: "Pending Reports", count: 5, description: "Number of pending reports to review" }
-      ],
-      products: [
-        { name: "Battery Mower", description: "Efficient lawn mower", price: "$150", imageUrl: "assets/images/seeder.jpg" },
-        { name: "Tractor", description: "Heavy-duty farm tractor", price: "$5000", imageUrl: "assets/images/tractor.jpg" }
-      ],
-      bookings: [
-        { name: "John Doe", product: "Battery Mower", date: "2025-01-10", status: "Confirmed" },
-        { name: "Alice Smith", product: "Tractor", date: "2025-01-15", status: "Pending" }
-      ],
-      users: [
-        { name: "John Doe", email: "john.doe@example.com", status: "Active" },
-        { name: "Alice Smith", email: "alice.smith@example.com", status: "Inactive" }
-      ],
-      reports: [
-        { title: "Monthly Revenue", status: "Pending" },
-        { title: "Annual User Growth", status: "Completed" }
-      ]
+    // Simulated API data for earnings and orders
+    const earningsData = {
+      runningOrders: 25,
+      monthlyEarnings: 5000,
+      yearlyEarnings: 60000,
+      totalIncome: 150000,
+      totalBookings: 120
     };
 
-    // Load Dashboard Data
+    // Load Data into Cards
     window.onload = function () {
-      // Load Dashboard Data
-      const dashboardContainer = document.getElementById("dashboardContainer");
-      apiData.dashboard.forEach(item => {
-        const card = document.createElement('div');
-        card.classList.add('card');
-        card.innerHTML =
-          `<h3>${item.title}</h3>
-          <p>${item.description}</p>
-          <div class="price">${item.count}</div>`;
-        dashboardContainer.appendChild(card);
-      });
-
-      // Load Products Data
-      const productsContainer = document.getElementById("productsContainer");
-      apiData.products.forEach(product => {
-        const card = document.createElement('div');
-        card.classList.add('card');
-        card.innerHTML =
-          `<img src="${product.imageUrl}" alt="${product.name}">
-          <h3>${product.name}</h3>
-          <p>${product.description}</p>
-          <div class="price">${product.price}</div>`;
-        productsContainer.appendChild(card);
-      });
+      document.getElementById("runningOrders").innerText = earningsData.runningOrders;
+      document.getElementById("monthlyEarnings").innerText = `$${earningsData.monthlyEarnings.toLocaleString()}`;
+      document.getElementById("yearlyEarnings").innerText = `$${earningsData.yearlyEarnings.toLocaleString()}`;
+      document.getElementById("totalIncome").innerText = `$${earningsData.totalIncome.toLocaleString()}`;
+      document.getElementById("totalBookings").innerText = earningsData.totalBookings;
     };
 
-    // Function to show sections based on navbar clicks
-    function showSection(sectionId) {
-      const sections = document.querySelectorAll("section");
-      sections.forEach(section => {
-        section.classList.remove("active");
-      });
+    // Toggle the visibility of the bookings list
+    function toggleBookingsList() {
+      const bookingsList = document.getElementById("bookingsList");
+      bookingsList.style.display = bookingsList.style.display === "none" ? "block" : "none";
+    }
 
-      const activeLink = document.querySelector("nav ul li a.active");
-      if (activeLink) {
-        activeLink.classList.remove("active");
-      }
-
-      const targetSection = document.getElementById(sectionId);
-      if (targetSection) {
-        targetSection.classList.add("active");
-      }
-
-      const targetLink = document.querySelector(`nav ul li a[href='#${sectionId}']`);
-      if (targetLink) {
-        targetLink.classList.add("active");
-      }
+    // Profile Button Function
+    function redirectToProfile() {
+      window.location.href = "profile.html";
     }
   </script>
-
 </body>
-
-</html>
