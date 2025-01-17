@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FarmFriend Profile</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+
+      body {
+        line-height: 1.6;
+        background-color: #f8f9fa;
+        color: #333;
+      }
+
+      header {
+        background: #e8f5e9;
+        padding: 20px 50px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      header h1 {
+        font-size: 24px;
+        color: #388e3c;
+      }
+
+      .profile-container {
+        max-width: 800px;
+        margin: 50px auto;
+        background: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        padding: 30px;
+      }
+
+      .profile-header {
+        text-align: center;
+        margin-bottom: 30px;
+      }
+
+      .profile-header h1 {
+        font-size: 28px;
+        color: #388e3c;
+        margin-bottom: 10px;
+      }
+
+      .profile-header span {
+        font-weight: bold;
+      }
+
+      .card {
+        background: #f1f8e9;
+        border-radius: 10px;
+        padding: 20px;
+        margin-bottom: 20px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .card h2 {
+        font-size: 22px;
+        color: #388e3c;
+        margin-bottom: 10px;
+      }
+
+      .card p {
+        font-size: 16px;
+        color: #555;
+        margin-bottom: 5px;
+      }
+
+      .button-group {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+      }
+
+      .button-group button {
+        padding: 12px 20px;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background 0.3s;
+      }
+
+      .btn-primary {
+        background-color: #388e3c;
+        color: #fff;
+      }
+
+      .btn-primary:hover {
+        background-color: #2e7d32;
+      }
+
+      .btn-danger {
+        background-color: #d32f2f;
+        color: #fff;
+      }
+
+      .btn-danger:hover {
+        background-color: #b71c1c;
+      }
+
+      footer {
+        background: #e8f5e9;
+        text-align: center;
+        padding: 20px 0;
+        margin-top: 50px;
+      }
+
+      footer p {
+        color: #388e3c;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>FarmFriend Profile</h1>
+    </header>
+
+    <div class="profile-container">
+      <!-- Header Section -->
+      <div class="profile-header">
+        <h1>Welcome, <span id="username">John Doe</span></h1>
+      </div>
+
+      <!-- User Information -->
+      <div class="card">
+        <h2>Your Details</h2>
+        <p><strong>Username:</strong> <span id="userName">JohnDoe123</span></p>
+        <p><strong>Role:</strong> <span id="userRole">Agronomist</span></p>
+      </div>
+
+      <!-- Role-Based Information -->
+      <div class="card">
+        <h2>Role-Based Information</h2>
+        <p id="roleDetails">
+          As an Agronomist, you can manage consultations and assist farmers with expert advice.
+        </p>
+      </div>
+
+      <!-- Button Section -->
+      <div class="button-group">
+        <!-- Change Password -->
+        <button class="btn-primary" onclick="redirectToChangePassword()">Change Password</button>
+        <!-- Logout -->
+        <button class="btn-danger" onclick="logout()">Logout</button>
+      </div>
+    </div>
+
+    <footer>
+      <p>&copy; 2025 FarmFriend. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+      // Simulated User Data (Replace with actual data fetched from your database)
+      const user = {
+        username: "JohnDoe123",
+        role: "Agronomist",
+        roleDetails: "As an Agronomist, you can manage consultations and assist farmers with expert advice.",
+      };
+
+      // Populate User Information
+      document.getElementById("userName").innerText = user.username;
+      document.getElementById("userRole").innerText = user.role;
+      document.getElementById("roleDetails").innerText = user.roleDetails;
+
+      // Redirect to Change Password Page
+      function redirectToChangePassword() {
+        window.location.href = "changePassword.html";
+      }
+
+      // Logout Functionality
+      function logout() {
+        alert("You have been logged out.");
+        window.location.href = "login.html";
+      }
+    </script>
+  </body>
+</html>
