@@ -1,0 +1,205 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background: #f4f1e1; /* Light beige background for vintage effect */
+  overflow-x: hidden;
+}
+
+/* Slider Styles */
+header {
+  position: relative;
+  width: 100%;
+  height: 60vh;
+  overflow: hidden;
+}
+
+.slider {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.5s ease;
+}
+
+.slide {
+  width: 100%;
+  height: 100%;
+  flex-shrink: 0;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.slider-text {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  color: white;
+  font-size: 2rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+/* Dot Navigation */
+.dot-nav {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+}
+
+.dot {
+  width: 15px;
+  height: 15px;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.dot.active {
+  background-color: white;
+}
+
+/* Cards Section */
+.cards-section {
+  padding: 40px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.unique-card {
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.unique-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.unique-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.unique-card h3 {
+  margin-top: 10px;
+  font-size: 1.4rem;
+  color: #333;
+}
+
+.unique-card .unique-feedback {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #555;
+}
+
+.unique-card .btn-details {
+  padding: 10px 20px;
+  background-color: #4caf50;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  border: none;
+  margin-top: 15px;
+}
+
+.unique-card .btn-details:hover {
+  background-color: #45a049;
+}
+
+.unique-card .unique-stars {
+  margin: 10px 0;
+}
+
+/* Popup styling */
+.unique-details-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #f4f1e1;
+  box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  padding: 25px;
+  border-radius: 12px;
+  max-width: 600px;
+  width: 90%;
+  font-family: Arial, sans-serif;
+}
+
+.unique-details-popup .popup-content {
+  position: relative;
+}
+
+.unique-details-popup .close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 22px;
+  cursor: pointer;
+  color: #333;
+  background: #f44336;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  line-height: 30px;
+}
+
+.unique-details-popup h2 {
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.unique-details-popup img {
+  max-width: 100%;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+.unique-details-popup .btn-booking {
+  display: inline-block;
+  padding: 12px 25px;
+  background-color: #007bff;
+  color: white;
+  text-align: center;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 20px;
+}
+
+.unique-details-popup .btn-booking:hover {
+  background-color: #0056b3;
+}
+
+/* Stars styling */
+.unique-stars {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.unique-stars .star {
+  font-size: 22px;
+  color: #ffd700;
+  margin-right: 5px;
+}
+
+.unique-stars .empty {
+  color: #ddd;
+}
