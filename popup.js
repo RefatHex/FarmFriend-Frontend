@@ -1,14 +1,24 @@
-/**
- * We'll read the cookies set after the user logs in.
- * For example:
- * - farmersId
- * - rent-ownersId
- * - storage-ownersId
- * - agronomistsId
- *
- * If only one is found, we redirect to the correct landing page.
- * If multiple, we show a popup so the user can choose.
- */
+function setCookie(name, value, days) {
+  let expires = "";
+  if (days) {
+    const date = new Date();
+    date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
+    expires = "; expires=" + date.toUTCString();
+  }
+  document.cookie = name + "=" + (value || "") + expires + "; path=/";
+}
+
+function getCookie(name) {
+  const nameEQ = name + "=";
+  const ca = document.cookie.split(";");
+  for (let i = 0; i < ca.length; i++) {
+    let c = ca[i].trim();
+    if (c.indexOf(nameEQ) === 0) {
+      return c.substring(nameEQ.length, c.length);
+    }
+  }
+  return null;
+}
 
 // DOM elements
 const popupOverlay = document.getElementById("popupOverlay");
@@ -33,7 +43,6 @@ const roleRedirects = {
   agronomistsId: "agronomistDashboard.html",
 };
 
-// On page load, decide what to do
 window.addEventListener("DOMContentLoaded", () => {
   // Collect all possible roles
   const roles = [
@@ -44,19 +53,18 @@ window.addEventListener("DOMContentLoaded", () => {
   ];
   const foundRoles = [];
 
+  // Check each role cookie
   roles.forEach((role) => {
     const cookieValue = getCookie(role);
     if (cookieValue) {
-      // The cookie exists, meaning user has that account type
       foundRoles.push(role);
     }
   });
 
   console.log("User has roles:", foundRoles);
 
-  // If the user has NO roles, possibly redirect or show an error
+  // If no roles, redirect (or handle as needed)
   if (foundRoles.length === 0) {
-    // For example, we can just redirect to a default page
     console.log("No roles found. Redirecting to homepage...");
     window.location.href = "index.html";
     return;
@@ -65,31 +73,32 @@ window.addEventListener("DOMContentLoaded", () => {
   // If exactly one role, redirect automatically
   if (foundRoles.length === 1) {
     const singleRole = foundRoles[0];
+    // Save that role in a cookie (for reference)
+    setCookie("selectedRole", singleRole, 7);
     console.log("Single role found:", singleRole);
     window.location.href = roleRedirects[singleRole];
     return;
   }
 
-  // If multiple roles, show popup to select
   if (foundRoles.length > 1) {
-    // Populate the list
-    accountList.innerHTML = ""; // Clear first
+    accountList.innerHTML = ""; // Clear existing
     foundRoles.forEach((role) => {
       // Create a list item with a button
       const li = document.createElement("li");
       const btn = document.createElement("button");
       btn.classList.add("btn", "btn-primary");
       btn.textContent = "Go to " + role;
-      // Real-world: text could be more user-friendly (e.g. "Go to Farmer Dashboard")
+      // (You might want more user-friendly text, e.g. "Go to Farmer Dashboard")
 
+      // On click: store chosen role, then redirect
       btn.addEventListener("click", () => {
+        setCookie("selectedRole", role, 7);
         window.location.href = roleRedirects[role];
       });
 
       li.appendChild(btn);
       accountList.appendChild(li);
     });
-
     showPopup();
   }
 });
@@ -97,6 +106,6 @@ window.addEventListener("DOMContentLoaded", () => {
 // When user clicks "Close"
 closePopupBtn.addEventListener("click", () => {
   hidePopup();
-  // You could optionally redirect somewhere if they close
+  // Optionally redirect if they close
   // window.location.href = "index.html";
 });

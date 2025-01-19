@@ -1,10 +1,3 @@
-/**************************************
- * login.js (Edited to use role_count)
- **************************************/
-
-//-----------------------------
-// Cookie Helper Functions
-//-----------------------------
 function setCookie(name, value, days) {
   let expires = "";
   if (days) {
@@ -19,10 +12,7 @@ function getCookie(name) {
   const nameEQ = name + "=";
   const ca = document.cookie.split(";");
   for (let i = 0; i < ca.length; i++) {
-    let c = ca[i];
-    while (c.charAt(0) === " ") {
-      c = c.substring(1, c.length);
-    }
+    let c = ca[i].trim();
     if (c.indexOf(nameEQ) === 0) {
       return c.substring(nameEQ.length, c.length);
     }
@@ -71,8 +61,15 @@ loginForm.addEventListener("submit", async (event) => {
 
       console.log("Response:", data);
 
-      // Save the main user ID in a cookie (valid for 7 days)
+      // --------------------------------------------
+      // Save the main user ID and session ID in cookies
+      // --------------------------------------------
       setCookie("userId", data.id, 7);
+
+      if (data.session_id) {
+        setCookie("sessionId", data.session_id, 7);
+        console.log("Session ID set in cookie:", data.session_id);
+      }
 
       // ------------------------------
       // Fetch additional details
@@ -97,15 +94,6 @@ loginForm.addEventListener("submit", async (event) => {
         if (result) {
           // e.g., 'farmersId', 'rent-ownersId', 'storage-ownersId', 'agronomistsId'
           setCookie(`${result.type}Id`, result.id, 7);
-        }
-      });
-
-      results.forEach((result) => {
-        if (result) {
-          console.log(
-            `${result.type}Id cookie:`,
-            getCookie(`${result.type}Id`)
-          );
         }
       });
 
@@ -194,6 +182,5 @@ async function fetchDetails(endpoint, userId) {
       error
     );
   }
-
   return null;
 }

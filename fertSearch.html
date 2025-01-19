@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Fertilizer AI</title>
+    <!-- Bootstrap 5 CDN -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-light">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-fluid">
+        <span class="navbar-brand mb-0 h1">FertAI</span>
+      </div>
+    </nav>
+
+    <!-- Main Container -->
+    <div class="container my-5">
+      <h1 class="mb-4 text-center">FertAIResponse Form</h1>
+
+      <div class="card mx-auto" style="max-width: 600px">
+        <div class="card-body">
+          <form id="fertForm">
+            <div class="mb-3">
+              <label for="nitrogen" class="form-label">Nitrogen</label>
+              <input
+                type="number"
+                step="any"
+                class="form-control"
+                id="nitrogen"
+                name="nitrogen"
+                required
+              />
+            </div>
+
+            <div class="mb-3">
+              <label for="phosphorus" class="form-label">Phosphorus</label>
+              <input
+                type="number"
+                step="any"
+                class="form-control"
+                id="phosphorus"
+                name="phosphorus"
+                required
+              />
+            </div>
+
+            <div class="mb-3">
+              <label for="potassium" class="form-label">Potassium</label>
+              <input
+                type="number"
+                step="any"
+                class="form-control"
+                id="potassium"
+                name="potassium"
+                required
+              />
+            </div>
+
+            <div class="mb-3">
+              <label for="temperature" class="form-label">Temperature</label>
+              <input
+                type="number"
+                step="any"
+                class="form-control"
+                id="temperature"
+                name="temperature"
+                required
+              />
+            </div>
+
+            <div class="mb-3">
+              <label for="humidity" class="form-label">Humidity</label>
+              <input
+                type="number"
+                step="any"
+                class="form-control"
+                id="humidity"
+                name="humidity"
+                required
+              />
+            </div>
+
+            <div class="mb-3">
+              <label for="moisture" class="form-label">Moisture</label>
+              <input
+                type="number"
+                step="any"
+                class="form-control"
+                id="moisture"
+                name="moisture"
+                required
+              />
+            </div>
+
+            <div class="mb-3">
+              <label for="crop_type" class="form-label">Crop Type</label>
+              <input
+                type="text"
+                class="form-control"
+                id="crop_type"
+                name="crop_type"
+                required
+              />
+            </div>
+
+            <div class="mb-3">
+              <label for="soil_type" class="form-label">Soil Type</label>
+              <input
+                type="text"
+                class="form-control"
+                id="soil_type"
+                name="soil_type"
+                required
+              />
+            </div>
+
+            <div class="mb-3">
+              <label for="session_id" class="form-label">Session ID</label>
+              <input
+                type="number"
+                class="form-control"
+                id="session_id"
+                name="session_id"
+                required
+              />
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100">
+              Get Fertilizer Recommendation
+            </button>
+          </form>
+
+          <!-- Response Alert -->
+          <div id="response" class="alert mt-4 d-none" role="alert"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap JS (for optional features like modals) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+      const fertForm = document.getElementById("fertForm");
+      const responseDiv = document.getElementById("response");
+
+      fertForm.addEventListener("submit", async (event) => {
+        event.preventDefault();
+
+        const formData = {
+          user: 1,
+          nitrogen: parseFloat(document.getElementById("nitrogen").value),
+          phosphorus: parseFloat(document.getElementById("phosphorus").value),
+          potassium: parseFloat(document.getElementById("potassium").value),
+          temperature: parseFloat(document.getElementById("temperature").value),
+          humidity: parseFloat(document.getElementById("humidity").value),
+          moisture: parseFloat(document.getElementById("moisture").value),
+          crop_type: document.getElementById("crop_type").value,
+          soil_type: document.getElementById("soil_type").value,
+          session_id: parseInt(document.getElementById("session_id").value),
+        };
+
+        try {
+          const response = await fetch(
+            "http://127.0.0.1:8000//ai_responses/fert/",
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+                // 'Authorization': 'Bearer <token>' // Uncomment if your API requires auth
+              },
+              body: JSON.stringify(formData),
+            }
+          );
+
+          if (!response.ok) {
+            throw new Error(
+              `Server error: ${response.status} ${response.statusText}`
+            );
+          }
+
+          const data = await response.json();
+
+          // Show success alert
+          responseDiv.classList.remove("d-none", "alert-danger");
+          responseDiv.classList.add("alert-success");
+          responseDiv.textContent = `Fertilizer Recommendation: ${data.answer} (Response ID: ${data.id})`;
+        } catch (error) {
+          // Show error alert
+          responseDiv.classList.remove("d-none", "alert-success");
+          responseDiv.classList.add("alert-danger");
+          responseDiv.textContent = `Error: ${error.message}`;
+        }
+      });
+    </script>
+  </body>
+</html>

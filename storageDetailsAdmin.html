@@ -4,8 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Admin - Storage Facility</title>
-    <!-- Keep your existing stylesheet -->
-    <link rel="stylesheet" href="rentAdmin.css" />
+    <link rel="stylesheet" href="rent_gig_actions.css" />
   </head>
 
   <body>
@@ -21,13 +20,18 @@
       <h1>Post a New Storage Detail</h1>
       <form id="categoryForm" method="post" enctype="multipart/form-data">
         <label for="location">Enter Location</label>
-        <input type="text" id="location" name="location" placeholder="Enter storage facility address" required>
-
+        <input
+          type="text"
+          id="location"
+          name="address"
+          placeholder="Enter storage facility address"
+          required
+        />
 
         <label for="categoryDescription">Description</label>
         <textarea
           id="categoryDescription"
-          name="categoryDescription"
+          name="description"
           placeholder="Enter storage facility description"
           required
         ></textarea>
@@ -36,7 +40,7 @@
         <input
           type="file"
           id="categoryImage"
-          name="categoryImage"
+          name="image"
           accept="image/*"
           required
         />
@@ -45,36 +49,59 @@
         <input
           type="number"
           id="categoryPrice"
-          name="categoryPrice"
+          name="price"
           placeholder="Enter price per day"
           required
         />
 
         <label for="categoryQuantity">Storage Capacity</label>
-        <div style="display: flex; align-items: center;">
-          <input
-            type="number"
-            id="categoryQuantity"
-            name="categoryQuantity"
-            placeholder="Enter capacity in tonnes"
-            min="0"
-            required
-            style="margin-right: 5px;"
-          />
-          <span>tonnes</span>
-        </div>
-        
+        <input
+          type="number"
+          id="categoryQuantity"
+          name="quantity"
+          placeholder="Enter capacity in tonnes"
+          min="0"
+          required
+        />
+
+        <label for="preferredCrop">Select Preferred Crop</label>
+        <select id="preferredCrop" name="prefered_crop" required>
+          <option value="">Loading crops...</option>
+        </select>
 
         <button type="submit">Post Storage Detail</button>
       </form>
 
       <div class="category-list" id="categoryList">
         <h2>Available Storage Facility</h2>
-        <!-- Dynamic items will be added here via JavaScript -->
       </div>
     </div>
 
-    <!-- Link to your separate JavaScript file -->
+    <!-- Popup Modal for Editing Gigs -->
+    <div id="editModal" class="modal">
+      <div class="modal-content">
+        <span class="close-button">&times;</span>
+        <h2>Edit Storage Gig</h2>
+        <form id="editForm">
+          <input type="hidden" id="editGigId" name="id" />
+          <label for="editAddress">Address</label>
+          <input type="text" id="editAddress" name="address" required />
+
+          <label for="editDescription">Description</label>
+          <textarea id="editDescription" name="description" required></textarea>
+
+          <label for="editPrice">Price Per Day</label>
+          <input type="number" id="editPrice" name="price" required />
+
+          <label for="editQuantity">Storage Capacity</label>
+          <input type="number" id="editQuantity" name="quantity" required />
+
+          <button type="submit">Update</button>
+        </form>
+      </div>
+    </div>
+
+    <script src="cookieHelpers.js"></script>
     <script src="storageAdmin.js"></script>
   </body>
 </html>
