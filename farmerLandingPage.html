@@ -76,7 +76,7 @@
 
         .features {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 20px;
             margin-top: 30px;
         }
@@ -87,11 +87,31 @@
             text-align: center;
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s;
+            opacity: 0; /* Initial state for animation */
+            transform: translateY(50px); /* Initial state for animation */
+            transition: transform 0.3s, box-shadow 0.3s;
         }
 
+        /* Animation for cards */
+        .feature-card.animate {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Card Hover Effects */
         .feature-card:hover {
             transform: translateY(-10px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
         }
 
         .feature-card h3 {
@@ -114,10 +134,13 @@
             text-decoration: none;
             border-radius: 5px;
             font-size: 16px;
+            transition: background 0.3s, transform 0.2s;
         }
 
+        /* Button Hover Effects */
         .feature-card a:hover {
             background: #2e7d32;
+            transform: translateY(-3px);
         }
 
         footer {
@@ -160,9 +183,9 @@
                 <a href="cropPrediction.html">Learn More</a>
             </div>
             <div class="feature-card">
-                <h3>Book Storage</h3>
+                <h3>Storage Deals</h3>
                 <p>Find and book storage facilities for your produce with ease.</p>
-                <a href="storageFarmer.html">Go to Storage</a>
+                <a href="storageFarmer.html">View Deals</a>
             </div>
             <div class="feature-card">
                 <h3>Rent Items</h3>
@@ -173,6 +196,16 @@
                 <h3>Expert Advice</h3>
                 <p>Connect with agricultural experts for personalized farming advice.</p>
                 <a href="expertLandingFarmer.html">Get Advice</a>
+            </div>
+            <div class="feature-card">
+                <h3>Weather Alerts</h3>
+                <p>Stay updated with real-time weather alerts to plan your farming activities efficiently.</p>
+                <a href="weatherUpdate.html">Check Weather</a>
+            </div>
+            <div class="feature-card">
+                <h3>My Deals</h3>
+                <p>View and manage all your active and past deals with FarmFriend.</p>
+                <a href="farmerDeals.html">Check</a>
             </div>
         </div>
     </div>
@@ -186,6 +219,16 @@
         function redirectToProfile() {
             window.location.href = "profile.html";
         }
+
+        // Animate Cards on Load
+        window.onload = function() {
+            const cards = document.querySelectorAll('.feature-card');
+            cards.forEach((card, index) => {
+                setTimeout(() => {
+                    card.classList.add('animate');
+                }, index * 200); // Stagger animation by 200ms per card
+            });
+        };
     </script>
 </body>
 </html>
