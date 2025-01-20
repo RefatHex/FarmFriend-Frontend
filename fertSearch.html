@@ -108,18 +108,6 @@
                 required
               />
             </div>
-
-            <div class="mb-3">
-              <label for="session_id" class="form-label">Session ID</label>
-              <input
-                type="number"
-                class="form-control"
-                id="session_id"
-                name="session_id"
-                required
-              />
-            </div>
-
             <button type="submit" class="btn btn-primary w-100">
               Get Fertilizer Recommendation
             </button>
@@ -185,7 +173,7 @@
           moisture: parseFloat(document.getElementById("moisture").value),
           crop_type: document.getElementById("crop_type").value,
           soil_type: document.getElementById("soil_type").value,
-          session_id: parseInt(document.getElementById("session_id").value),
+          session_id: 12,
           temperature: weatherData.temperature, // Add temperature from fetched data
           humidity: weatherData.humidity, // Add humidity from fetched data
         };

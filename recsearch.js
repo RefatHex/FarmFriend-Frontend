@@ -26,9 +26,6 @@ async function fetchWeather() {
     document.getElementById(
       "humidity"
     ).textContent = `Humidity: ${data.humidity}%`;
-    document.getElementById(
-      "condition"
-    ).textContent = `Condition: ${data.condition}`;
   } catch (error) {
     weatherInfo.innerHTML = `<p class="text-danger">Error fetching weather data: ${error.message}</p>`;
   }
@@ -45,16 +42,15 @@ recForm.addEventListener("submit", async (event) => {
     nitrogen: parseFloat(document.getElementById("nitrogen").value),
     phosphorus: parseFloat(document.getElementById("phosphorus").value),
     potassium: parseFloat(document.getElementById("potassium").value),
-    moisture: parseFloat(document.getElementById("moisture").value),
-    crop_type: parseInt(document.getElementById("crop_type").value),
-    soil_type: parseInt(document.getElementById("soil_type").value),
-    session_id: parseInt(document.getElementById("session_id").value),
+    ph: parseFloat(document.getElementById("ph").value),
+    rainfall: parseFloat(document.getElementById("rainfall").value),
     temperature: weatherData.temperature,
     humidity: weatherData.humidity,
+    session_id: 12,
   };
 
   try {
-    const response = await fetch("http://127.0.0.1:8000/ai_responses/fert/", {
+    const response = await fetch("http://127.0.0.1:8000/ai_responses/rec/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -73,7 +69,7 @@ recForm.addEventListener("submit", async (event) => {
     // Show success alert
     responseDiv.classList.remove("d-none", "alert-danger");
     responseDiv.classList.add("alert-success");
-    responseDiv.textContent = `Recommended Fertilizer: ${data.answer}`;
+    responseDiv.textContent = `Recommended Crop: ${data.answer}`;
   } catch (error) {
     // Show error alert
     responseDiv.classList.remove("d-none", "alert-success");

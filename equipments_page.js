@@ -128,7 +128,7 @@ function closeDetailsPopup() {
 
 async function submitBooking() {
   const returnDate = document.getElementById("returnDate").value;
-  const rentTakerId = getCookie("userId");
+  const rentTakerId = getCookie("farmersId");
 
   if (!returnDate || !rentTakerId) {
     alert("Please ensure you are logged in and provide a return date.");

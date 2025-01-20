@@ -26,7 +26,7 @@
           <form id="recForm">
             <!-- Form Inputs -->
             <div class="mb-3">
-              <label for="nitrogen" class="form-label">Nitrogen</label>
+              <label for="nitrogen" class="form-label">Nitrogen (N)</label>
               <input
                 type="number"
                 step="any"
@@ -38,7 +38,7 @@
             </div>
 
             <div class="mb-3">
-              <label for="phosphorus" class="form-label">Phosphorus</label>
+              <label for="phosphorus" class="form-label">Phosphorus (P)</label>
               <input
                 type="number"
                 step="any"
@@ -50,7 +50,7 @@
             </div>
 
             <div class="mb-3">
-              <label for="potassium" class="form-label">Potassium</label>
+              <label for="potassium" class="form-label">Potassium (K)</label>
               <input
                 type="number"
                 step="any"
@@ -62,52 +62,25 @@
             </div>
 
             <div class="mb-3">
-              <label for="moisture" class="form-label">Moisture</label>
+              <label for="ph" class="form-label">pH</label>
               <input
                 type="number"
                 step="any"
                 class="form-control"
-                id="moisture"
-                name="moisture"
+                id="ph"
+                name="ph"
                 required
               />
             </div>
 
             <div class="mb-3">
-              <label for="crop_type" class="form-label">Crop Type</label>
-              <select
-                class="form-select"
-                id="crop_type"
-                name="crop_type"
-                required
-              >
-                <option value="0">Wheat</option>
-                <option value="1">Maize</option>
-                <option value="2">Rice</option>
-              </select>
-            </div>
-
-            <div class="mb-3">
-              <label for="soil_type" class="form-label">Soil Type</label>
-              <select
-                class="form-select"
-                id="soil_type"
-                name="soil_type"
-                required
-              >
-                <option value="0">Clay</option>
-                <option value="1">Loamy</option>
-                <option value="2">Sandy</option>
-              </select>
-            </div>
-
-            <div class="mb-3">
-              <label for="session_id" class="form-label">Session ID</label>
+              <label for="rainfall" class="form-label">Rainfall (mm)</label>
               <input
                 type="number"
+                step="any"
                 class="form-control"
-                id="session_id"
-                name="session_id"
+                id="rainfall"
+                name="rainfall"
                 required
               />
             </div>
@@ -126,9 +99,6 @@
             </p>
             <p id="humidity" class="mb-1">
               <strong>Humidity:</strong> Loading...
-            </p>
-            <p id="condition" class="mb-1">
-              <strong>Condition:</strong> Loading...
             </p>
           </div>
 
