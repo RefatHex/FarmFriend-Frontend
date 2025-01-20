@@ -221,7 +221,11 @@
           <a href="#products" onclick="showSection('products')">Products</a>
         </li>
         <li>
-          <a href="#bookings" onclick="showSection('bookings')">Bookings</a>
+          <a
+            href="#bookings"
+            onclick="window.location.href='admin_rent_bookings.html'"
+            >Bookings</a
+          >
         </li>
         <li><a href="#users" onclick="showSection('users')">Users</a></li>
         <li><a href="#reports" onclick="showSection('reports')">Reports</a></li>
@@ -230,7 +234,7 @@
           <a href="rent_gig_actions.html">Upload Instrument</a>
         </li>
       </ul>
-    </nav>    
+    </nav>
 
     <!-- Header Section -->
     <header>
@@ -320,22 +324,22 @@
         dashboard: [
           {
             title: "Total Products",
-            count: 50,
+            count: 0,
             description: "Total products available for rent",
           },
           {
             title: "Total Users",
-            count: 200,
+            count: 0,
             description: "Number of active users",
           },
           {
             title: "Total Bookings",
-            count: 120,
+            count: 0,
             description: "Total number of bookings made",
           },
           {
             title: "Pending Reports",
-            count: 5,
+            count: 0,
             description: "Number of pending reports to review",
           },
         ],

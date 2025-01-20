@@ -60,11 +60,7 @@ async function fetchBookings() {
                             ? `<div class="confirmation-message">Order confirmed and ready to be picked</div>`
                             : `<button class="btn-delete" onclick="deleteBooking(${booking.id})">Delete</button>`
                         }
-                          ${
-                            booking.is_ready_for_pickup
-                              ? `<div class="action-message">Ready for pickup</div>`
-                              : `<button class="btn-action" onclick="markReadyForPickup(${booking.id})">Mark as Ready for Pickup</button>`
-                          }
+
                     `;
 
       if (daysRemaining <= 0) {
