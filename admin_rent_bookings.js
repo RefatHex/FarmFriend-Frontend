@@ -31,18 +31,20 @@ async function fetchAdminBookings() {
 
       const bookingCard = document.createElement("div");
       bookingCard.className = "card-booking";
+
       bookingCard.innerHTML = `
-          <h3>${booking.title}</h3>
-          <p><strong>Description:</strong> ${booking.description}</p>
-          <p><strong>Price:</strong> $${booking.price}</p>
-          <p><strong>Order Date:</strong> ${booking.order_date}</p>
-          <p><strong>Return Date:</strong> ${booking.return_date}</p>
-          ${
-            booking.is_confirmed
-              ? `<button class="btn-action" onclick="toggleConfirmation(${booking.id}, true)">Mark as Unconfirmed</button>`
-              : `<button class="btn-action" onclick="toggleConfirmation(${booking.id}, false)">Mark as Confirmed</button>`
-          }
-          `;
+                <h3>${booking.title}</h3>
+                <p><strong>Description:</strong> ${booking.description}</p>
+                <p><strong>Price:</strong> $${booking.price}</p>
+                <p><strong>Order Date:</strong> ${booking.order_date}</p>
+                <p><strong>Return Date:</strong> ${booking.return_date}</p>
+                ${
+                  booking.is_available
+                    ? `<button class="btn-action" onclick="toggleAvailability(${booking.id}, true)">Mark as Unavailable</button>`
+                    : `<button class="btn-action" onclick="toggleAvailability(${booking.id}, false)">Mark as Available</button>`
+                }
+              
+            `;
 
       if (daysRemaining <= 0) {
         oldBookingsSection.appendChild(bookingCard);
@@ -55,14 +57,18 @@ async function fetchAdminBookings() {
   }
 }
 
-async function toggleConfirmation(bookingId, currentState) {
+// Toggle availability status
+async function toggleAvailability(bookingId, currentState) {
   try {
-    const newConfirmationState = !currentState;
+    // Determine the new state based on the current state
+    const newAvailability = !currentState;
 
+    // Prepare the patch data
     const patchData = {
-      is_confirmed: newConfirmationState,
+      is_available: currentState,
     };
 
+    // Send the PATCH request
     const response = await fetch(`${ADMIN_BOOKINGS_API_URL}${bookingId}/`, {
       method: "PATCH",
       headers: {
@@ -70,23 +76,20 @@ async function toggleConfirmation(bookingId, currentState) {
       },
       body: JSON.stringify(patchData),
     });
+    console.log(response);
 
+    // Handle the response
     if (response.ok) {
       alert(
-        `Booking marked as ${
-          newConfirmationState ? "confirmed" : "unconfirmed"
-        }.`
+        `Booking marked as ${newAvailability ? "available" : "unavailable"}.`
       );
       fetchAdminBookings();
     } else {
-      console.error(
-        `Failed to toggle confirmation status:`,
-        await response.text()
-      );
-      alert("Failed to toggle confirmation status. Please try again.");
+      console.error(`Failed to toggle availability:`, await response.text());
+      alert("Failed to toggle availability. Please try again.");
     }
   } catch (error) {
-    console.error("Error toggling confirmation status:", error);
+    console.error("Error toggling availability:", error);
     alert("An error occurred. Please try again later.");
   }
 }
@@ -108,7 +111,7 @@ async function markReadyForPickup(bookingId) {
 
     if (response.ok) {
       alert("Booking marked as ready for pickup.");
-      fetchAdminBookings();
+      fetchAdminBookings(); // Refresh bookings
     } else {
       console.error(
         "Failed to mark booking as ready for pickup:",
