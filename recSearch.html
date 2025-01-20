@@ -19,11 +19,12 @@
 
     <!-- Main Container -->
     <div class="container my-5">
-      <h1 class="mb-4 text-center">RecAIResponse Form</h1>
+      <h1 class="mb-4 text-center">RecAI Response Form</h1>
 
       <div class="card mx-auto" style="max-width: 600px">
         <div class="card-body">
           <form id="recForm">
+            <!-- Form Inputs -->
             <div class="mb-3">
               <label for="nitrogen" class="form-label">Nitrogen</label>
               <input
@@ -56,30 +57,6 @@
                 class="form-control"
                 id="potassium"
                 name="potassium"
-                required
-              />
-            </div>
-
-            <div class="mb-3">
-              <label for="temperature" class="form-label">Temperature</label>
-              <input
-                type="number"
-                step="any"
-                class="form-control"
-                id="temperature"
-                name="temperature"
-                required
-              />
-            </div>
-
-            <div class="mb-3">
-              <label for="humidity" class="form-label">Humidity</label>
-              <input
-                type="number"
-                step="any"
-                class="form-control"
-                id="humidity"
-                name="humidity"
                 required
               />
             </div>
@@ -140,13 +117,28 @@
             </button>
           </form>
 
+          <!-- Weather Info Section -->
+          <div id="weatherInfo" class="mt-4">
+            <h5 class="text-center">Weather Information</h5>
+            <p id="city" class="mb-1"><strong>City:</strong> Loading...</p>
+            <p id="temperature" class="mb-1">
+              <strong>Temperature:</strong> Loading...
+            </p>
+            <p id="humidity" class="mb-1">
+              <strong>Humidity:</strong> Loading...
+            </p>
+            <p id="condition" class="mb-1">
+              <strong>Condition:</strong> Loading...
+            </p>
+          </div>
+
           <!-- Response Alert -->
           <div id="response" class="alert mt-4 d-none" role="alert"></div>
         </div>
       </div>
     </div>
 
-    <!-- Bootstrap JS (for optional features like modals) -->
+    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
     <script src="recsearch.js"></script>

@@ -19,10 +19,25 @@
 
     <!-- Main Container -->
     <div class="container my-5">
-      <h1 class="mb-4 text-center">FertAIResponse Form</h1>
+      <h1 class="mb-4 text-center">FertAI Response Form</h1>
 
       <div class="card mx-auto" style="max-width: 600px">
         <div class="card-body">
+          <!-- Weather Info Section -->
+          <div id="weatherInfo" class="mb-4">
+            <h5 class="text-center">Weather Information</h5>
+            <p id="city" class="mb-1"><strong>City:</strong> Loading...</p>
+            <p id="temperature" class="mb-1">
+              <strong>Temperature:</strong> Loading...
+            </p>
+            <p id="humidity" class="mb-1">
+              <strong>Humidity:</strong> Loading...
+            </p>
+            <p id="condition" class="mb-1">
+              <strong>Condition:</strong> Loading...
+            </p>
+          </div>
+
           <form id="fertForm">
             <div class="mb-3">
               <label for="nitrogen" class="form-label">Nitrogen</label>
@@ -56,30 +71,6 @@
                 class="form-control"
                 id="potassium"
                 name="potassium"
-                required
-              />
-            </div>
-
-            <div class="mb-3">
-              <label for="temperature" class="form-label">Temperature</label>
-              <input
-                type="number"
-                step="any"
-                class="form-control"
-                id="temperature"
-                name="temperature"
-                required
-              />
-            </div>
-
-            <div class="mb-3">
-              <label for="humidity" class="form-label">Humidity</label>
-              <input
-                type="number"
-                step="any"
-                class="form-control"
-                id="humidity"
-                name="humidity"
                 required
               />
             </div>
@@ -144,8 +135,44 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
+      const weatherInfo = document.getElementById("weatherInfo");
       const fertForm = document.getElementById("fertForm");
       const responseDiv = document.getElementById("response");
+      let weatherData = {}; // To store fetched weather data
+
+      // Fetch weather data and update UI
+      async function fetchWeather() {
+        try {
+          const response = await fetch(
+            "http://localhost:8000/api/weather/?city=Dhaka"
+          );
+          if (!response.ok) {
+            throw new Error("Failed to fetch weather data");
+          }
+          const data = await response.json();
+
+          // Save fetched data
+          weatherData.temperature = data.temperature;
+          weatherData.humidity = data.humidity;
+
+          // Update weather info on the page
+          document.getElementById("city").textContent = `City: ${data.city}`;
+          document.getElementById(
+            "temperature"
+          ).textContent = `Temperature: ${data.temperature} °C`;
+          document.getElementById(
+            "humidity"
+          ).textContent = `Humidity: ${data.humidity}%`;
+          document.getElementById(
+            "condition"
+          ).textContent = `Condition: ${data.condition}`;
+        } catch (error) {
+          weatherInfo.innerHTML = `<p class="text-danger">Error fetching weather data: ${error.message}</p>`;
+        }
+      }
+
+      // Fetch weather data on page load
+      window.addEventListener("DOMContentLoaded", fetchWeather);
 
       fertForm.addEventListener("submit", async (event) => {
         event.preventDefault();
@@ -155,22 +182,21 @@
           nitrogen: parseFloat(document.getElementById("nitrogen").value),
           phosphorus: parseFloat(document.getElementById("phosphorus").value),
           potassium: parseFloat(document.getElementById("potassium").value),
-          temperature: parseFloat(document.getElementById("temperature").value),
-          humidity: parseFloat(document.getElementById("humidity").value),
           moisture: parseFloat(document.getElementById("moisture").value),
           crop_type: document.getElementById("crop_type").value,
           soil_type: document.getElementById("soil_type").value,
           session_id: parseInt(document.getElementById("session_id").value),
+          temperature: weatherData.temperature, // Add temperature from fetched data
+          humidity: weatherData.humidity, // Add humidity from fetched data
         };
 
         try {
           const response = await fetch(
-            "http://127.0.0.1:8000//ai_responses/fert/",
+            "http://127.0.0.1:8000/ai_responses/fert/",
             {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",
-                // 'Authorization': 'Bearer <token>' // Uncomment if your API requires auth
               },
               body: JSON.stringify(formData),
             }
