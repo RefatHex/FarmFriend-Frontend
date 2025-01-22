@@ -1,0 +1,147 @@
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Arvo', sans-serif;
+}
+
+/* Parallax Section */
+/* Parallax Section */
+.parallax {
+  position: relative;
+  width: 100%;
+  height: 100vh; /* Full screen height */
+  overflow: hidden;
+  display: flex;
+  flex-direction: column; /* Ensure proper stacking */
+  justify-content: center; /* Center content vertically */
+  align-items: center; /* Center content horizontally */
+}
+
+/* Images in the Parallax */
+#hill1,
+#hill2,
+#hill3,
+#hill4,
+#hill5,
+#tree,
+#leaf,
+#plant {
+  position: absolute;
+  width: 100%;
+  height: auto; /* Adjust height based on width */
+  bottom: 0; /* Align to bottom of the screen */
+  z-index: 1; /* Place below text */
+}
+
+/* Main Section */
+.main {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative; /* Enable stacking */
+  z-index: 10; /* Above images */
+}
+
+/* Main Heading */
+h1 {
+  text-align: center;
+  text-transform: uppercase;
+  color: #0909ff;
+  font-size: 4rem;
+  position: relative; /* Ensure proper stacking */
+  z-index: 15; /* Highest layer */
+}
+
+/* Rolling Text Container */
+.roller {
+  height: 4.125rem; /* Matches line height */
+  line-height: 4rem;
+  position: relative;
+  overflow: hidden; /* Hides overflow */
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ffba18;
+}
+
+/* Rolling Text */
+.roller #rolltext {
+  position: absolute;
+  top: 0;
+  animation: slide 5s infinite; /* Add animation */
+  text-align: center;
+}
+
+/* Animation Keyframes */
+@keyframes slide {
+  0% {
+    top: 0;
+  }
+  25% {
+    top: -4rem; /* Moves up by one line */
+  }
+  50% {
+    top: -8rem; /* Moves up by two lines */
+  }
+  75% {
+    top: -12rem; /* Moves up by three lines */
+  }
+  100% {
+    top: 0; /* Reset to the first line */
+  }
+}
+
+/* Style for Additional Text */
+#spare-time {
+  font-size: 1rem;
+  font-style: italic;
+  letter-spacing: 1rem;
+  margin-top: 0;
+  color: #e81c06;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 600px) {
+  h1 {
+    font-size: 2.125rem;
+    color: #ff0101;
+  }
+
+  .roller {
+    height: 2.6rem;
+    line-height: 2.125rem;
+  }
+
+  #spare-time {
+    font-size: 1rem;
+    letter-spacing: 0.1rem;
+  }
+
+  .roller #rolltext {
+    animation: slide-mob 5s infinite;
+  }
+
+  @keyframes slide-mob {
+    0% {
+      top: 0;
+    }
+    25% {
+      top: -2.125rem;
+    }
+    50% {
+      top: -4.25rem;
+    }
+    75% {
+      top: -6.375rem;
+    }
+    100% {
+      top: 0;
+    }
+  }
+}
