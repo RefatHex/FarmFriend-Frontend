@@ -1,0 +1,1208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>FarmFriend</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400,500,600,700,800&display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+  <link rel="stylesheet" href="css2/animate.css">
+
+  <link rel="stylesheet" href="css2/owl.carousel.min.css">
+  <link rel="stylesheet" href="css2/owl.theme.default.min.css">
+  <link rel="stylesheet" href="css2/magnific-popup.css">
+
+
+  <link rel="stylesheet" href="css2/bootstrap-datepicker.css">
+  <link rel="stylesheet" href="css2/jquery.timepicker.css">
+
+  <link rel="stylesheet" href="css2/flaticon.css">
+  <link rel="stylesheet" href="css2/style.css">
+
+  <link rel="stylesheet" href="css2/parallax.css">
+  <link rel="stylesheet" href="css2/text.css">
+
+</head>
+
+<body>
+
+  <nav id="navbar">
+    <div class="logo">
+      <img src="assets/images/logo.jpg" alt="Logo" />
+    </div>
+    <a href="index.html">Home</a>
+    <a href="equipment.html">Equipment</a>
+    <a href="rent_bookings.html#bookings">My Bookings</a>
+    <a href="contact.html">Contact Us</a>
+  </nav>
+
+
+  <style>
+    /* Navbar Styling */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: hsla(0, 0%, 85%, 0.8);
+      border-bottom: 1px solid #ddd;
+      display: flex;
+      align-items: center;
+      /* Align items vertically in the center */
+      padding: 10px 20px;
+      /* Adjust padding for better layout */
+      z-index: 1000;
+      transform: translateY(-100%);
+      transition: transform 0.3s ease-in-out;
+    }
+
+    nav .logo img {
+      height: 40px;
+      /* Adjust logo size as needed */
+      width: auto;
+      margin-right: 20px;
+      /* Space between the logo and the links */
+    }
+
+    nav a {
+      color: black;
+      padding: 14px 20px;
+      text-decoration: none;
+      text-align: center;
+      font-weight: bold;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Enhanced Hover Styles */
+    nav a::before {
+      content: "";
+      position: absolute;
+      width: 0;
+      height: 2px;
+      background-color: #4caf50;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      transition: width 0.3s ease-in-out;
+    }
+
+    nav a:hover::before {
+      width: 100%;
+    }
+
+    nav a:hover {
+      color: #4caf50;
+    }
+  </style>
+
+  <script>
+    // JavaScript for dynamic navbar behavior
+    let lastScrollY = window.scrollY;
+    const navbar = document.getElementById('navbar');
+    let isMouseNearTop = false;
+
+    // Hide or show navbar on scroll
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > lastScrollY && !isMouseNearTop) {
+        // Hide navbar on scroll down
+        navbar.style.transform = 'translateY(-100%)';
+      } else {
+        // Show navbar on scroll up
+        navbar.style.transform = 'translateY(0)';
+      }
+      lastScrollY = window.scrollY;
+    });
+
+    // Detect mouse near the top of the screen
+    window.addEventListener('mousemove', (event) => {
+      if (event.clientY <= 50) {
+        // Show navbar when mouse is near the top
+        navbar.style.transform = 'translateY(0)';
+        isMouseNearTop = true;
+      } else {
+        isMouseNearTop = false;
+      }
+    });
+  </script>
+
+
+  <section class="parallax">
+
+    <img src="assets/images/parallax/hill1.png" id="hill1">
+    <img src="assets/images/parallax/hill2.png" id="hill2">
+    <img src="assets/images/parallax/hill3.png" id="hill3">
+    <img src="assets/images/parallax/hill4.png" id="hill4">
+    <img src="assets/images/parallax/hill5.png" id="hill5">
+    <img src="assets/images/parallax/tree.png" id="tree">
+    <h2 id="text"></h2>
+    <img src="assets/images/parallax/leaf.png" id="leaf">
+    <img src="assets/images/parallax/plant.png" id="plant">
+  </section>
+
+  <!-- END nav -->
+
+  <div class="blender-section">
+    <h2>Lets Explore Us?</h2>
+    <p>Empowering farmers with innovative, eco-friendly
+    </p>
+  </div>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    .blender-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: #ffffff;
+
+      color: rgb(46, 186, 214);
+
+
+      padding: 20px 10px;
+
+
+      /* Reduced padding */
+      text-align: center;
+      height: 90px;
+
+      /* Smaller height */
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      /* Slight shadow for depth */
+    }
+
+    .blender-section h2 {
+      font-size: 1.5rem;
+      /* Smaller title size */
+      margin-bottom: 10px;
+    }
+
+    .blender-section p {
+      font-size: 0.8rem;
+      /* Smaller paragraph size */
+      max-width: 500px;
+      margin-bottom: 15px;
+      line-height: 1.4;
+    }
+
+    .blender-section span {
+      font-size: 0.9rem;
+      /* Adjusted font size for span */
+      font-weight: bold;
+    }
+  </style>
+
+
+
+  <div class="hero-wrapMulti" style="position: relative; overflow: hidden;">
+    <!-- Background Image -->
+    <img src="assets/images/banner12.png" alt="Background"
+      style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
+    <!-- Overlay -->
+
+
+    <section class="ftco-section ftco-no-pt ftco-no-pb" style="position: relative; z-index: 2;">
+      <div class="container">
+        <div class="row d-flex no-gutters">
+          <div class="col-md-5 d-flex">
+            <div
+              class="img img-video d-flex align-self-stretch align-items-center justify-content-center justify-content-md-center mb-4 mb-sm-0"
+              style="background-image:url(assets/images/expert2.jpg);">
+            </div>
+          </div>
+          <div class="col-md-7 pl-md-5 py-md-5">
+            <div class="heading-section pt-md-5">
+              <h2 class="mb-4">Why Choose Us?</h2>
+              <style>
+                h2.mb-4 {
+                  color: white;
+                  /* Set text color to white */
+                }
+              </style>
+            </div>
+            <div class="row">
+              <div class="col-md-6 services-2 w-100 d-flex">
+
+                <div class="text pl-3">
+                  <h4>50 Years of Service</h4>
+                  <p class="dark-text">Far far away, behind the word mountains, far from the countries.</p>
+                </div>
+              </div>
+              <div class="col-md-6 services-2 w-100 d-flex">
+
+                <div class="text pl-3">
+                  <h4>Professional &amp; Experienced Staff</h4>
+                  <p class="dark-text">Far far away, behind the word mountains, far from the countries.</p>
+                </div>
+              </div>
+              <div class="col-md-6 services-2 w-100 d-flex">
+
+                <div class="text pl-3">
+                  <h4>High Quality &amp; Reliable Service</h4>
+                  <p class="dark-text">Far far away, behind the word mountains, far from the countries.</p>
+                </div>
+              </div>
+              <div class="col-md-6 services-2 w-100 d-flex">
+
+                <div class="text pl-3">
+                  <h4>Customer Service &amp; Expert Advice</h4>
+                  <p class="dark-text">Far far away, behind the word mountains, far from the countries.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </div>
+
+
+
+
+
+
+  <section class="ftco-counter" id="section-counter">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 mb-5 mb-md-0 text-center text-md-left">
+          <h2 class="font-weight-bold" style="color: #fff; font-size: 20px;">We Provide Free Quotation</h2>
+          <a href="#" class="btn btn-white btn-outline-white">Free Consultation</a>
+        </div>
+        <div class="col-md-8">
+          <div class="row">
+            <div class="col-md-6 col-lg-3 d-flex justify-content-center counter-wrap ftco-animate">
+              <div class="block-18 text-center">
+                <div class="text">
+                  <strong class="number" data-number="50">0</strong>
+                </div>
+                <div class="text">
+                  <span>Customer</span>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 d-flex justify-content-center counter-wrap ftco-animate">
+              <div class="block-18 text-center">
+                <div class="text">
+                  <strong class="number" data-number="8500">0</strong>
+                </div>
+                <div class="text">
+                  <span>Professionals</span>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 d-flex justify-content-center counter-wrap ftco-animate">
+              <div class="block-18 text-center">
+                <div class="text">
+                  <strong class="number" data-number="20">0</strong>
+                </div>
+                <div class="text">
+                  <span>Products</span>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-3 d-flex justify-content-center counter-wrap ftco-animate">
+              <div class="block-18 text-center">
+                <div class="text">
+                  <strong class="number" data-number="50">0</strong>
+                </div>
+                <div class="text">
+                  <span>Comments</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ftco-section ftco-intro" style="background-image: url(assets/images/banner13.jpg);">
+    <div class="container">
+      <div class="row justify-content-center pb-5 mb-3">
+        <div class="col-md-7 heading-section heading-section-white text-center ftco-animate">
+          <h2>FarmFriend Services</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3 d-flex align-self-stretch ftco-animate">
+          <div class="d-block services">
+
+            <div class="media-body">
+              <h3 class="heading">Rent Equipment</h3>
+              <p>Far far away, behind the word mountains, far from the countries.</p>
+              <a href="#" class="btn-custom d-flex align-items-center justify-content-center"><span
+                  class="fa fa-chevron-right"></span><i class="sr-only">Read more</i></a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 d-flex align-self-stretch ftco-animate">
+          <div class="d-block services">
+
+            <div class="media-body">
+              <h3 class="heading">Storage Rent</h3>
+              <p>Far far away, behind the word mountains, far from the countries.</p>
+              <a href="#" class="btn-custom d-flex align-items-center justify-content-center"><span
+                  class="fa fa-chevron-right"></span><i class="sr-only">Read more</i></a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 d-flex align-self-stretch ftco-animate">
+          <div class="d-block services">
+
+            <div class="media-body">
+              <h3 class="heading">Consultation</h3>
+              <p>Far far away, behind the word mountains, far from the countries.</p>
+              <a href="#" class="btn-custom d-flex align-items-center justify-content-center"><span
+                  class="fa fa-chevron-right"></span><i class="sr-only">Read more</i></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-3 d-flex align-self-stretch ftco-animate">
+          <div class="d-block services">
+
+            <div class="media-body">
+              <h3 class="heading">Equipment Repair</h3>
+              <p>Far far away, behind the word mountains, far from the countries.</p>
+              <a href="#" class="btn-custom d-flex align-items-center justify-content-center"><span
+                  class="fa fa-chevron-right"></span><i class="sr-only">Read more</i></a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 d-flex align-self-stretch ftco-animate">
+          <div class="d-block services">
+
+            <div class="media-body">
+              <h3 class="heading">Equipment Maintenance</h3>
+              <p>Far far away, behind the word mountains, far from the countries.</p>
+              <a href="#" class="btn-custom d-flex align-items-center justify-content-center"><span
+                  class="fa fa-chevron-right"></span><i class="sr-only">Read more</i></a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 d-flex align-self-stretch ftco-animate">
+          <div class="d-block services">
+
+            <div class="media-body">
+              <h3 class="heading">Custom Equipment Design</h3>
+              <p>Far far away, behind the word mountains, far from the countries.</p>
+              <a href="#" class="btn-custom d-flex align-items-center justify-content-center"><span
+                  class="fa fa-chevron-right"></span><i class="sr-only">Read more</i></a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 d-flex align-self-stretch ftco-animate">
+          <div class="d-block services">
+
+            <div class="media-body">
+              <h3 class="heading">Logistics Support</h3>
+              <p>Far far away, behind the word mountains, far from the countries.</p>
+              <a href="#" class="btn-custom d-flex align-items-center justify-content-center"><span
+                  class="fa fa-chevron-right"></span><i class="sr-only">Read more</i></a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 d-flex align-self-stretch ftco-animate">
+          <div class="d-block services">
+
+            <div class="media-body">
+              <h3 class="heading">On-Site Support</h3>
+              <p>Far far away, behind the word mountains, far from the countries.</p>
+              <a href="#" class="btn-custom d-flex align-items-center justify-content-center"><span
+                  class="fa fa-chevron-right"></span><i class="sr-only">Read more</i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="ftco-section">
+    <div class="container">
+      <div class="row justify-content-center pb-5">
+        <div class="col-md-7 heading-section text-center ftco-animate">
+          <h2>Before &amp; After Services</h2>
+        </div>
+      </div>
+      <div class="row tabulation mt-4 ftco-animate">
+        <div class="col-md-4 order-md-last">
+          <ul class="nav nav-pills nav-fill d-md-flex d-block flex-column">
+            <li class="nav-item text-left">
+              <a class="nav-link active py-4" data-toggle="tab" href="#services-1">Rent Equipment</a>
+            </li>
+            <li class="nav-item text-left">
+              <a class="nav-link py-4" data-toggle="tab" href="#services-2">Storage Rent</a>
+            </li>
+            <li class="nav-item text-left">
+              <a class="nav-link py-4" data-toggle="tab" href="#services-3">Consultation</a>
+            </li>
+            <li class="nav-item text-left">
+              <a class="nav-link py-4" data-toggle="tab" href="#services-4">Equipment Repair</a>
+            </li>
+            <li class="nav-item text-left">
+              <a class="nav-link py-4" data-toggle="tab" href="#services-5">Equipment Maintenance</a>
+            </li>
+            <li class="nav-item text-left">
+              <a class="nav-link py-4" data-toggle="tab" href="#services-6">Custom Equipment Design</a>
+            </li>
+          </ul>
+        </div>
+        <div class="col-md-8">
+          <div class="tab-content">
+            <div class="tab-pane container p-0 active" id="services-1">
+              <div class="img" style="background-image: url(assets/images/banner1.jpg);"></div>
+              <h3><a href="#">Logistics Support</a></h3>
+              <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live
+                the
+                blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large
+                language
+                ocean.</p>
+            </div>
+            <div class="tab-pane container p-0 fade" id="services-2">
+              <div class="img" style="background-image: url(assets/images/banner2.jpg);"></div>
+              <h3><a href="#">On-Site Support</a></h3>
+              <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live
+                the
+                blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large
+                language
+                ocean.</p>
+            </div>
+            <div class="tab-pane container p-0 fade" id="services-3">
+              <div class="img" style="background-image: url(assets/images/banner3.jpg);"></div>
+              <h3><a href="#">On-Site Support</a></h3>
+              <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live
+                the
+                blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large
+                language
+                ocean.</p>
+            </div>
+            <div class="tab-pane container p-0 fade" id="services-4">
+              <div class="img" style="background-image: url(assets/images/banner4.jpg);"></div>
+              <h3><a href="#">Equipment Repair</a></h3>
+              <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live
+                the
+                blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large
+                language
+                ocean.</p>
+            </div>
+            <div class="tab-pane container p-0 fade" id="services-5">
+              <div class="img" style="background-image: url(assets/images/banner5.jpg);"></div>
+              <h3><a href="#">Equipment Maintenance</a></h3>
+              <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live
+                the
+                blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large
+                language
+                ocean.</p>
+            </div>
+            <div class="tab-pane container p-0 fade" id="services-6">
+              <div class="img" style="background-image: url(assets/images/banner6.jpg);"></div>
+              <h3><a href="#">Custom Equipment Design</a></h3>
+              <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live
+                the
+                blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large
+                language
+                ocean.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ftco-section testimony-section bg-light">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row justify-content-center pb-5">
+        <div class="col-md-7 heading-section text-center ftco-animate">
+          <h2>Happy Clients &amp; Feedbacks</h2>
+        </div>
+      </div>
+      <div class="row ftco-animate">
+        <div class="col-md-12">
+          <div class="carousel-testimony owl-carousel">
+            <div class="item">
+              <div class="testimony-wrap d-flex">
+                <div class="user-img" style="background-image: url(assets/images/farmer1.jpg)">
+                </div>
+                <div class="text pl-4">
+                  <span class="quote d-flex align-items-center justify-content-center">
+                    <i class="fa fa-quote-left"></i>
+                  </span>
+                  <p class="rate">
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                  </p>
+                  <p>Far far away, behind the word mountains, far from the countries Vokalia</p>
+                  <p class="name">Racky Henderson</p>
+                  <span class="position">Father</span>
+                </div>
+              </div>
+            </div>
+            <div class="item">
+              <div class="testimony-wrap d-flex">
+                <div class="user-img" style="background-image: url(assets/images/farmer2.jpg)">
+                </div>
+                <div class="text pl-4">
+                  <span class="quote d-flex align-items-center justify-content-center">
+                    <i class="fa fa-quote-left"></i>
+                  </span>
+                  <p class="rate">
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                  </p>
+                  <p>Far far away, behind the word mountains, far from the countries Vokalia</p>
+                  <p class="name">Henry Dee</p>
+                  <span class="position">Businesswoman</span>
+                </div>
+              </div>
+            </div>
+            <div class="item">
+              <div class="testimony-wrap d-flex">
+                <div class="user-img" style="background-image: url(assets/images/farmer3.jpg)">
+                </div>
+                <div class="text pl-4">
+                  <span class="quote d-flex align-items-center justify-content-center">
+                    <i class="fa fa-quote-left"></i>
+                  </span>
+                  <p class="rate">
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                  </p>
+                  <p>Far far away, behind the word mountains, far from the countries Vokalia</p>
+                  <p class="name">Mark Huff</p>
+                  <span class="position">Businesswoman</span>
+                </div>
+              </div>
+            </div>
+            <div class="item">
+              <div class="testimony-wrap d-flex">
+                <div class="user-img" style="background-image: url(assets/images/farmer4.jpg)">
+                </div>
+                <div class="text pl-4">
+                  <span class="quote d-flex align-items-center justify-content-center">
+                    <i class="fa fa-quote-left"></i>
+                  </span>
+                  <p class="rate">
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                  </p>
+                  <p>Far far away, behind the word mountains, far from the countries Vokalia</p>
+                  <p class="name">Rodel Golez</p>
+                  <span class="position">Businesswoman</span>
+                </div>
+              </div>
+            </div>
+            <div class="item">
+              <div class="testimony-wrap d-flex">
+                <div class="user-img" style="background-image: url(assets/images/farmer5.jpg)">
+                </div>
+                <div class="text pl-4">
+                  <span class="quote d-flex align-items-center justify-content-center">
+                    <i class="fa fa-quote-left"></i>
+                  </span>
+                  <p class="rate">
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                    <span class="fa fa-star"></span>
+                  </p>
+                  <p>Far far away, behind the word mountains, far from the countries Vokalia</p>
+                  <p class="name">Ken Bosh</p>
+                  <span class="position">Businesswoman</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <section id="about-3" class="about-3 section">
+
+    <div class="container">
+      <div class="row gy-4 justify-content-between align-items-center">
+        <div class="col-lg-6 order-lg-2 position-relative" data-aos="zoom-out">
+          <img src="assets/images/banner1.jpg" alt="Image" class="img-fluid">
+          <a href="assets/video/demo.mp4" class="glightbox pulsating-play-btn">
+            <span class="play"><i class="bi bi-play-fill"></i></span>
+          </a>
+        </div>
+        <div class="col-lg-5 order-lg-1" data-aos="fade-up" data-aos-delay="100">
+          <h2 class="content-title mb-4">Plants Make Life Better</h2>
+          <p class="mb-4">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim
+            necessitatibus placeat, atque qui voluptatem velit explicabo vitae
+            repellendus architecto provident nisi ullam minus asperiores commodi!
+            Tenetur, repellat aliquam nihil illo.
+          </p>
+          <ul class="list-unstyled list-check">
+            <li>Lorem ipsum dolor sit amet</li>
+            <li>Velit explicabo vitae repellendu</li>
+            <li>Repellat aliquam nihil illo</li>
+          </ul>
+
+          <p><a href="#" class="btn-cta">Get in touch</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <style>
+    /* About-3 Section */
+    #about-3 {
+      padding: 60px 0;
+      background-color: #f9f9f9;
+    }
+
+    #about-3 .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    #about-3 .content-title {
+      font-size: 2.5rem;
+      font-weight: 600;
+      color: #333;
+    }
+
+    #about-3 p {
+      font-size: 1.125rem;
+      color: #666;
+      line-height: 1.8;
+    }
+
+    #about-3 .list-check {
+      margin-top: 20px;
+      margin-bottom: 20px;
+      padding: 0;
+      list-style: none;
+    }
+
+    #about-3 .list-check li {
+      font-size: 1rem;
+      color: #555;
+      padding-left: 1.5rem;
+      margin-bottom: 10px;
+      position: relative;
+    }
+
+    #about-3 .list-check li::before {
+      content: '\2713';
+      /* Checkmark symbol */
+      position: absolute;
+      left: 0;
+      color: #28a745;
+      font-size: 1rem;
+    }
+
+    #about-3 .btn-cta {
+      display: inline-block;
+      padding: 12px 30px;
+      font-size: 1rem;
+      color: #fff;
+      background-color: #28a745;
+      border: none;
+      border-radius: 5px;
+      text-decoration: none;
+      transition: background-color 0.3s ease-in-out;
+    }
+
+    #about-3 .btn-cta:hover {
+      background-color: #218838;
+    }
+
+    #about-3 .img-fluid {
+      max-width: 100%;
+      border-radius: 8px;
+      box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #about-3 .pulsating-play-btn {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 80px;
+      height: 80px;
+      background-color: rgba(255, 255, 255, 0.9);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+      animation: pulse 1.5s infinite;
+    }
+
+    #about-3 .pulsating-play-btn:hover {
+      background-color: rgba(255, 255, 255, 1);
+    }
+
+    #about-3 .pulsating-play-btn .play {
+      font-size: 1.5rem;
+      color: #28a745;
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+        opacity: 1;
+      }
+
+      50% {
+        transform: scale(1.1);
+        opacity: 0.7;
+      }
+
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    /* Responsive Design */
+    @media (max-width: 991px) {
+      #about-3 .row {
+        text-align: center;
+      }
+
+      #about-3 .col-lg-5 {
+        margin-bottom: 30px;
+      }
+    }
+  </style>
+
+  <! <section class="ftco-section">
+    <div class="container-fluid px-md-4">
+      <div class="col-md-7 heading-section text-center ftco-animate" style="margin: 0 auto;">
+        <h2 style="text-align: center;">Gallery &amp; Images</h2><br>
+      </div>
+      <div class="row">
+        <div class="col-md-3 ftco-animate">
+          <div class="work mb-4 img d-flex align-items-end" style="background-image: url(assets/images/banner2.jpg);">
+            <a href="assets/images/banner2.jpg"
+              class="icon image-popup d-flex justify-content-center align-items-center">
+              <span class="fa fa-expand"></span>
+            </a>
+            <div class="desc w-100 px-4">
+              <div class="text w-100 mb-3">
+                <span>Custom Equipment Design</span>
+                <h2><a href="work-single.html">Custom Equipment Design</a></h2>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 ftco-animate">
+          <div class="work mb-4 img d-flex align-items-end" style="background-image: url(assets/images/banner4.jpg);">
+            <a href="assets/images/banner5.jpg"
+              class="icon image-popup d-flex justify-content-center align-items-center">
+              <span class="fa fa-expand"></span>
+            </a>
+            <div class="desc w-100 px-4">
+              <div class="text w-100 mb-3">
+                <span>Storage Rent</span>
+                <h2><a href="work-single.html">Storage Rent</a></h2>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 ftco-animate">
+          <div class="work mb-4 img d-flex align-items-end" style="background-image: url(assets/images/banner6.jpg);">
+            <a href="assets/images/banner9.jpg"
+              class="icon image-popup d-flex justify-content-center align-items-center">
+              <span class="fa fa-expand"></span>
+            </a>
+            <div class="desc w-100 px-4">
+              <div class="text w-100 mb-3">
+                <span>Consultation</span>
+                <h2><a href="work-single.html">Consultation</a></h2>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 ftco-animate">
+          <div class="work mb-4 img d-flex align-items-end" style="background-image: url(assets/images/banner6.jpg);">
+            <a href="assets/images/tractor.jpg"
+              class="icon image-popup d-flex justify-content-center align-items-center">
+              <span class="fa fa-expand"></span>
+            </a>
+            <div class="desc w-100 px-4">
+              <div class="text w-100 mb-3">
+                <span>Equipment Repair</span>
+                <h2><a href="work-single.html">Equipment Repair</a></h2>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 ftco-animate">
+          <div class="work mb-4 img d-flex align-items-end" style="background-image: url(assets/images/seeder.jpg);">
+            <a href="assets/images/banner8.jpg"
+              class="icon image-popup d-flex justify-content-center align-items-center">
+              <span class="fa fa-expand"></span>
+            </a>
+            <div class="desc w-100 px-4">
+              <div class="text w-100 mb-3">
+                <span>Equipment Maintenance</span>
+                <h2><a href="work-single.html">Equipment Maintenance</a></h2>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 ftco-animate">
+          <div class="work mb-4 img d-flex align-items-end" style="background-image: url(assets/images/banner1.jpg);">
+            <a href="assets/images/banner3.jpg"
+              class="icon image-popup d-flex justify-content-center align-items-center">
+              <span class="fa fa-expand"></span>
+            </a>
+            <div class="desc w-100 px-4">
+              <div class="text w-100 mb-3">
+                <span>Custom Equipment Design</span>
+                <h2><a href="work-single.html">Custom Equipment Design</a></h2>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 ftco-animate">
+          <div class="work mb-4 img d-flex align-items-end" style="background-image: url(assets/images/banner4.jpg);">
+            <a href="assets/images/banner5.jpg"
+              class="icon image-popup d-flex justify-content-center align-items-center">
+              <span class="fa fa-expand"></span>
+            </a>
+            <div class="desc w-100 px-4">
+              <div class="text w-100 mb-3">
+                <span>Logistics Support</span>
+                <h2><a href="work-single.html">Logistics Support</a></h2>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 ftco-animate">
+          <div class="work mb-4 img d-flex align-items-end" style="background-image: url(assets/images/harvester.jpg);">
+            <a href="assets/images/harrow.png"
+              class="icon image-popup d-flex justify-content-center align-items-center">
+              <span class="fa fa-expand"></span>
+            </a>
+            <div class="desc w-100 px-4">
+              <div class="text w-100 mb-3">
+                <span>On-Site Support</span>
+                <h2><a href="work-single.html">On-Site Support</a></h2>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </section>
+
+
+    <section class="ftco-section bg-light">
+      <div class="container">
+        <div class="row justify-content-center pb-5 mb-3">
+          <div class="col-md-7 heading-section text-center ftco-animate">
+            <h2>Latest news from our blog</h2>
+          </div>
+        </div>
+        <div class="row d-flex">
+          <div class="col-md-4 d-flex ftco-animate">
+            <div class="blog-entry align-self-stretch">
+              <a href="blog-single.html" class="block-20 rounded"
+                style="background-image: url('assets/images/banner4.jpg');">
+              </a>
+              <div class="text p-4">
+                <div class="meta mb-2">
+                  <div><a href="#">June 14, 2020</a></div>
+                  <div><a href="#">Admin</a></div>
+                  <div><a href="#" class="meta-chat"><span class="fa fa-comment"></span> 3</a></div>
+                </div>
+                <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a>
+                </h3>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 d-flex ftco-animate">
+            <div class="blog-entry align-self-stretch">
+              <a href="blog-single.html" class="block-20 rounded"
+                style="background-image: url('assets/images/banner7.jpg');">
+              </a>
+              <div class="text p-4">
+                <div class="meta mb-2">
+                  <div><a href="#">June 14, 2020</a></div>
+                  <div><a href="#">Admin</a></div>
+                  <div><a href="#" class="meta-chat"><span class="fa fa-comment"></span> 3</a></div>
+                </div>
+                <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a>
+                </h3>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 d-flex ftco-animate">
+            <div class="blog-entry align-self-stretch">
+              <a href="blog-single.html" class="block-20 rounded"
+                style="background-image: url('assets/images/tractor.jpg');">
+              </a>
+              <div class="text p-4">
+                <div class="meta mb-2">
+                  <div><a href="#">June 14, 2020</a></div>
+                  <div><a href="#">Admin</a></div>
+                  <div><a href="#" class="meta-chat"><span class="fa fa-comment"></span> 3</a></div>
+                </div>
+                <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a>
+                </h3>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="ftco-appointment ftco-section ftco-no-pt ftco-no-pb img"
+      style="background-image: url(assets/images/banner14.jpg);">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row d-md-flex justify-content-center">
+          <div class="col-md-12 col-lg-8 half p-3 py-5 pl-lg-5 ftco-animate">
+            <h2 class="mb-4">Free Consultation</h2>
+            <form action="#" class="appointment">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <div class="form-field">
+                      <div class="select-wrap">
+                        <div class="icon"><span class="fa fa-chevron-down"></span></div>
+                        <select name="" id="" class="form-control">
+                          <option value="">Select services</option>
+                          <option value="">House Washing</option>
+                          <option value="">Roof Cleaning</option>
+                          <option value="">Driveway Cleaning</option>
+                          <option value="">Gutter Cleaning</option>
+                          <option value="">Patio Cleaning</option>
+                          <option value="">Building Cleaning</option>
+                          <option value="">Concrete Cleaning</option>
+                          <option value="">Sidewal Cleaning</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <div class="input-wrap">
+                      <div class="icon"><span class="fa fa-user"></span></div>
+                      <input type="text" class="form-control" placeholder="Your Name">
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <div class="input-wrap">
+                      <div class="icon"><span class="fa fa-paper-plane"></span></div>
+                      <input type="text" class="form-control" placeholder="Email Address">
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <div class="input-wrap">
+                      <div class="icon"><span class="fa fa-calendar"></span></div>
+                      <input type="text" class="form-control appointment_date" placeholder="Date">
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <div class="input-wrap">
+                      <div class="icon"><span class="fa fa-clock-o"></span></div>
+                      <input type="text" class="form-control appointment_time" placeholder="Time">
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <textarea name="" id="" cols="30" rows="7" class="form-control" placeholder="Message"></textarea>
+                  </div>
+                </div>
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <input type="submit" value="Send message" class="btn btn-primary py-3 px-4">
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 col-lg-3 mb-4 mb-md-0">
+            <h2 class="footer-heading">Pressure Washing</h2>
+            <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
+            <ul class="ftco-footer-social p-0">
+              <li class="ftco-animate"><a href="#" data-toggle="tooltip" data-placement="top" title="Twitter"><span
+                    class="fa fa-twitter"></span></a></li>
+              <li class="ftco-animate"><a href="#" data-toggle="tooltip" data-placement="top" title="Facebook"><span
+                    class="fa fa-facebook"></span></a></li>
+              <li class="ftco-animate"><a href="#" data-toggle="tooltip" data-placement="top" title="Instagram"><span
+                    class="fa fa-instagram"></span></a></li>
+            </ul>
+          </div>
+          <div class="col-md-6 col-lg-3 mb-4 mb-md-0">
+            <h2 class="footer-heading">Latest News</h2>
+            <div class="block-21 mb-4 d-flex">
+              <a class="img mr-4 rounded" style="background-image: url(assets/images/banner5.jpg);"></a>
+              <div class="text">
+                <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about</a></h3>
+                <div class="meta">
+                  <div><a href="#">Jun 14, 2020</a></div>
+                  <div><a href="#">Admin</a></div>
+                  <div><a href="#">19</a></div>
+                </div>
+              </div>
+            </div>
+            <div class="block-21 mb-4 d-flex">
+              <a class="img mr-4 rounded" style="background-image: url(assets/images/banner6.jpg);"></a>
+              <div class="text">
+                <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about</a></h3>
+                <div class="meta">
+                  <div><a href="#">Jun 14, 2020</a></div>
+                  <div><a href="#">Admin</a></div>
+                  <div><a href="#">19</a></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3 pl-lg-5 mb-4 mb-md-0">
+            <h2 class="footer-heading">Quick Links</h2>
+            <ul class="list-unstyled">
+              <li><a href="#" class="py-2 d-block">Home</a></li>
+              <li><a href="#" class="py-2 d-block">About</a></li>
+              <li><a href="#" class="py-2 d-block">Services</a></li>
+              <li><a href="#" class="py-2 d-block">Works</a></li>
+              <li><a href="#" class="py-2 d-block">Blog</a></li>
+              <li><a href="#" class="py-2 d-block">Contact</a></li>
+            </ul>
+          </div>
+          <div class="col-md-6 col-lg-3 mb-4 mb-md-0">
+            <h2 class="footer-heading">Have a Questions?</h2>
+            <div class="block-23 mb-3">
+              <ul>
+                <li><span class="icon fa fa-map"></span><span class="text">203 Fake St. Mountain View, San Francisco,
+                    California, USA</span></li>
+                <li><a href="#"><span class="icon fa fa-phone"></span><span class="text">+2 392 3929 210</span></a></li>
+                <li><a href="#"><span class="icon fa fa-paper-plane"></span><span
+                      class="text">info@yourdomain.com</span></a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="row mt-5">
+          <div class="col-md-12 text-center">
+            <p class="copyright">
+              Copyright &copy;
+              <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made
+              with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com"
+                target="_blank">Colorlib.com</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <style>
+      .footer {
+        background-image: url('path-to-your-gif.gif');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        position: relative;
+        padding: 50px 0;
+        color: #fff;
+        box-shadow: inset 0 0 50px rgba(255, 255, 255, 0.3);
+      }
+
+      .footer:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(255, 255, 255, 0.1);
+        pointer-events: none;
+        z-index: 1;
+      }
+
+      .footer .container {
+        position: relative;
+        z-index: 2;
+      }
+
+      .footer-heading {
+        text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+      }
+    </style>
+
+
+    <!-- loader -->
+    <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
+        <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
+        <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10"
+          stroke="#F96D00" />
+      </svg></div>
+
+    <script src="js2/script.js"></script>
+    <script src="js2/jquery.min.js"></script>
+    <script src="js2/jquery-migrate-3.0.1.min.js"></script>
+    <script src="js2/popper.min.js"></script>
+    <script src="js2/bootstrap.min.js"></script>
+    <script src="js2/jquery.easing.1.3.js"></script>
+    <script src="js2/jquery.waypoints.min.js"></script>
+    <script src="js2/jquery.stellar.min.js"></script>
+    <script src="js2/jquery.animateNumber.min.js"></script>
+    <script src="js2/bootstrap-datepicker.js"></script>
+    <script src="js2/jquery.timepicker.min.js"></script>
+    <script src="js2/owl.carousel.min.js"></script>
+    <script src="js2/jquery.magnific-popup.min.js"></script>
+    <script src="js2/scrollax.min.js"></script>
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+    <script src="js2/google-map.js"></script>
+    <script src="js2/main.js"></script>
+
+</body>
+
+</html>
+
+
+
+/*Rasel*/
