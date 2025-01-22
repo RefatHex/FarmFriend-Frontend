@@ -59,30 +59,7 @@
       End date must be after the start date.
     </div>
 
-    <!-- =========================
-         Booking Modal (existing)
-         ========================= -->
-    <div class="modal" id="bookingModal">
-      <div class="modal-content">
-        <span class="close" onclick="closeBookingModal()">×</span>
-        <h3>Complete Your Booking</h3>
-        <label for="startDate">Start Date:</label>
-        <input type="date" id="startDate" />
-        <label for="endDate">End Date:</label>
-        <input type="date" id="endDate" />
-        <label for="quantity">Quantity:</label>
-        <input type="number" id="quantity" value="1" min="1" />
-        <div id="totalPrice" class="price"></div>
-        <button onclick="submitBooking()">Submit</button>
-      </div>
-    </div>
-
-    <!-- Booking Notification -->
-    <div class="notification" id="notification">Booking Completed!</div>
-
-    <!-- =========================
-         Details Modal (new)
-         ========================= -->
+    <!-- Details Modal -->
     <div class="modal" id="detailsModal">
       <div class="modal-content">
         <span class="close" onclick="closeDetailsModal()">×</span>
@@ -102,20 +79,21 @@
             <p id="detailPreferredCrop"></p>
             <p id="detailOwnerContact"></p>
             <p id="detailOwnerDOB"></p>
-            <!-- Add any extra fields you want to show from the gig -->
           </div>
         </div>
 
         <p id="detailDescription"></p>
 
-        <!-- Feedback section -->
-        <h3>Feedback</h3>
-        <div id="feedbackContainer">
-          <!-- Feedback items will be appended here -->
-        </div>
-
-        <!-- Book Now button inside the Details Modal -->
-        <button id="detailsBookNowBtn">Book Now</button>
+        <!-- Booking Section -->
+        <h3>Book This Storage</h3>
+        <label for="detailsStartDate">Start Date:</label>
+        <input type="date" id="detailsStartDate" />
+        <label for="detailsEndDate">End Date:</label>
+        <input type="date" id="detailsEndDate" />
+        <label for="detailsQuantity">Quantity:</label>
+        <input type="number" id="detailsQuantity" value="1" min="1" />
+        <div id="detailsTotalPrice" class="price"></div>
+        <button id="detailsSubmitBookingBtn">Submit Booking</button>
       </div>
     </div>
 

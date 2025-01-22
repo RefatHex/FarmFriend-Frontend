@@ -37,7 +37,7 @@ function showPopup() {
 
 // Map each role to a target landing page
 const roleRedirects = {
-  farmersId: "farmerDashboard.html",
+  farmersId: "farmerLandingPage.html",
   "rent-ownersId": "rentalAdmin.html",
   "storage-ownersId": "storageDashboard.html",
   agronomistsId: "agronomistDashboard.html",
