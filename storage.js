@@ -1,6 +1,4 @@
-////////////////////////////////////////
 // Slider and Dot Navigation
-////////////////////////////////////////
 let currentSlide = 0;
 const slides = document.querySelectorAll(".slide");
 const dotsContainer = document.getElementById("dot-nav");
@@ -28,9 +26,7 @@ setInterval(() => {
   moveToSlide(currentSlide);
 }, 3000);
 
-////////////////////////////////////////
 // Fetch Data and Render Cards
-////////////////////////////////////////
 document.addEventListener("DOMContentLoaded", fetchDataAndRenderCards);
 
 async function fetchDataAndRenderCards() {
@@ -41,7 +37,7 @@ async function fetchDataAndRenderCards() {
     const { results = [] } = await response.json();
 
     const cardsContainer = document.getElementById("cardsContainer");
-    cardsContainer.innerHTML = ""; // Clear existing content
+    cardsContainer.innerHTML = "";
 
     results.forEach((gig) => createCard(gig, cardsContainer));
   } catch (error) {
@@ -52,14 +48,14 @@ async function fetchDataAndRenderCards() {
 // Create a card dynamically
 function createCard(gig, container) {
   const {
-    storage_owner: owner,
-    address,
-    image,
-    description,
-    price,
-    is_Available,
-    prefered_crop,
-    quantity,
+    storage_owner: owner = {},
+    address = "No address provided",
+    image = "assets/images/default.jpg",
+    description = "No description available",
+    price = 0,
+    is_Available = false,
+    prefered_crop = "N/A",
+    quantity = 0,
     id,
   } = gig;
 
@@ -69,12 +65,12 @@ function createCard(gig, container) {
   // Image
   const imgEl = document.createElement("img");
   imgEl.src = image;
-  imgEl.alt = owner?.name || "Storage Image";
+  imgEl.alt = owner.name || "Storage Image";
   cardDiv.appendChild(imgEl);
 
   // Title
   const titleEl = document.createElement("h3");
-  titleEl.textContent = owner?.name || "Unknown Storage";
+  titleEl.textContent = owner.name || "Unknown Storage";
   cardDiv.appendChild(titleEl);
 
   // Address
@@ -92,6 +88,16 @@ function createCard(gig, container) {
   priceEl.classList.add("price");
   priceEl.textContent = `Price: $${price}/day`;
   cardDiv.appendChild(priceEl);
+
+  // Availability
+  const availabilityEl = document.createElement("p");
+  availabilityEl.textContent = is_Available ? "Available" : "Not Available";
+  cardDiv.appendChild(availabilityEl);
+
+  // Preferred Crop
+  const cropEl = document.createElement("p");
+  cropEl.textContent = `Preferred Crop: ${prefered_crop.name || "N/A"}`;
+  cardDiv.appendChild(cropEl);
 
   // View Details Button
   const detailsBtn = document.createElement("button");
@@ -115,9 +121,7 @@ function createCard(gig, container) {
   container.appendChild(cardDiv);
 }
 
-////////////////////////////////////////
 // Details Modal Logic
-////////////////////////////////////////
 let currentGigPrice = 0;
 
 function openDetailsModal(gig) {
@@ -125,24 +129,28 @@ function openDetailsModal(gig) {
 
   document.getElementById("detailName").textContent =
     gig.owner?.name || "Unknown Storage";
-  document.getElementById("detailImage").src = gig.image;
-  document.getElementById(
-    "detailAddress"
-  ).textContent = `Address: ${gig.address}`;
-  document.getElementById(
-    "detailCapacity"
-  ).textContent = `Capacity: ${gig.quantity} tonnes`;
-  document.getElementById(
-    "detailPrice"
-  ).textContent = `Price: $${gig.price}/day`;
+  document.getElementById("detailImage").src =
+    gig.image || "assets/images/default.jpg";
+  document.getElementById("detailAddress").textContent = `Address: ${
+    gig.address || "N/A"
+  }`;
+  document.getElementById("detailCapacity").textContent = `Capacity: ${
+    gig.quantity || 0
+  } tonnes`;
+  document.getElementById("detailPrice").textContent = `Price: $${
+    gig.price || 0
+  }/day`;
   document.getElementById("detailAvailability").textContent = gig.is_Available
     ? "Available"
     : "Not Available";
   document.getElementById(
     "detailPreferredCrop"
-  ).textContent = `Preferred Crop: ${gig.prefered_crop || "N/A"}`;
+  ).textContent = `Preferred Crop: ${gig.prefered_crop.name || "N/A"}`;
   document.getElementById("detailDescription").textContent =
-    gig.description || "";
+    gig.description || "No description available.";
+
+  const bookNowButton = document.getElementById("detailsSubmitBookingBtn");
+  bookNowButton.onclick = () => bookNow(gig);
 
   document.getElementById("detailsModal").style.display = "flex";
 }
@@ -151,42 +159,54 @@ function closeDetailsModal() {
   document.getElementById("detailsModal").style.display = "none";
 }
 
-////////////////////////////////////////
 // Booking Logic
-////////////////////////////////////////
-function calculateTotalPrice() {
-  const startDate = new Date(document.getElementById("detailsStartDate").value);
-  const endDate = new Date(document.getElementById("detailsEndDate").value);
-  const quantity = document.getElementById("detailsQuantity").value;
+async function bookNow(gig) {
+  const startDate = document.getElementById("detailsStartDate").value;
+  const endDate = document.getElementById("detailsEndDate").value;
+  const quantity = parseInt(
+    document.getElementById("detailsQuantity").value,
+    10
+  );
 
-  if (!startDate || !endDate || isNaN(startDate) || isNaN(endDate)) {
-    showNotification("errorNotification");
-    return null;
+  if (!startDate || !endDate || isNaN(quantity) || quantity <= 0) {
+    return;
   }
 
-  if (endDate <= startDate) {
-    showNotification("endDateErrorNotification");
-    return null;
+  if (new Date(endDate) <= new Date(startDate)) {
+    return;
   }
 
-  const days = (endDate - startDate) / (1000 * 3600 * 24);
-  return days * currentGigPrice * quantity;
-}
+  const bookingPayload = {
+    farmer: 1, // Replace with actual farmer ID from your app logic
+    storage_owner: gig.owner?.id || 1,
+    gigs_offered: gig.id,
+    crops: gig.prefered_crop.id || 1,
+    start_date: startDate,
+    end_date: endDate,
+    completed: false,
+    is_confirmed: true,
+    is_ready_for_pickup: false,
+  };
 
-function showNotification(notificationId) {
-  const notification = document.getElementById(notificationId);
-  notification.style.display = "block";
-  setTimeout(() => (notification.style.display = "none"), 3000);
-}
+  try {
+    console.log("Booking Payload:", bookingPayload);
+    const response = await fetch(
+      "http://localhost:8000/storage/storage-deals/",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(bookingPayload),
+      }
+    );
 
-document
-  .getElementById("detailsSubmitBookingBtn")
-  .addEventListener("click", () => {
-    const totalPrice = calculateTotalPrice();
-    if (totalPrice) {
-      document.getElementById(
-        "detailsTotalPrice"
-      ).textContent = `Total Price: $${totalPrice}`;
-      closeDetailsModal();
+    if (response.ok) {
+      document.getElementById("detailsModal").style.display = "none";
+    } else {
+      console.error("Booking failed:", response.statusText);
     }
-  });
+  } catch (error) {
+    console.error("Booking failed:", error);
+  }
+}
