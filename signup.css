@@ -51,56 +51,97 @@ header:hover {
 /* Container for the form */
 .slider-container {
   display: flex;
-  max-width: 600px;
+  justify-content: center;
+  align-items: center;
   width: 100%;
-  background: rgba(255, 255, 255, 0.3);
-  border-radius: 12px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  height: 100%;
   padding: 20px;
-  margin-top: 70px;
 }
 
-.slider-container .right {
+.form-container {
   width: 100%;
+  max-width: 400px;
+  background: rgba(255, 255, 255, 0.3); /* Transparent effect */
+  backdrop-filter: blur(10px); /* Frosted glass effect */
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  color: #fff; /* White text for better contrast */
+}
+
+/* Form Styling */
+form {
   display: flex;
   flex-direction: column;
-  padding: 15px;
-  overflow-y: auto;
+  align-items: center;
 }
 
-input,
-select,
-textarea {
+form h3 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #fff; /* White text for better contrast */
+}
+
+form input,
+form select,
+form textarea,
+form button {
+  width: 100%;
+  margin-bottom: 15px;
   padding: 12px;
+  font-size: 16px;
   border-radius: 6px;
   border: 1px solid rgba(255, 255, 255, 0.5);
-  background: rgba(255, 255, 255, 0.2);
-  margin-bottom: 15px;
+  background: rgba(255, 255, 255, 0.2); /* Transparent inputs */
+  color: #000; /* Visible text color */
   transition: all 0.3s ease;
 }
 
-input:focus,
-select:focus,
-textarea:focus {
-  border-color: #1e90ff;
-  box-shadow: 0 0 8px rgba(30, 144, 255, 0.5);
+/* Adjust dropdown styles */
+form select {
+  background: rgba(255, 255, 255, 0.9);
+  color: #000; /* Black text for visibility */
 }
 
-button {
-  padding: 14px;
+form select option {
+  background: #fff;
+  color: #000;
+}
+
+/* Adjust textarea size */
+form textarea {
+  height: 100px; /* Bigger address box */
+  resize: none; /* Optional: prevent resizing */
+}
+
+/* Inputs & Select Focus Effects */
+form input:focus,
+form select:focus,
+form textarea:focus {
+  border-color: #1e90ff;
+  box-shadow: 0 0 8px rgba(30, 144, 255, 0.5);
+  outline: none;
+}
+
+/* Button Styles */
+form button {
+  background-color: #1e90ff;
+  color: white;
   font-size: 1rem;
-  color: #fff;
-  background: linear-gradient(to right, #1e90ff, #4facfe);
   border: none;
   border-radius: 6px;
   cursor: pointer;
-  transition: transform 0.2s ease;
+  transition: transform 0.2s ease, background-color 0.3s ease;
 }
 
-button:hover {
+form button:hover {
+  background-color: #4facfe;
   transform: scale(1.05);
 }
 
+/* Footer */
 footer {
   width: 100%;
   background-color: rgba(51, 51, 51, 0.8);
