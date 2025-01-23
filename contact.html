@@ -1,301 +1,385 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 
 <head>
-  <title>Pressure Washing - Free Bootstrap 4 Template by Colorlib</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-  <link href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400,500,600,700,800&display=swap"
-    rel="stylesheet">
-
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-
-  <link rel="stylesheet" href="css/animate.css">
-
-  <link rel="stylesheet" href="css/owl.carousel.min.css">
-  <link rel="stylesheet" href="css/owl.theme.default.min.css">
-  <link rel="stylesheet" href="css/magnific-popup.css">
-
-
-  <link rel="stylesheet" href="css/bootstrap-datepicker.css">
-  <link rel="stylesheet" href="css/jquery.timepicker.css">
-
-  <link rel="stylesheet" href="css/flaticon.css">
-  <link rel="stylesheet" href="css/style.css">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>FarmFriend - Agriculture Category Bootstrap Responsive Template | Contact :: W3layouts </title>
+    <!-- google fonts -->
+    <link href="//fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap"
+        rel="stylesheet">
+    <!-- Template CSS -->
+    <link rel="stylesheet" href="assets/css/style-starter.css">
 </head>
 
 <body>
-
-  <div class="wrap">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-6 d-flex align-items-center">
-          <p class="mb-0 phone pl-md-2">
-            <a href="#" class="mr-2"><span class="fa fa-phone mr-1"></span> +00 1234 567</a>
-            <a href="#"><span class="fa fa-paper-plane mr-1"></span> youremail@email.com</a>
-          </p>
+    <!--/Header-->
+    <header id="site-header" class="fixed-top">
+        <div class="container">
+            <nav id="navbar">
+                <div class="logo">
+                  <img src="assets/images/logo.jpg" alt="Logo" />
+                </div>
+                <a href="index.html">Home</a>
+                <a href="contact.html">Contact</a>
+                <a href="about.html">About Us</a>
+                <a href="login.html">Login</a>
+                <a href="signup.html">Sign Up</a>
+              </nav>
+              <style>
+                /* Navbar Styling */
+                nav {
+                  position: fixed;
+                  top: 0;
+                  left: 0;
+                  width: 100%;
+                  background-color: hsla(0, 0%, 85%, 0.8);
+                  border-bottom: 1px solid #ddd;
+                  display: flex;
+                  align-items: center;
+                  /* Align items vertically in the center */
+                  padding: 10px 20px;
+                  /* Adjust padding for better layout */
+                  z-index: 1000;
+                  transform: translateY(-100%);
+                  transition: transform 0.3s ease-in-out;
+                }
+            
+                nav .logo img {
+                  height: 40px;
+                  /* Adjust logo size as needed */
+                  width: auto;
+                  margin-right: 20px;
+                  /* Space between the logo and the links */
+                }
+            
+                nav a {
+                  color: black;
+                  padding: 14px 20px;
+                  text-decoration: none;
+                  text-align: center;
+                  font-weight: bold;
+                  position: relative;
+                  overflow: hidden;
+                }
+            
+                /* Enhanced Hover Styles */
+                nav a::before {
+                  content: "";
+                  position: absolute;
+                  width: 0;
+                  height: 2px;
+                  background-color: #4caf50;
+                  bottom: 0;
+                  left: 50%;
+                  transform: translateX(-50%);
+                  transition: width 0.3s ease-in-out;
+                }
+            
+                nav a:hover::before {
+                  width: 100%;
+                }
+            
+                nav a:hover {
+                  color: #4caf50;
+                }
+              </style>
+            
+              <script>
+                // JavaScript for dynamic navbar behavior
+                let lastScrollY = window.scrollY;
+                const navbar = document.getElementById('navbar');
+                let isMouseNearTop = false;
+            
+                // Hide or show navbar on scroll
+                window.addEventListener('scroll', () => {
+                  if (window.scrollY > lastScrollY && !isMouseNearTop) {
+                    // Hide navbar on scroll down
+                    navbar.style.transform = 'translateY(-100%)';
+                  } else {
+                    // Show navbar on scroll up
+                    navbar.style.transform = 'translateY(0)';
+                  }
+                  lastScrollY = window.scrollY;
+                });
+            
+                // Detect mouse near the top of the screen
+                window.addEventListener('mousemove', (event) => {
+                  if (event.clientY <= 50) {
+                    // Show navbar when mouse is near the top
+                    navbar.style.transform = 'translateY(0)';
+                    isMouseNearTop = true;
+                  } else {
+                    isMouseNearTop = false;
+                  }
+                });
+              </script>
         </div>
-        <div class="col-md-6 d-flex justify-content-md-end">
-          <div class="social-media">
-            <p class="mb-0 d-flex">
-              <a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-facebook"><i
-                    class="sr-only">Facebook</i></span></a>
-              <a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-twitter"><i
-                    class="sr-only">Twitter</i></span></a>
-              <a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-instagram"><i
-                    class="sr-only">Instagram</i></span></a>
-              <a href="#" class="d-flex align-items-center justify-content-center"><span class="fa fa-dribbble"><i
-                    class="sr-only">Dribbble</i></span></a>
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
-    <div class="container">
-      <a class="navbar-brand" href="index.html">Pressure <span>Washing</span></a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
-        aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="fa fa-bars"></span> Menu
-      </button>
-      <div class="collapse navbar-collapse" id="ftco-nav">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
-          <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
-          <li class="nav-item"><a href="services.html" class="nav-link">Services</a></li>
-          <li class="nav-item"><a href="gallery.html" class="nav-link">Gallery</a></li>
-          <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
-          <li class="nav-item active"><a href="contact.html" class="nav-link">Contact</a></li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-  <!-- END nav -->
-  <section class="hero-wrap hero-wrap-2" style="background-image: url('images/bg_2.jpg');"
-    data-stellar-background-ratio="0.5">
-    <div class="overlay"></div>
-    <div class="container">
-      <div class="row no-gutters slider-text align-items-end">
-        <div class="col-md-9 ftco-animate pb-5">
-          <p class="breadcrumbs mb-2"><span class="mr-2"><a href="index.html">Home <i
-                  class="ion-ios-arrow-forward"></i></a></span> <span>Contact <i
-                class="ion-ios-arrow-forward"></i></span></p>
-          <h1 class="mb-0 bread">Contact</h1>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="ftco-section bg-light">
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-md-12">
-          <div class="wrapper">
-            <div class="row mb-5">
-              <div class="col-md-3">
-                <div class="dbox w-100 text-center">
-                  <div class="icon d-flex align-items-center justify-content-center">
-                    <span class="fa fa-map-marker"></span>
-                  </div>
-                  <div class="text">
-                    <p><span>Address:</span> 198 West 21th Street, Suite 721 New York NY 10016</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-3">
-                <div class="dbox w-100 text-center">
-                  <div class="icon d-flex align-items-center justify-content-center">
-                    <span class="fa fa-phone"></span>
-                  </div>
-                  <div class="text">
-                    <p><span>Phone:</span> <a href="tel://1234567920">+ 1235 2355 98</a></p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-3">
-                <div class="dbox w-100 text-center">
-                  <div class="icon d-flex align-items-center justify-content-center">
-                    <span class="fa fa-paper-plane"></span>
-                  </div>
-                  <div class="text">
-                    <p><span>Email:</span> <a href="mailto:info@yoursite.com">info@yoursite.com</a></p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-3">
-                <div class="dbox w-100 text-center">
-                  <div class="icon d-flex align-items-center justify-content-center">
-                    <span class="fa fa-globe"></span>
-                  </div>
-                  <div class="text">
-                    <p><span>Website</span> <a href="#">yoursite.com</a></p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="row no-gutters">
-              <div class="col-md-7">
-                <div class="contact-wrap w-100 p-md-5 p-4">
-                  <h3 class="mb-4">Contact Us</h3>
-                  <form method="POST" id="contactForm" name="contactForm" class="contactForm">
-                    <div class="row">
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <label class="label" for="name">Full Name</label>
-                          <input type="text" class="form-control" name="name" id="name" placeholder="Name">
-                        </div>
-                      </div>
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <label class="label" for="email">Email Address</label>
-                          <input type="email" class="form-control" name="email" id="email" placeholder="Email">
-                        </div>
-                      </div>
-                      <div class="col-md-12">
-                        <div class="form-group">
-                          <label class="label" for="subject">Subject</label>
-                          <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject">
-                        </div>
-                      </div>
-                      <div class="col-md-12">
-                        <div class="form-group">
-                          <label class="label" for="#">Message</label>
-                          <textarea name="message" class="form-control" id="message" cols="30" rows="4"
-                            placeholder="Message"></textarea>
-                        </div>
-                      </div>
-                      <div class="col-md-12">
-                        <div class="form-group">
-                          <input type="submit" value="Send Message" class="btn btn-primary">
-                          <div class="submitting"></div>
-                        </div>
-                      </div>
+    </header>
+    <!--//Header-->
+    <!--/inner-page-->
+    <div class="inner-banner py-5">
+        <section class="A-breadcrumb text-left py-sm-5 ">
+            <div class="container">
+                <div class="w3breadcrumb-gids">
+                    <div class="w3breadcrumb-left text-left">
+                        <h2 class="inner-w3-title">
+                            Contact Us </h2>
+                        <p class="inner-page-para mt-2">
+                            Better Agriculture
+                            for Better Future </p>
                     </div>
-                  </form>
+                    <div class="w3breadcrumb-right">
+                        <ul class="breadcrumbs-custom-path">
+                            <li><a href="index.html">Home</a></li>
+                            <li class="active"><span class="fas fa-angle-double-right mx-2"></span> Contact Us</li>
+                        </ul>
+                    </div>
                 </div>
-              </div>
-              <div class="col-md-5 d-flex align-items-stretch">
-                <div class="info-wrap w-100 p-5 img" style="background-image: url(images/about-1.jpg);">
+
+            </div>
+        </section>
+    </div>
+    <!--//inner-page-->
+    <!-- contact-form -->
+    <section class="A-contact-main" id="contact">
+        <div class="contact-infhny py-5">
+            <div class="container py-md-5">
+                <div class="title-content text-center mb-md-5 mb-4">
+                    <h6 class="title-subw3hny">Send us a message</h6>
+                    <h3 class="title-A mx-lg-5">Keep In Touch With Us.</h3>
+                    <p class="text-para mt-2">Our tech team will get to you as soon as we can.</p>
                 </div>
-              </div>
+                <div class="top-map">
+                    <div class="map-content-9">
+                        <form action="#" method="post">
+                            <div class="form-top1">
+
+                                <div class="form-top">
+                                    <div class="form-top-righ">
+                                        <textarea name="Message" id="Message" placeholder="Message*"
+                                            required=""></textarea>
+                                    </div>
+                                    <div class="form-top-left">
+                                        <input type="text" name="Name" id="Name" placeholder="Name" required="">
+                                        <input type="number" name="Phone" placeholder="Your phone number" required="">
+                                        <input type="email" name="Sender" id="Sender" placeholder="Email*" required="">
+
+                                    </div>
+
+                                </div>
+                                <div class="text-center mt-5">
+                                    <button type="submit" class="btn btn-style btn-primary">Submit Now <i
+                                            class="far fa-paper-plane ml-lg-3"></i></button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <div id="map" class="map"></div>
-
-  <footer class="footer">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-6 col-lg-3 mb-4 mb-md-0">
-          <h2 class="footer-heading">Pressure Washing</h2>
-          <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
-          <ul class="ftco-footer-social p-0">
-            <li class="ftco-animate"><a href="#" data-toggle="tooltip" data-placement="top" title="Twitter"><span
-                  class="fa fa-twitter"></span></a></li>
-            <li class="ftco-animate"><a href="#" data-toggle="tooltip" data-placement="top" title="Facebook"><span
-                  class="fa fa-facebook"></span></a></li>
-            <li class="ftco-animate"><a href="#" data-toggle="tooltip" data-placement="top" title="Instagram"><span
-                  class="fa fa-instagram"></span></a></li>
-          </ul>
-        </div>
-        <div class="col-md-6 col-lg-3 mb-4 mb-md-0">
-          <h2 class="footer-heading">Latest News</h2>
-          <div class="block-21 mb-4 d-flex">
-            <a class="img mr-4 rounded" style="background-image: url(images/image_1.jpg);"></a>
-            <div class="text">
-              <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about</a></h3>
-              <div class="meta">
-                <div><a href="#">Jun 14, 2020</a></div>
-                <div><a href="#">Admin</a></div>
-                <div><a href="#">19</a></div>
-              </div>
+    </section>
+    <!-- //contact-form -->
+    <!-- contact map -->
+    <section class="A-contact-main" id="contact">
+        <div class="container">
+            <div class="map pt-lg-3">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d387193.3059445135!2d-74.25986613799748!3d40.69714941774136!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m3!3e3!4m0!4m0!5e0!3m2!1sen!2sin!4v1570181661801!5m2!1sen!2sin"
+                    allowfullscreen=""></iframe>
             </div>
-          </div>
-          <div class="block-21 mb-4 d-flex">
-            <a class="img mr-4 rounded" style="background-image: url(images/image_2.jpg);"></a>
-            <div class="text">
-              <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about</a></h3>
-              <div class="meta">
-                <div><a href="#">Jun 14, 2020</a></div>
-                <div><a href="#">Admin</a></div>
-                <div><a href="#">19</a></div>
-              </div>
+        </div>
+    </section>
+    <!-- //contact map -->
+
+    <!--/contact-->
+    <section class="A-contact-main A-contact-info py-5" id="contact">
+        <div class="midd-w3 py-md-5">
+            <div class="container">
+                <div class="row contact-infos pt-lg-4">
+                    <div class="col-lg-4 col-md-6 pe-lg-5">
+                        <div class="single-contact-infos">
+                            <div class="icon-box"> <span class="fas fa-map-marked-alt"></span></div>
+                            <div class="text-box">
+                                <h3 class="mb-2">Location</h3>
+                                <p>FarmFriend, 121/2, Yunus Tower, Banani, Dhaka - 1212</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 mt-md-0 mt-4">
+                        <div class="single-contact-infos">
+                            <div class="icon-box"> <span class="fas fa-envelope-open-text"></span></div>
+                            <div class="text-box">
+                                <h3 class="mb-2">Phone Numbers</h3>
+                                <p><a href="tel:+880 1713706733">+880 1713706733</a></p>
+                                <p><a href="tel:+880 1330583005">+880 1330583005</a></p>
+                                <p><a href="tel:+880 1610975381">+880 1610975381</a></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 mt-lg-0 mt-4">
+                        <div class="single-contact-infos">
+                            <div class="icon-box"> <span class="fas fa-blender-phone"></span></div>
+                            <div class="text-box">
+                                <h3 class="mb-2">Emails</h3>
+                                <p> <a href="mailto:farmfriend@gmail.com">farmfriend@gmail.com</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-        <div class="col-md-6 col-lg-3 pl-lg-5 mb-4 mb-md-0">
-          <h2 class="footer-heading">Quick Links</h2>
-          <ul class="list-unstyled">
-            <li><a href="#" class="py-2 d-block">Home</a></li>
-            <li><a href="#" class="py-2 d-block">About</a></li>
-            <li><a href="#" class="py-2 d-block">Services</a></li>
-            <li><a href="#" class="py-2 d-block">Works</a></li>
-            <li><a href="#" class="py-2 d-block">Blog</a></li>
-            <li><a href="#" class="py-2 d-block">Contact</a></li>
-          </ul>
+    </section>
+    <!--//contact-->
+    <!--/footer-->
+    <footer class="A-footer-29-main">
+        <div class="footer-29-A py-5">
+            <div class="container pt-md-5">
+                <div class="A-footer-text-style">
+                    <div class="footer-list-cont d-sm-flex align-items-center justify-content-between mb-5">
+
+                        <h2 class="Aogo"><a class="navbar-brand" href="index.html">
+                                Farm<span class="sub-color">Friend</span>
+                            </a></h2>
+                        <div class="main-social-footer-29">
+                            <ul>
+                                <li class="w3follow mt-sm-0 mt-4">Follows On : </li>
+                                <li><a href="#facebook" class="facebook"><i class="fab fa-facebook-f"></i></a></li>
+                                <li><a href="#twitter" class="twitter"><i class="fab fa-twitter"></i></a></li>
+                                <li><a href="#instagram" class="instagram"><i class="fab fa-instagram"></i></a></li>
+                                <li><a href="#linkedin" class="linkedin"><i class="fab fa-linkedin-in"></i></a></li>
+                            </ul>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="row footer-top-29 pt-lg-5 pt-sm-4">
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="address-grid">
+                            <h5>121/2, Yunus Tower, Banani<br>Dhaka, Bangladesh.</h5>
+                            <p class="mt-4"></p>
+
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-6 mt-sm-0 mt-4 ps-lg-5">
+                        <div class="phone-numbers mt-2">
+                            <h5 style="margin-bottom: 15px;">Phone Numbers</h5>
+                            <p><a href="tel:+8801713706733">+880 1713706733</a></p>
+                            <p><a href="tel:+8801330583005">+880 1330583005</a></p>
+                            <p><a href="tel:+8801610975381">+880 1610975381</a></p>
+                        </div>
+
+                        <div class="address-grid mt-sm-5 mt-4">
+                            <h5>E-mail</h5>
+                            <h5 class="email-cont-text mt-1"> <a href="mailto:photogenic@mail.com"
+                                    class="mail">farmFriend@mail.com</a></h5>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-6 col-sm-5 footer-list-menu ps-lg-5 mt-lg-0 mt-sm-5 mt-4">
+                        <div class="address-grid">
+                            <h5 class="mb-4 pb-lg-2">Support</h5>
+                            <ul>
+                                <li><a href="#privacy">Privacy Policy</a></li>
+                                <li><a href="#terms"> Terms of Service</a></li>
+                                <li><a href="contact.html">Contact us</a></li>
+                                <li><a href="#faq">faQ</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="address-grid col-lg-4 col-md-6 col-sm-7 ps-lg-5 mt-lg-0 mt-sm-5 mt-4 A-footer-16-main">
+                        <h5>Subscribe here</h5>
+                        <form action="#" class="subscribe d-flex mt-4 pt-lg-2 mb-4" method="post">
+                            <input type="email" name="email" placeholder="Email Address" required="">
+                            <button><span class="fa fa-paper-plane" aria-hidden="true"></span></button>
+                        </form>
+                        <p>Subscribe to our mailing list and get updates to your email inbox.</p>
+                    </div>
+                </div>
+                <!-- copyright -->
+                <div class="A-copyright text-center mt-lg-5 mt-sm-4 pt-md-4 pt-3">
+                    <p class="copy-footer-29">© 2025 FarmFriend.
+                        Aayouts</a></p>
+                </div>
+            </div>
         </div>
-        <div class="col-md-6 col-lg-3 mb-4 mb-md-0">
-          <h2 class="footer-heading">Have a Questions?</h2>
-          <div class="block-23 mb-3">
-            <ul>
-              <li><span class="icon fa fa-map"></span><span class="text">203 Fake St. Mountain View, San Francisco,
-                  California, USA</span></li>
-              <li><a href="#"><span class="icon fa fa-phone"></span><span class="text">+2 392 3929 210</span></a></li>
-              <li><a href="#"><span class="icon fa fa-paper-plane"></span><span
-                    class="text">info@yourdomain.com</span></a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div class="row mt-5">
-        <div class="col-md-12 text-center">
+    </footer>
+    <!-- //footer -->
 
-          <p class="copyright"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-            Copyright &copy;
-            <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with
-            <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com"
-              target="_blank">Colorlib.com</a>
-            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-          </p>
-        </div>
-      </div>
-    </div>
-  </footer>
+    <!-- Js scripts -->
+    <!-- move top -->
+    <button onclick="topFunction()" id="movetop" title="Go to top">
+        <span class="fas fa-long-arrow-alt-up" aria-hidden="true"></span>
+    </button>
+    <script>
+        // When the user scrolls down 20px from the top of the document, show the button
+        window.onscroll = function () {
+            scrollFunction()
+        };
 
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                document.getElementById("movetop").style.display = "block";
+            } else {
+                document.getElementById("movetop").style.display = "none";
+            }
+        }
 
+        // When the user clicks on the button, scroll to the top of the document
+        function topFunction() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
 
+    </script>
+    <!-- //move top -->
 
-  <!-- loader -->
-  <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
-      <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
-      <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10"
-        stroke="#F96D00" />
-    </svg></div>
+    <!-- Template JavaScript -->
+    <script src="assets/js/jquery-3.3.1.min.js"></script>
+    <script src="assets/js/theme-change.js"></script>
+    <!--/slider-js-->
+    <!-- MENU-JS -->
+    <script>
+        $(window).on("scroll", function () {
+            var scroll = $(window).scrollTop();
 
+            if (scroll >= 80) {
+                $("#site-header").addClass("nav-fixed");
+            } else {
+                $("#site-header").removeClass("nav-fixed");
+            }
+        });
 
-  <script src="js/jquery.min.js"></script>
-  <script src="js/jquery-migrate-3.0.1.min.js"></script>
-  <script src="js/popper.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <script src="js/jquery.easing.1.3.js"></script>
-  <script src="js/jquery.waypoints.min.js"></script>
-  <script src="js/jquery.stellar.min.js"></script>
-  <script src="js/jquery.animateNumber.min.js"></script>
-  <script src="js/bootstrap-datepicker.js"></script>
-  <script src="js/jquery.timepicker.min.js"></script>
-  <script src="js/owl.carousel.min.js"></script>
-  <script src="js/jquery.magnific-popup.min.js"></script>
-  <script src="js/scrollax.min.js"></script>
-  <script
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-  <script src="js/google-map.js"></script>
-  <script src="js/main.js"></script>
+        //Main navigation Active Class Add Remove
+        $(".navbar-toggler").on("click", function () {
+            $("header").toggleClass("active");
+        });
+        $(document).on("ready", function () {
+            if ($(window).width() > 991) {
+                $("header").removeClass("active");
+            }
+            $(window).on("resize", function () {
+                if ($(window).width() > 991) {
+                    $("header").removeClass("active");
+                }
+            });
+        });
+
+    </script>
+    <!-- //MENU-JS -->
+
+    <!-- disable body scroll which navbar is in active -->
+    <script>
+        $(function () {
+            $('.navbar-toggler').click(function () {
+                $('body').toggleClass('noscroll');
+            })
+        });
+
+    </script>
+    <!-- //disable body scroll which navbar is in active -->
+    <!-- //bootstrap -->
+    <script src="assets/js/bootstrap.min.js"></script>
 
 </body>
 

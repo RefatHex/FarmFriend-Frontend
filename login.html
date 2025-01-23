@@ -11,11 +11,104 @@
 
   <body>
     <!-- Navbar -->
-    <div class="navbar">
+    <nav id="navbar">
+      <div class="logo">
+        <img src="assets/images/logo.jpg" alt="Logo" />
+      </div>
       <a href="index.html">Home</a>
       <a href="contact.html">Contact</a>
-      <a href="about.html">About</a>
-    </div>
+      <a href="about.html">About Us</a>
+      <a href="login.html">Login</a>
+      <a href="signup.html">Sign Up</a>
+    </nav>
+    <style>
+      /* Navbar Styling */
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: hsla(0, 0%, 85%, 0.8);
+        border-bottom: 1px solid #ddd;
+        display: flex;
+        align-items: center;
+        /* Align items vertically in the center */
+        padding: 10px 20px;
+        /* Adjust padding for better layout */
+        z-index: 1000;
+        transform: translateY(-100%);
+        transition: transform 0.3s ease-in-out;
+      }
+  
+      nav .logo img {
+        height: 40px;
+        /* Adjust logo size as needed */
+        width: auto;
+        margin-right: 20px;
+        /* Space between the logo and the links */
+      }
+  
+      nav a {
+        color: black;
+        padding: 14px 20px;
+        text-decoration: none;
+        text-align: center;
+        font-weight: bold;
+        position: relative;
+        overflow: hidden;
+      }
+  
+      /* Enhanced Hover Styles */
+      nav a::before {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 2px;
+        background-color: #4caf50;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        transition: width 0.3s ease-in-out;
+      }
+  
+      nav a:hover::before {
+        width: 100%;
+      }
+  
+      nav a:hover {
+        color: #4caf50;
+      }
+    </style>
+  
+    <script>
+      // JavaScript for dynamic navbar behavior
+      let lastScrollY = window.scrollY;
+      const navbar = document.getElementById('navbar');
+      let isMouseNearTop = false;
+  
+      // Hide or show navbar on scroll
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > lastScrollY && !isMouseNearTop) {
+          // Hide navbar on scroll down
+          navbar.style.transform = 'translateY(-100%)';
+        } else {
+          // Show navbar on scroll up
+          navbar.style.transform = 'translateY(0)';
+        }
+        lastScrollY = window.scrollY;
+      });
+  
+      // Detect mouse near the top of the screen
+      window.addEventListener('mousemove', (event) => {
+        if (event.clientY <= 50) {
+          // Show navbar when mouse is near the top
+          navbar.style.transform = 'translateY(0)';
+          isMouseNearTop = true;
+        } else {
+          isMouseNearTop = false;
+        }
+      });
+    </script>
 
     <!-- Login Form -->
     <div class="login-container">
