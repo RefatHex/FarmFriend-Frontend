@@ -51,7 +51,6 @@ loginForm.addEventListener('submit', async event => {
     if (response.ok) {
       const data = await response.json();
 
-      // Display success alert with SweetAlert2
       Swal.fire({
         icon: 'success',
         title: 'Login Successful!',
@@ -156,7 +155,7 @@ loginForm.addEventListener('submit', async event => {
  * Helper to fetch details for a specific role endpoint
  */
 async function fetchDetails(endpoint, userId) {
-  const apiUrl = `http://127.0.0.1:8000/${endpoint}/${userId}/`;
+  const apiUrl = `http://127.0.0.1:8000/${endpoint}/?user=${userId}`;
   try {
     const response = await fetch(apiUrl, {
       method: 'GET',

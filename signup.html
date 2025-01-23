@@ -3,37 +3,16 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sign-Up</title>
+    <title>Multi-Role Sign-Up</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="signup.css" />
   </head>
-
   <body>
-    <header id="header">Sign Up - Join Our Platform</header>
-
-    <!-- Fullscreen background video -->
-    <video class="video-background" autoplay loop muted>
-      <source src="assets/video/demo.mp4" type="video/mp4" />
-      Your browser does not support the video tag.
-    </video>
-
-    <div class="slider-container">
-      <!-- Right side: Sign-Up Form -->
-      <div class="form-container">
-        <form id="signupForm">
-          <h3>Select your role:</h3>
-          <select
-            id="role"
-            name="role"
-            onchange="showAdditionalFields()"
-            required
-          >
-            <option value="" disabled selected>Select your role</option>
-            <option value="farmer">Farmer</option>
-            <option value="agronomist">Agronomist</option>
-            <option value="storage_owner">Storage Owner</option>
-            <option value="equipment_renter">Equipment Renter</option>
-          </select>
-
+    <div class="form-container">
+      <h2>Sign Up - Create Multiple Accounts</h2>
+      <form id="signupForm">
+        <!-- Common Fields -->
+        <div class="common-fields">
           <div class="input-group">
             <input
               type="text"
@@ -51,32 +30,6 @@
             />
           </div>
 
-          <!-- Profile Picture Upload -->
-          <label
-            for="profilePicture"
-            style="
-              color: white;
-              text-align: left;
-              width: 100%;
-              margin-bottom: 5px;
-            "
-            >Upload Profile Picture:</label
-          >
-          <input
-            type="file"
-            id="profilePicture"
-            name="profilePicture"
-            accept="image/*"
-            required
-          />
-
-          <input
-            type="text"
-            id="username"
-            name="username"
-            placeholder="Username"
-            required
-          />
           <input
             type="email"
             id="email"
@@ -85,37 +38,113 @@
             required
           />
           <input
+            type="text"
+            id="username"
+            name="username"
+            placeholder="Username"
+            required
+          />
+
+          <div class="input-group">
+            <input
+              type="password"
+              id="password"
+              name="password"
+              placeholder="Password"
+              required
+            />
+            <input
+              type="password"
+              id="confirm-password"
+              name="confirm-password"
+              placeholder="Confirm Password"
+              required
+            />
+          </div>
+
+          <div class="file-upload">
+            <label for="profilePicture">Profile Picture:</label>
+            <input
+              type="file"
+              id="profilePicture"
+              name="profilePicture"
+              accept="image/*"
+            />
+          </div>
+
+          <!-- Common fields for all roles -->
+          <input
+            type="date"
+            id="dob"
+            name="dob"
+            placeholder="Date of Birth"
+            required
+          />
+          <textarea
+            id="address"
+            name="address"
+            placeholder="Address"
+            required
+          ></textarea>
+          <input
             type="tel"
-            id="phone"
-            name="phone"
-            placeholder="Phone Number"
+            id="contact"
+            name="contact"
+            placeholder="Contact Number"
             required
           />
-          <input
-            type="password"
-            id="password"
-            name="password"
-            placeholder="Password"
-            required
-          />
-          <input
-            type="password"
-            id="confirm-password"
-            name="confirm-password"
-            placeholder="Confirm Password"
-            required
-          />
-          <div id="additional-fields"></div>
-          <button type="submit" id="submitBtn">Sign Up</button>
-        </form>
-      </div>
+        </div>
+
+        <!-- Role Selection -->
+        <div class="role-selection">
+          <h3>Select your role(s):</h3>
+          <div class="checkbox-group">
+            <label>
+              <input
+                type="checkbox"
+                name="roles"
+                value="farmer"
+                onchange="showAdditionalFields()"
+              />
+              Farmer
+            </label>
+            <label>
+              <input
+                type="checkbox"
+                name="roles"
+                value="agronomist"
+                onchange="showAdditionalFields()"
+              />
+              Agronomist
+            </label>
+            <label>
+              <input
+                type="checkbox"
+                name="roles"
+                value="storage_owner"
+                onchange="showAdditionalFields()"
+              />
+              Storage Owner
+            </label>
+            <label>
+              <input
+                type="checkbox"
+                name="roles"
+                value="equipment_renter"
+                onchange="showAdditionalFields()"
+              />
+              Equipment Renter
+            </label>
+          </div>
+        </div>
+
+        <!-- Additional Fields Container -->
+        <div id="additional-fields"></div>
+
+        <button type="submit">Create Accounts</button>
+      </form>
     </div>
 
-    <footer>© 2025 FarmFriend. All rights reserved.</footer>
-
-    <!-- Add SweetAlert2 library -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <!-- Your custom JS script -->
     <script src="signup.js"></script>
   </body>
 </html>
