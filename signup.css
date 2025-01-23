@@ -3,151 +3,276 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Arial", sans-serif;
 }
 
-/* Fullscreen background */
+/* Body styles */
 body {
-  height: 100vh;
-  font-family: "Montserrat", sans-serif;
+  background: #f0f2f5;
+  min-height: 100vh;
+  padding: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0 10px;
-  position: relative;
-  overflow: hidden;
-  background-color: #f0f0f0;
 }
 
-/* Background video */
-.video-background {
-  position: absolute;
-  top: 0;
-  left: 0;
+/* Main form container */
+.form-container {
+  max-width: 800px;
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: -1;
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin: 20px auto;
 }
 
 /* Header styles */
-header {
-  width: 100%;
-  background-color: transparent;
-  color: white;
+h2 {
+  color: #333;
   text-align: center;
-  padding: 15px 0;
-  position: fixed;
-  top: 0;
-  z-index: 1000;
-  font-size: 1.4rem;
-  transition: all 0.3s ease-in-out;
+  margin-bottom: 30px;
+  font-size: 24px;
 }
 
-header:hover {
-  background-color: rgba(51, 51, 51, 0.7);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+/* Common fields container */
+.common-fields {
+  margin-bottom: 30px;
 }
 
-/* Container for the form */
-.slider-container {
+/* Role selection area */
+.role-selection {
+  margin: 30px 0;
+}
+
+.role-selection h3 {
+  color: #333;
+  margin-bottom: 15px;
+  font-size: 18px;
+}
+
+/* Checkbox group styling */
+.checkbox-group {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.checkbox-group label {
   display: flex;
-  justify-content: center;
   align-items: center;
-  width: 100%;
-  height: 100%;
-  padding: 20px;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: #fff;
 }
 
-.form-container {
-  width: 100%;
-  max-width: 400px;
-  background: rgba(255, 255, 255, 0.3); /* Transparent effect */
-  backdrop-filter: blur(10px); /* Frosted glass effect */
-  border-radius: 12px;
-  padding: 20px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-  text-align: center;
-  color: #fff; /* White text for better contrast */
+.checkbox-group label:hover {
+  background: #f8f9fa;
+  border-color: #4caf50;
 }
 
-/* Form Styling */
-form {
+.checkbox-group input[type="checkbox"] {
+  margin-right: 10px;
+  width: 18px;
+  height: 18px;
+}
+
+/* Role specific fields */
+.role-fields {
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.role-fields h4 {
+  color: #2c3e50;
+  margin-bottom: 15px;
+  font-size: 16px;
+}
+
+.role-specific-fields {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  gap: 15px;
 }
 
-form h3 {
-  font-size: 1.5rem;
-  margin-bottom: 20px;
-  text-align: center;
-  color: #fff; /* White text for better contrast */
-}
-
-form input,
-form select,
-form textarea,
-form button {
+/* Input fields styling */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="tel"],
+input[type="number"],
+input[type="date"],
+textarea,
+select {
   width: 100%;
-  margin-bottom: 15px;
   padding: 12px;
-  font-size: 16px;
+  border: 1px solid #ddd;
   border-radius: 6px;
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  background: rgba(255, 255, 255, 0.2); /* Transparent inputs */
-  color: #000; /* Visible text color */
+  font-size: 14px;
   transition: all 0.3s ease;
 }
 
-/* Adjust dropdown styles */
-form select {
-  background: rgba(255, 255, 255, 0.9);
-  color: #000; /* Black text for visibility */
-}
-
-form select option {
-  background: #fff;
-  color: #000;
-}
-
-/* Adjust textarea size */
-form textarea {
-  height: 100px; /* Bigger address box */
-  resize: none; /* Optional: prevent resizing */
-}
-
-/* Inputs & Select Focus Effects */
-form input:focus,
-form select:focus,
-form textarea:focus {
-  border-color: #1e90ff;
-  box-shadow: 0 0 8px rgba(30, 144, 255, 0.5);
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: #4caf50;
+  box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
   outline: none;
 }
 
-/* Button Styles */
-form button {
-  background-color: #1e90ff;
+/* File input styling */
+input[type="file"] {
+  padding: 10px;
+  border: 1px dashed #ddd;
+  border-radius: 6px;
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+/* Textarea specific styling */
+textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+/* Submit button styling */
+button[type="submit"] {
+  background-color: #4caf50;
   color: white;
-  font-size: 1rem;
+  padding: 14px 20px;
   border: none;
   border-radius: 6px;
   cursor: pointer;
-  transition: transform 0.2s ease, background-color 0.3s ease;
-}
-
-form button:hover {
-  background-color: #4facfe;
-  transform: scale(1.05);
-}
-
-/* Footer */
-footer {
   width: 100%;
-  background-color: rgba(51, 51, 51, 0.8);
-  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  margin-top: 20px;
+}
+
+button[type="submit"]:hover {
+  background-color: #45a049;
+  transform: translateY(-2px);
+}
+
+button[type="submit"]:active {
+  transform: translateY(0);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .form-container {
+    padding: 20px;
+  }
+
+  .checkbox-group {
+    grid-template-columns: 1fr;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
+
+  button[type="submit"] {
+    padding: 12px 16px;
+  }
+}
+
+/* Error state styling */
+.error {
+  border-color: #dc3545 !important;
+}
+
+.error-message {
+  color: #dc3545;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+/* Success state styling */
+.success {
+  border-color: #28a745 !important;
+}
+
+/* Loading state */
+button[type="submit"].loading {
+  background-color: #666;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+/* Checkbox styling */
+input[type="checkbox"] {
+  accent-color: #4caf50;
+}
+
+/* Availability toggle styling */
+label input[type="checkbox"][name="availability"] {
+  margin-right: 8px;
+}
+
+/* Field groups */
+.input-group {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+/* Required field indicator */
+.required::after {
+  content: "*";
+  color: #dc3545;
+  margin-left: 4px;
+}
+
+/* Tooltip styles */
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 200px;
+  background-color: #333;
+  color: #fff;
   text-align: center;
-  padding: 10px 0;
-  position: fixed;
-  bottom: 0;
+  border-radius: 6px;
+  padding: 5px;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Animation for role fields */
+.role-fields {
+  animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

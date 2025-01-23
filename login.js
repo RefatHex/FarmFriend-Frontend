@@ -28,7 +28,6 @@ const loginForm = document.querySelector("form");
 loginForm.addEventListener("submit", async (event) => {
   event.preventDefault();
 
-  // Gather username and password values from the form
   const username = loginForm.elements["username"].value;
   const password = loginForm.elements["password"].value;
 
@@ -51,7 +50,6 @@ loginForm.addEventListener("submit", async (event) => {
     if (response.ok) {
       const data = await response.json();
 
-      // Display success alert with SweetAlert2
       Swal.fire({
         icon: "success",
         title: "Login Successful!",
@@ -121,8 +119,6 @@ loginForm.addEventListener("submit", async (event) => {
             window.location.href = "contact.html";
           }
         } else {
-          // role_count === 0 or not recognized
-          // e.g., no roles -> fallback or contact page
           window.location.href = "contact.html";
         }
       }, 1500); // Delay to let the alert display
@@ -156,7 +152,7 @@ loginForm.addEventListener("submit", async (event) => {
  * Helper to fetch details for a specific role endpoint
  */
 async function fetchDetails(endpoint, userId) {
-  const apiUrl = `http://127.0.0.1:8000/${endpoint}/${userId}/`;
+  const apiUrl = `http://127.0.0.1:8000/${endpoint}/?user=${userId}`;
   try {
     const response = await fetch(apiUrl, {
       method: "GET",

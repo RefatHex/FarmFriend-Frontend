@@ -4,7 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>FarmFriend Profile</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
     <style>
       * {
         margin: 0;
@@ -144,15 +147,15 @@
       <div class="card">
         <h2>Role-Based Information</h2>
         <p id="roleDetails">
-          As an Agronomist, you can manage consultations and assist farmers with expert advice.
+          As an Agronomist, you can manage consultations and assist farmers with
+          expert advice.
         </p>
       </div>
 
-      <!-- Button Section -->
       <div class="button-group">
-        <!-- Change Password -->
-        <button class="btn-primary" onclick="redirectToChangePassword()">Change Password</button>
-        <!-- Logout -->
+        <button class="btn-primary" onclick="redirectToChangePassword()">
+          Change Password
+        </button>
         <button class="btn-danger" onclick="logout()">Logout</button>
       </div>
     </div>
@@ -162,24 +165,21 @@
     </footer>
 
     <script>
-      // Simulated User Data (Replace with actual data fetched from your database)
       const user = {
         username: "JohnDoe123",
         role: "Agronomist",
-        roleDetails: "As an Agronomist, you can manage consultations and assist farmers with expert advice.",
+        roleDetails:
+          "As an Agronomist, you can manage consultations and assist farmers with expert advice.",
       };
 
-      // Populate User Information
       document.getElementById("userName").innerText = user.username;
       document.getElementById("userRole").innerText = user.role;
       document.getElementById("roleDetails").innerText = user.roleDetails;
 
-      // Redirect to Change Password Page
       function redirectToChangePassword() {
         window.location.href = "changePassword.html";
       }
 
-      // Logout Functionality
       function logout() {
         alert("You have been logged out.");
         window.location.href = "login.html";
