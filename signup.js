@@ -47,16 +47,18 @@ function showAdditionalFields() {
   additionalFields.innerHTML = fieldsHTML;
 }
 
-// Function to handle form submission
 async function handleFormSubmit(event) {
   event.preventDefault(); // Prevent default form submission
 
   // Get form values
   const role = document.getElementById("role").value;
-  const username = document.getElementById("name").value;
+  const firstName = document.getElementById("first-name").value;
+  const lastName = document.getElementById("last-name").value;
+  const username = document.getElementById("username").value;
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
   const confirmPassword = document.getElementById("confirm-password").value;
+  const profilePicture = document.getElementById("profilePicture").files[0]; // Get the file object
 
   // Check if passwords match
   if (password !== confirmPassword) {
@@ -69,24 +71,24 @@ async function handleFormSubmit(event) {
     return;
   }
 
-  // General user payload
-  const userPayload = {
-    username,
-    email,
-    password,
-    is_farmer: role === "farmer",
-    is_storage_owner: role === "storage_owner",
-    is_rent_owner: role === "equipment_renter",
-  };
+  // Prepare FormData for the userPayload
+  const formData = new FormData();
+  formData.append("username", username);
+  formData.append("email", email);
+  formData.append("password", password);
+  formData.append("name", `${firstName} ${lastName}`); // Combine first and last name
+  if (profilePicture) {
+    formData.append("profile_picture", profilePicture); // Attach the file
+  }
+  formData.append("is_farmer", role === "farmer");
+  formData.append("is_storage_owner", role === "storage_owner");
+  formData.append("is_rent_owner", role === "equipment_renter");
 
   try {
     // Send data to general user endpoint
     const userResponse = await fetch("http://localhost:8000/users/user-info/", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(userPayload),
+      body: formData, // Send FormData instead of JSON
     });
 
     if (!userResponse.ok) {
@@ -98,7 +100,7 @@ async function handleFormSubmit(event) {
     const userData = await userResponse.json();
     console.log("User Created Successfully:", userData);
 
-    const userId = userData.id; // Ensure user ID is an integer
+    const userId = userData.id;
 
     // Role-specific payloads
     let rolePayload;
@@ -108,7 +110,7 @@ async function handleFormSubmit(event) {
       case "farmer":
         rolePayload = {
           user: userId,
-          name: username,
+          name: `${firstName} ${lastName}`,
           dob: document.getElementById("dob").value,
           address: document.getElementById("address").value,
           field_size: parseFloat(document.getElementById("field_size").value),
@@ -119,7 +121,7 @@ async function handleFormSubmit(event) {
       case "storage_owner":
         rolePayload = {
           user: userId,
-          name: username,
+          name: `${firstName} ${lastName}`,
           dob: document.getElementById("dob").value,
           contact: document.getElementById("contact").value,
           address: document.getElementById("address").value,
@@ -129,7 +131,7 @@ async function handleFormSubmit(event) {
       case "equipment_renter":
         rolePayload = {
           user: userId,
-          name: username,
+          name: `${firstName} ${lastName}`,
           dob: document.getElementById("dob").value,
           contact: document.getElementById("contact").value,
           address: document.getElementById("address").value,
@@ -140,7 +142,7 @@ async function handleFormSubmit(event) {
       case "agronomist":
         rolePayload = {
           user: userId,
-          name: username,
+          name: `${firstName} ${lastName}`,
           dob: document.getElementById("dob").value,
           contact: document.getElementById("contact").value,
           address: document.getElementById("address").value,

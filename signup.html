@@ -1,151 +1,121 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign-Up</title>
+    <link rel="stylesheet" href="signup.css" />
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sign-Up</title>
-  <link rel="stylesheet" href="signup.css" />
-</head>
+  <body>
+    <header id="header">Sign Up - Join Our Platform</header>
 
-<body>
-  <header id="header">Sign Up - Join Our Platform</header>
+    <!-- Fullscreen background video -->
+    <video class="video-background" autoplay loop muted>
+      <source src="assets/video/demo.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
 
-  <!-- Fullscreen background video -->
-  <video class="video-background" autoplay loop muted>
-    <source src="assets/video/demo.mp4" type="video/mp4" />
-    Your browser does not support the video tag.
-  </video>
-  <nav id="navbar">
-    <div class="logo">
-      <img src="assets/images/logo.jpg" alt="Logo" />
+    <div class="slider-container">
+      <!-- Right side: Sign-Up Form -->
+      <div class="form-container">
+        <form id="signupForm">
+          <h3>Select your role:</h3>
+          <select
+            id="role"
+            name="role"
+            onchange="showAdditionalFields()"
+            required
+          >
+            <option value="" disabled selected>Select your role</option>
+            <option value="farmer">Farmer</option>
+            <option value="agronomist">Agronomist</option>
+            <option value="storage_owner">Storage Owner</option>
+            <option value="equipment_renter">Equipment Renter</option>
+          </select>
+
+          <div class="input-group">
+            <input
+              type="text"
+              id="first-name"
+              name="first-name"
+              placeholder="First Name"
+              required
+            />
+            <input
+              type="text"
+              id="last-name"
+              name="last-name"
+              placeholder="Last Name"
+              required
+            />
+          </div>
+
+          <!-- Profile Picture Upload -->
+          <label
+            for="profilePicture"
+            style="
+              color: white;
+              text-align: left;
+              width: 100%;
+              margin-bottom: 5px;
+            "
+            >Upload Profile Picture:</label
+          >
+          <input
+            type="file"
+            id="profilePicture"
+            name="profilePicture"
+            accept="image/*"
+            required
+          />
+
+          <input
+            type="text"
+            id="username"
+            name="username"
+            placeholder="Username"
+            required
+          />
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Email"
+            required
+          />
+          <input
+            type="tel"
+            id="phone"
+            name="phone"
+            placeholder="Phone Number"
+            required
+          />
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Password"
+            required
+          />
+          <input
+            type="password"
+            id="confirm-password"
+            name="confirm-password"
+            placeholder="Confirm Password"
+            required
+          />
+          <div id="additional-fields"></div>
+          <button type="submit" id="submitBtn">Sign Up</button>
+        </form>
+      </div>
     </div>
-    <a href="index.html">Home</a>
-    <a href="contact.html">Contact</a>
-    <a href="about.html">About Us</a>
-    <a href="login.html">Login</a>
-    <a href="signup.html">Sign Up</a>
-  </nav>
-  <style>
-    /* Navbar Styling */
-    nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      background-color: hsla(0, 0%, 85%, 0.8);
-      border-bottom: 1px solid #ddd;
-      display: flex;
-      align-items: center;
-      /* Align items vertically in the center */
-      padding: 10px 20px;
-      /* Adjust padding for better layout */
-      z-index: 1000;
-      transform: translateY(-100%);
-      transition: transform 0.3s ease-in-out;
-    }
 
-    nav .logo img {
-      height: 40px;
-      /* Adjust logo size as needed */
-      width: auto;
-      margin-right: 20px;
-      /* Space between the logo and the links */
-    }
+    <footer>© 2025 FarmFriend. All rights reserved.</footer>
 
-    nav a {
-      color: black;
-      padding: 14px 20px;
-      text-decoration: none;
-      text-align: center;
-      font-weight: bold;
-      position: relative;
-      overflow: hidden;
-    }
-
-    /* Enhanced Hover Styles */
-    nav a::before {
-      content: "";
-      position: absolute;
-      width: 0;
-      height: 2px;
-      background-color: #4caf50;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      transition: width 0.3s ease-in-out;
-    }
-
-    nav a:hover::before {
-      width: 100%;
-    }
-
-    nav a:hover {
-      color: #4caf50;
-    }
-  </style>
-
-  <script>
-    // JavaScript for dynamic navbar behavior
-    let lastScrollY = window.scrollY;
-    const navbar = document.getElementById('navbar');
-    let isMouseNearTop = false;
-
-    // Hide or show navbar on scroll
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > lastScrollY && !isMouseNearTop) {
-        // Hide navbar on scroll down
-        navbar.style.transform = 'translateY(-100%)';
-      } else {
-        // Show navbar on scroll up
-        navbar.style.transform = 'translateY(0)';
-      }
-      lastScrollY = window.scrollY;
-    });
-
-    // Detect mouse near the top of the screen
-    window.addEventListener('mousemove', (event) => {
-      if (event.clientY <= 50) {
-        // Show navbar when mouse is near the top
-        navbar.style.transform = 'translateY(0)';
-        isMouseNearTop = true;
-      } else {
-        isMouseNearTop = false;
-      }
-    });
-  </script>
-  
-  <div class="slider-container">
-    <!-- Right side: Sign-Up Form -->
-    <div class="form-container">
-      <form id="signupForm">
-        <h3>Select your role:</h3>
-        <select id="role" name="role" onchange="showAdditionalFields()" required>
-          <option value="" disabled selected>Select your role</option>
-          <option value="farmer">Farmer</option>
-          <option value="agronomist">Agronomist</option>
-          <option value="storage_owner">Storage Owner</option>
-          <option value="equipment_renter">Equipment Renter</option>
-        </select>
-
-        <input type="text" id="full-name" name="full-name" placeholder="Enter Full Name" required />
-        <input type="text" id="username" name="username" placeholder="Username" required />
-        <input type="email" id="email" name="email" placeholder="Email" required />
-        <input type="tel" id="phone" name="phone" placeholder="Phone Number" required />
-        <input type="password" id="password" name="password" placeholder="Password" required />
-        <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm Password" required />
-        <div id="additional-fields"></div>
-        <button type="submit" id="submitBtn">Sign Up</button>
-      </form>
-    </div>
-  </div>
-
-  <footer>© 2025 FarmFriend. All rights reserved.</footer>
-
-  <!-- Add SweetAlert2 library -->
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  <!-- Your custom JS script -->
-  <script src="signup.js"></script>
-</body>
-
+    <!-- Add SweetAlert2 library -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- Your custom JS script -->
+    <script src="signup.js"></script>
+  </body>
 </html>

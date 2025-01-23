@@ -88,7 +88,7 @@ async function deleteBooking(bookingId) {
 
     if (response.ok) {
       alert("Booking deleted successfully.");
-      fetchBookings(); // Refresh bookings after deletion
+      fetchBookings();
     } else {
       console.error("Failed to delete booking:", await response.text());
       alert("Failed to delete booking. Please try again.");
