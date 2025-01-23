@@ -189,9 +189,14 @@ header {
 
 /* Stars styling */
 .unique-stars {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   display: flex;
-  align-items: center;
-  margin-top: 10px;
+  gap: 5px;
+  font-size: 1.5rem;
+  color: #ffd700; /* Gold color for stars */
 }
 
 .unique-stars .star {

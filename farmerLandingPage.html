@@ -1,249 +1,256 @@
 <!DOCTYPE html>
 <html lang="en">
-  <!DOCTYPE html>
-  <html lang="en">
-    <head>
-      <meta charset="UTF-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>FarmFriend Dashboard</title>
-      <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap"
-        rel="stylesheet"
-      />
-      <style>
-        * {
-          margin: 0;
-          padding: 0;
-          box-sizing: border-box;
-          font-family: "Poppins", sans-serif;
-        }
+<!DOCTYPE html>
+<html lang="en">
 
-        body {
-          line-height: 1.6;
-          background-color: #f8f9fa;
-          color: #333;
-        }
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FarmFriend Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
 
-        header {
-          background: #e8f5e9;
-          padding: 20px 50px;
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-        }
+    body {
+      line-height: 1.6;
+      background-color: #f8f9fa;
+      color: #333;
+    }
 
-        header h1 {
-          font-size: 24px;
-          color: #388e3c;
-        }
+    header {
+      background: #e8f5e9;
+      padding: 20px 50px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
 
-        nav ul {
-          list-style: none;
-          display: flex;
-        }
+    header h1 {
+      font-size: 24px;
+      color: #388e3c;
+    }
 
-        nav ul li {
-          margin: 0 15px;
-        }
+    nav ul {
+      list-style: none;
+      display: flex;
+    }
 
-        nav ul li a {
-          text-decoration: none;
-          color: #388e3c;
-          font-weight: 500;
-        }
+    nav ul li {
+      margin: 0 15px;
+    }
 
-        nav ul li button img {
-          width: 30px;
-          height: 30px;
-          border-radius: 50%;
-          object-fit: cover;
-        }
+    nav ul li a {
+      text-decoration: none;
+      color: #388e3c;
+      font-weight: 500;
+    }
 
-        .container {
-          max-width: 1200px;
-          margin: 50px auto;
-          text-align: center;
-          padding: 20px;
-        }
+    nav ul li button img {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
 
-        .container h2 {
-          font-size: 36px;
-          color: #388e3c;
-          margin-bottom: 20px;
-        }
+    .container {
+      max-width: 1200px;
+      margin: 50px auto;
+      text-align: center;
+      padding: 20px;
+    }
 
-        .features {
-          display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          gap: 20px;
-          margin-top: 30px;
-          grid-template-areas:
-            "card1 card2 card3"
-            "card4 card5 card6"
-            ". card7 .";
-        }
+    .container h2 {
+      font-size: 36px;
+      color: #388e3c;
+      margin-bottom: 20px;
+    }
 
-        .feature-card {
-          background: #ffffff;
-          padding: 20px;
-          text-align: center;
-          border-radius: 10px;
-          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-          transition: transform 0.3s, box-shadow 0.3s;
-        }
+    .features {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 30px;
+      grid-template-areas:
+        "card1 card2 card3"
+        "card4 card5 card6"
+        ". card7 .";
+    }
 
-        .feature-card:hover {
-          transform: translateY(-10px);
-          box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
-        }
+    .feature-card {
+      background: #ffffff;
+      padding: 20px;
+      text-align: center;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
 
-        .feature-card:nth-child(1) {
-          grid-area: card1;
-        }
-        .feature-card:nth-child(2) {
-          grid-area: card2;
-        }
-        .feature-card:nth-child(3) {
-          grid-area: card3;
-        }
-        .feature-card:nth-child(4) {
-          grid-area: card4;
-        }
-        .feature-card:nth-child(5) {
-          grid-area: card5;
-        }
-        .feature-card:nth-child(6) {
-          grid-area: card6;
-        }
-        .feature-card:nth-child(7) {
-          grid-area: card7;
-        }
+    .feature-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    }
 
-        .feature-card h3 {
-          margin-bottom: 15px;
-          color: #388e3c;
-          font-size: 20px;
-        }
+    .feature-card:nth-child(1) {
+      grid-area: card1;
+    }
 
-        .feature-card p {
-          margin-bottom: 15px;
-          font-size: 16px;
-          color: #555;
-        }
+    .feature-card:nth-child(2) {
+      grid-area: card2;
+    }
 
-        .feature-card a {
-          display: inline-block;
-          padding: 10px 20px;
-          background: #388e3c;
-          color: #fff;
-          text-decoration: none;
-          border-radius: 5px;
-          font-size: 16px;
-          transition: background 0.3s, transform 0.2s;
-        }
+    .feature-card:nth-child(3) {
+      grid-area: card3;
+    }
 
-        .feature-card a:hover {
-          background: #2e7d32;
-          transform: translateY(-3px);
-        }
+    .feature-card:nth-child(4) {
+      grid-area: card4;
+    }
 
-        footer {
-          background: #e8f5e9;
-          text-align: center;
-          padding: 20px 0;
-          margin-top: 50px;
-        }
+    .feature-card:nth-child(5) {
+      grid-area: card5;
+    }
 
-        footer p {
-          color: #388e3c;
-        }
-      </style>
-    </head>
-    <body>
-      <header>
-        <h1>FarmFriend</h1>
-        <nav>
-          <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="contact.html">Contact</a></li>
-            <li>
-              <!-- Profile Button with Logo -->
-              <button onclick="redirectToProfile()">
-                <img src="assets/images/profile.png" alt="Profile" />
-              </button>
-            </li>
-          </ul>
-        </nav>
-      </header>
+    .feature-card:nth-child(6) {
+      grid-area: card6;
+    }
 
-      <div class="container">
-        <h2>Welcome, Farmer!</h2>
+    .feature-card:nth-child(7) {
+      grid-area: card7;
+    }
+
+    .feature-card h3 {
+      margin-bottom: 15px;
+      color: #388e3c;
+      font-size: 20px;
+    }
+
+    .feature-card p {
+      margin-bottom: 15px;
+      font-size: 16px;
+      color: #555;
+    }
+
+    .feature-card a {
+      display: inline-block;
+      padding: 10px 20px;
+      background: #388e3c;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 5px;
+      font-size: 16px;
+      transition: background 0.3s, transform 0.2s;
+    }
+
+    .feature-card a:hover {
+      background: #2e7d32;
+      transform: translateY(-3px);
+    }
+
+    footer {
+      background: #e8f5e9;
+      text-align: center;
+      padding: 20px 0;
+      margin-top: 50px;
+    }
+
+    footer p {
+      color: #388e3c;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>FarmFriend</h1>
+    <nav>
+      <ul>
+        <li><a href="farmerLandingPage.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li>
+          <!-- Profile Button with Logo -->
+          <button onclick="redirectToProfile()">
+            <img src="assets/images/profile.png" alt="Profile" />
+          </button>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="container">
+    <h2>Welcome, Farmer!</h2>
+    <p>
+      Explore the services we offer to make your farming journey easier and
+      more productive.
+    </p>
+    <div class="features">
+      <div class="feature-card">
+        <h3>Crop Prediction</h3>
         <p>
-          Explore the services we offer to make your farming journey easier and
-          more productive.
+          Get accurate predictions for the best crops to grow based on soil
+          and weather conditions.
         </p>
-        <div class="features">
-          <div class="feature-card">
-            <h3>Crop Prediction</h3>
-            <p>
-              Get accurate predictions for the best crops to grow based on soil
-              and weather conditions.
-            </p>
-            <a href="recSearch.html">Learn More</a>
-          </div>
-          <div class="feature-card">
-            <h3>Fertilizer Recommendation</h3>
-            <p>Get accurate predictions for the best fertilizer to grow.</p>
-            <a href="fertSearch.html">Check</a>
-          </div>
-          <div class="feature-card">
-            <h3>Storage Deals</h3>
-            <p>Find and book storage facilities for your produce with ease.</p>
-            <a href="storage.html">View Deals</a>
-          </div>
-          <div class="feature-card">
-            <h3>Rent Items</h3>
-            <p>
-              Rent farming tools and equipment to save on costs and increase
-              efficiency.
-            </p>
-            <a href="equipment.html">Rent Now</a>
-          </div>
-          <div class="feature-card">
-            <h3>Expert Advice</h3>
-            <p>
-              Connect with agricultural experts for personalized farming advice.
-            </p>
-            <a href="expertLandingFarmer.html">Get Advice</a>
-          </div>
-          <div class="feature-card">
-            <h3>Weather Alerts</h3>
-            <p>
-              Stay updated with real-time weather alerts to plan your farming
-              activities efficiently.
-            </p>
-            <a href="weatherUpdate.html">Check Weather</a>
-          </div>
-          <div class="feature-card">
-            <h3>My Deals</h3>
-            <p>
-              View and manage all your active and past deals with FarmFriend.
-            </p>
-            <a href="my_bookings.html">Check</a>
-          </div>
-        </div>
+        <a href="recSearch.html">Learn More</a>
       </div>
+      <div class="feature-card">
+        <h3>Fertilizer Recommendation</h3>
+        <p>Get accurate predictions for the best fertilizer to grow.</p>
+        <a href="fertSearch.html">Check</a>
+      </div>
+      <div class="feature-card">
+        <h3>Storage Deals</h3>
+        <p>Find and book storage facilities for your produce with ease.</p>
+        <a href="storage.html">View Deals</a>
+      </div>
+      <div class="feature-card">
+        <h3>Rent Items</h3>
+        <p>
+          Rent farming tools and equipment to save on costs and increase
+          efficiency.
+        </p>
+        <a href="equipment.html">Rent Now</a>
+      </div>
+      <div class="feature-card">
+        <h3>Expert Advice</h3>
+        <p>
+          Connect with agricultural experts for personalized farming advice.
+        </p>
+        <a href="expertLandingFarmer.html">Get Advice</a>
+      </div>
+      <div class="feature-card">
+        <h3>Weather Alerts</h3>
+        <p>
+          Stay updated with real-time weather alerts to plan your farming
+          activities efficiently.
+        </p>
+        <a href="weatherUpdate.html">Check Weather</a>
+      </div>
+      <div class="feature-card">
+        <h3>My Deals</h3>
+        <p>
+          View and manage all your active and past deals with FarmFriend.
+        </p>
+        <a href="my_bookings.html">Check</a>
+      </div>
+    </div>
+  </div>
 
-      <footer>
-        <p>&copy; 2025 FarmFriend. All Rights Reserved.</p>
-      </footer>
+  <footer>
+    <p>&copy; 2025 FarmFriend. All Rights Reserved.</p>
+  </footer>
 
-      <script>
-        function redirectToProfile() {
-          window.location.href = "profile.html";
-        }
-      </script>
-    </body>
-  </html>
+  <script>
+    function redirectToProfile() {
+      window.location.href = "profile.html";
+    }
+  </script>
+</body>
+
+</html>
+
 </html>

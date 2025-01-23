@@ -1,100 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Cards and Booking</title>
-    <link rel="stylesheet" href="storage.css" />
-  </head>
 
-  <body>
-    <header>
-      <div class="slider" id="slider">
-        <div
-          class="slide"
-          style="background-image: url('assets/images/storage1.jpg')"
-        >
-          <div class="slider-text">Ashulia</div>
-        </div>
-        <div
-          class="slide"
-          style="background-image: url('assets/images/storage2.jpg')"
-        >
-          <div class="slider-text">Savar</div>
-        </div>
-        <div
-          class="slide"
-          style="background-image: url('assets/images/storage3.jpg')"
-        >
-          <div class="slider-text">Joypurhat</div>
-        </div>
-        <div
-          class="slide"
-          style="background-image: url('assets/images/storage4.jpg')"
-        >
-          <div class="slider-text">Dinajpur</div>
-        </div>
-        <div
-          class="slide"
-          style="background-image: url('assets/images/storage5.jpg')"
-        >
-          <div class="slider-text">Rajshahi</div>
-        </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cards and Booking</title>
+  <link rel="stylesheet" href="storage.css" />
+</head>
+
+<body>
+  <header>
+    <div class="slider" id="slider">
+      <div class="slide" style="background-image: url('assets/images/storage1.jpg')">
+        <div class="slider-text">Ashulia</div>
       </div>
-      <div class="dot-nav" id="dot-nav"></div>
-    </header>
-
-    <!-- Container where dynamic cards will be rendered -->
-    <section class="cards-section" id="cardsContainer">
-      <!-- Cards will be appended here via JavaScript -->
-    </section>
-
-    <!-- Error Notification for Missing Dates -->
-    <div id="errorNotification" class="error-notification">
-      Please select both start and end dates.
-    </div>
-
-    <!-- End Date Error Notification -->
-    <div id="endDateErrorNotification" class="end-date-error-notification">
-      End date must be after the start date.
-    </div>
-
-    <!-- Details Modal -->
-    <div class="modal" id="detailsModal">
-      <div class="modal-content">
-        <span class="close" onclick="closeDetailsModal()">×</span>
-        <h2 id="detailName"></h2>
-
-        <div style="display: flex; gap: 20px; margin-bottom: 15px">
-          <img
-            id="detailImage"
-            alt="Storage Image"
-            style="width: 250px; height: auto; object-fit: cover"
-          />
-          <div>
-            <p id="detailAddress"></p>
-            <p id="detailCapacity"></p>
-            <p id="detailPrice"></p>
-            <p id="detailAvailability"></p>
-            <p id="detailPreferredCrop"></p>
-          </div>
-        </div>
-
-        <p id="detailDescription"></p>
-
-        <!-- Booking Section -->
-        <h3>Book This Storage</h3>
-        <label for="detailsStartDate">Start Date:</label>
-        <input type="date" id="detailsStartDate" />
-        <label for="detailsEndDate">End Date:</label>
-        <input type="date" id="detailsEndDate" />
-        <label for="detailsQuantity">Quantity:</label>
-        <input type="number" id="detailsQuantity" value="1" min="1" />
-        <div id="detailsTotalPrice" class="price"></div>
-        <button id="detailsSubmitBookingBtn">Submit Booking</button>
+      <div class="slide" style="background-image: url('assets/images/storage2.jpg')">
+        <div class="slider-text">Savar</div>
+      </div>
+      <div class="slide" style="background-image: url('assets/images/storage3.jpg')">
+        <div class="slider-text">Joypurhat</div>
+      </div>
+      <div class="slide" style="background-image: url('assets/images/storage4.jpg')">
+        <div class="slider-text">Dinajpur</div>
+      </div>
+      <div class="slide" style="background-image: url('assets/images/storage5.jpg')">
+        <div class="slider-text">Rajshahi</div>
       </div>
     </div>
+    <div class="dot-nav" id="dot-nav"></div>
+  </header>
 
-    <script src="storage.js"></script>
-  </body>
+  <!-- Container where dynamic cards will be rendered -->
+  <section class="cards-section" id="cardsContainer">
+    <!-- Cards will be appended here via JavaScript -->
+  </section>
+
+  <!-- Error Notification for Missing Dates -->
+  <div id="errorNotification" class="error-notification">
+    Please select both start and end dates.
+  </div>
+
+  <!-- End Date Error Notification -->
+  <div id="endDateErrorNotification" class="end-date-error-notification">
+    End date must be after the start date.
+  </div>
+
+  <!-- Details Modal -->
+  <div class="modal" id="detailsModal">
+    <div class="modal-content">
+      <span class="close" onclick="closeDetailsModal()">×</span>
+      <h2 id="detailName"></h2>
+
+      <div style="display: flex; gap: 20px; margin-bottom: 15px">
+        <img id="detailImage" alt="Storage Image" style="width: 250px; height: auto; object-fit: cover" />
+        <div>
+          <p id="detailAddress"></p>
+          <p id="detailCapacity"></p>
+          <p id="detailPrice"></p>
+          <p id="detailAvailability"></p>
+          <p id="detailPreferredCrop"></p>
+        </div>
+      </div>
+
+      <p id="detailDescription"></p>
+
+      <!-- Booking Section -->
+      <h3>Book This Storage</h3>
+      <label for="detailsStartDate">Start Date:</label>
+      <input type="date" id="detailsStartDate" />
+      <label for="detailsEndDate">End Date:</label>
+      <input type="date" id="detailsEndDate" />
+      <label for="detailsQuantity">Quantity:</label>
+      <input type="number" id="detailsQuantity" value="1" min="1" />
+      <div id="detailsTotalPrice" class="price"></div>
+      <button id="detailsSubmitBookingBtn">Submit Booking</button>
+    </div>
+  </div>
+
+  <script src="storage.js"></script>
+</body>
+
 </html>

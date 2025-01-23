@@ -1,81 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Agronomist - Consultation Details</title>
-    <!-- Add your stylesheet -->
-    <link rel="stylesheet" href="rentAdmin.css" />
-  </head>
 
-  <body>
-    <header>
-      <h1>Agronomist Panel - Consultation Details</h1>
-      <div class="nav-buttons">
-        <a href="index.html">Home</a>
-        <a href="expertAdmin.html">Dashboard</a>
-      </div>
-    </header>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Agronomist - Consultation Details</title>
+  <!-- Add your stylesheet -->
+  <link rel="stylesheet" href="rentAdmin.css" />
+</head>
 
-    <div class="container">
-      <h1>Schedule a Consultation</h1>
-      <form id="consultationForm" method="post" enctype="multipart/form-data">
-        <!-- Contact -->
-        <label for="contact">Contact</label>
-        <input
-          type="text"
-          id="contact"
-          name="contact"
-          placeholder="Enter contact information"
-          required
-        />
-
-        <!-- Address -->
-        <label for="address">Address</label>
-        <textarea
-          id="address"
-          name="address"
-          placeholder="Enter the farmer's address"
-          required
-        ></textarea>
-
-        <!-- Meeting Platform -->
-        <label for="meetingPlatform">Select Meeting Platform</label>
-        <select id="meetingPlatform" name="meetingPlatform" required>
-          <option value="" disabled selected>Select platform</option>
-          <option value="Zoom">Zoom</option>
-          <option value="Google Meet">Google Meet</option>
-        </select>
-
-        <!-- Available Date -->
-        <label for="availableDate">Available Date From</label>
-        <input
-          type="date"
-          id="availableDate"
-          name="availableDate"
-          required
-        />
-
-        <!-- Details -->
-        <label for="details">Consultation Details</label>
-        <textarea
-          id="details"
-          name="details"
-          placeholder="Enter the details for the consultation"
-          required
-        ></textarea>
-
-        <!-- Submit Button -->
-        <button type="submit">Schedule Consultation</button>
-      </form>
-
-      <div class="consultation-list" id="consultationList">
-        <h2>Scheduled Consultations</h2>
-        <!-- Dynamic items will be added here via JavaScript -->
-      </div>
+<body>
+  <header>
+    <h1>Agronomist Panel - Consultation Details</h1>
+    <div class="nav-buttons">
+      <a href="index.html">Home</a>
+      <a href="expertAdmin.html">Dashboard</a>
     </div>
+  </header>
 
-    <!-- Link to your JavaScript file -->
-    <script src="consultationAdmin.js"></script>
-  </body>
+  <div class="container">
+    <h1>Schedule a Consultation</h1>
+    <form id="consultationForm" method="post" enctype="multipart/form-data">
+      <!-- Contact -->
+      <label for="contact">Contact</label>
+      <input type="text" id="contact" name="contact" placeholder="Enter contact information" required />
+
+      <!-- Address -->
+      <label for="address">Address</label>
+      <textarea id="address" name="address" placeholder="Enter the farmer's address" required></textarea>
+
+      <!-- Meeting Platform -->
+      <label for="meetingPlatform">Select Meeting Platform</label>
+      <select id="meetingPlatform" name="meetingPlatform" required>
+        <option value="" disabled selected>Select platform</option>
+        <option value="Zoom">Zoom</option>
+        <option value="Google Meet">Google Meet</option>
+      </select>
+
+      <!-- Available Date -->
+      <label for="availableDate">Available Date From</label>
+      <input type="date" id="availableDate" name="availableDate" required />
+
+      <!-- Details -->
+      <label for="details">Consultation Details</label>
+      <textarea id="details" name="details" placeholder="Enter the details for the consultation" required></textarea>
+
+      <!-- Submit Button -->
+      <button type="submit">Schedule Consultation</button>
+    </form>
+
+    <div class="consultation-list" id="consultationList">
+      <h2>Scheduled Consultations</h2>
+      <!-- Dynamic items will be added here via JavaScript -->
+    </div>
+  </div>
+
+  <!-- Link to your JavaScript file -->
+  <script src="consultationAdmin.js"></script>
+</body>
+
 </html>
