@@ -290,200 +290,66 @@
       box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
       animation: slideIn 0.5s ease-out;
     }
-
-
-    /* Transparent Search Bar */
-    .search-bar {
-      position: absolute;
-      top: 20px;
-      width: 100%;
-      padding: 10px;
-      text-align: center;
-    }
-
-    .search-bar input {
-      width: 60%;
-      padding: 10px;
-      border: none;
-      background-color: rgba(255, 255, 255, 0.5);
-      /* Transparent background */
-      border-radius: 25px;
-      font-size: 16px;
-    }
-
-    .search-bar button {
-      background: transparent;
-      border: none;
-      cursor: pointer;
-    }
-
-    .search-bar .search-icon {
-      width: 20px;
-      height: 20px;
-    }
-
-    /* Price Range */
-    /* Price Range Container */
-    .price-range-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin-top: 30px;
-      gap: 15px;
-    }
-
-    /* Labels */
-    .price-label {
-      font-size: 18px;
-      font-weight: 600;
-      color: #333;
-      margin-bottom: 5px;
-    }
-
-    /* Price Range */
-    .price-range {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      width: 80%;
-      /* Controls the width of the slider */
-      max-width: 500px;
-    }
-
-    .price-range input {
-      width: 100%;
-      height: 8px;
-      border-radius: 5px;
-      background: #ddd;
-      -webkit-appearance: none;
-      appearance: none;
-      outline: none;
-    }
-
-    .price-range input::-webkit-slider-runnable-track {
-      height: 8px;
-      border-radius: 5px;
-      background: #007bff;
-      /* Blue color for the slider track */
-    }
-
-    .price-range input::-webkit-slider-thumb {
-      width: 18px;
-      height: 18px;
-      border-radius: 50%;
-      background: #007bff;
-      cursor: pointer;
-    }
-
-    .price-range input::-moz-range-track {
-      height: 8px;
-      border-radius: 5px;
-      background: #007bff;
-    }
-
-    .price-range input::-moz-range-thumb {
-      width: 18px;
-      height: 18px;
-      border-radius: 50%;
-      background: #007bff;
-      cursor: pointer;
-    }
-
-    /* Price Value */
-    .price-value {
-      font-size: 16px;
-      font-weight: bold;
-      color: #333;
-    }
   </style>
 
 
-
-
-
-
-
   <header>
-    <div class="slider" id="slider">
-      <div class="slide" style="background-image: url('assets/images/tractor.jpg');">
-        <div class="slider-text">Tractor</div>
+    <header>
+      <!-- Transparent Search Bar and Dropdown -->
+      <div
+        style="position: absolute; top: 20px; left: 50%; transform: translateX(-50%); display: flex; align-items: center; gap: 20px; z-index: 10;">
+        <!-- Search Bar -->
+        <div style="position: relative;">
+          <input type="text" placeholder="Search..."
+            style="padding: 10px 40px 10px 15px; border: none; border-radius: 20px; background: rgba(255, 255, 255, 0.8); box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); font-size: 1rem;" />
+          <img src="assets/images/gif1.gif" alt="Search"
+            style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); width: 20px; height: 20px; opacity: 0.7;" />
+        </div>
+
+        <!-- Dropdown for Price Range -->
+        <div style="position: relative;">
+          <button onclick="toggleDropdown()"
+            style="padding: 10px 15px; border: none; border-radius: 20px; background: rgba(255, 255, 255, 0.8); box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); font-size: 1rem; cursor: pointer;">
+            Price Range
+          </button>
+          <div id="priceRangeDropdown"
+            style="display: none; position: absolute; top: 50px; left: 0; width: 300px; padding: 20px; background: white; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); border-radius: 8px; z-index: 20;">
+            <div style="margin-bottom: 10px; font-size: 0.9rem; font-weight: bold;">Set Price Range (BDT)</div>
+            <div style="display: flex; align-items: center; gap: 10px;">
+              <input id="minPrice" type="number" min="0" max="30000" value="0"
+                style="width: 60px; padding: 5px; border: 1px solid #ccc; border-radius: 4px;">
+              <div style="flex-grow: 1;">
+                <input id="priceRange" type="range" min="0" max="30000" value="15000" step="100"
+                  style="width: 100%; cursor: pointer;" />
+              </div>
+              <input id="maxPrice" type="number" min="0" max="30000" value="30000"
+                style="width: 60px; padding: 5px; border: 1px solid #ccc; border-radius: 4px;">
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="slide" style="background-image: url('assets/images/seeder.jpg');">
-        <div class="slider-text">Seeder</div>
+
+      <!-- Existing slider code -->
+      <div class="slider" id="slider">
+        <div class="slide" style="background-image: url('assets/images/tractor.jpg');">
+          <div class="slider-text">Tractor</div>
+        </div>
+        <div class="slide" style="background-image: url('assets/images/seeder.jpg');">
+          <div class="slider-text">Seeder</div>
+        </div>
+        <div class="slide" style="background-image: url('assets/images/harvester.jpg');">
+          <div class="slider-text">Harvester</div>
+        </div>
+        <div class="slide" style="background-image: url('assets/images/loader.jpg');">
+          <div class="slider-text">Loader</div>
+        </div>
+        <div class="slide" style="background-image: url('assets/images/irrigator.jpg');">
+          <div class="slider-text">Irrigator</div>
+        </div>
       </div>
-      <div class="slide" style="background-image: url('assets/images/harvester.jpg');">
-        <div class="slider-text">Harvester</div>
-      </div>
-      <div class="slide" style="background-image: url('assets/images/loader.jpg');">
-        <div class="slider-text">Loader</div>
-      </div>
-      <div class="slide" style="background-image: url('assets/images/irrigator.jpg');">
-        <div class="slider-text">Irrigator</div>
-      </div>
-    </div>
-    <div class="dot-nav" id="dot-nav"></div>
+      <div class="dot-nav" id="dot-nav"></div>
+    </header>
   </header>
-
-
-  <!-- Search Bar -->
-  <div class="search-bar">
-    <input type="text" id="searchInput" placeholder="Search..." />
-    <button id="searchButton">
-      <img src="assets/images/gif1.gif" alt="Search" class="search-icon" />
-    </button>
-  </div>
-
-  <!-- Price Range Filter -->
-  <!-- Price Range Filter -->
-  <div class="price-range-container">
-    <label for="minPrice" class="price-label">Min Price (BDT): </label>
-    <div class="price-range">
-      <input type="range" id="minPrice" min="0" max="50000" value="0" step="500" />
-      <span id="minPriceValue" class="price-value">0 BDT</span>
-    </div>
-
-    <label for="maxPrice" class="price-label">Max Price (BDT): </label>
-    <div class="price-range">
-      <input type="range" id="maxPrice" min="0" max="50000" value="50000" step="500" />
-      <span id="maxPriceValue" class="price-value">50000 BDT</span>
-    </div>
-  </div>
-
-
-
-  <script>
-    // Search Bar Functionality
-    document.getElementById('searchButton').addEventListener('click', () => {
-      const searchText = document.getElementById('searchInput').value.toLowerCase();
-      const slides = document.querySelectorAll('.slide');
-
-      slides.forEach(slide => {
-        const text = slide.querySelector('.slider-text').textContent.toLowerCase();
-        if (text.includes(searchText)) {
-          slide.style.display = 'block'; // Show matching slide
-        } else {
-          slide.style.display = 'none'; // Hide non-matching slide
-        }
-      });
-    });
-
-    // Price Range Functionality
-    const minPriceInput = document.getElementById('minPrice');
-    const maxPriceInput = document.getElementById('maxPrice');
-    const minPriceValue = document.getElementById('minPriceValue');
-    const maxPriceValue = document.getElementById('maxPriceValue');
-
-    // Display the selected price range dynamically
-    minPriceInput.addEventListener('input', () => {
-      minPriceValue.textContent = `${minPriceInput.value} BDT`;
-    });
-
-    maxPriceInput.addEventListener('input', () => {
-      maxPriceValue.textContent = `${maxPriceInput.value} BDT`;
-    });
-
-  </script>
-
 
 
 
@@ -521,7 +387,6 @@
   <div class="notification" id="notification">Booking Completed!</div>
 
 
-
   <script>
     let currentSlide = 0;
     const slides = document.querySelectorAll('.slide');
@@ -539,7 +404,7 @@
     // Move to a specific slide
     function moveToSlide(index) {
       const slider = document.getElementById('slider');
-      slider.style.transform = `translateX(-${index * 100}%)`;
+      slider.style.transform = translateX(-${ index * 100} %);
       dots.forEach(dot => dot.classList.remove('active'));
       dots[index].classList.add('active');
     }
@@ -583,7 +448,7 @@
       const timeDifference = end - start;
       const days = timeDifference / (1000 * 3600 * 24);
       const totalPrice = days * pricePerDay * document.getElementById('quantity').value;
-      document.getElementById('totalPrice').textContent = `Total Price: $${totalPrice}`;
+      document.getElementById('totalPrice').textContent = Total Price: $${ totalPrice };
 
       document.getElementById('notification').style.display = 'block';
       setTimeout(() => {
@@ -597,7 +462,42 @@
       currentSlide = (currentSlide + 1) % slides.length;
       moveToSlide(currentSlide);
     }, 3000);
+
+
+
+
+
+
+
+
+
   </script>
+
+  <script>
+    // Toggle the price range dropdown visibility
+    function toggleDropdown() {
+      const dropdown = document.getElementById('priceRangeDropdown');
+      dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+    }
+
+    // Synchronize the min and max range values
+    const minPriceInput = document.getElementById('minPrice');
+    const maxPriceInput = document.getElementById('maxPrice');
+    const rangeInput = document.getElementById('priceRange');
+
+    minPriceInput.addEventListener('input', () => {
+      rangeInput.value = Math.max(minPriceInput.value, 0);
+    });
+
+    maxPriceInput.addEventListener('input', () => {
+      rangeInput.value = Math.min(maxPriceInput.value, 30000);
+    });
+
+    rangeInput.addEventListener('input', () => {
+      minPriceInput.value = rangeInput.value;
+    });
+  </script>
+
   <script src="equipments_page.js"></script>
 </body>
 
