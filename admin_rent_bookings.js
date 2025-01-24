@@ -52,6 +52,12 @@ async function fetchAdminBookings() {
     });
   } catch (error) {
     console.error("Error fetching bookings:", error);
+    Swal.fire({
+      icon: "error",
+      title: "Error",
+      text: "Failed to fetch bookings. Please try again later.",
+      showConfirmButton: true,
+    });
   }
 }
 
@@ -72,22 +78,34 @@ async function toggleConfirmation(bookingId, currentState) {
     });
 
     if (response.ok) {
-      alert(
-        `Booking marked as ${
+      Swal.fire({
+        icon: "success",
+        title: "Success",
+        text: `Booking marked as ${
           newConfirmationState ? "confirmed" : "unconfirmed"
-        }.`
-      );
+        }.`,
+        timer: 3000,
+        showConfirmButton: false,
+      });
       fetchAdminBookings();
     } else {
-      console.error(
-        `Failed to toggle confirmation status:`,
-        await response.text()
-      );
-      alert("Failed to toggle confirmation status. Please try again.");
+      const errorText = await response.text();
+      console.error(`Failed to toggle confirmation status:`, errorText);
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: "Failed to toggle confirmation status. Please try again.",
+        showConfirmButton: true,
+      });
     }
   } catch (error) {
     console.error("Error toggling confirmation status:", error);
-    alert("An error occurred. Please try again later.");
+    Swal.fire({
+      icon: "error",
+      title: "Error",
+      text: "An error occurred. Please try again later.",
+      showConfirmButton: true,
+    });
   }
 }
 
@@ -107,18 +125,32 @@ async function markReadyForPickup(bookingId) {
     });
 
     if (response.ok) {
-      alert("Booking marked as ready for pickup.");
+      Swal.fire({
+        icon: "success",
+        title: "Success",
+        text: "Booking marked as ready for pickup.",
+        timer: 3000,
+        showConfirmButton: false,
+      });
       fetchAdminBookings();
     } else {
-      console.error(
-        "Failed to mark booking as ready for pickup:",
-        await response.text()
-      );
-      alert("Failed to mark booking as ready for pickup. Please try again.");
+      const errorText = await response.text();
+      console.error("Failed to mark booking as ready for pickup:", errorText);
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: "Failed to mark booking as ready for pickup. Please try again.",
+        showConfirmButton: true,
+      });
     }
   } catch (error) {
     console.error("Error marking booking as ready for pickup:", error);
-    alert("An error occurred. Please try again later.");
+    Swal.fire({
+      icon: "error",
+      title: "Error",
+      text: "An error occurred. Please try again later.",
+      showConfirmButton: true,
+    });
   }
 }
 

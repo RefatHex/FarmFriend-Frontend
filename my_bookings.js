@@ -68,15 +68,28 @@ async function fetchBookings() {
     });
   } catch (error) {
     console.error('Error fetching bookings:', error);
+    Swal.fire({
+      icon: 'error',
+      title: 'Error',
+      text: 'Failed to fetch bookings. Please try again later.',
+      showConfirmButton: true,
+    });
   }
 }
 
 // Delete a booking
 async function deleteBooking(bookingId) {
-  const confirmDelete = confirm(
-    'Are you sure you want to delete this booking?'
-  );
-  if (!confirmDelete) return;
+  const confirmDelete = await Swal.fire({
+    title: 'Are you sure?',
+    text: 'You will not be able to recover this booking!',
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Yes, delete it!',
+  });
+
+  if (!confirmDelete.isConfirmed) return;
 
   try {
     const response = await fetch(`${MY_BOOKINGS_API_URL}${bookingId}/`, {
@@ -84,18 +97,34 @@ async function deleteBooking(bookingId) {
     });
 
     if (response.ok) {
-      alert('Booking deleted successfully.');
+      await Swal.fire({
+        icon: 'success',
+        title: 'Deleted!',
+        text: 'Your booking has been deleted.',
+        timer: 3000,
+        showConfirmButton: false,
+      });
       fetchBookings();
     } else {
-      console.error('Failed to delete booking:', await response.text());
-      alert('Failed to delete booking. Please try again.');
+      const errorText = await response.text();
+      console.error('Failed to delete booking:', errorText);
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Failed to delete booking. Please try again.',
+        showConfirmButton: true,
+      });
     }
   } catch (error) {
     console.error('Error deleting booking:', error);
-    alert(
-      'An error occurred while deleting the booking. Please try again later.'
-    );
+    Swal.fire({
+      icon: 'error',
+      title: 'Error',
+      text: 'An error occurred while deleting the booking. Please try again later.',
+      showConfirmButton: true,
+    });
   }
 }
 
+// Fetch bookings on page load
 fetchBookings();
