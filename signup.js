@@ -54,8 +54,8 @@ async function handleFormSubmit(event) {
   if (selectedRoles.length === 0) {
     Swal.fire({
       icon: "error",
-      title: "Role Required",
-      text: "Please select at least one role",
+      title: "একাউন্টের ধরন প্রয়োজন",
+      text: "অনুগ্রহ করে কমপক্ষে একটি একাউন্টের ধরন নির্বাচন করুন",
     });
     return;
   }
@@ -66,8 +66,8 @@ async function handleFormSubmit(event) {
   if (password !== confirmPassword) {
     Swal.fire({
       icon: "error",
-      title: "Password Mismatch",
-      text: "Passwords do not match",
+      title: "পাসওয়ার্ড মিলছে না",
+      text: "পাসওয়ার্ডগুলি মিলছে না",
     });
     return;
   }
@@ -132,20 +132,21 @@ async function handleFormSubmit(event) {
 
     Swal.fire({
       icon: "success",
-      title: "Success!",
-      text: "All accounts created successfully!",
+      title: "সফল!",
+      text: "অ্যাকাউন্ট সফলভাবে তৈরি হয়েছে!",
       timer: 2000,
       showConfirmButton: false,
     }).then(() => {
       window.location.href = "login.html";
-    });
+    });    
   } catch (error) {
     console.error("Error:", error);
     Swal.fire({
       icon: "error",
-      title: "Error",
+      title: "ভুল হয়েছে!",
       text: error.message,
     });
+    
   }
 }
 
