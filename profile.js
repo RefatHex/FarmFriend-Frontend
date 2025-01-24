@@ -346,6 +346,71 @@ async function updateBillingInfo(billingId, billingData) {
   }
 }
 
+// Toggle the visibility of the payments section
+function togglePaymentsSection() {
+  const paymentsSection = document.getElementById("paymentsSection");
+  paymentsSection.style.display =
+    paymentsSection.style.display === "none" ? "block" : "none";
+
+  // Fetch payments details if not already fetched
+  if (paymentsSection.style.display === "block") {
+    fetchPayments();
+  }
+}
+
+// Fetch payments details
+async function fetchPayments() {
+  const userId = getCookie("userId");
+
+  try {
+    const response = await fetch(
+      `http://localhost:8000/payment/payments/?user=${userId}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    if (response.ok) {
+      const data = await response.json();
+
+      if (data.results && data.results.length > 0) {
+        populatePaymentsTable(data.results);
+      } else {
+        console.warn("No payments found.");
+        alert("No payment records found.");
+      }
+    } else {
+      console.error("Failed to fetch payments:", response.statusText);
+      alert("Error fetching payments. Please try again.");
+    }
+  } catch (error) {
+    console.error("Error occurred while fetching payments:", error);
+    alert("An error occurred. Please try again.");
+  }
+}
+
+// Populate payments table
+function populatePaymentsTable(payments) {
+  const paymentsTableBody = document.querySelector("#paymentsTable tbody");
+  paymentsTableBody.innerHTML = ""; // Clear existing rows
+
+  payments.forEach((payment) => {
+    const row = document.createElement("tr");
+
+    row.innerHTML = `
+      <td>${payment.amount}</td>
+      <td>${payment.payment_date}</td>
+      <td>${payment.payment_method}</td>
+      <td>${payment.status}</td>
+    `;
+
+    paymentsTableBody.appendChild(row);
+  });
+}
+
 // Cookie helper functions
 function getCookie(name) {
   const nameEQ = name + "=";
