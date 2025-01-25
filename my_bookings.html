@@ -1,53 +1,254 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>My Bookings - Farmer Portal</title>
-    <link rel="stylesheet" href="my_bookings.css" />
-  </head>
-  <body>
-    <header>
-      <div class="header-text">
-        <h1>My Bookings</h1>
-        <p>Manage all your bookings in one place</p>
-      </div>
-    </header>
 
-    <nav id="navbar">
-      <a href="index.html">Home</a>
-      <a href="rentalFarmer.html">Equipment</a>
-      <a href="contact.html">Contact Us</a>
-    </nav>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Bookings - Farmer Portal</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f9f9f9;
+    }
 
-    <div class="container">
-      <h1 class="section-title">Bookings</h1>
+    header {
+      background-image: url("assets/images/myBooking.jpg");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      height: 70vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-align: center;
+      position: relative;
+    }
 
-      <!-- Dropdown for selecting booking type -->
-      <div class="dropdown">
-        <label for="bookingType">Select Booking Type:</label>
-        <select id="bookingType" onchange="fetchBookings()">
-          <option value="equipment">Equipment</option>
-          <option value="storage">Storage</option>
-          <option value="consultation">Consultation</option>
-        </select>
-      </div>
+    header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      /* Add a dark overlay to the image */
+      z-index: 1;
+    }
 
-      <!-- Active Bookings -->
-      <div class="section-title">Active Bookings</div>
-      <section id="bookingsSection" class="booking-list"></section>
+    .header-text {
+      position: relative;
+      z-index: 2;
+      background-color: rgba(0, 0, 0, 0.7);
+      /* Semi-transparent background */
+      padding: 20px 40px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
 
-      <!-- Old Bookings -->
-      <div class="section-title">Old Bookings</div>
-      <section id="oldBookingsSection" class="booking-list"></section>
+    .header-text h1 {
+      font-size: 3rem;
+      font-weight: bold;
+      margin: 0;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: #4CAF50;
+      /* Highlight color for the main text */
+    }
+
+    .header-text p {
+      margin-top: 10px;
+      font-size: 1.2rem;
+      font-weight: 300;
+      color: #f0f0f0;
+      /* Subtle color for the subtitle */
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: hsla(0, 0%, 85%, 0.145);
+      border-bottom: 1px solid #ddd;
+      display: flex;
+      justify-content: center;
+      padding: 10px 0;
+      z-index: 1000;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    nav a {
+      color: black;
+      padding: 14px 20px;
+      text-decoration: none;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      background-color: #ddd;
+      color: black;
+    }
+
+    .container {
+      padding: 20px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    /* For section titles (Active Bookings and Old Bookings) */
+    .section-title {
+      text-align: center;
+      font-size: 2rem;
+      /* Increased font size */
+      font-weight: bold;
+      color: #4CAF50;
+      /* Green color to match theme */
+      margin: 20px 0;
+      padding: 10px;
+      background-color: #f4f4f4;
+      /* Light background for contrast */
+      border-radius: 10px;
+      /* Rounded corners */
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      /* Subtle shadow */
+    }
+
+    .booking-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    .booking-item {
+      background-color: white;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      padding: 10px;
+      /* Reduced padding */
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+      max-width: 250px;
+      /* Set max width for smaller cards */
+      margin: auto;
+      /* Center the card */
+    }
+
+    .booking-item img {
+      max-width: 100%;
+      height: auto;
+      /* Maintain aspect ratio */
+      border-radius: 5px;
+    }
+
+    .booking-item h3 {
+      margin: 8px 0;
+      /* Reduced margin */
+      color: #4CAF50;
+      font-size: 1.5rem;
+      /* Smaller font size */
+    }
+
+    .booking-item p {
+      margin: 4px 0;
+      /* Reduced margin */
+      color: #555;
+      font-size: 0.9rem;
+      /* Smaller font size */
+    }
+
+    /* Highlighting the "Order confirmed and ready to be picked" text */
+    .booking-item .status {
+      font-weight: bold;
+      color: #fff;
+      background-color: #4CAF50;
+      /* Green background to highlight */
+      padding: 8px 16px;
+      border-radius: 5px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-top: 10px;
+      /* Space between title and status */
+    }
+
+    .booking-item:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    footer {
+      text-align: center;
+      padding: 10px 0;
+      background-color: #333;
+      color: white;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="header-text">
+      <h1>My Bookings</h1>
+      <p>Manage all your equipment reservations in one place</p>
     </div>
+  </header>
 
-    <footer>
-      <p>
-        &copy; 2025 Agricultural Equipment Rental System. All rights reserved.
-      </p>
-    </footer>
+  <nav id="navbar">
+    <a href="index.html">Home</a>
+    <a href="rentalFarmer.html">Equipment</a>
+    <a href="contact.html">Contact Us</a>
+  </nav>
 
-    <script src="my_bookings.js"></script>
-  </body>
+  <div class="section-title">Active Bookings</div>
+  <section id="bookingsSection" class="booking-list">
+    <div class="booking-item">
+      <img src="assets/images/booking1.jpg" alt="Booking Image">
+      <h3>Booking Title</h3>
+      <p>Details about the booking.</p>
+      <p class="status">Order confirmed and ready to be picked</p>
+    </div>
+    <!-- Add more booking items as needed -->
+  </section>
+
+  <div class="section-title">Old Bookings</div>
+  <section id="oldBookingsSection" class="booking-list">
+    <div class="booking-item">
+      <img src="assets/images/booking2.jpg" alt="Booking Image">
+      <h3>Old Booking Title</h3>
+      <p>Details about the old booking.</p>
+      <p class="status">Order confirmed and ready to be picked</p>
+    </div>
+    <!-- Add more old booking items as needed -->
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Agricultural Equipment Rental System. All rights reserved.</p>
+  </footer>
+
+  <script>
+    let lastScrollTop = 0;
+    const navbar = document.getElementById('navbar');
+
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+      if (scrollTop > lastScrollTop) {
+        // Scrolling down - hide navbar
+        navbar.style.transform = 'translateY(-100%)';
+      } else {
+        // Scrolling up - show navbar
+        navbar.style.transform = 'translateY(0)';
+      }
+
+      lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // Prevent negative values
+    });
+  </script>
+  <script src="my_bookings.js"></script>
+</body>
+
 </html>
