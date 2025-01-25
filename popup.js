@@ -5,37 +5,31 @@ function setCookie(name, value, days) {
     date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
     expires = "; expires=" + date.toUTCString();
   }
-  document.cookie = name + "=" + (value || "") + expires + "; path=/";
+  document.cookie = `${name}=${encodeURIComponent(
+    value || ""
+  )}${expires}; path=/`;
 }
 
 function getCookie(name) {
   const nameEQ = name + "=";
-  const ca = document.cookie.split(";");
-  for (let i = 0; i < ca.length; i++) {
-    let c = ca[i].trim();
-    if (c.indexOf(nameEQ) === 0) {
-      return c.substring(nameEQ.length, c.length);
+  const cookies = document.cookie.split(";");
+  for (let i = 0; i < cookies.length; i++) {
+    let cookie = cookies[i].trim();
+    if (cookie.indexOf(nameEQ) === 0) {
+      return decodeURIComponent(cookie.substring(nameEQ.length, cookie.length));
     }
   }
   return null;
 }
 
-// DOM elements
-const popupOverlay = document.getElementById("popupOverlay");
-const accountList = document.getElementById("accountList");
-const closePopupBtn = document.getElementById("closePopupBtn");
-
-// Hide the popup
 function hidePopup() {
-  popupOverlay.style.display = "none";
+  document.getElementById("popupOverlay").style.display = "none";
 }
 
-// Show the popup
 function showPopup() {
-  popupOverlay.style.display = "flex";
+  document.getElementById("popupOverlay").style.display = "flex";
 }
 
-// Map each role to a target landing page
 const roleRedirects = {
   farmersId: "farmerLandingPage.html",
   "rent-ownersId": "rentalAdmin.html",
@@ -43,8 +37,7 @@ const roleRedirects = {
   agronomistsId: "agronomistDashboard.html",
 };
 
-window.addEventListener("DOMContentLoaded", () => {
-  // Collect all possible roles
+document.addEventListener("DOMContentLoaded", () => {
   const roles = [
     "farmersId",
     "rent-ownersId",
@@ -53,59 +46,40 @@ window.addEventListener("DOMContentLoaded", () => {
   ];
   const foundRoles = [];
 
-  // Check each role cookie
   roles.forEach((role) => {
-    const cookieValue = getCookie(role);
-    if (cookieValue) {
+    const roleValue = getCookie(role);
+    if (roleValue) {
       foundRoles.push(role);
     }
   });
 
-  console.log("User has roles:", foundRoles);
-
-  // If no roles, redirect (or handle as needed)
   if (foundRoles.length === 0) {
-    console.log("No roles found. Redirecting to homepage...");
     window.location.href = "index.html";
     return;
   }
 
-  // If exactly one role, redirect automatically
   if (foundRoles.length === 1) {
-    const singleRole = foundRoles[0];
-    // Save that role in a cookie (for reference)
-    setCookie("selectedRole", singleRole, 7);
-    console.log("Single role found:", singleRole);
-    window.location.href = roleRedirects[singleRole];
+    setCookie("selectedRole", foundRoles[0], 7);
+    window.location.href = roleRedirects[foundRoles[0]];
     return;
   }
 
-  if (foundRoles.length > 1) {
-    accountList.innerHTML = ""; // Clear existing
-    foundRoles.forEach((role) => {
-      // Create a list item with a button
-      const li = document.createElement("li");
-      const btn = document.createElement("button");
-      btn.classList.add("btn", "btn-primary");
-      btn.textContent = "Go to " + role;
-      // (You might want more user-friendly text, e.g. "Go to Farmer Dashboard")
-
-      // On click: store chosen role, then redirect
-      btn.addEventListener("click", () => {
-        setCookie("selectedRole", role, 7);
-        window.location.href = roleRedirects[role];
-      });
-
-      li.appendChild(btn);
-      accountList.appendChild(li);
+  const accountList = document.getElementById("accountList");
+  accountList.innerHTML = "";
+  foundRoles.forEach((role) => {
+    const li = document.createElement("li");
+    const btn = document.createElement("button");
+    btn.classList.add("btn", "btn-primary", "mb-2");
+    btn.textContent = `Go to ${roleRedirects[role]}`;
+    btn.addEventListener("click", () => {
+      setCookie("selectedRole", role, 7);
+      window.location.href = roleRedirects[role];
     });
-    showPopup();
-  }
-});
+    li.appendChild(btn);
+    accountList.appendChild(li);
+  });
 
-// When user clicks "Close"
-closePopupBtn.addEventListener("click", () => {
-  hidePopup();
-  // Optionally redirect if they close
-  // window.location.href = "index.html";
+  showPopup();
+
+  document.getElementById("closePopupBtn").addEventListener("click", hidePopup);
 });

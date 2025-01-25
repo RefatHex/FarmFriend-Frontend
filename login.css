@@ -66,13 +66,15 @@ body::before {
   background: rgba(255, 255, 255, 0.3);
   backdrop-filter: blur(8px);
   border-radius: 16px;
-  padding: 40px 50px;
+  padding: 60px 50px; /* Increase padding for more height */
   width: 380px;
+  min-height: 500px; /* Set a minimum height for the form */
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
   text-align: center;
   position: relative;
   z-index: 1;
 }
+
 
 .login-container h2 {
   margin-bottom: 30px;

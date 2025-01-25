@@ -1,0 +1,76 @@
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: #f9f9f9;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: #4caf50;
+  color: white;
+  padding: 1rem;
+  text-align: center;
+}
+
+.payments-container {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 1rem;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+.card h2 {
+  margin: 0 0 0.5rem 0;
+}
+
+.card form div {
+  margin-bottom: 1rem;
+}
+
+.card form label {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.card form input,
+.card form select {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.card table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+.card table th,
+.card table td {
+  border: 1px solid #ddd;
+  padding: 0.5rem;
+  text-align: center;
+}
+
+.card table th {
+  background-color: #f4f4f4;
+}
+
+.btn-save {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+}

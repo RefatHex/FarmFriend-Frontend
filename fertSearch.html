@@ -1,223 +1,459 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Fertilizer AI</title>
-    <!-- Bootstrap 5 CDN -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-  </head>
-  <body class="bg-light">
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <div class="container-fluid">
-        <span class="navbar-brand mb-0 h1">FertAI</span>
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Fertilizer AI</title>
+  <!-- Bootstrap 5 CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <style>
+    /* General styles for the page */
+    body {
+      font-family: Arial, sans-serif;
+      background: url(assets/images/banner19.jpg) no-repeat center center fixed;
+      background-size: cover;
+      color: #212529;
+      margin: 0;
+      padding: 0;
+      padding-top: 80px;
+      /* Space for the navbar */
+    }
+
+    .card {
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+      border-radius: 18px;
+      overflow: hidden;
+      background-color: transparent;
+      backdrop-filter: blur(6px);
+      border: none;
+      margin-top: 50px;
+      padding: 50px;
+      transition: all 0.3s ease;
+    }
+
+    .card:hover {
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+      transform: translateY(-5px);
+    }
+
+    .card-header {
+      font-size: 1.6rem;
+      font-weight: 600;
+      padding: 15px;
+      background: linear-gradient(20deg, #ffdf0085, #cf981d);
+      color: #ffffff;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    }
+
+    .card-body {
+      padding: 20px;
+    }
+
+    .form-label {
+      font-weight: 500;
+      color: #000000;
+    }
+
+    .form-control {
+      border-radius: 8px;
+      border: 1px solid #ced4da;
+      transition: all 0.3s ease-in-out;
+      padding: 10px;
+      width: 100%;
+    }
+
+    .form-control:focus {
+      box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
+      border-color: #80bdff;
+      transform: scale(1.05);
+    }
+
+    .form-control:hover {
+      background-color: rgba(255, 255, 255, 0.85);
+      border-color: #80bdff;
+      transform: scale(1.02);
+    }
+
+    button {
+      border-radius: 8px;
+      font-weight: 600;
+    }
+
+    .btn-primary {
+      background-color: #005ee3;
+      border-color: #ffffff;
+      box-shadow: 0 4px 6px rgb(237 237 237);
+      transition: all 0.3s ease-in-out;
+    }
+
+    .btn-primary:hover {
+      background-color: #0056b3;
+      border-color: #004085;
+      box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+    }
+
+    .btn-close {
+      outline: none;
+    }
+
+    @media (max-width: 768px) {
+
+      .card-header h4,
+      .modal-title {
+        font-size: 1.25rem;
+      }
+    }
+
+    /* Navbar Styling */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: hsla(0, 0%, 85%, 0.8);
+      border-bottom: 1px solid #ddd;
+      display: flex;
+      align-items: center;
+      padding: 10px 20px;
+      z-index: 1000;
+      transform: translateY(-100%);
+      transition: transform 0.3s ease-in-out;
+    }
+
+    nav .logo img {
+      height: 40px;
+      width: auto;
+      margin-right: 20px;
+    }
+
+    nav a {
+      color: black;
+      padding: 14px 20px;
+      text-decoration: none;
+      text-align: center;
+      font-weight: bold;
+      position: relative;
+      overflow: hidden;
+    }
+
+    nav a::before {
+      content: "";
+      position: absolute;
+      width: 0;
+      height: 2px;
+      background-color: #4caf50;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      transition: width 0.3s ease-in-out;
+    }
+
+    nav a:hover::before {
+      width: 100%;
+    }
+
+    nav a:hover {
+      color: #4caf50;
+    }
+
+    /* Footer Styling */
+    footer {
+      background: linear-gradient(68deg, #ffdf0085, #cf981d);
+      /* Fixed by using 'background' */
+      padding: 20px 0;
+      text-align: center;
+      color: #ffffff;
+      font-size: 0.9rem;
+      border-top: 1px solid #dee2e6;
+    }
+
+
+    footer a {
+      color: #007bff;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Navbar -->
+  <nav id="navbar">
+    <div class="logo">
+      <img src="assets/images/logo.jpg" alt="Logo" />
+    </div>
+    <a href="farmerLandingPage.html">Home</a>
+
+    <a href="profile.html">Profile</a>
+  </nav>
+
+
+  <style>
+    /* Navbar Styling */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: hsla(0, 0%, 85%, 0.8);
+      border-bottom: 1px solid #ddd;
+      display: flex;
+      align-items: center;
+      /* Align items vertically in the center */
+      padding: 10px 20px;
+      /* Adjust padding for better layout */
+      z-index: 1000;
+      transform: translateY(-100%);
+      transition: transform 0.3s ease-in-out;
+    }
+
+    nav .logo img {
+      height: 40px;
+      /* Adjust logo size as needed */
+      width: auto;
+      margin-right: 20px;
+      /* Space between the logo and the links */
+    }
+
+    nav a {
+      color: black;
+      padding: 14px 20px;
+      text-decoration: none;
+      text-align: center;
+      font-weight: bold;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Enhanced Hover Styles */
+    nav a::before {
+      content: "";
+      position: absolute;
+      width: 0;
+      height: 2px;
+      background-color: #4caf50;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      transition: width 0.3s ease-in-out;
+    }
+
+    nav a:hover::before {
+      width: 100%;
+    }
+
+    nav a:hover {
+      color: #4caf50;
+    }
+  </style>
+
+  <script>
+    // JavaScript for dynamic navbar behavior
+    let lastScrollY = window.scrollY;
+    const navbar = document.getElementById('navbar');
+    let isMouseNearTop = false;
+
+    // Hide or show navbar on scroll
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > lastScrollY && !isMouseNearTop) {
+        // Hide navbar on scroll down
+        navbar.style.transform = 'translateY(-100%)';
+      } else {
+        // Show navbar on scroll up
+        navbar.style.transform = 'translateY(0)';
+      }
+      lastScrollY = window.scrollY;
+    });
+
+    // Detect mouse near the top of the screen
+    window.addEventListener('mousemove', (event) => {
+      if (event.clientY <= 50) {
+        // Show navbar when mouse is near the top
+        navbar.style.transform = 'translateY(0)';
+        isMouseNearTop = true;
+      } else {
+        isMouseNearTop = false;
+      }
+    });
+  </script>
+
+
+
+  <!-- Main Container -->
+  <div class="container my-5">
+    <div class="card mx-auto" style="max-width: 600px">
+      <!-- Card content remains unchanged -->
+      <div class="card-header text-center">
+        Fertilizer Recommendation Form
       </div>
-    </nav>
-
-    <!-- Main Container -->
-    <div class="container my-5">
-      <h1 class="mb-4 text-center">FertAI Response Form</h1>
-
-      <div class="card mx-auto" style="max-width: 600px">
-        <div class="card-body">
-          <!-- Weather Info Section -->
-          <div id="weatherInfo" class="mb-4">
-            <h5 class="text-center">Weather Information</h5>
-            <p id="city" class="mb-1"><strong>City:</strong> Loading...</p>
-            <p id="temperature" class="mb-1">
-              <strong>Temperature:</strong> Loading...
-            </p>
-            <p id="humidity" class="mb-1">
-              <strong>Humidity:</strong> Loading...
-            </p>
-            <p id="condition" class="mb-1">
-              <strong>Condition:</strong> Loading...
-            </p>
+      <div class="card-body">
+        <!-- Weather Info Section -->
+        <div id="weatherInfo" class="mb-4">
+          <h5 class="text-center">Weather Information</h5>
+          <p id="city" class="mb-1"><strong>City:</strong> Loading...</p>
+          <p id="temperature" class="mb-1">
+            <strong>Temperature:</strong> Loading...
+          </p>
+          <p id="humidity" class="mb-1">
+            <strong>Humidity:</strong> Loading...
+          </p>
+          <p id="condition" class="mb-1">
+            <strong>Condition:</strong> Loading...
+          </p>
+        </div>
+        <form id="fertForm">
+          <div class="mb-3">
+            <label for="nitrogen" class="form-label">Nitrogen</label>
+            <input type="number" step="any" class="form-control" id="nitrogen" name="nitrogen" required />
           </div>
 
-          <form id="fertForm">
-            <div class="mb-3">
-              <label for="nitrogen" class="form-label">Nitrogen</label>
-              <input
-                type="number"
-                step="any"
-                class="form-control"
-                id="nitrogen"
-                name="nitrogen"
-                required
-              />
-            </div>
-          
-            <div class="mb-3">
-              <label for="phosphorus" class="form-label">Phosphorus</label>
-              <input
-                type="number"
-                step="any"
-                class="form-control"
-                id="phosphorus"
-                name="phosphorus"
-                required
-              />
-            </div>
-          
-            <div class="mb-3">
-              <label for="potassium" class="form-label">Potassium</label>
-              <input
-                type="number"
-                step="any"
-                class="form-control"
-                id="potassium"
-                name="potassium"
-                required
-              />
-            </div>
-          
-            <div class="mb-3">
-              <label for="moisture" class="form-label">Moisture</label>
-              <input
-                type="number"
-                step="any"
-                class="form-control"
-                id="moisture"
-                name="moisture"
-                required
-              />
-            </div>
-          
-            <!-- Updated Dropdowns -->
-            <div class="mb-3">
-              <label for="crop_type" class="form-label">Crop Type</label>
-              <select class="form-select" id="crop_type" name="crop_type" required>
-                <option value="0">Barley</option>
-                <option value="1">Cotton</option>
-                <option value="2">Ground Nuts</option>
-                <option value="3">Maize</option>
-                <option value="4">Millets</option>
-                <option value="5">Oil seeds</option>
-                <option value="6">Paddy</option>
-                <option value="7">Pulses</option>
-                <option value="8">Sugarcane</option>
-                <option value="9">Tobacco</option>
-                <option value="10">Wheat</option>
-              </select>
-            </div>
-          
-            <div class="mb-3">
-              <label for="soil_type" class="form-label">Soil Type</label>
-              <select class="form-select" id="soil_type" name="soil_type" required>
-                <option value="0">Black</option>
-                <option value="1">Clayey</option>
-                <option value="2">Loamy</option>
-                <option value="3">Red</option>
-                <option value="4">Sandy</option>
-              </select>
-            </div>
-          
-            <button type="submit" class="btn btn-primary w-100">
-              Get Fertilizer Recommendation
-            </button>
-          </form>
-          
+          <div class="mb-3">
+            <label for="phosphorus" class="form-label">Phosphorus</label>
+            <input type="number" step="any" class="form-control" id="phosphorus" name="phosphorus" required />
+          </div>
 
-          <!-- Response Alert -->
-          <div id="response" class="alert mt-4 d-none" role="alert"></div>
-        </div>
+          <div class="mb-3">
+            <label for="potassium" class="form-label">Potassium</label>
+            <input type="number" step="any" class="form-control" id="potassium" name="potassium" required />
+          </div>
+
+          <div class="mb-3">
+            <label for="moisture" class="form-label">Moisture</label>
+            <input type="number" step="any" class="form-control" id="moisture" name="moisture" required />
+          </div>
+
+          <div class="mb-3">
+            <label for="crop_type" class="form-label">Crop Type</label>
+            <select class="form-select" id="crop_type" name="crop_type" required>
+              <option value="0">Barley</option>
+              <option value="1">Cotton</option>
+              <option value="2">Ground Nuts</option>
+              <option value="3">Maize</option>
+              <option value="4">Millets</option>
+              <option value="5">Oil seeds</option>
+              <option value="6">Paddy</option>
+              <option value="7">Pulses</option>
+              <option value="8">Sugarcane</option>
+              <option value="9">Tobacco</option>
+              <option value="10">Wheat</option>
+            </select>
+          </div>
+
+          <div class="mb-3">
+            <label for="soil_type" class="form-label">Soil Type</label>
+            <select class="form-select" id="soil_type" name="soil_type" required>
+              <option value="0">Black</option>
+              <option value="1">Clayey</option>
+              <option value="2">Loamy</option>
+              <option value="3">Red</option>
+              <option value="4">Sandy</option>
+            </select>
+          </div>
+
+          <button type="submit" class="btn btn-primary w-100">
+            Get Fertilizer Recommendation
+          </button>
+        </form>
+
+        <div id="response" class="alert mt-4 d-none" role="alert"></div>
       </div>
     </div>
+  </div>
 
-    <!-- Bootstrap JS (for optional features like modals) -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Footer -->
+  <footer>
+    <p>
+      © 2025 Fertilizer AI. All Rights Reserved. | <a href="privacy.html">Privacy Policy</a> | <a
+        href="terms.html">Terms of Service</a>
+    </p>
+  </footer>
 
-    <script>
-      const weatherInfo = document.getElementById("weatherInfo");
-      const fertForm = document.getElementById("fertForm");
-      const responseDiv = document.getElementById("response");
-      let weatherData = {}; // To store fetched weather data
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    const weatherInfo = document.getElementById("weatherInfo");
+    const fertForm = document.getElementById("fertForm");
+    const responseDiv = document.getElementById("response");
+    let weatherData = {};
 
-      // Fetch weather data and update UI
-      async function fetchWeather() {
-        try {
-          const response = await fetch(
-            "http://localhost:8000/api/weather/?city=Dhaka"
-          );
-          if (!response.ok) {
-            throw new Error("Failed to fetch weather data");
-          }
-          const data = await response.json();
-
-          // Save fetched data
-          weatherData.temperature = data.temperature;
-          weatherData.humidity = data.humidity;
-
-          // Update weather info on the page
-          document.getElementById("city").textContent = `City: ${data.city}`;
-          document.getElementById(
-            "temperature"
-          ).textContent = `Temperature: ${data.temperature} °C`;
-          document.getElementById(
-            "humidity"
-          ).textContent = `Humidity: ${data.humidity}%`;
-          document.getElementById(
-            "condition"
-          ).textContent = `Condition: ${data.condition}`;
-        } catch (error) {
-          weatherInfo.innerHTML = `<p class="text-danger">Error fetching weather data: ${error.message}</p>`;
+    async function fetchWeather() {
+      try {
+        const response = await fetch(
+          "http://localhost:8000/api/weather/?city=Dhaka"
+        );
+        if (!response.ok) {
+          throw new Error("Failed to fetch weather data");
         }
+        const data = await response.json();
+
+        weatherData.temperature = data.temperature;
+        weatherData.humidity = data.humidity;
+
+        document.getElementById("city").textContent = `City: ${data.city}`;
+        document.getElementById(
+          "temperature"
+        ).textContent = `Temperature: ${data.temperature} °C`;
+        document.getElementById(
+          "humidity"
+        ).textContent = `Humidity: ${data.humidity}%`;
+        document.getElementById(
+          "condition"
+        ).textContent = `Condition: ${data.condition}`;
+      } catch (error) {
+        weatherInfo.innerHTML = `<p class="text-danger">Error fetching weather data: ${error.message}</p>`;
       }
+    }
 
-      // Fetch weather data on page load
-      window.addEventListener("DOMContentLoaded", fetchWeather);
+    window.addEventListener("DOMContentLoaded", fetchWeather);
 
-      fertForm.addEventListener("submit", async (event) => {
-        event.preventDefault();
+    fertForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
 
-        const formData = {
-          user: 1,
-          nitrogen: parseFloat(document.getElementById("nitrogen").value),
-          phosphorus: parseFloat(document.getElementById("phosphorus").value),
-          potassium: parseFloat(document.getElementById("potassium").value),
-          moisture: parseFloat(document.getElementById("moisture").value),
-          crop_type: document.getElementById("crop_type").value,
-          soil_type: document.getElementById("soil_type").value,
-          session_id: 12,
-          temperature: weatherData.temperature, // Add temperature from fetched data
-          humidity: weatherData.humidity, // Add humidity from fetched data
-        };
+      const formData = {
+        user: 1,
+        nitrogen: parseFloat(document.getElementById("nitrogen").value),
+        phosphorus: parseFloat(document.getElementById("phosphorus").value),
+        potassium: parseFloat(document.getElementById("potassium").value),
+        moisture: parseFloat(document.getElementById("moisture").value),
+        crop_type: document.getElementById("crop_type").value,
+        soil_type: document.getElementById("soil_type").value,
+        session_id: 12,
+        temperature: weatherData.temperature,
+        humidity: weatherData.humidity,
+      };
 
-        try {
-          const response = await fetch(
-            "http://127.0.0.1:8000/ai_responses/fert/",
-            {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify(formData),
-            }
-          );
-
-          if (!response.ok) {
-            throw new Error(
-              `Server error: ${response.status} ${response.statusText}`
-            );
+      try {
+        const response = await fetch(
+          "http://127.0.0.1:8000/ai_responses/fert/",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(formData),
           }
+        );
 
-          const data = await response.json();
-
-          // Show success alert
-          responseDiv.classList.remove("d-none", "alert-danger");
-          responseDiv.classList.add("alert-success");
-          responseDiv.textContent = `Fertilizer Recommendation: ${data.answer} (Response ID: ${data.id})`;
-        } catch (error) {
-          // Show error alert
-          responseDiv.classList.remove("d-none", "alert-success");
-          responseDiv.classList.add("alert-danger");
-          responseDiv.textContent = `Error: ${error.message}`;
+        if (!response.ok) {
+          throw new Error(
+            `Server error: ${response.status} ${response.statusText}`
+          );
         }
-      });
-    </script>
-  </body>
+
+        const data = await response.json();
+
+        responseDiv.classList.remove("d-none", "alert-danger");
+        responseDiv.classList.add("alert-success");
+        responseDiv.textContent = `Fertilizer Recommendation: ${data.answer} (Response ID: ${data.id})`;
+      } catch (error) {
+        responseDiv.classList.remove("d-none", "alert-success");
+        responseDiv.classList.add("alert-danger");
+        responseDiv.textContent = `Error: ${error.message}`;
+      }
+    });
+  </script>
+</body>
+
 </html>
