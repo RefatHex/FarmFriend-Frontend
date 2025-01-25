@@ -243,68 +243,41 @@
     </style>
   </header>
 
-<<<<<<< HEAD
-<<<<<<< HEAD
   <div class="container">
     <!-- Weather Update Card -->
     <div class="weather-update-card">
-      <h1>Weather Update</h1>
+      <h1>আবহাওয়া আপডেট</h1>
     </div>
 
     <!-- Card Section -->
     <div class="card-container">
       <div class="card">
         <div class="card-value" id="tempCard">--°C</div>
-        <div class="card-label">Temperature</div>
-=======
-    <div class="container">
-      <!-- Circular Metrics Section -->
-      <div class="circle-container">
-        <div class="circle">
-          <div class="circle-value" id="tempCircle">--°C</div>
-          <div class="circle-label">Temperature</div>
-        </div>
-        <div class="circle">
-          <div class="circle-value" id="humidityCircle">--%</div>
-          <div class="circle-label">Humidity</div>
-        </div>
->>>>>>> 16fce42c74f74d655f2bb831dc56d5f39ed3a06e
-=======
-    <div class="container">
-      <!-- Circular Metrics Section -->
-      <div class="circle-container">
-        <div class="circle">
-          <div class="circle-value" id="tempCircle">--°C</div>
-          <div class="circle-label">Temperature</div>
-        </div>
-        <div class="circle">
-          <div class="circle-value" id="humidityCircle">--%</div>
-          <div class="circle-label">Humidity</div>
-        </div>
-        <div class="circle">
-          <div class="circle-value" id="rainfallCircle">-- mm</div>
-          <div class="circle-label">Rainfall</div>
-        </div>
+        <div class="card-label">তাপমাত্রা</div>
       </div>
+      <div class="card">
+        <div class="card-value" id="humidityCard">--%</div>
+        <div class="card-label">আর্দ্রতা</div>
+      </div>
+      <div class="card rainfall-card">
+        <div class="card-value" id="rainfallCard">-- মিমি</div>
+        <div class="card-label">বৃষ্টিপাত</div>
+      </div>
+    </div>
 
     <!-- Alerts Section -->
     <div class="section">
-      <h2>Alerts</h2>
+      <h2>সতর্কতা</h2>
       <div id="alerts"></div>
     </div>
 
-    <footer>
-      <p>&copy; 2025 FarmFriend. All Rights Reserved.</p>
-    </footer>
-
-<<<<<<< HEAD
-<<<<<<< HEAD
     <!-- Historical Data Section -->
     <div class="section">
-      <h2>Historical Data</h2>
-      <p>Total rainfall in the last year: <span id="historicalRainfall">-- mm</span></p>
+      <h2>পূর্ববর্তী বছরের তথ্য</h2>
+      <p>গত বছরে মোট বৃষ্টিপাত: <span id="historicalRainfall">-- মিমি</span></p>
     </div>
   </div>
+
 
   <footer>
     <p>&copy; 2025 FarmFriend. All Rights Reserved.</p>
@@ -377,15 +350,3 @@
 </body>
 
 </html>
-=======
-    <script src="weatherUpdate.js"></script>
-  </body>
-</html>
->>>>>>> 16fce42c74f74d655f2bb831dc56d5f39ed3a06e
-=======
-      // Call the initialization function when the page loads
-      document.addEventListener("DOMContentLoaded", initializePage);
-    </script>
-  </body>
-</html>
->>>>>>> parent of ba32f60 (Modified many pages)
