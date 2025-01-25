@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const agronomistId = 1;
+  const agronomistId = getCookie("agronomistsId");
   const form = document.getElementById("agronomistForm");
 
   // Function to fetch and populate existing data

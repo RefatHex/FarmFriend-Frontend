@@ -1,5 +1,5 @@
 const RENT_ITEMS_API_URL =
-  "http://localhost:8000/rentals/rent-items-with-user/?rent_owner=1";
+  "http://localhost:8000/rentals/rent-items-with-user/";
 const FEEDBACK_API_URL =
   "http://localhost:8000/feedback/feedbacks/?target_user=1&review_type=Gig";
 const RENT_ORDER_API_URL = "http://localhost:8000/rentals/rent-item-orders/";

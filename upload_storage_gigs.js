@@ -23,8 +23,7 @@ const submitGig = async () => {
   const image = document.getElementById("image").files[0];
 
   const formData = new FormData();
-  formData.append("storage_owner", 1); // Default storage owner
-  formData.append("farmer", 1); // Default farmer
+  formData.append("storage_owner", getCookie("storage-ownersId"));
   formData.append("address", address);
   formData.append("description", description);
   formData.append("price", price);

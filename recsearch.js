@@ -38,7 +38,7 @@ recForm.addEventListener("submit", async (event) => {
   event.preventDefault();
 
   const formData = {
-    user: 1,
+    user: getCookie("user_id") || 1,
     nitrogen: parseFloat(document.getElementById("nitrogen").value),
     phosphorus: parseFloat(document.getElementById("phosphorus").value),
     potassium: parseFloat(document.getElementById("potassium").value),

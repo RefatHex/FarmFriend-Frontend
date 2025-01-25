@@ -161,7 +161,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const formData = new FormData(form);
 
-    const userId = 1; // Replace with actual user ID if dynamic
+    const userId = getCookie("userID"); // Replace with actual user ID if dynamic
     if (!userId) {
       alert("User ID not found. Please log in again.");
       return;

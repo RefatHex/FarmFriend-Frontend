@@ -177,7 +177,7 @@ async function bookNow(gig) {
   }
 
   const bookingPayload = {
-    farmer: 1, // Replace with actual farmer ID from your app logic
+    farmer: getCookie("farmersId") || 1,
     storage_owner: gig.owner?.id || 1,
     gigs_offered: gig.id,
     crops: gig.prefered_crop.id || 1,
