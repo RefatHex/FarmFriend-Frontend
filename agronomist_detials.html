@@ -1,245 +1,127 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Agronomist Profile Setup</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container mt-5">
+      <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white">
+          <h3 class="card-title">Agronomist Profile Setup</h3>
+        </div>
+        <div class="card-body">
+          <form id="agronomistForm">
+            <!-- Name -->
+            <div class="mb-3">
+              <label for="name" class="form-label">Name</label>
+              <input
+                type="text"
+                class="form-control"
+                id="name"
+                placeholder="Enter your full name"
+              />
+            </div>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Agronomist Profile Setup</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" />
+            <!-- Contact Info -->
+            <div class="mb-3">
+              <label for="contact" class="form-label">Contact Number</label>
+              <input
+                type="text"
+                class="form-control"
+                id="contact"
+                placeholder="Enter your contact number"
+              />
+            </div>
 
-  <header>
-    <nav id="navbar">
-      <div class="logo">
-        <img src="assets/images/logo.jpg" alt="Logo" />
-      </div>
-      <a href="index.html">Home</a>
-      <a href="contact.html">Contact</a>
-      <a href="about.html">About Us</a>
-      <a href="login.html">Login</a>
-      <a href="signup.html">Sign Up</a>
-    </nav>
-    <style>
-      /* Navbar Styling */
-      nav {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        background-color: hsla(0, 0%, 85%, 0.8);
-        border-bottom: 1px solid #ddd;
-        display: flex;
-        align-items: center;
-        /* Align items vertically in the center */
-        padding: 10px 20px;
-        /* Adjust padding for better layout */
-        z-index: 1000;
-        transform: translateY(-100%);
-        transition: transform 0.3s ease-in-out;
-      }
+            <!-- Address -->
+            <div class="mb-3">
+              <label for="address" class="form-label">Address</label>
+              <textarea
+                class="form-control"
+                id="address"
+                rows="3"
+                placeholder="Enter your address"
+              ></textarea>
+            </div>
 
-      nav .logo img {
-        height: 40px;
-        /* Adjust logo size as needed */
-        width: auto;
-        margin-right: 20px;
-        /* Space between the logo and the links */
-      }
+            <!-- Description -->
+            <div class="mb-3">
+              <label for="description" class="form-label">Description</label>
+              <textarea
+                class="form-control"
+                id="description"
+                rows="3"
+                placeholder="Describe your expertise"
+              ></textarea>
+            </div>
 
-      nav a {
-        color: black;
-        padding: 14px 20px;
-        text-decoration: none;
-        text-align: center;
-        font-weight: bold;
-        position: relative;
-        overflow: hidden;
-      }
+            <!-- Specialty -->
+            <div class="mb-3">
+              <label for="specialty" class="form-label">Specialty</label>
+              <input
+                type="text"
+                class="form-control"
+                id="specialty"
+                placeholder="Enter your specialty"
+              />
+            </div>
 
-      /* Enhanced Hover Styles */
-      nav a::before {
-        content: "";
-        position: absolute;
-        width: 0;
-        height: 2px;
-        background-color: #4caf50;
-        bottom: 0;
-        left: 50%;
-        transform: translateX(-50%);
-        transition: width 0.3s ease-in-out;
-      }
+            <!-- Fee -->
+            <div class="mb-3">
+              <label for="fee" class="form-label"
+                >Consultation Fee (in USD)</label
+              >
+              <input
+                type="number"
+                class="form-control"
+                id="fee"
+                placeholder="Enter your consultation fee"
+              />
+            </div>
 
-      nav a:hover::before {
-        width: 100%;
-      }
+            <!-- Years of Experience -->
+            <div class="mb-3">
+              <label for="experience" class="form-label"
+                >Years of Experience</label
+              >
+              <input
+                type="number"
+                class="form-control"
+                id="experience"
+                placeholder="Enter your years of experience"
+              />
+            </div>
 
-      nav a:hover {
-        color: #4caf50;
-      }
-    </style>
+            <!-- Availability -->
+            <div class="form-check mb-3">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                id="availability"
+              />
+              <label class="form-check-label" for="availability">
+                Available for Consultations
+              </label>
+            </div>
 
-    <script>
-      // JavaScript for dynamic navbar behavior
-      let lastScrollY = window.scrollY;
-      const navbar = document.getElementById('navbar');
-      let isMouseNearTop = false;
-
-      // Hide or show navbar on scroll
-      window.addEventListener('scroll', () => {
-        if (window.scrollY > lastScrollY && !isMouseNearTop) {
-          // Hide navbar on scroll down
-          navbar.style.transform = 'translateY(-100%)';
-        } else {
-          // Show navbar on scroll up
-          navbar.style.transform = 'translateY(0)';
-        }
-        lastScrollY = window.scrollY;
-      });
-
-      // Detect mouse near the top of the screen
-      window.addEventListener('mousemove', (event) => {
-        if (event.clientY <= 50) {
-          // Show navbar when mouse is near the top
-          navbar.style.transform = 'translateY(0)';
-          isMouseNearTop = true;
-        } else {
-          isMouseNearTop = false;
-        }
-      });
-    </script>
-  </header>
-
-
-
-<body>
-  <style>
-    /* Body and background styling */
-    body {
-      background-image: url('assets/images/banner13.jpg');
-      background-size: cover;
-      background-position: center;
-      background-attachment: fixed;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      padding-top: 70px;
-    }
-
-    /* Card styling */
-    .card {
-      background-color: rgba(255, 255, 255, 0.9);
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      margin-bottom: 30px;
-    }
-
-    /* Card header color change */
-    .card-header {
-      background-color: #00000082;
-      /* Change to your desired color */
-      color: white;
-    }
-
-    /* Button Styling */
-    .btn-center {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin-top: 20px;
-    }
-
-    .btn-primary {
-      font-size: 1.2rem;
-      padding: 12px 30px;
-      transition: background-color 0.3s ease, transform 0.3s ease;
-      background-color: #28a745;
-      /* New button color */
-      border: none;
-      color: white;
-    }
-
-    .btn-primary:hover {
-      background-color: #218838;
-      /* Darker shade on hover */
-      transform: scale(1.1);
-    }
-
-    /* Footer Styling - transparent background */
-    .footer {
-      background-color: rgba(0, 0, 0, 0.5);
-      /* Semi-transparent */
-      color: white;
-      text-align: center;
-      padding: 10px;
-      width: 100%;
-      margin-top: auto;
-    }
-  </style>
-
-  <div class="container mt-5">
-    <div class="card shadow-sm">
-      <div class="card-header">
-        <h3 class="card-title">Agronomist Profile Setup</h3>
-      </div>
-      <div class="card-body">
-        <form id="agronomistForm">
-          <div class="mb-3">
-            <label for="name" class="form-label">Name</label>
-            <input type="text" class="form-control" id="name" placeholder="Enter your full name" />
-          </div>
-
-          <div class="mb-3">
-            <label for="contact" class="form-label">Contact Number</label>
-            <input type="text" class="form-control" id="contact" placeholder="Enter your contact number" />
-          </div>
-
-          <div class="mb-3">
-            <label for="address" class="form-label">Address</label>
-            <textarea class="form-control" id="address" rows="3" placeholder="Enter your address"></textarea>
-          </div>
-
-          <div class="mb-3">
-            <label for="description" class="form-label">Description</label>
-            <textarea class="form-control" id="description" rows="3" placeholder="Describe your expertise"></textarea>
-          </div>
-
-          <div class="mb-3">
-            <label for="specialty" class="form-label">Specialty</label>
-            <input type="text" class="form-control" id="specialty" placeholder="Enter your specialty" />
-          </div>
-
-          <div class="mb-3">
-            <label for="fee" class="form-label">Consultation Fee (in USD)</label>
-            <input type="number" class="form-control" id="fee" placeholder="Enter your consultation fee" />
-          </div>
-
-          <div class="mb-3">
-            <label for="experience" class="form-label">Years of Experience</label>
-            <input type="number" class="form-control" id="experience" placeholder="Enter your years of experience" />
-          </div>
-
-          <div class="form-check mb-3">
-            <input class="form-check-input" type="checkbox" id="availability" />
-            <label class="form-check-label" for="availability">
-              Available for Consultations
-            </label>
-          </div>
-
-          <div class="btn-center">
-            <button type="submit" class="btn btn-primary">
-              Save Profile
-            </button>
-          </div>
-        </form>
+            <!-- Submit Button -->
+            <div class="text-end">
+              <button type="submit" class="btn btn-primary">
+                Save Profile
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
-  </div>
 
-  <footer class="footer">
-    <p>&copy; 2025 Agronomist Profile Setup. All Rights Reserved.</p>
-  </footer>
-
-  <script src="agronomist.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-
+    <script src="agronomist.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
 </html>
