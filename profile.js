@@ -395,7 +395,7 @@ async function fetchPayments() {
 // Populate payments table
 function populatePaymentsTable(payments) {
   const paymentsTableBody = document.querySelector("#paymentsTable tbody");
-  paymentsTableBody.innerHTML = ""; // Clear existing rows
+  paymentsTableBody.innerHTML = "";
 
   payments.forEach((payment) => {
     const row = document.createElement("tr");
