@@ -56,7 +56,7 @@ loginForm.addEventListener("submit", async (event) => {
         title: "লগ ইন সফল!",
         text: "স্বাগতম, " + username + "!",
         showConfirmButton: true,
-      });      
+      });
 
       console.log("Response:", data);
 
@@ -132,10 +132,11 @@ loginForm.addEventListener("submit", async (event) => {
       Swal.fire({
         icon: "error",
         title: "লগ ইন ব্যর্থ!",
-        text: errorData.detail || "কোনো তথ্য ভুল হয়েছে। দয়া করে আবার চেষ্টা করুন।",
+        text:
+          errorData.detail || "কোনো তথ্য ভুল হয়েছে। দয়া করে আবার চেষ্টা করুন।",
         showConfirmButton: true,
       });
-      
+
       console.error("Error:", errorData);
     }
   } catch (error) {
@@ -148,7 +149,6 @@ loginForm.addEventListener("submit", async (event) => {
       text: "লগ ইন করতে একটু ভুল হয়েছে। দয়া করে আবার চেষ্টা করুন।",
       showConfirmButton: true,
     });
-    
   }
 });
 
