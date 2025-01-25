@@ -1,150 +1,191 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Multi-Role Sign-Up</title>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <link rel="stylesheet" href="signup.css" />
-  </head>
-  <body>
-    <div class="form-container">
-      <h2>Sign Up - Create Multiple Accounts</h2>
-      <form id="signupForm">
-        <!-- Common Fields -->
-        <div class="common-fields">
-          <div class="input-group">
-            <input
-              type="text"
-              id="first-name"
-              name="first-name"
-              placeholder="First Name"
-              required
-            />
-            <input
-              type="text"
-              id="last-name"
-              name="last-name"
-              placeholder="Last Name"
-              required
-            />
-          </div>
 
-          <input
-            type="email"
-            id="email"
-            name="email"
-            placeholder="Email"
-            required
-          />
-          <input
-            type="text"
-            id="username"
-            name="username"
-            placeholder="Username"
-            required
-          />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Multi-Role Sign-Up</title>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <link rel="stylesheet" href="signup.css" />
+</head>
 
-          <div class="input-group">
-            <input
-              type="password"
-              id="password"
-              name="password"
-              placeholder="Password"
-              required
-            />
-            <input
-              type="password"
-              id="confirm-password"
-              name="confirm-password"
-              placeholder="Confirm Password"
-              required
-            />
-          </div>
+<body>
 
-          <div class="file-upload">
-            <label for="profilePicture">Profile Picture:</label>
-            <input
-              type="file"
-              id="profilePicture"
-              name="profilePicture"
-              accept="image/*"
-            />
-          </div>
+  <header>
+    <style>
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: hsla(0, 0%, 85%, 0.8);
+        border-bottom: 1px solid #ddd;
+        display: flex;
+        align-items: center;
+        padding: 10px 20px;
+        z-index: 1000;
+        transform: translateY(-100%);
+        transition: transform 0.3s ease-in-out;
+      }
 
-          <!-- Common fields for all roles -->
-          <input
-            type="date"
-            id="dob"
-            name="dob"
-            placeholder="Date of Birth"
-            required
-          />
-          <textarea
-            id="address"
-            name="address"
-            placeholder="Address"
-            required
-          ></textarea>
-          <input
-            type="tel"
-            id="contact"
-            name="contact"
-            placeholder="Contact Number"
-            required
-          />
+      nav .logo img {
+        height: 40px;
+        width: auto;
+        margin-right: 20px;
+      }
+
+      nav a {
+        color: black;
+        padding: 14px 20px;
+        text-decoration: none;
+        text-align: center;
+        font-weight: bold;
+        position: relative;
+        overflow: hidden;
+      }
+
+      nav a::before {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 2px;
+        background-color: #4caf50;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        transition: width 0.3s ease-in-out;
+      }
+
+      nav a:hover::before {
+        width: 100%;
+      }
+
+      nav a:hover {
+        color: #4caf50;
+      }
+    </style>
+
+    <nav id="navbar">
+      <div class="logo">
+        <img src="assets/images/logo.jpg" alt="Logo" />
+      </div>
+      <a href="Home.html">Home</a>
+      <a href="contact.html">Contact</a>
+      <a href="about.html">About Us</a>
+      <a href="profile.html">Profile</a>
+    </nav>
+    <script>
+      let lastScrollY = window.scrollY;
+      const navbar = document.getElementById("navbar");
+      let isMouseNearTop = false;
+
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > lastScrollY && !isMouseNearTop) {
+          navbar.style.transform = "translateY(-100%)";
+        } else {
+          navbar.style.transform = "translateY(0)";
+        }
+        lastScrollY = window.scrollY;
+      });
+
+      window.addEventListener("mousemove", (event) => {
+        if (event.clientY <= 50) {
+          navbar.style.transform = "translateY(0)";
+          isMouseNearTop = true;
+        } else {
+          isMouseNearTop = false;
+        }
+      });
+    </script>
+
+  </header>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <!-- Background Video -->
+  <div class="video-background">
+    <video autoplay muted loop>
+      <source src="assets/video/demo.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+  </div>
+
+  <!-- Transparent Form Container -->
+  <div class="form-container">
+    <h2>Sign Up - Create Multiple Accounts</h2>
+    <form id="signupForm">
+      <!-- Common Fields -->
+      <div class="common-fields">
+        <div class="input-group">
+          <input type="text" id="first-name" name="first-name" placeholder="First Name" required />
+          <input type="text" id="last-name" name="last-name" placeholder="Last Name" required />
         </div>
 
-        <!-- Role Selection -->
-        <div class="role-selection">
-          <h3>Select your role(s):</h3>
-          <div class="checkbox-group">
-            <label>
-              <input
-                type="checkbox"
-                name="roles"
-                value="farmer"
-                onchange="showAdditionalFields()"
-              />
-              Farmer
-            </label>
-            <label>
-              <input
-                type="checkbox"
-                name="roles"
-                value="agronomist"
-                onchange="showAdditionalFields()"
-              />
-              Agronomist
-            </label>
-            <label>
-              <input
-                type="checkbox"
-                name="roles"
-                value="storage_owner"
-                onchange="showAdditionalFields()"
-              />
-              Storage Owner
-            </label>
-            <label>
-              <input
-                type="checkbox"
-                name="roles"
-                value="equipment_renter"
-                onchange="showAdditionalFields()"
-              />
-              Equipment Renter
-            </label>
-          </div>
+        <input type="email" id="email" name="email" placeholder="Email" required />
+        <input type="text" id="username" name="username" placeholder="Username" required />
+
+        <div class="input-group">
+          <input type="password" id="password" name="password" placeholder="Password" required />
+          <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm Password"
+            required />
         </div>
 
-        <!-- Additional Fields Container -->
-        <div id="additional-fields"></div>
+        <div class="file-upload">
+          <label for="profilePicture">Profile Picture:</label>
+          <input type="file" id="profilePicture" name="profilePicture" accept="image/*" />
+        </div>
 
-        <button type="submit">Create Accounts</button>
-      </form>
-    </div>
+        <input type="date" id="dob" name="dob" placeholder="Date of Birth" required />
+        <textarea id="address" name="address" placeholder="Address" required></textarea>
+        <input type="tel" id="contact" name="contact" placeholder="Contact Number" required />
+      </div>
 
-    <script src="signup.js"></script>
-  </body>
+      <!-- Role Selection -->
+      <div class="role-selection">
+        <h3>Select your role(s):</h3>
+        <div class="checkbox-group">
+          <label>
+            <input type="checkbox" name="roles" value="farmer" onchange="showAdditionalFields()" />
+            Farmer
+          </label>
+          <label>
+            <input type="checkbox" name="roles" value="agronomist" onchange="showAdditionalFields()" />
+            Agronomist
+          </label>
+          <label>
+            <input type="checkbox" name="roles" value="storage_owner" onchange="showAdditionalFields()" />
+            Storage Owner
+          </label>
+          <label>
+            <input type="checkbox" name="roles" value="equipment_renter" onchange="showAdditionalFields()" />
+            Equipment Renter
+          </label>
+        </div>
+      </div>
+
+      <!-- Additional Fields Container -->
+      <div id="additional-fields"></div>
+
+      <button type="submit">Create Accounts</button>
+    </form>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Multi-Role Platform. All rights reserved.</p>
+  </footer>
+
+  <script src="signup.js"></script>
+</body>
+
 </html>

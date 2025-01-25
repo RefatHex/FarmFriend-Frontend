@@ -1,116 +1,265 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Recommendation AI</title>
-    <!-- Bootstrap 5 CDN -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-  </head>
-  <body class="bg-light">
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <div class="container-fluid">
-        <span class="navbar-brand mb-0 h1">RecAI</span>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Recommendation AI</title>
+  <!-- Bootstrap 5 CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <style>
+    /* General Page Styling */
+    body {
+      font-family: Arial, sans-serif;
+      background: url('assets/images/banner14.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: #212529;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      position: relative;
+      /* Add relative positioning */
+    }
+
+    /* Add padding to the top of the body to avoid overlap */
+    .container {
+      padding-top: 80px;
+      /* Adjust according to the height of your navbar */
+    }
+
+
+    /* Card Styling */
+    .card {
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+      border-radius: 18px;
+      overflow: hidden;
+      background-color: rgba(255, 255, 255, 0.1);
+      /* Transparent background */
+      backdrop-filter: blur(8px);
+      /* Blurred effect */
+      border: none;
+      margin: auto;
+      padding: 50px;
+      max-width: 600px;
+      /* Adjust card width */
+      transition: all 0.3s ease;
+    }
+
+
+
+    .card:hover {
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+      transform: translateY(-5px);
+    }
+
+    /* Card Header */
+    .card-header {
+      background: linear-gradient(20deg, #ffdf0085, #cf981d);
+      color: #ffffff;
+      padding: 20px;
+      text-align: center;
+      font-size: 1.8rem;
+      font-weight: 600;
+      border-radius: 10px;
+    }
+
+    /* Weather Info Section */
+    #weatherInfo h5 {
+      text-align: center;
+      font-weight: bold;
+      margin-bottom: 15px;
+    }
+
+    #response {
+      font-weight: 600;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Navbar -->
+  <nav id="navbar">
+    <div class="logo">
+      <img src="assets/images/logo.jpg" alt="Logo" />
+    </div>
+    <a href="index.html">Home</a>
+    <a href="contact.html">Contact</a>
+    <a href="about.html">About Us</a>
+    <a href="login.html">Login</a>
+    <a href="signup.html">Sign Up</a>
+  </nav>
+  <style>
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: hsla(0, 0%, 85%, 0.8);
+      border-bottom: 1px solid #ddd;
+      display: flex;
+      align-items: center;
+      padding: 10px 20px;
+      z-index: 1000;
+      transform: translateY(-100%);
+      transition: transform 0.3s ease-in-out;
+    }
+
+    nav .logo img {
+      height: 40px;
+      width: auto;
+      margin-right: 20px;
+    }
+
+    nav a {
+      color: black;
+      padding: 14px 20px;
+      text-decoration: none;
+      text-align: center;
+      font-weight: bold;
+      position: relative;
+      overflow: hidden;
+    }
+
+    nav a::before {
+      content: "";
+      position: absolute;
+      width: 0;
+      height: 2px;
+      background-color: #4caf50;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      transition: width 0.3s ease-in-out;
+    }
+
+    nav a:hover::before {
+      width: 100%;
+    }
+
+    nav a:hover {
+      color: #4caf50;
+    }
+  </style>
+
+  <script>
+    let lastScrollY = window.scrollY;
+    const navbar = document.getElementById("navbar");
+    let isMouseNearTop = false;
+
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > lastScrollY && !isMouseNearTop) {
+        navbar.style.transform = "translateY(-100%)";
+      } else {
+        navbar.style.transform = "translateY(0)";
+      }
+      lastScrollY = window.scrollY;
+    });
+
+    window.addEventListener("mousemove", (event) => {
+      if (event.clientY <= 50) {
+        navbar.style.transform = "translateY(0)";
+        isMouseNearTop = true;
+      } else {
+        isMouseNearTop = false;
+      }
+    });
+  </script>
+
+  <!-- Main Container -->
+  <div class="container my-5">
+    <!-- Card with Form -->
+    <div class="card">
+      <!-- Card Header with Title -->
+      <div class="card-header">
+        RecAI Response Form
       </div>
-    </nav>
-
-    <!-- Main Container -->
-    <div class="container my-5">
-      <h1 class="mb-4 text-center">RecAI Response Form</h1>
-
-      <div class="card mx-auto" style="max-width: 600px">
-        <div class="card-body">
-          <form id="recForm">
-            <!-- Form Inputs -->
-            <div class="mb-3">
-              <label for="nitrogen" class="form-label">Nitrogen (N)</label>
-              <input
-                type="number"
-                step="any"
-                class="form-control"
-                id="nitrogen"
-                name="nitrogen"
-                required
-              />
-            </div>
-
-            <div class="mb-3">
-              <label for="phosphorus" class="form-label">Phosphorus (P)</label>
-              <input
-                type="number"
-                step="any"
-                class="form-control"
-                id="phosphorus"
-                name="phosphorus"
-                required
-              />
-            </div>
-
-            <div class="mb-3">
-              <label for="potassium" class="form-label">Potassium (K)</label>
-              <input
-                type="number"
-                step="any"
-                class="form-control"
-                id="potassium"
-                name="potassium"
-                required
-              />
-            </div>
-
-            <div class="mb-3">
-              <label for="ph" class="form-label">pH</label>
-              <input
-                type="number"
-                step="any"
-                class="form-control"
-                id="ph"
-                name="ph"
-                required
-              />
-            </div>
-
-            <div class="mb-3">
-              <label for="rainfall" class="form-label">Rainfall (mm)</label>
-              <input
-                type="number"
-                step="any"
-                class="form-control"
-                id="rainfall"
-                name="rainfall"
-                required
-              />
-            </div>
-
-            <button type="submit" class="btn btn-primary w-100">
-              Get Recommendation
-            </button>
-          </form>
-
-          <!-- Weather Info Section -->
-          <div id="weatherInfo" class="mt-4">
-            <h5 class="text-center">Weather Information</h5>
-            <p id="city" class="mb-1"><strong>City:</strong> Loading...</p>
-            <p id="temperature" class="mb-1">
-              <strong>Temperature:</strong> Loading...
-            </p>
-            <p id="humidity" class="mb-1">
-              <strong>Humidity:</strong> Loading...
-            </p>
+      <div class="card-body">
+        <form id="recForm">
+          <!-- Form Inputs -->
+          <div class="mb-3">
+            <label for="nitrogen" class="form-label">Nitrogen (N)</label>
+            <input type="number" step="any" class="form-control" id="nitrogen" name="nitrogen" required />
           </div>
 
-          <!-- Response Alert -->
-          <div id="response" class="alert mt-4 d-none" role="alert"></div>
+          <div class="mb-3">
+            <label for="phosphorus" class="form-label">Phosphorus (P)</label>
+            <input type="number" step="any" class="form-control" id="phosphorus" name="phosphorus" required />
+          </div>
+
+          <div class="mb-3">
+            <label for="potassium" class="form-label">Potassium (K)</label>
+            <input type="number" step="any" class="form-control" id="potassium" name="potassium" required />
+          </div>
+
+          <div class="mb-3">
+            <label for="ph" class="form-label">pH</label>
+            <input type="number" step="any" class="form-control" id="ph" name="ph" required />
+          </div>
+
+          <div class="mb-3">
+            <label for="rainfall" class="form-label">Rainfall (mm)</label>
+            <input type="number" step="any" class="form-control" id="rainfall" name="rainfall" required />
+          </div>
+
+          <button type="submit" class="btn btn-primary w-100">
+            Get Recommendation
+          </button>
+        </form>
+
+        <!-- Weather Info Section -->
+        <div id="weatherInfo" class="mt-4">
+          <h5>Weather Information</h5>
+          <p id="city" class="mb-1"><strong>City:</strong> Loading...</p>
+          <p id="temperature" class="mb-1">
+            <strong>Temperature:</strong> Loading...
+          </p>
+          <p id="humidity" class="mb-1">
+            <strong>Humidity:</strong> Loading...
+          </p>
         </div>
+
+        <!-- Response Alert -->
+        <div id="response" class="alert mt-4 d-none" role="alert"></div>
       </div>
     </div>
+  </div>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <footer>
+    <p>
+      © 2025 Fertilizer AI. All Rights Reserved. | <a href="privacy.html">Privacy Policy</a> | <a
+        href="terms.html">Terms
+        of Service</a>
+    </p>
+  </footer>
+  <style>
+    /* Footer Styling */
+    footer {
+      background: linear-gradient(68deg, #ffdf0085, #cf981d);
+      /* Fixed by using 'background' */
+      padding: 20px 0;
+      text-align: center;
+      color: #ffffff;
+      font-size: 0.9rem;
+      border-top: 1px solid #dee2e6;
+    }
 
-    <script src="recsearch.js"></script>
-  </body>
+
+    footer a {
+      color: #007bff;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script src="recsearch.js"></script>
+</body>
+
 </html>

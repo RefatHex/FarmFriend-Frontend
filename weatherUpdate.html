@@ -1,268 +1,351 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>FarmFriend - Weather Alerts</title>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap"
-      rel="stylesheet"
-    />
-    <style>
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: "Poppins", sans-serif;
-      }
 
-      body {
-        background-color: #f8f9fa;
-        color: #333;
-        display: flex;
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FarmFriend - Weather Alerts</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      background: url('assets/images/weatherBG2.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 0;
+      min-height: 100vh;
+      height: 100%;
+    }
+
+    .container {
+      max-width: 900px;
+      margin-top: 20px;
+      background: rgb(255 255 255 / 20%);
+      border-radius: 10px;
+      box-shadow: 0 6px 12px rgb(227 227 227 / 33%);
+      padding: 40px;
+      z-index: 1;
+      position: relative;
+    }
+
+    /* Big background card for Weather Update */
+    .weather-update-card {
+      width: 100%;
+      height: 200px;
+      /* Reduced height */
+      background: rgb(198 231 233 / 39%);
+      border-radius: 12px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+      margin-bottom: 30px;
+      /* Adjusted margin */
+    }
+
+
+    .weather-update-card h1 {
+      font-size: 24px;
+      /* Reduced font size */
+      font-weight: bold;
+      color: #388e3c;
+      text-align: center;
+      margin: 0;
+      /* Ensure no extra spacing */
+    }
+
+    .card-container {
+      display: flex;
+      justify-content: space-around;
+      margin: 30px 0;
+      gap: 30px;
+    }
+
+    .card {
+      width: 200px;
+      /* Reduced width */
+      height: 160px;
+      /* Reduced height */
+      background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border-radius: 12px;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+      padding: 15px;
+      /* Reduced padding */
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+      cursor: pointer;
+    }
+
+    .card-value {
+      font-size: 24px;
+      /* Reduced font size */
+      font-weight: bold;
+      color: #388e3c;
+    }
+
+    .card-label {
+      font-size: 16px;
+      /* Reduced font size */
+      font-weight: 500;
+      color: #555;
+      margin-top: 6px;
+      /* Adjusted margin */
+    }
+
+
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+      background: linear-gradient(135deg, #a5d6a7, #81c784);
+    }
+
+    nav a {
+      color: black;
+      padding: 14px 20px;
+      text-decoration: none;
+      font-weight: bold;
+      position: relative;
+      overflow: hidden;
+      transition: color 0.3s, transform 0.3s ease;
+    }
+
+    nav a::before {
+      content: "";
+      position: absolute;
+      width: 0;
+      height: 2px;
+      background-color: #4caf50;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      transition: width 0.3s ease-in-out;
+    }
+
+    nav a:hover::before {
+      width: 100%;
+    }
+
+    nav a:hover {
+      color: #4caf50;
+      transform: translateY(-2px);
+    }
+
+    .section {
+      margin-top: 30px;
+      padding: 20px;
+      background: #f1f8e9;
+      border-radius: 10px;
+      text-align: left;
+      transition: background-color 0.3s ease;
+    }
+
+    .section:hover {
+      background-color: #dcedc8;
+    }
+
+    .section h2 {
+      font-size: 24px;
+      color: #388e3c;
+      margin-bottom: 10px;
+    }
+
+    .alert {
+      margin-top: 20px;
+      padding: 15px;
+      border: 1px solid #d32f2f;
+      border-radius: 5px;
+      background: #ffcdd2;
+      color: #d32f2f;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    footer {
+      margin-top: 40px;
+      text-align: center;
+      color: #388e3c;
+      background: #e8f5e9;
+      padding: 15px 0;
+      width: 100%;
+      font-size: 14px;
+      position: absolute;
+      bottom: 0;
+    }
+
+    @media (max-width: 768px) {
+      .card-container {
         flex-direction: column;
         align-items: center;
-        padding: 20px;
+        gap: 20px;
       }
 
-      header {
-        background: #e8f5e9;
-        width: 100%;
-        padding: 20px;
-        text-align: center;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      .card {
+        width: 180px;
+        height: 160px;
       }
 
-      header h1 {
-        font-size: 28px;
-        color: #388e3c;
-        font-weight: 600;
-      }
-
-      .container {
-        max-width: 900px;
-        margin-top: 30px;
-        background: #ffffff;
-        border-radius: 10px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        padding: 40px;
-      }
-
-      .circle-container {
-        display: flex;
-        justify-content: space-between;
-        margin: 30px 0;
-      }
-
-      .circle {
-        width: 140px;
-        height: 140px;
-        border-radius: 50%;
-        background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        position: relative;
-      }
-
-      .circle-value {
-        font-size: 22px;
-        font-weight: bold;
-        color: #388e3c;
-      }
-
-      .circle-label {
-        font-size: 16px;
-        font-weight: 500;
-        color: #555;
-        margin-top: 8px;
-      }
-
-      .section {
-        margin-top: 30px;
-        padding: 20px;
-        background: #f1f8e9;
-        border-radius: 10px;
-        text-align: left;
-      }
-
-      .section h2 {
+      .card-value {
         font-size: 24px;
-        color: #388e3c;
-        margin-bottom: 10px;
-        font-weight: 600;
       }
 
-      .alert {
-        margin-top: 20px;
-        padding: 15px;
-        border: 1px solid #d32f2f;
-        border-radius: 5px;
-        background: #ffcdd2;
-        color: #d32f2f;
-        font-weight: bold;
-        text-align: center;
+      .card-label {
+        font-size: 16px;
       }
+    }
+  </style>
+</head>
 
-      footer {
-        margin-top: 40px;
-        text-align: center;
-        color: #388e3c;
-        background: #e8f5e9;
-        padding: 15px 0;
+<body>
+  <header>
+    <nav id="navbar">
+      <div class="logo">
+        <img src="assets/images/logo.jpg" alt="Logo" />
+      </div>
+      <a href="farmerLandingPage.html">Home</a>
+      <a href="profile.html">Profile</a>
+    </nav>
+    <style>
+      /* Navbar Styling */
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
         width: 100%;
-        font-size: 14px;
+        background-color: hsla(0, 0%, 85%, 0.8);
+        border-bottom: 1px solid #ddd;
+        display: flex;
+        align-items: center;
+        padding: 10px 20px;
+        z-index: 1000;
       }
 
-      @media (max-width: 768px) {
-        .circle-container {
-          flex-direction: column;
-          align-items: center;
-          gap: 20px;
-        }
-
-        .circle {
-          width: 120px;
-          height: 120px;
-        }
-
-        .circle-value {
-          font-size: 18px;
-        }
-
-        .circle-label {
-          font-size: 14px;
-        }
+      nav .logo img {
+        height: 40px;
+        width: auto;
+        margin-right: 20px;
       }
     </style>
-  </head>
-  <body>
-    <header>
-      <h1>FarmFriend - Weather Information</h1>
-    </header>
+  </header>
 
-    <div class="container">
-      <!-- Circular Metrics Section -->
-      <div class="circle-container">
-        <div class="circle">
-          <div class="circle-value" id="tempCircle">--°C</div>
-          <div class="circle-label">Temperature</div>
-        </div>
-        <div class="circle">
-          <div class="circle-value" id="humidityCircle">--%</div>
-          <div class="circle-label">Humidity</div>
-        </div>
-        <div class="circle">
-          <div class="circle-value" id="rainfallCircle">-- mm</div>
-          <div class="circle-label">Rainfall</div>
-        </div>
+  <div class="container">
+    <!-- Weather Update Card -->
+    <div class="weather-update-card">
+      <h1>Weather Update</h1>
+    </div>
+
+    <!-- Card Section -->
+    <div class="card-container">
+      <div class="card">
+        <div class="card-value" id="tempCard">--°C</div>
+        <div class="card-label">Temperature</div>
       </div>
-
-      <!-- Alerts Section -->
-      <div class="section">
-        <h2>Alerts</h2>
-        <div id="alerts">
-          <!-- Alerts will be dynamically inserted here -->
-        </div>
+      <div class="card">
+        <div class="card-value" id="humidityCard">--%</div>
+        <div class="card-label">Humidity</div>
       </div>
-
-      <!-- Historical Data Section -->
-      <div class="section">
-        <h2>Historical Data</h2>
-        <p>
-          Total rainfall in the last year:
-          <span id="historicalRainfall">-- mm</span>
-        </p>
+      <div class="card rainfall-card">
+        <div class="card-value" id="rainfallCard">-- mm</div>
+        <div class="card-label">Rainfall</div>
       </div>
     </div>
 
-    <footer>
-      <p>&copy; 2025 FarmFriend. All Rights Reserved.</p>
-    </footer>
+    <!-- Alerts Section -->
+    <div class="section">
+      <h2>Alerts</h2>
+      <div id="alerts"></div>
+    </div>
 
-    <script>
-      // Replace these URLs with your actual API endpoints
-      const CURRENT_WEATHER_API_URL =
-        "http://127.0.0.1:8000/api/current-weather/?city=London";
-      const HISTORICAL_RAINFALL_API_URL =
-        "http://127.0.0.1:8000/api/historical-rainfall/?city=London";
+    <!-- Historical Data Section -->
+    <div class="section">
+      <h2>Historical Data</h2>
+      <p>Total rainfall in the last year: <span id="historicalRainfall">-- mm</span></p>
+    </div>
+  </div>
 
-      // Fetch current weather data
-      async function fetchCurrentWeather() {
-        try {
-          const response = await fetch(CURRENT_WEATHER_API_URL);
-          if (!response.ok) {
-            throw new Error("Failed to fetch current weather data.");
-          }
-          const data = await response.json();
-          populateCurrentWeather(data);
-        } catch (error) {
-          console.error("Error fetching current weather data:", error);
+  <footer>
+    <p>&copy; 2025 FarmFriend. All Rights Reserved.</p>
+  </footer>
+
+  <script>
+    // API endpoints (adjust as needed)
+    const CURRENT_WEATHER_API_URL = "http://127.0.0.1:8000/api/current-weather/?city=London";
+    const HISTORICAL_RAINFALL_API_URL = "http://127.0.0.1:8000/api/historical-rainfall/?city=London";
+
+    async function fetchCurrentWeather() {
+      try {
+        const response = await fetch(CURRENT_WEATHER_API_URL);
+        if (!response.ok) {
+          throw new Error("Failed to fetch current weather data.");
         }
+        const data = await response.json();
+        populateCurrentWeather(data);
+      } catch (error) {
+        console.error("Error fetching current weather data:", error);
       }
+    }
 
-      // Fetch historical rainfall data
-      async function fetchHistoricalRainfall() {
-        try {
-          const response = await fetch(HISTORICAL_RAINFALL_API_URL);
-          if (!response.ok) {
-            throw new Error("Failed to fetch historical rainfall data.");
-          }
-          const data = await response.json();
-          populateHistoricalRainfall(data);
-        } catch (error) {
-          console.error("Error fetching historical rainfall data:", error);
+    async function fetchHistoricalRainfall() {
+      try {
+        const response = await fetch(HISTORICAL_RAINFALL_API_URL);
+        if (!response.ok) {
+          throw new Error("Failed to fetch historical rainfall data.");
         }
+        const data = await response.json();
+        populateHistoricalRainfall(data);
+      } catch (error) {
+        console.error("Error fetching historical rainfall data:", error);
       }
+    }
 
-      // Populate current weather data into the page
-      function populateCurrentWeather(data) {
-        // Circular metrics
-        document.getElementById(
-          "tempCircle"
-        ).innerText = `${data.temperature}°C`;
-        document.getElementById(
-          "humidityCircle"
-        ).innerText = `${data.humidity}%`;
-        document.getElementById(
-          "rainfallCircle"
-        ).innerText = `${data.precipitation} mm`;
+    function populateCurrentWeather(data) {
+      document.getElementById("tempCard").innerText = `${data.temperature}°C`;
+      document.getElementById("humidityCard").innerText = `${data.humidity}%`;
+      document.getElementById("rainfallCard").innerText = `${data.precipitation} mm`;
 
-        // Alerts
-        const alertsContainer = document.getElementById("alerts");
-        alertsContainer.innerHTML = ""; // Clear any existing alerts
-        if (data.warnings && data.warnings.length > 0) {
-          data.warnings.forEach((alert) => {
-            const alertDiv = document.createElement("div");
-            alertDiv.classList.add("alert");
-            alertDiv.innerText = alert;
-            alertsContainer.appendChild(alertDiv);
-          });
-        } else {
-          const noAlertDiv = document.createElement("div");
-          noAlertDiv.classList.add("alert");
-          noAlertDiv.innerText = "No current weather alerts.";
-          alertsContainer.appendChild(noAlertDiv);
-        }
+      const alertsContainer = document.getElementById("alerts");
+      alertsContainer.innerHTML = "";
+      if (data.warnings && data.warnings.length > 0) {
+        data.warnings.forEach((alert) => {
+          const alertDiv = document.createElement("div");
+          alertDiv.classList.add("alert");
+          alertDiv.innerText = alert;
+          alertsContainer.appendChild(alertDiv);
+        });
+      } else {
+        const noAlertDiv = document.createElement("div");
+        noAlertDiv.classList.add("alert");
+        noAlertDiv.innerText = "No current weather alerts.";
+        alertsContainer.appendChild(noAlertDiv);
       }
+    }
 
-      // Populate historical rainfall data into the page
-      function populateHistoricalRainfall(data) {
-        document.getElementById(
-          "historicalRainfall"
-        ).innerText = `${data.total_rainfall_last_year} mm`;
-      }
+    function populateHistoricalRainfall(data) {
+      document.getElementById("historicalRainfall").innerText = `${data.total_rainfall_last_year} mm`;
+    }
 
-      // Initialize the page by fetching the data
-      async function initializePage() {
-        await fetchCurrentWeather();
-        await fetchHistoricalRainfall();
-      }
+    async function initializePage() {
+      await fetchCurrentWeather();
+      await fetchHistoricalRainfall();
+    }
 
-      // Call the initialization function when the page loads
-      document.addEventListener("DOMContentLoaded", initializePage);
-    </script>
-  </body>
+    document.addEventListener("DOMContentLoaded", initializePage);
+  </script>
+</body>
+
 </html>
