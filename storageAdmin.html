@@ -317,123 +317,52 @@
 
     <!-- Script for Navbar Behavior and Section Toggle -->
     <script>
-      // Simulate API call with sample data for Dashboard, Products, Bookings, Users, and Reports
-      const apiData = {
-        dashboard: [
-          {
-            title: "Total Products",
-            count: 0,
-            description: "Total products available for rent",
-          },
-          {
-            title: "Total Users",
-            count: 0,
-            description: "Number of active users",
-          },
-          {
-            title: "Total Bookings",
-            count: 0,
-            description: "Total number of bookings made",
-          },
-          {
-            title: "Pending Reports",
-            count: 0,
-            description: "Number of pending reports to review",
-          },
-        ],
-        products: [
-          {
-            name: "Battery Mower",
-            description: "Efficient lawn mower",
-            price: "$150",
-            imageUrl: "assets/images/seeder.jpg",
-          },
-          {
-            name: "Tractor",
-            description: "Heavy-duty farm tractor",
-            price: "$5000",
-            imageUrl: "assets/images/tractor.jpg",
-          },
-        ],
-        bookings: [
-          {
-            name: "John Doe",
-            product: "Battery Mower",
-            date: "2025-01-10",
-            status: "Confirmed",
-          },
-          {
-            name: "Alice Smith",
-            product: "Tractor",
-            date: "2025-01-15",
-            status: "Pending",
-          },
-        ],
-        users: [
-          { name: "John Doe", email: "john.doe@example.com", status: "Active" },
-          {
-            name: "Alice Smith",
-            email: "alice.smith@example.com",
-            status: "Inactive",
-          },
-        ],
-        reports: [
-          { title: "Monthly Revenue", status: "Pending" },
-          { title: "Annual User Growth", status: "Completed" },
-        ],
+      window.onload = async function () {
+        try {
+          // API Endpoints
+          const storageOwnersAPI =
+            "http://localhost:8000/storage/storage-owners/";
+          const storageDealsAPI =
+            "http://localhost:8000/storage/storage-deals/";
+
+          // Fetch Storage Owners Data
+          const storageOwnersResponse = await fetch(storageOwnersAPI);
+          const storageOwnersData = await storageOwnersResponse.json();
+
+          // Fetch Storage Deals Data
+          const storageDealsResponse = await fetch(storageDealsAPI);
+          const storageDealsData = await storageDealsResponse.json();
+
+          // Calculate totals
+          const totalUsers = storageOwnersData.count; // Total Users
+          const totalBookings = storageDealsData.count; // Total Bookings
+          const totalProducts = 10; // Replace with actual logic if fetching from another API
+
+          // Get the container
+          const dashboardContainer =
+            document.getElementById("dashboardContainer");
+          dashboardContainer.innerHTML = ""; // Clear existing content
+
+          // Create and append cards for totals
+          const totals = [
+            { title: "Total Users", count: totalUsers },
+            { title: "Total Bookings", count: totalBookings },
+            { title: "Total Products", count: totalProducts },
+          ];
+
+          totals.forEach((item) => {
+            const card = document.createElement("div");
+            card.classList.add("card");
+            card.innerHTML = `
+          <h3>${item.title}</h3>
+          <p>${item.count}</p>
+        `;
+            dashboardContainer.appendChild(card);
+          });
+        } catch (error) {
+          console.error("Error fetching data:", error);
+        }
       };
-
-      // Load Dashboard Data
-      window.onload = function () {
-        // Load Dashboard Data
-        const dashboardContainer =
-          document.getElementById("dashboardContainer");
-        apiData.dashboard.forEach((item) => {
-          const card = document.createElement("div");
-          card.classList.add("card");
-          card.innerHTML = `<h3>${item.title}</h3>
-          <p>${item.description}</p>
-          <div class="price">${item.count}</div>`;
-          dashboardContainer.appendChild(card);
-        });
-
-        // Load Products Data
-        const productsContainer = document.getElementById("productsContainer");
-        apiData.products.forEach((product) => {
-          const card = document.createElement("div");
-          card.classList.add("card");
-          card.innerHTML = `<img src="${product.imageUrl}" alt="${product.name}">
-          <h3>${product.name}</h3>
-          <p>${product.description}</p>
-          <div class="price">${product.price}</div>`;
-          productsContainer.appendChild(card);
-        });
-      };
-
-      // Function to show sections based on navbar clicks
-      function showSection(sectionId) {
-        const sections = document.querySelectorAll("section");
-        sections.forEach((section) => {
-          section.classList.remove("active");
-        });
-
-        const activeLink = document.querySelector("nav ul li a.active");
-        if (activeLink) {
-          activeLink.classList.remove("active");
-        }
-
-        const targetSection = document.getElementById(sectionId);
-        if (targetSection) {
-          targetSection.classList.add("active");
-        }
-
-        const targetLink = document.querySelector(
-          `nav ul li a[href='#${sectionId}']`
-        );
-        if (targetLink) {
-          targetLink.classList.add("active");
-        }
-      }
     </script>
   </body>
 </html>
