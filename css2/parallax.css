@@ -87,29 +87,31 @@ header {
 }
 
 /* Adjust text size for the title */
+/* Adjust the hover effect to avoid blinking */
 #text h1 {
   font-size: 3.5em;
   font-weight: 700;
-  color: #3fc4f9; /* Main title color - dark gray */
-  -webkit-text-stroke: 2px #1d6e6d; /* Border on the title */
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Optional shadow for depth */
+  color: #53e5b1;
+  -webkit-text-stroke: 2px #161616b5;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  transition: color 0.3s ease, transform 0.3s ease; /* Smooth transition */
+}
+
+#text h1:hover {
+  color: #ffffffb8; /* Lighter color on hover */
+  transform: scale(1.05); /* Slight scale for hover effect */
 }
 
 /* Subtitle styling */
 #text h1:nth-child(2) {
-  font-size: 2.2em; /* Smaller font size for subtitle */
+  font-size: 2.2em;
   font-weight: 500;
-  color: #7abbb99c; /* Lighter gray for subtitle to maintain contrast */
-  opacity: 1; /* Make it visible without blinking */
-  -webkit-text-stroke: 1px #1d6e6d; /* Border on the subtitle */
+  color: #ffffffb8;
+  opacity: 1;
+  -webkit-text-stroke: 1px #7a9f9f;
 }
 
 /* Text hover effect */
-#text h1:hover {
-  color: #4a90e2; /* Soft blue on hover for interactive feel */
-  transform: scale(1.05); /* Slightly enlarge text on hover */
-  transition: all 0.3s ease;
-}
 
 /* Parallax Background Images */
 .parallax-background img {
