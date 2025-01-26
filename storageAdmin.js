@@ -117,11 +117,19 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       );
       if (response.ok) {
-        alert("Gig updated successfully!");
+        Swal.fire({
+          icon: 'success', // Indicates success
+          title: 'গিগ সফলভাবে আপডেট হয়েছে!',
+          confirmButtonText: 'ঠিক আছে'
+        });
         editModal.style.display = "none"; // Hide modal
         loadGigs(); // Refresh gig list
       } else {
-        alert("Failed to update gig.");
+        Swal.fire({
+          icon: 'error', // Indicates an error
+          title: 'গিগ আপডেট করতে ব্যর্থ হয়েছে!',
+          confirmButtonText: 'ঠিক আছে'
+        });
       }
     } catch (error) {
       console.error("Error updating gig:", error);
@@ -145,10 +153,18 @@ document.addEventListener("DOMContentLoaded", () => {
         { method: "DELETE" }
       );
       if (response.ok) {
-        alert("Gig deleted successfully!");
+        Swal.fire({
+          icon: 'success', // Indicates success
+          title: 'গিগ সফলভাবে মুছে ফেলা হয়েছে!',
+          confirmButtonText: 'ঠিক আছে'
+        });
         loadGigs(); // Refresh gig list
       } else {
-        alert("Failed to delete gig.");
+        Swal.fire({
+          icon: 'error', // Indicates an error
+          title: 'গিগ মুছে ফেলতে ব্যর্থ হয়েছে!',
+          confirmButtonText: 'ঠিক আছে'
+        });
       }
     } catch (error) {
       console.error("Error deleting gig:", error);
@@ -163,7 +179,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const userId = getCookie("userID"); // Replace with actual user ID if dynamic
     if (!userId) {
-      alert("User ID not found. Please log in again.");
+      Swal.fire({
+        icon: 'error', // Indicates an error
+        title: 'ইউজার আইডি পাওয়া যায়নি!',
+        text: 'অনুগ্রহ করে পুনরায় লগইন করুন।',
+        confirmButtonText: 'ঠিক আছে'
+      });
       return;
     }
 
@@ -179,7 +200,11 @@ document.addEventListener("DOMContentLoaded", () => {
       );
 
       if (response.ok) {
-        alert("Storage gig posted successfully!");
+        Swal.fire({
+          icon: 'success', // Indicates success
+          title: 'স্টোরেজ গিগ সফলভাবে পোস্ট করা হয়েছে!',
+          confirmButtonText: 'ঠিক আছে'
+        });
         form.reset();
         cropDropdown.value = "";
         loadGigs(); // Refresh gig list
@@ -190,7 +215,11 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     } catch (error) {
       console.error("Error submitting form:", error);
-      alert("An error occurred while submitting the form.");
+      Swal.fire({
+        icon: 'error', // Indicates an error
+        title: 'ফর্ম সাবমিট করতে একটি ত্রুটি ঘটেছে!',
+        confirmButtonText: 'ঠিক আছে'
+      });
     }
   });
 

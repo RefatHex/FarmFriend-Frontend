@@ -33,8 +33,8 @@ function showPopup() {
 const roleRedirects = {
   farmersId: "farmerLandingPage.html",
   "rent-ownersId": "rentalAdmin.html",
-  "storage-ownersId": "storageDashboard.html",
-  agronomistsId: "agronomistDashboard.html",
+  "storage-ownersId": "storageAdmin.html",
+  agronomistsId: "expertAdmin.html",
 };
 
 document.addEventListener("DOMContentLoaded", () => {

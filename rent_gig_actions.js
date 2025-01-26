@@ -98,15 +98,29 @@ async function deleteProduct(productId) {
       }
     );
     if (response.ok) {
-      alert("Product removed successfully.");
+      Swal.fire({
+        icon: 'success', // Indicates success
+        title: 'পণ্য সফলভাবে সরানো হয়েছে!',
+        confirmButtonText: 'ঠিক আছে'
+      });
       fetchAvailableProducts();
     } else {
       console.error("Failed to remove the product:", await response.text());
-      alert("Failed to remove the product. Please try again.");
+      Swal.fire({
+        icon: 'error', // Indicates an error
+        title: 'পণ্য সরানোতে ব্যর্থ হয়েছে!',
+        text: 'অনুগ্রহ করে আবার চেষ্টা করুন।',
+        confirmButtonText: 'ঠিক আছে'
+      });
     }
   } catch (error) {
     console.error("Error removing product:", error);
-    alert("An error occurred. Please try again later.");
+    Swal.fire({
+      icon: 'error', // Indicates an error
+      title: 'একটি ত্রুটি ঘটেছে!',
+      text: 'অনুগ্রহ করে পরে আবার চেষ্টা করুন।',
+      confirmButtonText: 'ঠিক আছে'
+    });
   }
 }
 
@@ -145,16 +159,30 @@ form.addEventListener("submit", async (event) => {
         fetchAvailableProducts(); // Refresh list
       } else {
         console.error("Failed to post instrument:", await response.text());
-        alert("Failed to post instrument. Please try again.");
+        Swal.fire({
+          icon: 'error', // Indicates an error
+          title: 'যন্ত্র পোস্ট করতে ব্যর্থ হয়েছে!',
+          text: 'অনুগ্রহ করে আবার চেষ্টা করুন।',
+          confirmButtonText: 'ঠিক আছে'
+        });
       }
     } catch (error) {
       console.error("Error posting instrument:", error);
-      alert("An error occurred. Please try again later.");
+      Swal.fire({
+        icon: 'error', // Indicates an error
+        title: 'একটি ত্রুটি ঘটেছে!',
+        text: 'অনুগ্রহ করে পরে আবার চেষ্টা করুন।',
+        confirmButtonText: 'ঠিক আছে'
+      });
     }
 
     form.reset();
   } else {
-    alert("Please fill out all required fields.");
+    Swal.fire({
+      icon: 'warning', // Indicates a warning
+      title: 'দয়া করে সমস্ত প্রয়োজনীয় তথ্য প্রদান করুন।',
+      confirmButtonText: 'ঠিক আছে'
+    });
   }
 });
 
@@ -165,7 +193,11 @@ editForm.addEventListener("submit", async (event) => {
 
   const productId = currentEditProductId;
   if (!productId) {
-    alert("No product selected for editing.");
+    Swal.fire({
+      icon: 'warning', // Indicates a warning
+      title: 'এডিট করার জন্য কোন পণ্য নির্বাচন করা হয়নি।',
+      confirmButtonText: 'ঠিক আছে'
+    });
     return;
   }
 
@@ -204,18 +236,32 @@ editForm.addEventListener("submit", async (event) => {
     );
 
     if (response.ok) {
-      alert("Product updated successfully.");
+      Swal.fire({
+        icon: 'success', // Indicates success
+        title: 'পণ্য সফলভাবে আপডেট করা হয়েছে!',
+        confirmButtonText: 'ঠিক আছে'
+      });
       // Hide the modal
       hideEditModal();
       // Refresh
       fetchAvailableProducts();
     } else {
       console.error("Failed to update the product:", await response.text());
-      alert("Failed to update the product. Please try again.");
+      Swal.fire({
+        icon: 'error', // Indicates an error
+        title: 'পণ্য আপডেট করতে ব্যর্থ হয়েছে!',
+        text: 'অনুগ্রহ করে আবার চেষ্টা করুন।',
+        confirmButtonText: 'ঠিক আছে'
+      });
     }
   } catch (error) {
     console.error("Error updating product:", error);
-    alert("An error occurred. Please try again later.");
+    Swal.fire({
+      icon: 'error', // Indicates an error
+      title: 'একটি ত্রুটি ঘটেছে!',
+      text: 'অনুগ্রহ করে পরে আবার চেষ্টা করুন।',
+      confirmButtonText: 'ঠিক আছে'
+    });
   }
 });
 
