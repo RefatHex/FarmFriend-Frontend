@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="booking_admin.css" />
+  </head>
+  <body>
+    <header>
+      <div class="header-text">
+        <h1>Admin Dashboard</h1>
+        <p>Manage your orders and bookings efficiently</p>
+      </div>
+    </header>
+
+    <nav id="navbar">
+      <a href="index.html">Home</a>
+      <a href="profile.html">Profile</a>
+      <a href="logout.html">Logout</a>
+    </nav>
+
+    <div class="container">
+      <h1 class="section-title">Orders and Bookings</h1>
+
+      <!-- Orders Section -->
+      <div id="ordersSection">
+        <h2 class="subsection-title">Active Orders</h2>
+        <section id="activeOrders" class="order-list"></section>
+      </div>
+    </div>
+
+    <footer>
+      <p>&copy; 2025 Admin Dashboard. All rights reserved.</p>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="booking_admin.js"></script>
+  </body>
+</html>
