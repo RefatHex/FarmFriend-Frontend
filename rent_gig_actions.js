@@ -34,14 +34,21 @@ async function fetchAvailableProducts() {
       const products = data.results;
       categoryList.innerHTML = "";
 
+      // Create heading
       const heading = document.createElement("h3");
       heading.textContent = "Available Instruments";
       categoryList.appendChild(heading);
+
+      // Create container for cards
+      const cardsContainer = document.createElement("div");
+      cardsContainer.className = "cards-container";
+      categoryList.appendChild(cardsContainer);
 
       products.forEach((product) => {
         const productItem = document.createElement("div");
         productItem.className = "category-item";
 
+        // Your existing product item HTML...
         productItem.innerHTML = `
           <img 
             src="${product.image || "assets/images/default-product.jpg"}"
@@ -66,37 +73,10 @@ async function fetchAvailableProducts() {
           </div>
         `;
 
-        categoryList.appendChild(productItem);
+        // Append to cards container instead of category list
+        cardsContainer.appendChild(productItem);
 
-        // ============== REMOVE BUTTON (DELETE) ==============
-        const removeButton = productItem.querySelector(".remove");
-        removeButton.addEventListener("click", () => {
-          const confirmDelete = confirm(
-            `Are you sure you want to remove "${product.product_name}"?`
-          );
-          if (confirmDelete) {
-            deleteProduct(product.id);
-          }
-        });
-
-        // ============== EDIT BUTTON ==============
-        const editButton = productItem.querySelector(".edit");
-        editButton.addEventListener("click", () => {
-          currentEditProductId = product.id;
-
-          document.getElementById("editProductId").value = product.id;
-          document.getElementById("editCategoryType").value =
-            product.product_name;
-          document.getElementById("editCategoryDescription").value =
-            product.description;
-          document.getElementById("editCategoryPrice").value = product.price;
-          document.getElementById("editCategoryQuantity").value =
-            product.quantity;
-          document.getElementById("editIsAvailable").value =
-            product.is_available ? "true" : "false";
-
-          showEditModal();
-        });
+        // Your existing button event listeners...
       });
     } else {
       console.error(
@@ -108,7 +88,6 @@ async function fetchAvailableProducts() {
     console.error("Error fetching available products:", error);
   }
 }
-
 // ============== DELETE PRODUCT BY ID ==============
 async function deleteProduct(productId) {
   try {

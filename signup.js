@@ -22,7 +22,11 @@ function showAdditionalFields() {
               <input type="number" name="storage_capacity" placeholder="গুদাম ঘরের ধারণক্ষমতা (টন এ)" required>
           </div>`;
         break;
-      case "equipment_renter":
+      case "rent_owner":
+        fieldsHTML += `
+          <div class="role-specific-fields">
+              <input type="hidden" name="no_of_deals" value="0">
+          </div>`;
         break;
       case "agronomist":
         fieldsHTML += `
@@ -37,7 +41,6 @@ function showAdditionalFields() {
               <input type="number" name="years_of_experience" placeholder="অভিজ্ঞতার বছর" required min="0">
           </div>`;
         break;
-      
     }
     fieldsHTML += "</div>";
   });
@@ -95,6 +98,7 @@ async function handleFormSubmit(event) {
   });
 
   try {
+    console.log(formData);
     // Create user account
     const userResponse = await fetch("http://localhost:8000/users/user-info/", {
       method: "POST",
@@ -138,7 +142,7 @@ async function handleFormSubmit(event) {
       showConfirmButton: false,
     }).then(() => {
       window.location.href = "login.html";
-    });    
+    });
   } catch (error) {
     console.error("Error:", error);
     Swal.fire({
@@ -146,7 +150,6 @@ async function handleFormSubmit(event) {
       title: "ভুল হয়েছে!",
       text: error.message,
     });
-    
   }
 }
 
@@ -176,7 +179,7 @@ function createRolePayload(role, userId) {
           document.querySelector('[name="storage_capacity"]').value
         ),
       };
-    case "equipment_renter":
+    case "rent_owner":
       return {
         ...basePayload,
         no_of_deals: 0,
@@ -196,7 +199,7 @@ function getRoleUrl(role) {
   const urlMap = {
     farmer: "http://localhost:8000/farmers/farmers/",
     storage_owner: "http://localhost:8000/storage/storage-owners/",
-    equipment_renter: "http://localhost:8000/rentals/rent-owners/",
+    rent_owner: "http://localhost:8000/rentals/rent-owners/",
     agronomist: "http://localhost:8000/consultations/agronomists/",
   };
   return urlMap[role];

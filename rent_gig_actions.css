@@ -1,6 +1,6 @@
 /* Make the page scrollable */
 body {
-  background-image: url('assets/images/rentgigBG.jpg');
+  background-image: url("assets/images/rentgigBG.jpg");
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
@@ -69,14 +69,108 @@ body {
   flex-direction: column;
 }
 
-/* Make the container fill available space between navbar and footer */
-.container {
-  flex-grow: 1;
-  /* Allow the container to grow and take available space */
-}
-
 /* Adjust input fields when hovered */
 .form-control:hover {
   border-color: #007bff;
   box-shadow: 0 0 5px rgba(0, 123, 255, 0.75);
+}
+/* Card Grid Layout */
+/* Category List Container */
+.category-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px 0;
+}
+
+/* Heading Style */
+.category-list h3 {
+  width: 100%;
+  margin-bottom: 20px;
+  color: #333;
+  font-weight: bold;
+}
+
+/* Grid Container for Cards */
+.category-list .cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+/* Individual Card Styling */
+.category-item {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.category-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Card Image */
+.category-item img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+/* Card Content */
+.category-item-content {
+  padding: 15px;
+  flex-grow: 1;
+}
+
+.category-item-content h4 {
+  margin: 0 0 10px 0;
+  color: #333;
+}
+
+.category-item-content p {
+  margin: 5px 0;
+  color: #666;
+}
+
+/* Card Actions */
+.category-item-actions {
+  padding: 15px;
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  background-color: #f8f9fa;
+}
+
+/* Button Styling */
+.category-item-actions button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.category-item-actions .edit:hover {
+  background-color: #e0a800;
+}
+
+.category-item-actions .remove:hover {
+  background-color: #c82333;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .category-list {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+}
+
+@media (max-width: 480px) {
+  .category-list {
+    grid-template-columns: 1fr;
+  }
 }

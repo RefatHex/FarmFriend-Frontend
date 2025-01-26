@@ -223,12 +223,16 @@
         <li>
           <a
             href="#bookings"
-            onclick="window.location.href='admin_rent_bookings.html'"
+            onclick="window.location.href='booking_admin.html'"
             >Bookings</a
           >
         </li>
         <li><a href="#users" onclick="showSection('users')">Users</a></li>
-        <li><a href="#reports" onclick="showSection('reports')">Reports</a></li>
+        <li>
+          <a href="#Profile" onclick="window.location.href='profile.html'"
+            >Profile</a
+          >
+        </li>
         <!-- Link to adminAgriInstruments.html -->
         <li>
           <a href="rent_gig_actions.html">Upload Instrument</a>
@@ -319,122 +323,58 @@
 
     <!-- Script for Navbar Behavior and Section Toggle -->
     <script>
-      // Simulate API call with sample data for Dashboard, Products, Bookings, Users, and Reports
-      const apiData = {
-        dashboard: [
-          {
-            title: "Total Products",
-            count: 0,
-            description: "Total products available for rent",
-          },
-          {
-            title: "Total Users",
-            count: 0,
-            description: "Number of active users",
-          },
-          {
-            title: "Total Bookings",
-            count: 0,
-            description: "Total number of bookings made",
-          },
-          {
-            title: "Pending Reports",
-            count: 0,
-            description: "Number of pending reports to review",
-          },
-        ],
-        products: [
-          {
-            name: "Battery Mower",
-            description: "Efficient lawn mower",
-            price: "$150",
-            imageUrl: "assets/images/seeder.jpg",
-          },
-          {
-            name: "Tractor",
-            description: "Heavy-duty farm tractor",
-            price: "$5000",
-            imageUrl: "assets/images/tractor.jpg",
-          },
-        ],
-        bookings: [
-          {
-            name: "John Doe",
-            product: "Battery Mower",
-            date: "2025-01-10",
-            status: "Confirmed",
-          },
-          {
-            name: "Alice Smith",
-            product: "Tractor",
-            date: "2025-01-15",
-            status: "Pending",
-          },
-        ],
-        users: [
-          { name: "John Doe", email: "john.doe@example.com", status: "Active" },
-          {
-            name: "Alice Smith",
-            email: "alice.smith@example.com",
-            status: "Inactive",
-          },
-        ],
-        reports: [
-          { title: "Monthly Revenue", status: "Pending" },
-          { title: "Annual User Growth", status: "Completed" },
-        ],
+      window.onload = async function () {
+        try {
+          // Fetch data from the APIs
+          const rentOwners = await fetchData(
+            "http://localhost:8000/rentals/rent-owners/"
+          );
+          const rentItems = await fetchData(
+            "http://localhost:8000/rentals/rent-items/"
+          );
+          const rentItemOrders = await fetchData(
+            "http://localhost:8000/rentals/rent-item-orders/"
+          );
+
+          // Calculate dynamic data
+          const totalProducts = rentItems.count; // Total products
+          const totalUsers = new Set(
+            rentItemOrders.results.map((order) => order.rent_taker)
+          ).size; // Unique users who made orders
+          const totalBookings = rentItemOrders.count; // Total bookings
+
+          // Update dashboard cards
+          const dashboardContainer =
+            document.getElementById("dashboardContainer");
+          dashboardContainer.innerHTML = `
+      <div class="card">
+        <h3>Total Products</h3>
+        <p>Total products available for rent</p>
+        <div class="price">${totalProducts}</div>
+      </div>
+      <div class="card">
+        <h3>Total Users</h3>
+        <p>Number of unique users who made bookings</p>
+        <div class="price">${totalUsers}</div>
+      </div>
+      <div class="card">
+        <h3>Total Bookings</h3>
+        <p>Total number of bookings made</p>
+        <div class="price">${totalBookings}</div>
+      </div>
+    `;
+        } catch (error) {
+          console.error("Error fetching data:", error);
+        }
       };
 
-      // Load Dashboard Data
-      window.onload = function () {
-        // Load Dashboard Data
-        const dashboardContainer =
-          document.getElementById("dashboardContainer");
-        apiData.dashboard.forEach((item) => {
-          const card = document.createElement("div");
-          card.classList.add("card");
-          card.innerHTML = `<h3>${item.title}</h3>
-          <p>${item.description}</p>
-          <div class="price">${item.count}</div>`;
-          dashboardContainer.appendChild(card);
-        });
-
-        // Load Products Data
-        const productsContainer = document.getElementById("productsContainer");
-        apiData.products.forEach((product) => {
-          const card = document.createElement("div");
-          card.classList.add("card");
-          card.innerHTML = `<img src="${product.imageUrl}" alt="${product.name}">
-          <h3>${product.name}</h3>
-          <p>${product.description}</p>
-          <div class="price">${product.price}</div>`;
-          productsContainer.appendChild(card);
-        });
-      };
-
-      // Function to show sections based on navbar clicks
-      function showSection(sectionId) {
-        const sections = document.querySelectorAll("section");
-        sections.forEach((section) => {
-          section.classList.remove("active");
-        });
-
-        const activeLink = document.querySelector("nav ul li a.active");
-        if (activeLink) {
-          activeLink.classList.remove("active");
+      // Helper function to fetch data
+      async function fetchData(url) {
+        const response = await fetch(url);
+        if (!response.ok) {
+          throw new Error(`Failed to fetch data from ${url}`);
         }
-
-        const targetSection = document.getElementById(sectionId);
-        if (targetSection) {
-          targetSection.classList.add("active");
-        }
-
-        const targetLink = document.querySelector(
-          `nav ul li a[href='#${sectionId}']`
-        );
-        if (targetLink) {
-          targetLink.classList.add("active");
-        }
+        return response.json();
       }
     </script>
   </body>
