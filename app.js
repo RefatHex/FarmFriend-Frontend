@@ -1,8 +1,8 @@
-document.addEventListener('DOMContentLoaded', () => {
-  const slides = document.querySelectorAll('.slider .list .item');
-  const thumbnails = document.querySelectorAll('.thumbnail .item');
-  const prevButton = document.querySelector('.prev');
-  const nextButton = document.querySelector('.next');
+document.addEventListener("DOMContentLoaded", () => {
+  const slides = document.querySelectorAll(".slider .list .item");
+  const thumbnails = document.querySelectorAll(".thumbnail .item");
+  const prevButton = document.querySelector(".prev");
+  const nextButton = document.querySelector(".next");
   let currentIndex = 0;
   const interval = 5000; // Auto-slide interval in ms
   let autoSlideInterval;
@@ -10,16 +10,15 @@ document.addEventListener('DOMContentLoaded', () => {
   // Function to update active slide and thumbnail
   function updateActiveSlide(index) {
     // Remove active class from current slide and thumbnail
-    slides[currentIndex].classList.remove('active', 'popup-animation');
-    thumbnails[currentIndex].classList.remove('active');
+    slides[currentIndex].classList.remove("active", "popup-animation");
+    thumbnails[currentIndex].classList.remove("active");
 
     // Set new active slide and thumbnail
     currentIndex = index;
-    slides[currentIndex].classList.add('active', 'popup-animation');
-    thumbnails[currentIndex].classList.add('active');
+    slides[currentIndex].classList.add("active", "popup-animation");
+    thumbnails[currentIndex].classList.add("active");
   }
 
-  // Auto-slide function
   function autoSlide() {
     autoSlideInterval = setInterval(() => {
       const nextIndex = (currentIndex + 1) % slides.length;
@@ -29,23 +28,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Event listeners for thumbnails
   thumbnails.forEach((thumbnail, index) => {
-    thumbnail.addEventListener('mouseenter', () => {
+    thumbnail.addEventListener("mouseenter", () => {
       clearInterval(autoSlideInterval); // Stop auto-slide on hover
       updateActiveSlide(index);
     });
-    thumbnail.addEventListener('click', () => {
+    thumbnail.addEventListener("click", () => {
       updateActiveSlide(index);
     });
   });
 
   // Event listeners for next and prev buttons
-  nextButton.addEventListener('click', () => {
+  nextButton.addEventListener("click", () => {
     clearInterval(autoSlideInterval); // Stop auto-slide on manual navigation
     const nextIndex = (currentIndex + 1) % slides.length;
     updateActiveSlide(nextIndex);
   });
 
-  prevButton.addEventListener('click', () => {
+  prevButton.addEventListener("click", () => {
     clearInterval(autoSlideInterval); // Stop auto-slide on manual navigation
     const prevIndex = (currentIndex - 1 + slides.length) % slides.length;
     updateActiveSlide(prevIndex);
@@ -55,16 +54,16 @@ document.addEventListener('DOMContentLoaded', () => {
   autoSlide();
 
   // Restart auto-slide when mouse leaves thumbnail area
-  const thumbnailContainer = document.querySelector('.thumbnail');
-  thumbnailContainer.addEventListener('mouseleave', autoSlide);
+  const thumbnailContainer = document.querySelector(".thumbnail");
+  thumbnailContainer.addEventListener("mouseleave", autoSlide);
 });
 
-document.addEventListener('DOMContentLoaded', () => {
-  const slider = document.querySelector('.review-slider');
+document.addEventListener("DOMContentLoaded", () => {
+  const slider = document.querySelector(".review-slider");
   const cards = Array.from(slider.children);
 
   // Duplicate cards for seamless looping
-  cards.forEach(card => {
+  cards.forEach((card) => {
     const clone = card.cloneNode(true);
     slider.appendChild(clone);
   });
@@ -89,47 +88,47 @@ document.addEventListener('DOMContentLoaded', () => {
 function showDetails(item) {
   const details = {
     Tractor: {
-      title: 'Tractors',
+      title: "Tractors",
       description:
-        'Our tractors are reliable and perfect for plowing, tilling, and more. Rent them for efficient farming!',
+        "Our tractors are reliable and perfect for plowing, tilling, and more. Rent them for efficient farming!",
     },
     Harvester: {
-      title: 'Harvesters',
+      title: "Harvesters",
       description:
-        'Get the best harvesters for your farm to improve efficiency and cut down harvest time.',
+        "Get the best harvesters for your farm to improve efficiency and cut down harvest time.",
     },
-    'Irrigation System': {
-      title: 'Irrigation Systems',
+    "Irrigation System": {
+      title: "Irrigation Systems",
       description:
-        'Ensure water efficiency with our smart irrigation systems tailored for your farm needs.',
+        "Ensure water efficiency with our smart irrigation systems tailored for your farm needs.",
     },
   };
 
-  const detailsSection = document.getElementById('ad-details');
-  const title = document.getElementById('ad-details-title');
-  const description = document.getElementById('ad-details-description');
+  const detailsSection = document.getElementById("ad-details");
+  const title = document.getElementById("ad-details-title");
+  const description = document.getElementById("ad-details-description");
 
   title.textContent = details[item].title;
   description.textContent = details[item].description;
 
-  detailsSection.classList.remove('hidden');
-  detailsSection.style.display = 'block'; // Show the popup
+  detailsSection.classList.remove("hidden");
+  detailsSection.style.display = "block"; // Show the popup
 }
 
 // Function to hide popup
 function hideDetails() {
-  const detailsSection = document.getElementById('ad-details');
-  detailsSection.classList.add('hidden');
-  detailsSection.style.display = 'none'; // Hide the popup
+  const detailsSection = document.getElementById("ad-details");
+  detailsSection.classList.add("hidden");
+  detailsSection.style.display = "none"; // Hide the popup
 }
 
 // Scroll-triggered animation using IntersectionObserver
-const advertisementSection = document.getElementById('advertisement');
+const advertisementSection = document.getElementById("advertisement");
 const observer = new IntersectionObserver(
   (entries, observer) => {
-    entries.forEach(entry => {
+    entries.forEach((entry) => {
       if (entry.isIntersecting) {
-        advertisementSection.classList.add('show');
+        advertisementSection.classList.add("show");
         observer.disconnect(); // Disconnect after triggering once
       }
     });
@@ -142,29 +141,29 @@ const observer = new IntersectionObserver(
 observer.observe(advertisementSection);
 
 /*image slider*/
-const slider = document.querySelector('.slider');
+const slider = document.querySelector(".slider");
 let isDown = false;
 let startX;
 let scrollLeft;
 
-slider.addEventListener('mousedown', e => {
+slider.addEventListener("mousedown", (e) => {
   isDown = true;
-  slider.classList.add('active');
+  slider.classList.add("active");
   startX = e.pageX - slider.offsetLeft;
   scrollLeft = slider.scrollLeft;
 });
 
-slider.addEventListener('mouseleave', () => {
+slider.addEventListener("mouseleave", () => {
   isDown = false;
-  slider.classList.remove('active');
+  slider.classList.remove("active");
 });
 
-slider.addEventListener('mouseup', () => {
+slider.addEventListener("mouseup", () => {
   isDown = false;
-  slider.classList.remove('active');
+  slider.classList.remove("active");
 });
 
-slider.addEventListener('mousemove', e => {
+slider.addEventListener("mousemove", (e) => {
   if (!isDown) return;
   e.preventDefault();
   const x = e.pageX - slider.offsetLeft;
