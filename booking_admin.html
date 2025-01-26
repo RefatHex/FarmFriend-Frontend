@@ -1,39 +1,188 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Admin Dashboard</title>
-    <link rel="stylesheet" href="booking_admin.css" />
-  </head>
-  <body>
-    <header>
-      <div class="header-text">
-        <h1>Admin Dashboard</h1>
-        <p>Manage your orders and bookings efficiently</p>
-      </div>
-    </header>
 
-    <nav id="navbar">
-      <a href="index.html">Home</a>
-      <a href="profile.html">Profile</a>
-      <a href="logout.html">Logout</a>
-    </nav>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="booking_admin.css" />
+</head>
 
-    <div class="container">
-      <h1 class="section-title">Orders and Bookings</h1>
-
-      <!-- Orders Section -->
-      <div id="ordersSection">
-        <h2 class="subsection-title">Active Orders</h2>
-        <section id="activeOrders" class="order-list"></section>
-      </div>
+<body>
+  <header>
+    <div class="header-text">
+      <h1>Admin Dashboard</h1>
+      <p>Manage your orders and bookings efficiently</p>
     </div>
+  </header>
 
-    <footer>
-      <p>&copy; 2025 Admin Dashboard. All rights reserved.</p>
-    </footer>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="booking_admin.js"></script>
-  </body>
+  <nav id="navbar">
+    <a href="index.html">Home</a>
+    <a href="profile.html">Profile</a>
+    <a href="logout.html">Logout</a>
+  </nav>
+
+  <div class="container">
+    <h1 class="section-title">Orders and Bookings</h1>
+
+    <!-- Orders Section -->
+    <div id="ordersSection">
+      <h2 class="subsection-title">Active Orders</h2>
+      <section id="activeOrders" class="order-list"></section>
+    </div>
+  </div>
+
+  <style>
+    /* General Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Body and Font Styles */
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      background-color: #f4f4f4;
+      color: #333;
+    }
+
+    /* Header Styles */
+    header {
+      background-color: #288748d4;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    header .header-text h1 {
+      font-size: 2.5em;
+    }
+
+    header .header-text p {
+      font-size: 1.2em;
+      margin-top: 10px;
+    }
+
+    /* Navbar Styles */
+    #navbar {
+      background-color: #2ba55a;
+      padding: 10px 0;
+      text-align: center;
+    }
+
+    #navbar a {
+      color: white;
+      text-decoration: none;
+      padding: 10px 20px;
+      margin: 0 15px;
+      font-size: 1.1em;
+    }
+
+    #navbar a:hover {
+      background-color: #1abc9c;
+      border-radius: 5px;
+    }
+
+    /* Container Styles */
+    .container {
+      padding: 40px 20px;
+    }
+
+    .section-title {
+      font-size: 2em;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    /* Orders Section */
+    #ordersSection {
+      margin-bottom: 40px;
+    }
+
+    .subsection-title {
+      font-size: 1.8em;
+      margin-bottom: 15px;
+      color: #2c3e50;
+    }
+
+    /* Order List */
+    .order-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    .order-list .order-card {
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      width: 250px;
+      padding: 20px;
+      text-align: center;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .order-list .order-card:hover {
+      transform: translateY(-10px);
+    }
+
+    .order-list .order-card h3 {
+      font-size: 1.5em;
+      color: #2c3e50;
+    }
+
+    .order-list .order-card p {
+      font-size: 1em;
+      color: #7f8c8d;
+    }
+
+    .order-list .order-card .btn {
+      margin-top: 15px;
+      padding: 10px 20px;
+      background-color: #1abc9c;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .order-list .order-card .btn:hover {
+      background-color: #16a085;
+    }
+
+    /* Footer Styles */
+    footer {
+      background-color: #059108a1;
+      color: white;
+      padding: 10px;
+      text-align: center;
+      margin-top: 40px;
+    }
+
+    /* Mobile Responsiveness */
+    @media screen and (max-width: 768px) {
+      .order-list {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .order-list .order-card {
+        width: 100%;
+        max-width: 300px;
+      }
+    }
+  </style>
+
+
+  <footer>
+    <p>&copy; 2025 Admin Dashboard. All rights reserved.</p>
+  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="booking_admin.js"></script>
+</body>
+
 </html>

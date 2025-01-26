@@ -48,7 +48,7 @@
 
     /* Header Section */
     header {
-      background-image: url("assets/images/expert5.jpg");
+      background-image: url("assets/images/expertAdminBG.jpg");
       background-size: cover;
       background-position: center;
       height: 51vh;
@@ -193,115 +193,116 @@
 </head>
 
 <body>
-    <!-- Navbar -->
-    <nav>
-      <h1 class="navbar-logo">
-        <span style="color: white;">Farm</span><span style="color: orange;">Friend</span>
-      </h1>
-      <button class="profile-button" onclick="redirectToProfile()" style="background: none; border: none; cursor: pointer;margin-right: 50px;">
-        <img src="assets/images/profile.png" alt="Profile" class="profile-icon">
-      </button>
-    </nav>
-  
-    <!-- Header Section -->
-    <header>
-      <div>
-        <h1>FarmFriend Agronomist Dashboard</h1>
-        <h2>Your One-Stop Solution for Agricultural Consultations</h2>
-      </div>
-    </header>
-  
-    <!-- Main Content -->
-    <div class="main-container">
-      <!-- Agronomist Overview Section -->
-      <section id="agronomist" class="active">
-        <h2>Dashboard</h2>
-        <div class="section-container" id="agronomistContainer">
-  
-          <!-- Total Consultations -->
-          <div class="card">
-            <h3>Total Consultations</h3>
-            <p>Number of consultations</p>
-            <div class="price" id="totalConsultations">120</div>
-          </div>
-  
-          <!-- Pending Consultations -->
-          <div class="card">
-            <h3>Pending Consultations</h3>
-            <p>Consultations awaiting response</p>
-            <div class="price" id="pendingConsultations">5</div>
-          </div>
-  
-          <!-- Monthly Income -->
-          <div class="card">
-            <h3>Monthly Income</h3>
-            <p>Earnings for this month</p>
-            <div class="price" id="monthlyIncome">$3,000</div>
-          </div>
-  
-          <!-- Total Income -->
-          <div class="card">
-            <h3>Total Income</h3>
-            <p>Total income earned</p>
-            <div class="price" id="totalIncome">$45,000</div>
-          </div>
-  
-          <!-- Consultation Details (Clickable to navigate to details page) -->
-          <a href="consultationDetailsAdmin.html" class="card" style="text-decoration: none; color: inherit;">
-            <h3>Add Consultation Details</h3>
-            <p>View detailed consultation records.</p>
-          </a>
-  
-          <!-- Consultation List (Shows a list of consultations when clicked) -->
-          <div class="card" id="consultationsCard" onclick="toggleConsultationList()">
-            <h3>Consultation List</h3>
-            <p>Click to see all consultations</p>
-          </div>
-  
-          <!-- Consultation List (Initially hidden) -->
-          <div id="consultationList" style="display: none; grid-column: span 2; padding: 10px; border: 1px solid #ddd; border-radius: 5px; background-color: #f9f9f9;">
-            <h3>All Consultations</h3>
-            <ul>
-              <li>Consultation 1: 10/01/2025 - John Doe</li>
-              <li>Consultation 2: 12/01/2025 - Jane Smith</li>
-              <li>Consultation 3: 15/01/2025 - Bob Brown</li>
-              <li>Consultation 4: 18/01/2025 - Alice White</li>
-              <li>Consultation 5: 20/01/2025 - Charlie Black</li>
-              <!-- Add more consultation entries as needed -->
-            </ul>
-          </div>
-        </div>
-      </section>
+  <!-- Navbar -->
+  <nav>
+    <h1 class="navbar-logo">
+      <span style="color: white;">Farm</span><span style="color: orange;">Friend</span>
+    </h1>
+    <button class="profile-button" onclick="redirectToProfile()"
+      style="background: none; border: none; cursor: pointer;margin-right: 50px;">
+      <img src="assets/images/profile.png" alt="Profile" class="profile-icon">
+    </button>
+  </nav>
+
+  <!-- Header Section -->
+  <header>
+    <div>
+      <h1>FarmFriend Agronomist Dashboard</h1>
+      <h2>Your One-Stop Solution for Agricultural Consultations</h2>
     </div>
-  
-    <!-- Script for Dynamic Updates -->
-    <script>
-      // Simulated API data for consultations and income
-      const agronomistData = {
-        totalConsultations: 120,
-        pendingConsultations: 5,
-        monthlyIncome: 3000,
-        totalIncome: 45000
-      };
-  
-      // Load Data into Cards
-      window.onload = function () {
-        document.getElementById("totalConsultations").innerText = agronomistData.totalConsultations;
-        document.getElementById("pendingConsultations").innerText = agronomistData.pendingConsultations;
-        document.getElementById("monthlyIncome").innerText = `$${agronomistData.monthlyIncome.toLocaleString()}`;
-        document.getElementById("totalIncome").innerText = `$${agronomistData.totalIncome.toLocaleString()}`;
-      };
-  
-      // Toggle the visibility of the consultations list
-      function toggleConsultationList() {
-        const consultationList = document.getElementById("consultationList");
-        consultationList.style.display = consultationList.style.display === "none" ? "block" : "none";
-      }
-  
-      // Profile Button Function
-      function redirectToProfile() {
-        window.location.href = "profile.html";
-      }
-    </script>
-  </body>
-  
+  </header>
+
+  <!-- Main Content -->
+  <div class="main-container">
+    <!-- Agronomist Overview Section -->
+    <section id="agronomist" class="active">
+      <h2>Dashboard</h2>
+      <div class="section-container" id="agronomistContainer">
+
+        <!-- Total Consultations -->
+        <div class="card">
+          <h3>Total Consultations</h3>
+          <p>Number of consultations</p>
+          <div class="price" id="totalConsultations">120</div>
+        </div>
+
+        <!-- Pending Consultations -->
+        <div class="card">
+          <h3>Pending Consultations</h3>
+          <p>Consultations awaiting response</p>
+          <div class="price" id="pendingConsultations">5</div>
+        </div>
+
+        <!-- Monthly Income -->
+        <div class="card">
+          <h3>Monthly Income</h3>
+          <p>Earnings for this month</p>
+          <div class="price" id="monthlyIncome">$3,000</div>
+        </div>
+
+        <!-- Total Income -->
+        <div class="card">
+          <h3>Total Income</h3>
+          <p>Total income earned</p>
+          <div class="price" id="totalIncome">$45,000</div>
+        </div>
+
+        <!-- Consultation Details (Clickable to navigate to details page) -->
+        <a href="consultationDetailsAdmin.html" class="card" style="text-decoration: none; color: inherit;">
+          <h3>Add Consultation Details</h3>
+          <p>View detailed consultation records.</p>
+        </a>
+
+        <!-- Consultation List (Shows a list of consultations when clicked) -->
+        <div class="card" id="consultationsCard" onclick="toggleConsultationList()">
+          <h3>Consultation List</h3>
+          <p>Click to see all consultations</p>
+        </div>
+
+        <!-- Consultation List (Initially hidden) -->
+        <div id="consultationList"
+          style="display: none; grid-column: span 2; padding: 10px; border: 1px solid #ddd; border-radius: 5px; background-color: #f9f9f9;">
+          <h3>All Consultations</h3>
+          <ul>
+            <li>Consultation 1: 10/01/2025 - John Doe</li>
+            <li>Consultation 2: 12/01/2025 - Jane Smith</li>
+            <li>Consultation 3: 15/01/2025 - Bob Brown</li>
+            <li>Consultation 4: 18/01/2025 - Alice White</li>
+            <li>Consultation 5: 20/01/2025 - Charlie Black</li>
+            <!-- Add more consultation entries as needed -->
+          </ul>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Script for Dynamic Updates -->
+  <script>
+    // Simulated API data for consultations and income
+    const agronomistData = {
+      totalConsultations: 120,
+      pendingConsultations: 5,
+      monthlyIncome: 3000,
+      totalIncome: 45000
+    };
+
+    // Load Data into Cards
+    window.onload = function () {
+      document.getElementById("totalConsultations").innerText = agronomistData.totalConsultations;
+      document.getElementById("pendingConsultations").innerText = agronomistData.pendingConsultations;
+      document.getElementById("monthlyIncome").innerText = `$${agronomistData.monthlyIncome.toLocaleString()}`;
+      document.getElementById("totalIncome").innerText = `$${agronomistData.totalIncome.toLocaleString()}`;
+    };
+
+    // Toggle the visibility of the consultations list
+    function toggleConsultationList() {
+      const consultationList = document.getElementById("consultationList");
+      consultationList.style.display = consultationList.style.display === "none" ? "block" : "none";
+    }
+
+    // Profile Button Function
+    function redirectToProfile() {
+      window.location.href = "profile.html";
+    }
+  </script>
+</body>

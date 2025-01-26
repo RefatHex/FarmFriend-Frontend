@@ -1,291 +1,289 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>FarmFriend Profile</title>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap"
-      rel="stylesheet"
-    />
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FarmFriend Profile</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      background: url("assets/images/banner6.jpg") no-repeat center center fixed;
+      background-size: cover;
+      font-family: "Poppins", sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    .profile-container {
+      max-width: 600px;
+      /* Reduced width to make it narrower */
+      margin: 150px auto 50px;
+      /* Centered with space at the top */
+      background: rgb(255 255 255 / 64%);
+      /* Transparent background */
+      border-radius: 12px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      padding: 50px;
+    }
+
+    .profile-header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .profile-header h1 {
+      font-size: 28px;
+      color: #000000;
+      margin-bottom: 10px;
+    }
+
+    .profile-header span {
+      font-weight: bold;
+    }
+
+    .card {
+      background: rgb(255 226 0 / 9%);
+      border-radius: px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .card h2 {
+      font-size: 22px;
+      background: linear-gradient(20deg, #ffdf0085, #cf981d);
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      font-size: 16px;
+      background: linear-gradient(173deg, #ffffff00, #cf981d);
+      margin-bottom: 5px;
+    }
+
+    .button-group {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+    }
+
+    .button-group button {
+      padding: 12px 20px;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .btn-primary {
+      background-color: #388e3c;
+      color: #fff;
+    }
+
+    .btn-primary:hover {
+      background-color: #2e7d32;
+    }
+
+    .btn-danger {
+      background-color: #d32f2f;
+      color: #fff;
+    }
+
+    .btn-danger:hover {
+      background-color: #eb4343;
+    }
+
+    footer {
+      font-size: 1.6rem;
+      font-weight: 600;
+      padding: 15px;
+      background: linear-gradient(10deg, #00000085, #e77e11bf);
+      color: #ffffff;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+      text-align: center;
+    }
+
+    footer p {
+      color: #ffffff;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <nav id="navbar">
+      <div class="logo">
+        <img src="assets/images/logo.jpg" alt="Logo" />
+    </nav>
     <style>
-      body {
-        background: url("assets/images/banner6.jpg") no-repeat center center
-          fixed;
-        background-size: cover;
-        font-family: "Poppins", sans-serif;
-        margin: 0;
-        padding: 0;
-      }
-
-      .profile-container {
-        max-width: 600px;
-        /* Reduced width to make it narrower */
-        margin: 150px auto 50px;
-        /* Centered with space at the top */
-        background: rgb(255 255 255 / 64%);
-        /* Transparent background */
-        border-radius: 12px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        padding: 50px;
-      }
-
-      .profile-header {
-        text-align: center;
-        margin-bottom: 30px;
-      }
-
-      .profile-header h1 {
-        font-size: 28px;
-        color: #000000;
-        margin-bottom: 10px;
-      }
-
-      .profile-header span {
-        font-weight: bold;
-      }
-
-      .card {
-        background: rgb(255 226 0 / 9%);
-        border-radius: px;
-        padding: 20px;
-        margin-bottom: 20px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      }
-
-      .card h2 {
-        font-size: 22px;
-        background: linear-gradient(20deg, #ffdf0085, #cf981d);
-        margin-bottom: 10px;
-      }
-
-      .card p {
-        font-size: 16px;
-        background: linear-gradient(173deg, #ffffff00, #cf981d);
-        margin-bottom: 5px;
-      }
-
-      .button-group {
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: hsla(0, 0%, 85%, 0.8);
+        border-bottom: 1px solid #ddd;
         display: flex;
-        justify-content: space-between;
-        margin-top: 20px;
+        align-items: center;
+        padding: 10px 20px;
+        z-index: 1000;
+        transform: translateY(-100%);
+        transition: transform 0.3s ease-in-out;
       }
 
-      .button-group button {
-        padding: 12px 20px;
-        border: none;
-        border-radius: 5px;
-        font-size: 16px;
-        font-weight: bold;
-        cursor: pointer;
-        transition: background 0.3s;
+      nav .logo img {
+        height: 40px;
+        width: auto;
+        margin-right: 20px;
       }
 
-      .btn-primary {
-        background-color: #388e3c;
-        color: #fff;
-      }
-
-      .btn-primary:hover {
-        background-color: #2e7d32;
-      }
-
-      .btn-danger {
-        background-color: #d32f2f;
-        color: #fff;
-      }
-
-      .btn-danger:hover {
-        background-color: #eb4343;
-      }
-
-      footer {
-        font-size: 1.6rem;
-        font-weight: 600;
-        padding: 15px;
-        background: linear-gradient(10deg, #00000085, #e77e11bf);
-        color: #ffffff;
-        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+      nav a {
+        color: black;
+        padding: 14px 20px;
+        text-decoration: none;
         text-align: center;
+        font-weight: bold;
+        position: relative;
+        overflow: hidden;
       }
 
-      footer p {
-        color: #ffffff;
+      nav a::before {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 2px;
+        background-color: #4caf50;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        transition: width 0.3s ease-in-out;
+      }
+
+      nav a:hover::before {
+        width: 100%;
+      }
+
+      nav a:hover {
+        color: #4caf50;
       }
     </style>
-  </head>
 
-  <body>
-    <header>
-      <nav id="navbar">
-        <div class="logo">
-          <img src="assets/images/logo.jpg" alt="Logo" />
-      </nav>
-      <style>
-        nav {
-          position: fixed;
-          top: 0;
-          left: 0;
-          width: 100%;
-          background-color: hsla(0, 0%, 85%, 0.8);
-          border-bottom: 1px solid #ddd;
-          display: flex;
-          align-items: center;
-          padding: 10px 20px;
-          z-index: 1000;
-          transform: translateY(-100%);
-          transition: transform 0.3s ease-in-out;
+    <script>
+      let lastScrollY = window.scrollY;
+      const navbar = document.getElementById("navbar");
+      let isMouseNearTop = false;
+
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > lastScrollY && !isMouseNearTop) {
+          navbar.style.transform = "translateY(-100%)";
+        } else {
+          navbar.style.transform = "translateY(0)";
         }
+        lastScrollY = window.scrollY;
+      });
 
-        nav .logo img {
-          height: 40px;
-          width: auto;
-          margin-right: 20px;
+      window.addEventListener("mousemove", (event) => {
+        if (event.clientY <= 50) {
+          navbar.style.transform = "translateY(0)";
+          isMouseNearTop = true;
+        } else {
+          isMouseNearTop = false;
         }
+      });
+    </script>
+  </header>
 
-        nav a {
-          color: black;
-          padding: 14px 20px;
-          text-decoration: none;
-          text-align: center;
-          font-weight: bold;
-          position: relative;
-          overflow: hidden;
-        }
-
-        nav a::before {
-          content: "";
-          position: absolute;
-          width: 0;
-          height: 2px;
-          background-color: #4caf50;
-          bottom: 0;
-          left: 50%;
-          transform: translateX(-50%);
-          transition: width 0.3s ease-in-out;
-        }
-
-        nav a:hover::before {
-          width: 100%;
-        }
-
-        nav a:hover {
-          color: #4caf50;
-        }
-      </style>
-
-      <script>
-        let lastScrollY = window.scrollY;
-        const navbar = document.getElementById("navbar");
-        let isMouseNearTop = false;
-
-        window.addEventListener("scroll", () => {
-          if (window.scrollY > lastScrollY && !isMouseNearTop) {
-            navbar.style.transform = "translateY(-100%)";
-          } else {
-            navbar.style.transform = "translateY(0)";
-          }
-          lastScrollY = window.scrollY;
-        });
-
-        window.addEventListener("mousemove", (event) => {
-          if (event.clientY <= 50) {
-            navbar.style.transform = "translateY(0)";
-            isMouseNearTop = true;
-          } else {
-            isMouseNearTop = false;
-          }
-        });
-      </script>
-    </header>
-
-    <div class="profile-container">
-      <!-- Header Section -->
-      <div class="profile-header">
-        <h1>স্বাগতম, <span id="username">লোড হচ্ছে...</span></h1>
-      </div>
-      
-      <!-- User Information -->
-      <div class="card">
-        <h2>আপনার বিবরণ</h2>
-        <p><strong>ব্যবহারকারীর নাম:</strong> <span id="userName">লোড হচ্ছে...</span></p>
-        <p><strong>ভূমিকা:</strong> <span id="userRole">লোড হচ্ছে...</span></p>
-      </div>
-      
-      <!-- Role-Based Information -->
-      <div class="card">
-        <h2>ভূমিকা ভিত্তিক তথ্য</h2>
-        <div id="roleDetails">ভূমিকা ভিত্তিক তথ্য লোড হচ্ছে...</div>
-      </div>
-      
-
-      <!-- Billing Section -->
-      <div class="card">
-        <h2>বিলিং তথ্য</h2>
-        <button class="btn-primary" onclick="toggleBillingSection()">
-          বিলিং বিস্তারিত দেখান
-        </button>
-        <div id="billingSection" style="display: none">
-          <form id="billingForm">
-            <div>
-              <label for="street">রাস্তা:</label>
-              <input type="text" id="street" name="street" required />
-            </div>
-            <div>
-              <label for="city">শহর:</label>
-              <input type="text" id="city" name="city" required />
-            </div>
-            <div>
-              <label for="state">রাজ্য:</label>
-              <input type="text" id="state" name="state" required />
-            </div>
-            <div>
-              <label for="postal_code">পোস্টাল কোড:</label>
-              <input type="text" id="postal_code" name="postal_code" required />
-            </div>
-            <div>
-              <label for="country">দেশ:</label>
-              <input type="text" id="country" name="country" required />
-            </div>
-            <button type="submit" class="btn-save">বিলিং তথ্য সংরক্ষণ করুন</button>
-          </form>
-        </div>
-      </div>
-      
-
-      <!-- Payments Section -->
-      <div class="card">
-        <h2>পেমেন্টের ইতিহাস</h2>
-        <button class="btn-primary" onclick="togglePaymentsSection()">
-          পেমেন্ট দেখান/লুকান
-        </button>
-        <div id="paymentsSection" style="display: none">
-          <table id="paymentsTable">
-            <thead>
-              <tr>
-                <th>পরিমাণ</th>
-                <th>পেমেন্টের তারিখ</th>
-                <th>পেমেন্ট পদ্ধতি</th>
-                <th>অবস্থা</th>
-              </tr>
-            </thead>
-            <tbody>
-              <!-- পেমেন্টের তথ্য এখানে ডাইনামিকভাবে লোড হবে -->
-            </tbody>
-          </table>
-        </div>
-      </div>
-      
-      <div class="button-group">
-        <button class="btn-danger" onclick="logout()">লগআউট</button>
-      </div>      
-    </div>
+  <div class="profile-container">
+    <!-- Header Section -->
+    <div class="profile-header">
+      <h1>স্বাগতম, <span id="username">লোড হচ্ছে...</span></h1>
     </div>
 
-    <footer>
-      <p>&copy; 2025 FarmFriend. All Rights Reserved.</p>
-    </footer>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="profile.js"></script>
-  </body>
+    <!-- User Information -->
+    <div class="card">
+      <h2>আপনার বিবরণ</h2>
+      <p><strong>ব্যবহারকারীর নাম:</strong> <span id="userName">লোড হচ্ছে...</span></p>
+      <p><strong>ভূমিকা:</strong> <span id="userRole">লোড হচ্ছে...</span></p>
+    </div>
+
+    <!-- Role-Based Information -->
+    <div class="card">
+      <h2>ভূমিকা ভিত্তিক তথ্য</h2>
+      <div id="roleDetails">ভূমিকা ভিত্তিক তথ্য লোড হচ্ছে...</div>
+    </div>
+
+
+    <!-- Billing Section -->
+    <div class="card">
+      <h2>বিলিং তথ্য</h2>
+      <button class="btn-primary" onclick="toggleBillingSection()">
+        বিলিং বিস্তারিত দেখান
+      </button>
+      <div id="billingSection" style="display: none">
+        <form id="billingForm">
+          <div>
+            <label for="street">রাস্তা:</label>
+            <input type="text" id="street" name="street" required />
+          </div>
+          <div>
+            <label for="city">শহর:</label>
+            <input type="text" id="city" name="city" required />
+          </div>
+          <div>
+            <label for="state">রাজ্য:</label>
+            <input type="text" id="state" name="state" required />
+          </div>
+          <div>
+            <label for="postal_code">পোস্টাল কোড:</label>
+            <input type="text" id="postal_code" name="postal_code" required />
+          </div>
+          <div>
+            <label for="country">দেশ:</label>
+            <input type="text" id="country" name="country" required />
+          </div>
+          <button type="submit" class="btn-save">বিলিং তথ্য সংরক্ষণ করুন</button>
+        </form>
+      </div>
+    </div>
+
+
+    <!-- Payments Section -->
+    <div class="card">
+      <h2>পেমেন্টের ইতিহাস</h2>
+      <button class="btn-primary" onclick="togglePaymentsSection()">
+        পেমেন্ট দেখান/লুকান
+      </button>
+      <div id="paymentsSection" style="display: none">
+        <table id="paymentsTable">
+          <thead>
+            <tr>
+              <th>পরিমাণ</th>
+              <th>পেমেন্টের তারিখ</th>
+              <th>পেমেন্ট পদ্ধতি</th>
+              <th>অবস্থা</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- পেমেন্টের তথ্য এখানে ডাইনামিকভাবে লোড হবে -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="button-group">
+      <button class="btn-danger" onclick="logout()">লগআউট</button>
+    </div>
+  </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 FarmFriend. All Rights Reserved.</p>
+  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="profile.js"></script>
+</body>
+
 </html>
