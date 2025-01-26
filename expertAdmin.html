@@ -1,208 +1,222 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FarmFriend Agronomist Dashboard</title>
-  <style>
-    /* General Styles */
-    body {
-      font-family: 'Roboto', Arial, sans-serif;
-      margin: 0;
-      background-color: #f4f4f9;
-      overflow-x: hidden;
-      transition: all 0.3s ease;
-    }
-
-    /* Navbar */
-    nav {
-      background-color: #333;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 10px 20px;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      z-index: 1000;
-    }
-
-    nav h1 {
-      color: white;
-      margin: 0;
-    }
-
-    nav button.profile-button {
-      background: none;
-      border: none;
-      cursor: pointer;
-    }
-
-    nav button.profile-button img.profile-icon {
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-    }
-
-    /* Header Section */
-    header {
-      background-image: url("assets/images/expert5.jpg");
-      background-size: cover;
-      background-position: center;
-      height: 51vh;
-      color: white;
-      text-align: center;
-      position: relative;
-      padding: 20px;
-      margin-top: 60px;
-    }
-
-    header h1 {
-      font-size: 2.5rem;
-      animation: fadeIn 2s;
-    }
-
-    header h2 {
-      font-size: 1.2rem;
-      margin-top: 1rem;
-    }
-
-    /* Main Content */
-    .main-container {
-      margin-top: 60px;
-      padding: 20px;
-    }
-
-    /* Card Container Styles */
-    .section-container {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 20px;
-      margin-top: 20px;
-    }
-
-    .card {
-      background: #ffffff;
-      border-radius: 10px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      padding: 20px;
-      text-align: center;
-      transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
-    }
-
-    .card img {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-      border-radius: 8px;
-    }
-
-    .card h3 {
-      margin: 15px 0;
-      font-size: 1.4rem;
-    }
-
-    .card p {
-      font-size: 1rem;
-      color: #666;
-    }
-
-    .card .price {
-      font-size: 1.2rem;
-      color: #27ae60;
-      font-weight: bold;
-      margin-top: 10px;
-    }
-
-    /* Hover Effect */
-    .card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-      background-color: #f0f8ff;
-    }
-
-    .card:hover h3,
-    .card:hover p,
-    .card:hover .price {
-      color: #00796b;
-    }
-
-    /* Section Animations */
-    section {
-      display: none;
-      opacity: 0;
-      transition: opacity 0.5s ease;
-    }
-
-    section.active {
-      display: block;
-      opacity: 1;
-      animation: fadeInSection 0.8s ease;
-    }
-
-    /* Keyframes for animations */
-    @keyframes fadeIn {
-      0% {
-        opacity: 0;
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FarmFriend Agronomist Dashboard</title>
+    <style>
+      /* General Styles */
+      body {
+        font-family: "Roboto", Arial, sans-serif;
+        margin: 0;
+        background-color: #f4f4f9;
+        overflow-x: hidden;
+        transition: all 0.3s ease;
       }
 
-      100% {
-        opacity: 1;
+      /* Navbar */
+      nav {
+        background-color: #333;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 20px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1000;
       }
-    }
 
-    @keyframes fadeInSection {
-      0% {
-        opacity: 0;
-        transform: translateY(20px);
+      nav h1 {
+        color: white;
+        margin: 0;
       }
 
-      100% {
-        opacity: 1;
-        transform: translateY(0);
+      nav button.profile-button {
+        background: none;
+        border: none;
+        cursor: pointer;
       }
-    }
 
-    /* Responsive Design */
-    @media (max-width: 768px) {
+      nav button.profile-button img.profile-icon {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+      }
+
+      /* Header Section */
+      header {
+        background-image: url("assets/images/expert5.jpg");
+        background-size: cover;
+        background-position: center;
+        height: 51vh;
+        color: white;
+        text-align: center;
+        position: relative;
+        padding: 20px;
+        margin-top: 60px;
+      }
+
       header h1 {
-        font-size: 1.8rem;
+        font-size: 2.5rem;
+        animation: fadeIn 2s;
       }
 
       header h2 {
-        font-size: 1rem;
+        font-size: 1.2rem;
+        margin-top: 1rem;
       }
 
-      nav ul {
-        flex-direction: column;
-        align-items: stretch;
+      /* Main Content */
+      .main-container {
+        margin-top: 60px;
+        padding: 20px;
       }
 
-      nav ul li {
-        width: 100%;
-        text-align: center;
-      }
-
+      /* Card Container Styles */
       .section-container {
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+        margin-top: 20px;
       }
-    }
-  </style>
-</head>
 
-<body>
+      .card {
+        background: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        text-align: center;
+        transition: transform 0.3s ease, box-shadow 0.3s ease,
+          background-color 0.3s ease;
+      }
+
+      .card img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 8px;
+      }
+
+      .card h3 {
+        margin: 15px 0;
+        font-size: 1.4rem;
+      }
+
+      .card p {
+        font-size: 1rem;
+        color: #666;
+      }
+
+      .card .price {
+        font-size: 1.2rem;
+        color: #27ae60;
+        font-weight: bold;
+        margin-top: 10px;
+      }
+
+      /* Hover Effect */
+      .card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        background-color: #f0f8ff;
+      }
+
+      .card:hover h3,
+      .card:hover p,
+      .card:hover .price {
+        color: #00796b;
+      }
+
+      /* Section Animations */
+      section {
+        display: none;
+        opacity: 0;
+        transition: opacity 0.5s ease;
+      }
+
+      section.active {
+        display: block;
+        opacity: 1;
+        animation: fadeInSection 0.8s ease;
+      }
+
+      /* Keyframes for animations */
+      @keyframes fadeIn {
+        0% {
+          opacity: 0;
+        }
+
+        100% {
+          opacity: 1;
+        }
+      }
+
+      @keyframes fadeInSection {
+        0% {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        header h1 {
+          font-size: 1.8rem;
+        }
+
+        header h2 {
+          font-size: 1rem;
+        }
+
+        nav ul {
+          flex-direction: column;
+          align-items: stretch;
+        }
+
+        nav ul li {
+          width: 100%;
+          text-align: center;
+        }
+
+        .section-container {
+          grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        }
+      }
+    </style>
+  </head>
+
+  <body>
     <!-- Navbar -->
     <nav>
       <h1 class="navbar-logo">
-        <span style="color: white;">Farm</span><span style="color: orange;">Friend</span>
+        <span style="color: white">Farm</span
+        ><span style="color: orange">Friend</span>
       </h1>
-      <button class="profile-button" onclick="redirectToProfile()" style="background: none; border: none; cursor: pointer;margin-right: 50px;">
-        <img src="assets/images/profile.png" alt="Profile" class="profile-icon">
+      <button
+        class="profile-button"
+        onclick="redirectToProfile()"
+        style="
+          background: none;
+          border: none;
+          cursor: pointer;
+          margin-right: 50px;
+        "
+      >
+        <img
+          src="assets/images/profile.png"
+          alt="Profile"
+          class="profile-icon"
+        />
       </button>
     </nav>
-  
+
     <!-- Header Section -->
     <header>
       <div>
@@ -210,98 +224,120 @@
         <h2>Your One-Stop Solution for Agricultural Consultations</h2>
       </div>
     </header>
-  
+
     <!-- Main Content -->
     <div class="main-container">
       <!-- Agronomist Overview Section -->
       <section id="agronomist" class="active">
         <h2>Dashboard</h2>
         <div class="section-container" id="agronomistContainer">
-  
           <!-- Total Consultations -->
           <div class="card">
             <h3>Total Consultations</h3>
             <p>Number of consultations</p>
             <div class="price" id="totalConsultations">120</div>
           </div>
-  
+
           <!-- Pending Consultations -->
           <div class="card">
             <h3>Pending Consultations</h3>
             <p>Consultations awaiting response</p>
             <div class="price" id="pendingConsultations">5</div>
           </div>
-  
+
           <!-- Monthly Income -->
           <div class="card">
             <h3>Monthly Income</h3>
             <p>Earnings for this month</p>
             <div class="price" id="monthlyIncome">$3,000</div>
           </div>
-  
+
           <!-- Total Income -->
           <div class="card">
             <h3>Total Income</h3>
             <p>Total income earned</p>
             <div class="price" id="totalIncome">$45,000</div>
           </div>
-  
+
           <!-- Consultation Details (Clickable to navigate to details page) -->
-          <a href="consultationDetailsAdmin.html" class="card" style="text-decoration: none; color: inherit;">
+          <a
+            href="agronomist_detials.html"
+            class="card"
+            style="text-decoration: none; color: inherit"
+          >
             <h3>Add Consultation Details</h3>
             <p>View detailed consultation records.</p>
           </a>
-  
-          <!-- Consultation List (Shows a list of consultations when clicked) -->
-          <div class="card" id="consultationsCard" onclick="toggleConsultationList()">
-            <h3>Consultation List</h3>
-            <p>Click to see all consultations</p>
-          </div>
-  
-          <!-- Consultation List (Initially hidden) -->
-          <div id="consultationList" style="display: none; grid-column: span 2; padding: 10px; border: 1px solid #ddd; border-radius: 5px; background-color: #f9f9f9;">
-            <h3>All Consultations</h3>
-            <ul>
-              <li>Consultation 1: 10/01/2025 - John Doe</li>
-              <li>Consultation 2: 12/01/2025 - Jane Smith</li>
-              <li>Consultation 3: 15/01/2025 - Bob Brown</li>
-              <li>Consultation 4: 18/01/2025 - Alice White</li>
-              <li>Consultation 5: 20/01/2025 - Charlie Black</li>
-              <!-- Add more consultation entries as needed -->
-            </ul>
-          </div>
         </div>
       </section>
     </div>
-  
+
     <!-- Script for Dynamic Updates -->
     <script>
-      // Simulated API data for consultations and income
-      const agronomistData = {
-        totalConsultations: 120,
-        pendingConsultations: 5,
-        monthlyIncome: 3000,
-        totalIncome: 45000
+      // API Endpoints
+      const agronomistEndpoint =
+        "http://localhost:8000/consultations/agronomists/";
+      const consultationRequestsEndpoint =
+        "http://localhost:8000/consultations/consultation-requests/";
+
+      // Fetch and Populate Dashboard Data
+      window.onload = async function () {
+        try {
+          // Fetch Agronomists and Consultation Requests
+          const [agronomistResponse, consultationResponse] = await Promise.all([
+            fetch(agronomistEndpoint),
+            fetch(consultationRequestsEndpoint),
+          ]);
+
+          // Convert Responses to JSON
+          const agronomistData = await agronomistResponse.json();
+          const consultationData = await consultationResponse.json();
+
+          // Calculate Metrics
+          const totalConsultations = consultationData.count;
+          const pendingConsultations = consultationData.results.filter(
+            (consultation) => consultation.status === "Pending"
+          ).length;
+          const totalIncome = consultationData.results.reduce(
+            (sum, consultation) => sum + parseFloat(consultation.fee),
+            0
+          );
+
+          // Update Dashboard Cards
+          document.getElementById("totalConsultations").innerText =
+            totalConsultations;
+          document.getElementById("pendingConsultations").innerText =
+            pendingConsultations;
+          document.getElementById(
+            "totalIncome"
+          ).innerText = `$${totalIncome.toFixed(2)}`;
+
+          // Generate Consultation List
+          const consultationList = consultationData.results
+            .map(
+              (consultation) =>
+                `<li>${consultation.details} - Status: ${consultation.status}</li>`
+            )
+            .join("");
+          document.getElementById("consultationList").innerHTML = `
+      <h3>Consultation Details</h3>
+      <ul>${consultationList}</ul>`;
+        } catch (error) {
+          console.error("Error fetching data:", error);
+        }
       };
-  
-      // Load Data into Cards
-      window.onload = function () {
-        document.getElementById("totalConsultations").innerText = agronomistData.totalConsultations;
-        document.getElementById("pendingConsultations").innerText = agronomistData.pendingConsultations;
-        document.getElementById("monthlyIncome").innerText = `$${agronomistData.monthlyIncome.toLocaleString()}`;
-        document.getElementById("totalIncome").innerText = `$${agronomistData.totalIncome.toLocaleString()}`;
-      };
-  
+
       // Toggle the visibility of the consultations list
       function toggleConsultationList() {
         const consultationList = document.getElementById("consultationList");
-        consultationList.style.display = consultationList.style.display === "none" ? "block" : "none";
+        consultationList.style.display =
+          consultationList.style.display === "none" ? "block" : "none";
       }
-  
-      // Profile Button Function
+
+      // Profile Button Redirect
       function redirectToProfile() {
         window.location.href = "profile.html";
       }
     </script>
   </body>
-  
+</html>
