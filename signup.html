@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Multi-Role Sign-Up</title>
+  <title>FarmFriend Sign-Up</title>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <link rel="stylesheet" href="signup.css" />
 </head>
@@ -69,11 +69,11 @@
       <div class="logo">
         <img src="assets/images/logo.jpg" alt="Logo" />
       </div>
-      <a href="Home.html">Home</a>
-      <a href="contact.html">Contact</a>
-      <a href="about.html">About Us</a>
-      <a href="profile.html">Profile</a>
-    </nav>
+      <a href="Home.html">হোম</a>
+      <a href="contact.html">যোগাযোগ</a>
+      <a href="about.html">আমাদের সম্পর্কে</a>
+      <a href="profile.html">প্রোফাইল</a>
+    </nav>    
     <script>
       let lastScrollY = window.scrollY;
       const navbar = document.getElementById("navbar");
@@ -100,19 +100,6 @@
 
   </header>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
   <!-- Background Video -->
   <div class="video-background">
     <video autoplay muted loop>
@@ -123,53 +110,53 @@
 
   <!-- Transparent Form Container -->
   <div class="form-container">
-    <h2>Sign Up - Create Multiple Accounts</h2>
+    <h2>সাইন আপ - একাধিক অ্যাকাউন্ট তৈরি করুন</h2>
     <form id="signupForm">
       <!-- Common Fields -->
       <div class="common-fields">
         <div class="input-group">
-          <input type="text" id="first-name" name="first-name" placeholder="First Name" required />
-          <input type="text" id="last-name" name="last-name" placeholder="Last Name" required />
+          <input type="text" id="first-name" name="first-name" placeholder="প্রথম নাম" required />
+          <input type="text" id="last-name" name="last-name" placeholder="শেষ নাম" required />
         </div>
 
-        <input type="email" id="email" name="email" placeholder="Email" required />
-        <input type="text" id="username" name="username" placeholder="Username" required />
+        <input type="email" id="email" name="email" placeholder="ইমেইল" required />
+        <input type="text" id="username" name="username" placeholder="ইউজারনেম" required />
 
         <div class="input-group">
-          <input type="password" id="password" name="password" placeholder="Password" required />
-          <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm Password"
+          <input type="password" id="password" name="password" placeholder="পাসওয়ার্ড" required />
+          <input type="password" id="confirm-password" name="confirm-password" placeholder="পাসওয়ার্ড নিশ্চিত করুন"
             required />
         </div>
 
         <div class="file-upload">
-          <label for="profilePicture">Profile Picture:</label>
+          <label for="profilePicture">প্রোফাইল ছবি:</label>
           <input type="file" id="profilePicture" name="profilePicture" accept="image/*" />
         </div>
 
-        <input type="date" id="dob" name="dob" placeholder="Date of Birth" required />
-        <textarea id="address" name="address" placeholder="Address" required></textarea>
-        <input type="tel" id="contact" name="contact" placeholder="Contact Number" required />
+        <input type="date" id="dob" name="dob" placeholder="জন্ম তারিখ" required />
+        <textarea id="address" name="address" placeholder="ঠিকানা" required></textarea>
+        <input type="tel" id="contact" name="contact" placeholder="যোগাযোগ নম্বর" required />
       </div>
 
       <!-- Role Selection -->
       <div class="role-selection">
-        <h3>Select your role(s):</h3>
+        <h3>আপনার ভূমিকা নির্বাচন করুন:</h3>
         <div class="checkbox-group">
           <label>
             <input type="checkbox" name="roles" value="farmer" onchange="showAdditionalFields()" />
-            Farmer
+            কৃষক
           </label>
           <label>
             <input type="checkbox" name="roles" value="agronomist" onchange="showAdditionalFields()" />
-            Agronomist
+            কৃষিবিদ
           </label>
           <label>
             <input type="checkbox" name="roles" value="storage_owner" onchange="showAdditionalFields()" />
-            Storage Owner
+            গুদামঘর মালিক
           </label>
           <label>
             <input type="checkbox" name="roles" value="equipment_renter" onchange="showAdditionalFields()" />
-            Equipment Renter
+            কৃষি সরঞ্জাম ভাড়া প্রদানকারী
           </label>
         </div>
       </div>
@@ -177,12 +164,13 @@
       <!-- Additional Fields Container -->
       <div id="additional-fields"></div>
 
-      <button type="submit">Create Accounts</button>
+      <button type="submit">অ্যাকাউন্ট তৈরি করুন</button>
     </form>
   </div>
 
+
   <footer>
-    <p>&copy; 2025 Multi-Role Platform. All rights reserved.</p>
+    <p>&copy; FarmFriend 2025 . All rights reserved.</p>
   </footer>
 
   <script src="signup.js"></script>

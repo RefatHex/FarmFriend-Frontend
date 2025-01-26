@@ -11,33 +11,33 @@ function showAdditionalFields() {
     switch (role) {
       case "farmer":
         fieldsHTML += `
-                    <div class="role-specific-fields">
-                        <input type="number" name="field_size" placeholder="Field Size (in hectares)" required>
-                        <input type="hidden" name="average_rating" value="0">
-                    </div>`;
+          <div class="role-specific-fields">
+              <input type="number" name="field_size" placeholder="জমির মাপ (বিঘা অনুযায়ী)" required>
+              <input type="hidden" name="average_rating" value="0">
+          </div>`;
         break;
       case "storage_owner":
         fieldsHTML += `
-                    <div class="role-specific-fields">
-                        <input type="number" name="storage_capacity" placeholder="Storage Capacity (in tons)" required>
-                    </div>`;
+          <div class="role-specific-fields">
+              <input type="number" name="storage_capacity" placeholder="গুদাম ঘরের ধারণক্ষমতা (টন এ)" required>
+          </div>`;
         break;
       case "equipment_renter":
         break;
       case "agronomist":
         fieldsHTML += `
-                    <div class="role-specific-fields">
-                        <select name="specialty" required>
-                            <option value="">Select Specialty</option>
-                            <option value="crop_management">Crop Management</option>
-                            <option value="soil_science">Soil Science</option>
-                            <option value="pest_control">Pest Control</option>
-                            <option value="other">Other</option>
-                        </select>
-                        <input type="number" name="years_of_experience" placeholder="Years of Experience" required min="0">
-
-                    </div>`;
+          <div class="role-specific-fields">
+              <select name="specialty" required>
+                  <option value="">বিশেষত্ব নির্বাচন করুন</option>
+                  <option value="crop_management">ফসল ব্যবস্থাপনা</option>
+                  <option value="soil_science">মাটি বিজ্ঞান</option>
+                  <option value="pest_control">পোকামাকড় নিয়ন্ত্রণ</option>
+                  <option value="other">অন্যান্য</option>
+              </select>
+              <input type="number" name="years_of_experience" placeholder="অভিজ্ঞতার বছর" required min="0">
+          </div>`;
         break;
+      
     }
     fieldsHTML += "</div>";
   });

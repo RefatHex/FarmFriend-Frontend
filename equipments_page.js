@@ -123,12 +123,20 @@ async function submitBooking() {
   const rentTakerId = getCookie("farmersId");
 
   if (!returnDate) {
-    alert("Please select a return date.");
+    Swal.fire({
+      icon: 'warning', // Icon to indicate a warning
+      title: 'অনুগ্রহ করে একটি ফেরতের তারিখ নির্বাচন করুন।',
+      confirmButtonText: 'ঠিক আছে'
+    });
     return;
   }
 
   if (!rentTakerId) {
-    alert("You must be logged in to book a gig.");
+    Swal.fire({
+      icon: 'warning', // Icon to indicate a warning
+      title: 'আপনাকে একটি যন্ত্র ভাড়া করতে লগ ইন করতে হবে।',
+      confirmButtonText: 'ঠিক আছে'
+    });
     return;
   }
 
@@ -154,16 +162,30 @@ async function submitBooking() {
     });
 
     if (response.ok) {
-      alert("Booking successful!");
+      Swal.fire({
+        icon: 'success', // Icon to indicate success
+        title: 'বুকিং সফল হয়েছে!',
+        confirmButtonText: 'ঠিক আছে'
+      });
       closeDetailsPopup();
     } else {
       const errorMessage = await response.json();
       console.error("Booking failed:", errorMessage);
-      alert("Booking failed: " + JSON.stringify(errorMessage));
+      Swal.fire({
+        icon: 'error', // Icon to indicate an error
+        title: 'বুকিং ব্যর্থ হয়েছে!',
+        text: 'ত্রুটি: ' + JSON.stringify(errorMessage),
+        confirmButtonText: 'ঠিক আছে'
+      });
     }
   } catch (error) {
     console.error("Error submitting booking:", error);
-    alert("An error occurred while booking. Please try again.");
+    Swal.fire({
+      icon: 'error', // Icon to indicate an error
+      title: 'বুকিংয়ের সময় ত্রুটি ঘটেছে।',
+      text: 'দয়া করে আবার চেষ্টা করুন।',
+      confirmButtonText: 'ঠিক আছে'
+    });
   }
 }
 

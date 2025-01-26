@@ -217,8 +217,8 @@
       <div class="logo">
         <img src="assets/images/logo.jpg" alt="Logo" />
       </div>
-      <a href="farmerLandingPage.html">Home</a>
-      <a href="profile.html">Profile</a>
+      <a href="farmerLandingPage.html">হোম</a>
+      <a href="profile.html">প্রোফাইল</a>
     </nav>
     <style>
       /* Navbar Styling */
@@ -258,10 +258,6 @@
       <div class="card">
         <div class="card-value" id="humidityCard">--%</div>
         <div class="card-label">আর্দ্রতা</div>
-      </div>
-      <div class="card rainfall-card">
-        <div class="card-value" id="rainfallCard">-- মিমি</div>
-        <div class="card-label">বৃষ্টিপাত</div>
       </div>
     </div>
 
@@ -331,9 +327,9 @@
       } else {
         const noAlertDiv = document.createElement("div");
         noAlertDiv.classList.add("alert");
-        noAlertDiv.innerText = "No current weather alerts.";
+        noAlertDiv.innerText = "কোনো বর্তমান আবহাওয়া সতর্কতা নেই।";
         alertsContainer.appendChild(noAlertDiv);
-      }
+      }      
     }
 
     function populateHistoricalRainfall(data) {

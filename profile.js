@@ -52,18 +52,42 @@ async function fetchRoleDetails() {
         populateRoleDetails(roleDetails);
       } else {
         console.warn("No role details found.");
-        alert("No role details available. Redirecting to homepage...");
+        Swal.fire({
+          icon: 'warning', // Icon to indicate a warning or information
+          title: 'ভূমিকা সম্পর্কিত তথ্য পাওয়া যায়নি।',
+          text: 'আপনাকে হোমপেজে পুনঃনির্দেশিত করা হচ্ছে...',
+          confirmButtonText: 'ঠিক আছে'
+        }).then(() => {
+          // Redirect to the homepage after the alert is closed
+          window.location.href = '/'; // Replace '/' with your homepage URL
+        });
         window.location.href = "index.html";
       }
     } else {
       console.error("Failed to fetch role details:", response.statusText);
-      alert("Error loading role details. Redirecting to login page...");
-      window.location.href = "login.html";
+      Swal.fire({
+        icon: 'error', // Icon to indicate an error
+        title: 'ভূমিকা সম্পর্কিত তথ্য লোড করতে সমস্যা হয়েছে।',
+        text: 'আপনাকে লগইন পৃষ্ঠায় পুনঃনির্দেশিত করা হচ্ছে...',
+        confirmButtonText: 'ঠিক আছে'
+      }).then(() => {
+        // Redirect to the login page after the alert is closed
+        window.location.href = "login.html"; // Replace '/login' with your login page URL
+      });
+      
     }
   } catch (error) {
     console.error("An error occurred while fetching role details:", error);
-    alert("Error loading profile. Redirecting to login page...");
-    window.location.href = "login.html";
+    Swal.fire({
+      icon: 'error', // Icon to indicate an error
+      title: 'প্রোফাইল লোড করতে সমস্যা হয়েছে।',
+      text: 'আপনাকে লগইন পৃষ্ঠায় পুনঃনির্দেশিত করা হচ্ছে...',
+      confirmButtonText: 'ঠিক আছে'
+    }).then(() => {
+      // Redirect to the login page after the alert is closed
+      window.location.href = "login.html"; // Replace '/login' with your login page URL
+    });
+    
   }
 }
 
@@ -156,32 +180,48 @@ async function saveField(key, input) {
     );
 
     if (response.ok) {
-      alert("Field updated successfully.");
+      Swal.fire({
+        icon: 'success', // Icon to indicate success
+        title: 'ফিল্ড সফলভাবে আপডেট করা হয়েছে।',
+        confirmButtonText: 'ঠিক আছে'
+      });
       // Reload the page to reflect changes
       window.location.reload();
     } else {
-      alert("Failed to update field. Please try again.");
+      Swal.fire({
+        icon: 'error', // Icon to indicate an error
+        title: 'ফিল্ড আপডেট করতে ব্যর্থ হয়েছে।',
+        text: 'দয়া করে আবার চেষ্টা করুন।',
+        confirmButtonText: 'ঠিক আছে'
+      });
       console.error("Error updating field:", response.statusText);
     }
   } catch (error) {
-    alert("An error occurred while updating the field.");
+    Swal.fire({
+      icon: 'error', // Icon to indicate an error
+      title: 'ফিল্ড আপডেট করার সময় একটি ত্রুটি ঘটেছে।',
+      confirmButtonText: 'ঠিক আছে'
+    });
     console.error("Error updating field:", error);
   }
 }
 
 // Redirect to change password page
-function redirectToChangePassword() {
-  window.location.href = "changePassword.html";
-}
 
 // Logout function
 function logout() {
-  alert("You have been logged out.");
   // Clear cookies
   document.cookie = "userId=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
   document.cookie =
     "selectedRole=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-  window.location.href = "login.html";
+    Swal.fire({
+      icon: 'info', // Icon to indicate information
+      title: 'আপনি লগআউট হয়ে গেছেন।',
+      confirmButtonText: 'ঠিক আছে'
+    }).then(() => {
+      // Redirect to the login page after the alert is closed
+      window.location.href = 'login.html'; // Replace with your login page URL
+    });
 }
 
 // Load role details on page load
@@ -220,15 +260,30 @@ async function fetchBillingDetails() {
         populateBillingForm(data.results[0]);
       } else {
         console.warn("No billing details found.");
-        alert("No billing details found. Please add your billing information.");
+        Swal.fire({
+          icon: 'warning', // Icon to indicate a warning
+          title: 'বিলিং তথ্য পাওয়া যায়নি।',
+          text: 'দয়া করে আপনার বিলিং তথ্য যোগ করুন।',
+          confirmButtonText: 'ঠিক আছে'
+        });
       }
     } else {
       console.error("Failed to fetch billing details:", response.statusText);
-      alert("Error fetching billing details. Please try again.");
+      Swal.fire({
+        icon: 'error', // Icon to indicate an error
+        title: 'বিলিং তথ্য আনতে ত্রুটি হয়েছে।',
+        text: 'দয়া করে আবার চেষ্টা করুন।',
+        confirmButtonText: 'ঠিক আছে'
+      });
     }
   } catch (error) {
     console.error("Error occurred while fetching billing details:", error);
-    alert("An error occurred. Please try again.");
+    Swal.fire({
+      icon: 'error', // Icon to indicate an error
+      title: 'একটি ত্রুটি ঘটেছে।',
+      text: 'দয়া করে আবার চেষ্টা করুন।',
+      confirmButtonText: 'ঠিক আছে'
+    });
   }
 }
 
@@ -284,11 +339,21 @@ document
           "Failed to check billing details:",
           checkResponse.statusText
         );
-        alert("Error checking billing details. Please try again.");
+        Swal.fire({
+          icon: 'error', // Icon to indicate an error
+          title: 'বিলিং তথ্য যাচাই করতে ত্রুটি হয়েছে।',
+          text: 'দয়া করে আবার চেষ্টা করুন।',
+          confirmButtonText: 'ঠিক আছে'
+        });
       }
     } catch (error) {
       console.error("Error occurred while saving billing details:", error);
-      alert("An error occurred. Please try again.");
+      Swal.fire({
+        icon: 'error', // Icon to indicate an error
+        title: 'একটি ত্রুটি ঘটেছে।',
+        text: 'দয়া করে আবার চেষ্টা করুন।',
+        confirmButtonText: 'ঠিক আছে'
+      });
     }
   });
 
@@ -307,15 +372,29 @@ async function createBillingInfo(billingData) {
     );
 
     if (response.ok) {
-      alert("Billing information saved successfully!");
+      Swal.fire({
+        icon: 'success', // Icon to indicate success
+        title: 'বিলিং তথ্য সফলভাবে সেভ করা হয়েছে!',
+        confirmButtonText: 'ঠিক আছে'
+      });
       fetchBillingDetails(); // Refresh form
     } else {
       console.error("Failed to create billing info:", response.statusText);
-      alert("Error saving billing information. Please try again.");
+      Swal.fire({
+        icon: 'error', // Icon to indicate an error
+        title: 'বিলিং তথ্য সেভ করতে ত্রুটি হয়েছে।',
+        text: 'দয়া করে আবার চেষ্টা করুন।',
+        confirmButtonText: 'ঠিক আছে'
+      });
     }
   } catch (error) {
     console.error("Error occurred while creating billing info:", error);
-    alert("An error occurred. Please try again.");
+    Swal.fire({
+      icon: 'error', // Icon to indicate an error
+      title: 'একটি ত্রুটি ঘটেছে।',
+      text: 'দয়া করে আবার চেষ্টা করুন।',
+      confirmButtonText: 'ঠিক আছে'
+    });
   }
 }
 
@@ -334,15 +413,29 @@ async function updateBillingInfo(billingId, billingData) {
     );
 
     if (response.ok) {
-      alert("Billing information updated successfully!");
+      Swal.fire({
+        icon: 'success', // Icon to indicate success
+        title: 'বিলিং তথ্য সফলভাবে আপডেট করা হয়েছে!',
+        confirmButtonText: 'ঠিক আছে'
+      });
       fetchBillingDetails(); // Refresh form
     } else {
       console.error("Failed to update billing info:", response.statusText);
-      alert("Error updating billing information. Please try again.");
+      Swal.fire({
+        icon: 'error', // Icon to indicate an error
+        title: 'বিলিং তথ্য আপডেট করতে ত্রুটি হয়েছে।',
+        text: 'দয়া করে আবার চেষ্টা করুন।',
+        confirmButtonText: 'ঠিক আছে'
+      });
     }
   } catch (error) {
     console.error("Error occurred while updating billing info:", error);
-    alert("An error occurred. Please try again.");
+    Swal.fire({
+      icon: 'error', // Icon to indicate an error
+      title: 'একটি ত্রুটি ঘটেছে।',
+      text: 'দয়া করে আবার চেষ্টা করুন।',
+      confirmButtonText: 'ঠিক আছে'
+    });
   }
 }
 
@@ -380,15 +473,29 @@ async function fetchPayments() {
         populatePaymentsTable(data.results);
       } else {
         console.warn("No payments found.");
-        alert("No payment records found.");
+        Swal.fire({
+          icon: 'warning', // Icon to indicate a warning
+          title: 'কোনো পেমেন্ট রেকর্ড পাওয়া যায়নি।',
+          confirmButtonText: 'ঠিক আছে'
+        });
       }
     } else {
       console.error("Failed to fetch payments:", response.statusText);
-      alert("Error fetching payments. Please try again.");
+      Swal.fire({
+        icon: 'error', // Icon to indicate an error
+        title: 'পেমেন্ট তথ্য আনতে ত্রুটি হয়েছে।',
+        text: 'দয়া করে আবার চেষ্টা করুন।',
+        confirmButtonText: 'ঠিক আছে'
+      });
     }
   } catch (error) {
     console.error("Error occurred while fetching payments:", error);
-    alert("An error occurred. Please try again.");
+    Swal.fire({
+      icon: 'error', // Icon to indicate an error
+      title: 'একটি ত্রুটি ঘটেছে।',
+      text: 'দয়া করে আবার চেষ্টা করুন।',
+      confirmButtonText: 'ঠিক আছে'
+    });
   }
 }
 
