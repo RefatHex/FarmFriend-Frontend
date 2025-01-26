@@ -44,7 +44,11 @@ const submitGig = async () => {
     );
 
     if (response.ok) {
-      alert("Gig uploaded successfully!");
+      Swal.fire({
+        icon: 'success', // Icon to indicate success
+        title: 'তথ্য সফলভাবে আপলোড হয়েছে!',
+        confirmButtonText: 'ঠিক আছে'
+      });
       location.reload();
     } else {
       console.error("Error uploading gig:", response.statusText);
@@ -93,7 +97,11 @@ const deleteGig = async (gigId) => {
       );
 
       if (response.ok) {
-        alert("Gig deleted successfully!");
+        Swal.fire({
+          icon: 'success', // Icon to indicate success
+          title: 'তথ্য সফলভাবে মুছে ফেলা হয়েছে!',
+          confirmButtonText: 'ঠিক আছে'
+        });
         loadGigs();
       } else {
         console.error("Error deleting gig:", response.statusText);
@@ -158,7 +166,11 @@ const updateGig = async () => {
     );
 
     if (response.ok) {
-      alert("Gig updated successfully!");
+      Swal.fire({
+        icon: 'success', // Icon to indicate success
+        title: 'তথ্য সফলভাবে আপডেট হয়েছে!',
+        confirmButtonText: 'ঠিক আছে'
+      });
       location.reload();
     } else {
       console.error("Error updating gig:", response.statusText);
