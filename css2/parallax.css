@@ -2,15 +2,17 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Roboto', sans-serif; /* Clean, professional font */
 }
 
 body {
   background: #f9f9f9;
   min-height: 100vh;
   overflow-x: hidden;
+  color: #333; /* Dark text for readability */
 }
 
+/* Header */
 header {
   position: absolute;
   top: 0;
@@ -24,15 +26,15 @@ header {
 }
 
 .logo {
-  font-size: 2em;
-  color: #359381;
+  font-size: 2.2em; /* Slightly larger for emphasis */
+  color: #1d6e6d; /* Rich teal for logo */
   pointer-events: none;
   margin-right: 270px;
 }
 
 .navigation a {
   text-decoration: none;
-  color: #359381;
+  color: #1d6e6d; /* Rich teal for navigation */
   padding: 6px 15px;
   border-radius: 20px;
   margin: 0 10px;
@@ -41,29 +43,110 @@ header {
 
 .navigation a:hover,
 .navigation a.active {
-  background: #359381;
+  background: #1d6e6d;
   color: #fff;
 }
 
+/* Parallax Section */
 .parallax {
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
+  background: #e9f7f1; /* Light background to enhance contrast */
 }
 
 #text {
   position: absolute;
-  font-size: 5em;
-  color: #fff;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  color: #2b2d42; /* Dark gray for a professional, sophisticated look */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Soft shadow for depth */
+  z-index: 10;
+  text-align: center;
+  opacity: 0;
+  animation: popDrop 1.5s ease-out forwards; /* Animation for pop-drop effect */
+  -webkit-text-stroke: 2px #1d6e6d; /* Rich teal border around the text */
+  padding: 20px;
+  border-radius: 10px; /* Rounded corners for a softer look */
 }
 
-.parallax img {
+/* Pop-drop animation */
+@keyframes popDrop {
+  0% {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+  50% {
+    transform: translateY(10px);
+    opacity: 0.7;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Adjust text size for the title */
+/* Adjust the hover effect to avoid blinking */
+#text h1 {
+  font-size: 3.5em;
+  font-weight: 700;
+  color: #53e5b1;
+  -webkit-text-stroke: 2px #161616b5;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  transition: color 0.3s ease, transform 0.3s ease; /* Smooth transition */
+}
+
+#text h1:hover {
+  color: #ffffffb8; /* Lighter color on hover */
+  transform: scale(1.05); /* Slight scale for hover effect */
+}
+
+/* Subtitle styling */
+#text h1:nth-child(2) {
+  font-size: 2.2em;
+  font-weight: 500;
+  color: #ffffffb8;
+  opacity: 1;
+  -webkit-text-stroke: 1px #7a9f9f;
+}
+
+/* Text hover effect */
+
+/* Parallax Background Images */
+.parallax-background img {
   position: absolute;
-  top: 0; /* Set the height of the parallax section */
+  top: 0;
   left: 0;
   width: 100%;
-  pointer-events: none; /* Ensure it's above the background */
+  pointer-events: none;
+}
+
+/* Parallax Overlay Images */
+#leaf {
+  position: fixed;
+  bottom: 10%;
+  right: 10%;
+  width: 12%;
+  animation: float 10s ease-in-out infinite;
+}
+
+#plant {
+  position: fixed;
+  bottom: 20%;
+  left: 0;
+  width: 10%;
+}
+
+/* Floating animation for overlay images */
+@keyframes float {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0);
+  }
 }
