@@ -36,12 +36,17 @@
     <div class="logo">
       <img src="assets/images/logo.jpg" alt="লোগো" />
     </div>
-    <a href="index.html">হোম</a>
-    <a href="contact.html">যোগাযোগ</a>
-    <a href="about.html">আমাদের সম্পর্কে</a>
-    <a href="login.html">লগইন</a>
-    <a href="signup.html">সাইন আপ</a>
-</nav>
+    <div class="nav-links">
+      <a href="index.html">হোম</a>
+      <a href="contact.html">যোগাযোগ</a>
+      <a href="about.html">আমাদের সম্পর্কে</a>
+      <a href="login.html">লগইন</a>
+      <a href="signup.html">সাইন আপ</a>
+    </div>
+    <div class="decorated-container">
+      <span class="decorated-text" id="farmfriend">FARMFRIEND</span>
+    </div>
+  </nav>
 
   <style>
     /* Navbar Styling */
@@ -54,23 +59,26 @@
       border-bottom: 1px solid #ddd;
       display: flex;
       align-items: center;
-      /* Align items vertically in the center */
       padding: 10px 20px;
-      /* Adjust padding for better layout */
       z-index: 1000;
-      transform: translateY(-100%);
+      justify-content: space-between;
+      transform: translateY(0);
+      /* Make navbar visible by default */
       transition: transform 0.3s ease-in-out;
     }
 
     nav .logo img {
       height: 40px;
-      /* Adjust logo size as needed */
       width: auto;
       margin-right: 20px;
-      /* Space between the logo and the links */
     }
 
-    nav a {
+    .nav-links {
+      display: flex;
+      gap: 10px;
+    }
+
+    .nav-links a {
       color: black;
       padding: 14px 20px;
       text-decoration: none;
@@ -80,8 +88,7 @@
       overflow: hidden;
     }
 
-    /* Enhanced Hover Styles */
-    nav a::before {
+    .nav-links a::before {
       content: "";
       position: absolute;
       width: 0;
@@ -93,34 +100,85 @@
       transition: width 0.3s ease-in-out;
     }
 
-    nav a:hover::before {
+    .nav-links a:hover::before {
       width: 100%;
     }
 
-    nav a:hover {
+    .nav-links a:hover {
       color: #4caf50;
+    }
+
+    /* Decorated Text Styling */
+    .decorated-container {
+      display: flex;
+      justify-content: center;
+      flex-grow: 1;
+    }
+
+    .decorated-text {
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 24px;
+      font-weight: bold;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      position: relative;
+      text-align: center;
+      color: #28a745;
+      white-space: nowrap;
+      animation: glow 2s infinite;
+    }
+
+    .decorated-text::before,
+    .decorated-text::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      width: 80px;
+      height: 2px;
+      background-color: #4caf50;
+    }
+
+    .decorated-text::before {
+      left: -90px;
+    }
+
+    .decorated-text::after {
+      right: -90px;
+    }
+
+    /* Glow Effect */
+    @keyframes glow {
+      0% {
+        text-shadow: 0 0 5px #4caf50, 0 0 10px #4caf50, 0 0 20px #4caf50, 0 0 30px #4caf50;
+      }
+
+      50% {
+        text-shadow: 0 0 10px #81c784, 0 0 20px #81c784, 0 0 30px #81c784, 0 0 40px #81c784;
+      }
+
+      100% {
+        text-shadow: 0 0 5px #4caf50, 0 0 10px #4caf50, 0 0 20px #4caf50, 0 0 30px #4caf50;
+      }
     }
   </style>
 
   <script>
-    // JavaScript for dynamic navbar behavior
     let lastScrollY = window.scrollY;
     const navbar = document.getElementById('navbar');
     let isMouseNearTop = false;
 
-    // Hide or show navbar on scroll
+    // JavaScript for dynamic navbar behavior
     window.addEventListener('scroll', () => {
-      if (window.scrollY > lastScrollY && !isMouseNearTop) {
-        // Hide navbar on scroll down
+      if (window.scrollY > lastScrollY) {
+        // Scrolling down: Hide navbar
         navbar.style.transform = 'translateY(-100%)';
       } else {
-        // Show navbar on scroll up
+        // Scrolling up: Show navbar
         navbar.style.transform = 'translateY(0)';
       }
       lastScrollY = window.scrollY;
     });
 
-    // Detect mouse near the top of the screen
     window.addEventListener('mousemove', (event) => {
       if (event.clientY <= 50) {
         // Show navbar when mouse is near the top
@@ -130,69 +188,111 @@
         isMouseNearTop = false;
       }
     });
+
+    // JavaScript for animated entry effect
+    document.addEventListener('DOMContentLoaded', () => {
+      const farmfriend = document.getElementById('farmfriend');
+
+      // Add an animation class on load
+      farmfriend.style.opacity = 0;
+      farmfriend.style.transform = 'translateY(20px)';
+      setTimeout(() => {
+        farmfriend.style.transition = 'all 0.8s ease';
+        farmfriend.style.opacity = 1;
+        farmfriend.style.transform = 'translateY(0)';
+      }, 500);
+    });
   </script>
 
 
-  <section class="parallax">
 
-    <img src="assets/images/parallax/hill1.png" id="hill1">
-    <img src="assets/images/parallax/hill2.png" id="hill2">
-    <img src="assets/images/parallax/hill3.png" id="hill3">
-    <img src="assets/images/parallax/hill4.png" id="hill4">
-    <img src="assets/images/parallax/hill5.png" id="hill5">
-    <img src="assets/images/parallax/tree.png" id="tree">
-    <h2 id="text"></h2>
+
+
+  <section class="parallax">
+    <!-- Parallax Background Images -->
+    <div class="parallax-background">
+      <img src="assets/images/parallax/hill1.png" id="hill1">
+      <img src="assets/images/parallax/hill2.png" id="hill2">
+      <img src="assets/images/parallax/hill3.png" id="hill3">
+      <img src="assets/images/parallax/hill4.png" id="hill4">
+      <img src="assets/images/parallax/hill5.png" id="hill5">
+      <img src="assets/images/parallax/tree.png" id="tree">
+    </div>
+
+    <!-- Project Name and Slogan -->
+
+    <h2 id="text">
+      <div class="intro-text">
+        <h1>FarmFriend<br>
+
+        </h1>
+        <h1>
+          Gateway to Modern Farming
+        </h1>
+
+      </div>
+    </h2>
+    <!-- Parallax Overlay Images -->
     <img src="assets/images/parallax/leaf.png" id="leaf">
     <img src="assets/images/parallax/plant.png" id="plant">
   </section>
+
+
 
   <!-- END nav -->
 
   <div class="blender-section">
     <h2>চলুন আমাদের সম্পর্কে জানি?</h2>
-</div>
+  </div>
 
-<style>
-  body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-  }
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
 
-  .blender-section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background: #ffffff;
+    .blender-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: #ffffff;
 
-    color: rgb(46, 186, 214);
+      color: rgb(46, 186, 214);
 
-    padding: 20px 10px;
-    text-align: center;
-    height: 90px;
+      padding: 20px 10px;
+      text-align: center;
+      height: 90px;
 
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  }
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
 
-  .blender-section h2 {
-    font-size: 2rem; /* Increased title size */
-    font-weight: bold; /* Made font bold */
-    margin-bottom: 10px;
-  }
+    .blender-section h2 {
+      font-size: 2rem;
+      /* Increased title size */
+      font-weight: bold;
+      /* Made font bold */
+      margin-bottom: 10px;
+    }
 
-  .blender-section p {
-    font-size: 1rem; /* Increased paragraph size */
-    font-weight: bold; /* Made font bold */
-    max-width: 500px;
-    margin-bottom: 15px;
-    line-height: 1.6; /* Slightly increased line height */
-  }
+    .blender-section p {
+      font-size: 1rem;
+      /* Increased paragraph size */
+      font-weight: bold;
+      /* Made font bold */
+      max-width: 500px;
+      margin-bottom: 15px;
+      line-height: 1.6;
+      /* Slightly increased line height */
+    }
 
-  .blender-section span {
-    font-size: 1.2rem; /* Increased font size for span */
-    font-weight: bold; /* Made font bold */
-  }
-</style>
+    .blender-section span {
+      font-size: 1.2rem;
+      /* Increased font size for span */
+      font-weight: bold;
+      /* Made font bold */
+    }
+  </style>
 
 
   <div class="hero-wrapMulti" style="position: relative; overflow: hidden;">
@@ -226,30 +326,33 @@
 
                 <div class="text pl-3">
                   <h4>২৪/৭ সেবা</h4>
-                  <p class="dark-text">আমরা নিশ্চিত করি যে কৃষকরা আমাদের প্ল্যাটফর্ম যেকোনো সময় ব্যবহার করতে পারে, গুদাম সুবিধা, বিশেষজ্ঞ পরামর্শ এবং আরও অনেক কিছুতে সার্বক্ষণিক সহায়তা প্রদান করে।</p>
+                  <p class="dark-text">আমরা নিশ্চিত করি যে কৃষকরা আমাদের প্ল্যাটফর্ম যেকোনো সময় ব্যবহার করতে পারে,
+                    গুদাম সুবিধা, বিশেষজ্ঞ পরামর্শ এবং আরও অনেক কিছুতে সার্বক্ষণিক সহায়তা প্রদান করে।</p>
                 </div>
-                </div>
-                <div class="col-md-6 services-2 w-100 d-flex">
-                
+              </div>
+              <div class="col-md-6 services-2 w-100 d-flex">
+
                 <div class="text pl-3">
                   <h4>পেশাদার ও অভিজ্ঞ কর্মী</h4>
-                  <p class="dark-text">কৃষি ও প্রযুক্তিতে দক্ষ একটি উৎসাহী দলের দ্বারা তৈরি যারা কৃষকদের প্রয়োজন অনুযায়ী উদ্ভাবনী সমাধান প্রদান করে।</p>
+                  <p class="dark-text">কৃষি ও প্রযুক্তিতে দক্ষ একটি উৎসাহী দলের দ্বারা তৈরি যারা কৃষকদের প্রয়োজন
+                    অনুযায়ী উদ্ভাবনী সমাধান প্রদান করে।</p>
                 </div>
-                </div>
-                <div class="col-md-6 services-2 w-100 d-flex">
-                
+              </div>
+              <div class="col-md-6 services-2 w-100 d-flex">
+
                 <div class="text pl-3">
                   <h4>উচ্চ মানের ও নির্ভরযোগ্য সেবা</h4>
                   <p class="dark-text">সার প্রয়োগে পরামর্শ এবং বিশেষজ্ঞ পরামর্শের মতো উন্নত বৈশিষ্ট্য সরবরাহ করে।</p>
                 </div>
-                </div>
-                <div class="col-md-6 services-2 w-100 d-flex">
-                
+              </div>
+              <div class="col-md-6 services-2 w-100 d-flex">
+
                 <div class="text pl-3">
                   <h4>গ্রাহক সেবা ও বিশেষজ্ঞ পরামর্শ</h4>
-                  <p class="dark-text">ব্যক্তিগত পরামর্শ এবং ব্যবহারকারী-বান্ধব ইন্টারফেস থেকে কৃষকরা উপকৃত হতে পারেন।</p>
+                  <p class="dark-text">ব্যক্তিগত পরামর্শ এবং ব্যবহারকারী-বান্ধব ইন্টারফেস থেকে কৃষকরা উপকৃত হতে পারেন।
+                  </p>
                 </div>
-                
+
               </div>
             </div>
           </div>
@@ -330,27 +433,29 @@
           <div class="d-block services">
             <div class="media-body">
               <h3 class="heading">কৃত্রিম বুদ্ধিমত্তার ফসল চাষে পরামর্শ</h3>
-              <p>কৃত্রিম বুদ্ধিমত্তার ব্যবহার করে সঠিক ফসল পূর্বাভাস পান, যা আপনার ফসলের পরিকল্পনাকে আরও কার্যকর করে তুলবে।</p>
+              <p>কৃত্রিম বুদ্ধিমত্তার ব্যবহার করে সঠিক ফসল পূর্বাভাস পান, যা আপনার ফসলের পরিকল্পনাকে আরও কার্যকর করে
+                তুলবে।</p>
               <a href="login.html" class="btn-custom d-flex align-items-center justify-content-center">
                 <span class="fa fa-chevron-right"></span><i class="sr-only">আরও পড়ুন</i>
               </a>
             </div>
           </div>
         </div>
-  
+
         <!-- Service 2 -->
         <div class="col-md-4 d-flex align-self-stretch ftco-animate">
           <div class="d-block services">
             <div class="media-body">
               <h3 class="heading">সার প্রয়োগে কৃত্রিম বুদ্ধিমত্তার পরামর্শ</h3>
-              <p>কৃত্রিম বুদ্ধিমত্তা দ্বারা ব্যক্তিগতকৃত সার পরামর্শ পান যা ফসলের উৎপাদন বাড়ায় এবং খরচ ও পরিবেশের প্রভাব কমায়।</p>
+              <p>কৃত্রিম বুদ্ধিমত্তা দ্বারা ব্যক্তিগতকৃত সার পরামর্শ পান যা ফসলের উৎপাদন বাড়ায় এবং খরচ ও পরিবেশের
+                প্রভাব কমায়।</p>
               <a href="login.html" class="btn-custom d-flex align-items-center justify-content-center">
                 <span class="fa fa-chevron-right"></span><i class="sr-only">আরও পড়ুন</i>
               </a>
             </div>
           </div>
         </div>
-  
+
         <!-- Service 3 -->
         <div class="col-md-4 d-flex align-self-stretch ftco-animate">
           <div class="d-block services">
@@ -363,7 +468,7 @@
             </div>
           </div>
         </div>
-  
+
         <!-- Service 4 -->
         <div class="col-md-4 d-flex align-self-stretch ftco-animate">
           <div class="d-block services">
@@ -376,7 +481,7 @@
             </div>
           </div>
         </div>
-  
+
         <!-- Service 5 -->
         <div class="col-md-4 d-flex align-self-stretch ftco-animate">
           <div class="d-block services">
@@ -389,7 +494,7 @@
             </div>
           </div>
         </div>
-  
+
         <!-- Service 6 -->
         <div class="col-md-4 d-flex align-self-stretch ftco-animate">
           <div class="d-block services">
@@ -406,7 +511,7 @@
     </div>
   </section>
 
-  
+
   <section class="ftco-section">
     <div class="container">
       <div class="row justify-content-center pb-5">
@@ -439,33 +544,38 @@
             <div class="tab-pane container p-0 active" id="services-1">
               <div class="img" style="background-image: url(assets/images/banner2.jpg);"></div>
               <h3><a href="login.html">কৃষি সরঞ্জাম ভাড়া</a></h3>
-              <p>কৃষকরা নির্দিষ্ট সময়ের জন্য প্রয়োজনীয় সরঞ্জাম ভাড়া নিতে পারেন। সরঞ্জাম মালিকরা তাদের অতিরিক্ত সরঞ্জাম ভাড়া দিয়ে কিছু আয় করতে পারেন।</p>
+              <p>কৃষকরা নির্দিষ্ট সময়ের জন্য প্রয়োজনীয় সরঞ্জাম ভাড়া নিতে পারেন। সরঞ্জাম মালিকরা তাদের অতিরিক্ত
+                সরঞ্জাম ভাড়া দিয়ে কিছু আয় করতে পারেন।</p>
             </div>
             <div class="tab-pane container p-0 fade" id="services-2">
               <div class="img" style="background-image: url(assets/images/storage.jpg);"></div>
               <h3><a href="login.html">গুদাম ভাড়া</a></h3>
-              <p>কৃষকরা নির্দিষ্ট সময়ের জন্য তাদের ফসল সংরক্ষণ করতে গুদাম বুক করতে পারেন। গুদাম মালিকরা তাদের গুদামের তথ্য শেয়ার করে আয় করতে পারেন।</p>
+              <p>কৃষকরা নির্দিষ্ট সময়ের জন্য তাদের ফসল সংরক্ষণ করতে গুদাম বুক করতে পারেন। গুদাম মালিকরা তাদের গুদামের
+                তথ্য শেয়ার করে আয় করতে পারেন।</p>
             </div>
             <div class="tab-pane container p-0 fade" id="services-3">
               <div class="img" style="background-image: url(assets/images/expert1.jpg);"></div>
               <h3><a href="login.html">বিশেষজ্ঞ পরামর্শ</a></h3>
-              <p>কৃষকরা তাদের সমস্যার সমাধানের জন্য কৃষি বিশেষজ্ঞদের সাথে পরামর্শ করতে পারেন। কৃষি বিজ্ঞানীরা অতিরিক্ত সময় অনলাইনে দিয়ে অতিরিক্ত আয় করতে পারেন।</p>
+              <p>কৃষকরা তাদের সমস্যার সমাধানের জন্য কৃষি বিশেষজ্ঞদের সাথে পরামর্শ করতে পারেন। কৃষি বিজ্ঞানীরা অতিরিক্ত
+                সময় অনলাইনে দিয়ে অতিরিক্ত আয় করতে পারেন।</p>
             </div>
             <div class="tab-pane container p-0 fade" id="services-4">
               <div class="img" style="background-image: url(assets/images/cropPrediction.jpg);"></div>
               <h3><a href="login.html">ফসল চাষে পূর্বাভাস</a></h3>
-              <p>কৃষকরা জানতে পারেন তাদের জমির জন্য কোন ধরনের ফসল সবচেয়ে উপযোগী। কিছু তথ্য প্রদান করুন এবং পূর্বাভাস নিন।</p>
+              <p>কৃষকরা জানতে পারেন তাদের জমির জন্য কোন ধরনের ফসল সবচেয়ে উপযোগী। কিছু তথ্য প্রদান করুন এবং পূর্বাভাস
+                নিন।</p>
             </div>
             <div class="tab-pane container p-0 fade" id="services-5">
               <div class="img" style="background-image: url(assets/images/fertilizerPrediction.jpeg);"></div>
               <h3><a href="login.html">সার প্রয়োগে পরামর্শ</a></h3>
-              <p>কৃষকরা বিশেষজ্ঞ পরামর্শ ছাড়াই কোন সার ব্যবহার করবেন তা জানতে পারেন। সর্বাধিক ফলাফল পেতে সামান্য তথ্য দিন এবং পূর্বাভাস নিন।</p>
+              <p>কৃষকরা বিশেষজ্ঞ পরামর্শ ছাড়াই কোন সার ব্যবহার করবেন তা জানতে পারেন। সর্বাধিক ফলাফল পেতে সামান্য তথ্য
+                দিন এবং পূর্বাভাস নিন।</p>
             </div>
           </div>
         </div>
       </div>
     </div>
-</section>
+  </section>
 
 
   <section class="ftco-section testimony-section bg-light">
@@ -494,7 +604,8 @@
                     <span class="fa fa-star"></span>
                     <span class="fa fa-star"></span>
                   </p>
-                  <p>পরামর্শক্রিত ফসল চাষের পর আমি খুবই লাভবান হয়েছি</p>
+                  <p>পরামর্শক্রিত ফসল চাষের পর আমি খুবই লাভবান হয়েছি, এতে আমার উৎপাদন খরচ কমেছে এবং ফলনও বৃদ্ধি পেয়েছে।
+                  </p>
                   <p class="name">রহিম চাষী</p>
                   <span class="position">কৃষক</span>
                 </div>
@@ -515,7 +626,8 @@
                     <span class="fa fa-star"></span>
                     <span class="fa fa-star"></span>
                   </p>
-                  <p>যন্ত্রপাতি ধার করে কাজ করার ফলে খরচের পরিমাণ খুবই কমিয়ে আনা সম্ভব হয়েছে</p>
+                  <p>যন্ত্রপাতি ধার করে কাজ করার ফলে খরচের পরিমাণ কমিয়ে আনা সম্ভব হয়েছে,পাশাপাশি সময়ের সাশ্রয়ও
+                    হয়েছে।</p>
                   <p class="name">মিন্টু বারি</p>
                   <span class="position">কৃষক</span>
                 </div>
@@ -536,7 +648,8 @@
                     <span class="fa fa-star"></span>
                     <span class="fa fa-star"></span>
                   </p>
-                  <p>Really happy that I can help farmers by staying this far away and give them valuable advice to facilitate them.</p>
+                  <p>Really happy that I can help farmers by staying this far away and give them valuable advice to
+                    facilitate them.</p>
                   <p class="name">Mark Huffman</p>
                   <span class="position">Agronomist</span>
                 </div>
@@ -578,7 +691,8 @@
                     <span class="fa fa-star"></span>
                     <span class="fa fa-star"></span>
                   </p>
-                  <p>পরামর্শক্রিত সার ব্যবহার করার ফলে আমার ফসলের বাম্পার ফলন হয়েছে</p>
+                  <p>পরামর্শক্রিত সার ব্যবহার করে আমার ফসলের বাম্পার ফলন হয়েছে এবং ফসলের গুণগত মানও অনেক
+                    উন্নত হয়েছে।</p>
                   <p class="name">রিপন মিয়া</p>
                   <span class="position">কৃষক</span>
                 </div>
@@ -606,14 +720,18 @@
         <div class="col-lg-5 order-lg-1" data-aos="fade-up" data-aos-delay="100">
           <h2 class="content-title mb-4">কৃষিতে উদ্ভাবন</h2>
           <p class="mb-4" style="text-align: justify;">
-            ফার্ম-ফ্রেন্ড অতীতের তথ্য এবং কৃষি কৌশল অনুযায়ী ফসলের সুপারিশ প্রদান করে। 
-            এটি তাৎক্ষনিক আবহাওয়ার সতর্কতা পাঠায় যা কৃষকদের তাদের কার্যক্রম পরিকল্পনা করতে এবং ক্ষতি এড়াতে সহায়তা করে। 
+            ফার্ম-ফ্রেন্ড অতীতের তথ্য এবং কৃষি কৌশল অনুযায়ী ফসলের সুপারিশ প্রদান করে।
+            এটি তাৎক্ষনিক আবহাওয়ার সতর্কতা পাঠায় যা কৃষকদের তাদের কার্যক্রম পরিকল্পনা করতে এবং ক্ষতি এড়াতে সহায়তা
+            করে।
             কৃষকরা আমাদের প্ল্যাটফর্ম ব্যবহার করে কৃষি সরঞ্জাম ভাড়া বা শেয়ার করতে পারেন, যা অর্থ এবং সম্পদ বাঁচায়।
           </p>
           <p class="mb-4" style="text-align: justify;">
-            সিস্টেমটি মাটি পরীক্ষার উপর ভিত্তি করে সার সুপারিশ প্রদান করে, যা নিশ্চিত করে যে ফসলগুলি প্রয়োজনীয় পুষ্টি পাচ্ছে। 
-            এটি আপডেটেড বাজার মূল্য সরবরাহ করার পাশাপাশি কৃষকদের মধ্যে যোগাযোগ ও ফসল বিক্রয়ের সেরা মূল্য পেতে সংযোগ স্থাপন করে। 
-            এছাড়াও, এটি সরাসরি কৃষকদের গুদামের মালিকদের সাথে সংযুক্ত করে, মধ্যস্বত্বভোগী ছাড়াই ফসল সংরক্ষণ এবং বিক্রির প্রক্রিয়াকে সহজ করে তোলে।
+            সিস্টেমটি মাটি পরীক্ষার উপর ভিত্তি করে সার সুপারিশ প্রদান করে, যা নিশ্চিত করে যে ফসলগুলি প্রয়োজনীয় পুষ্টি
+            পাচ্ছে।
+            এটি আপডেটেড বাজার মূল্য সরবরাহ করার পাশাপাশি কৃষকদের মধ্যে যোগাযোগ ও ফসল বিক্রয়ের সেরা মূল্য পেতে সংযোগ
+            স্থাপন করে।
+            এছাড়াও, এটি সরাসরি কৃষকদের গুদামের মালিকদের সাথে সংযুক্ত করে, মধ্যস্বত্বভোগী ছাড়াই ফসল সংরক্ষণ এবং বিক্রির
+            প্রক্রিয়াকে সহজ করে তোলে।
           </p>
           <ul class="list-unstyled list-check" style="text-align: justify;">
             <li>ক্ষেতের উপযোগী ফসলের সুপারিশ এবং সার পরামর্শ পান</li>
@@ -627,7 +745,7 @@
         </div>
       </div>
     </div>
-</section>
+  </section>
 
 
   <style>
@@ -760,13 +878,14 @@
       <div class="col-md-7 heading-section text-center ftco-animate" style="margin: 0 auto;">
         <h2 style="text-align: center;">গ্যালারি ও ছবি</h2><br>
       </div>
-      
+
       <!-- First Row -->
       <div class="row">
         <!-- Card 1 -->
         <div class="col-md-4">
           <div class="work mb-4 img d-flex align-items-end" style="background-image: url(assets/images/banner2.jpg);">
-            <a href="assets/images/banner2.jpg" class="icon image-popup d-flex justify-content-center align-items-center">
+            <a href="assets/images/banner2.jpg"
+              class="icon image-popup d-flex justify-content-center align-items-center">
               <span class="fa fa-expand"></span>
             </a>
             <div class="desc w-100 px-4">
@@ -780,7 +899,8 @@
         <!-- Card 2 -->
         <div class="col-md-4">
           <div class="work mb-4 img d-flex align-items-end" style="background-image: url(assets/images/storage.jpg);">
-            <a href="assets/images/storage.jpg" class="icon image-popup d-flex justify-content-center align-items-center">
+            <a href="assets/images/storage.jpg"
+              class="icon image-popup d-flex justify-content-center align-items-center">
               <span class="fa fa-expand"></span>
             </a>
             <div class="desc w-100 px-4">
@@ -794,7 +914,8 @@
         <!-- Card 3 -->
         <div class="col-md-4">
           <div class="work mb-4 img d-flex align-items-end" style="background-image: url(assets/images/expert1.jpg);">
-            <a href="assets/images/expert1.jpg" class="icon image-popup d-flex justify-content-center align-items-center">
+            <a href="assets/images/expert1.jpg"
+              class="icon image-popup d-flex justify-content-center align-items-center">
               <span class="fa fa-expand"></span>
             </a>
             <div class="desc w-100 px-4">
@@ -806,13 +927,15 @@
           </div>
         </div>
       </div>
-      
+
       <!-- Second Row -->
       <div class="row">
         <!-- Card 4 -->
         <div class="col-md-4">
-          <div class="work mb-4 img d-flex align-items-end" style="background-image: url(assets/images/cropPrediction.jpg);">
-            <a href="assets/images/cropPrediction.jpg" class="icon image-popup d-flex justify-content-center align-items-center">
+          <div class="work mb-4 img d-flex align-items-end"
+            style="background-image: url(assets/images/cropPrediction.jpg);">
+            <a href="assets/images/cropPrediction.jpg"
+              class="icon image-popup d-flex justify-content-center align-items-center">
               <span class="fa fa-expand"></span>
             </a>
             <div class="desc w-100 px-4">
@@ -825,8 +948,10 @@
         </div>
         <!-- Card 5 -->
         <div class="col-md-4">
-          <div class="work mb-4 img d-flex align-items-end" style="background-image: url(assets/images/fertilizerPrediction.jpeg);">
-            <a href="assets/images/fertilizerPrediction.jpeg" class="icon image-popup d-flex justify-content-center align-items-center">
+          <div class="work mb-4 img d-flex align-items-end"
+            style="background-image: url(assets/images/fertilizerPrediction.jpeg);">
+            <a href="assets/images/fertilizerPrediction.jpeg"
+              class="icon image-popup d-flex justify-content-center align-items-center">
               <span class="fa fa-expand"></span>
             </a>
             <div class="desc w-100 px-4">
@@ -839,8 +964,10 @@
         </div>
         <!-- Card 6 -->
         <div class="col-md-4">
-          <div class="work mb-4 img d-flex align-items-end" style="background-image: url(assets/images/weatherUpdate.jpg);">
-            <a href="assets/images/weatherUpdate.jpg" class="icon image-popup d-flex justify-content-center align-items-center">
+          <div class="work mb-4 img d-flex align-items-end"
+            style="background-image: url(assets/images/weatherUpdate.jpg);">
+            <a href="assets/images/weatherUpdate.jpg"
+              class="icon image-popup d-flex justify-content-center align-items-center">
               <span class="fa fa-expand"></span>
             </a>
             <div class="desc w-100 px-4">
@@ -854,7 +981,7 @@
       </div>
     </div>
   </section>
-  
+
 
   <section class="ftco-section bg-light">
     <div class="container">
@@ -867,7 +994,8 @@
         <!-- First Blog Card -->
         <div class="col-md-4 d-flex ftco-animate">
           <div class="blog-entry align-self-stretch">
-            <a href="https://www.linkedin.com/posts/nabiul-islam-nabil_it-was-a-great-experience-yesterday-as-me-activity-7142763104874000384-cwl7?utm_source=share&utm_medium=member_desktop" target="_blank" class="block-20 rounded"
+            <a href="https://www.linkedin.com/posts/nabiul-islam-nabil_it-was-a-great-experience-yesterday-as-me-activity-7142763104874000384-cwl7?utm_source=share&utm_medium=member_desktop"
+              target="_blank" class="block-20 rounded"
               style="background-image: url('assets/images/TeamReBuggers.jpeg');">
             </a>
             <div class="text p-4">
@@ -885,8 +1013,8 @@
         <!-- Second Blog Card -->
         <div class="col-md-4 d-flex ftco-animate">
           <div class="blog-entry align-self-stretch">
-            <a href="https://www.linkedin.com/posts/nabiul-islam-nabil_project-overview-river-analysis-boat-rab-activity-7250177963902615553-xcAj?utm_source=share&utm_medium=member_desktop" target="_blank" class="block-20 rounded"
-              style="background-image: url('assets/images/Electronics.jpg');">
+            <a href="https://www.linkedin.com/posts/nabiul-islam-nabil_project-overview-river-analysis-boat-rab-activity-7250177963902615553-xcAj?utm_source=share&utm_medium=member_desktop"
+              target="_blank" class="block-20 rounded" style="background-image: url('assets/images/Electronics.jpg');">
             </a>
             <div class="text p-4">
               <div class="meta mb-2">
@@ -903,195 +1031,199 @@
       </div>
     </div>
   </section>
-  
-  
+
+
 
   <section class="ftco-appointment ftco-section ftco-no-pt ftco-no-pb img"
-  style="background-image: url(assets/images/banner14.jpg);">
-  <div class="overlay"></div>
-  <div class="container">
-    <div class="row d-md-flex justify-content-center">
-      <div class="col-md-12 col-lg-8 half p-3 py-5 pl-lg-5 ftco-animate">
-        <h2 class="mb-4">বিনামূল্যে পরামর্শ</h2>
-        <form action="#" class="appointment">
-          <div class="row">
-            <div class="col-md-12">
-              <div class="form-group">
-                <div class="form-field">
-                  <div class="select-wrap">
-                    <div class="icon"><span class="fa fa-chevron-down"></span></div>
-                    <select name="" id="" class="form-control">
-                      <option value="">সেবা নির্বাচন করুন</option>
-                      <option value="">কৃষি সরঞ্জাম ভাড়া</option>
-                      <option value="">ফসলের গুদাম বুকিং</option>
-                      <option value="">ফসল পূর্বাভাস</option>
-                      <option value="">সার পরামর্শ</option>
-                      <option value="">আবহাওয়া আপডেট</option>
-                      <option value="">বিশেষজ্ঞ পরামর্শ</option>
-                    </select>
+    style="background-image: url(assets/images/banner14.jpg);">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row d-md-flex justify-content-center">
+        <div class="col-md-12 col-lg-8 half p-3 py-5 pl-lg-5 ftco-animate">
+          <h2 class="mb-4">বিনামূল্যে পরামর্শ</h2>
+          <form action="#" class="appointment">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <div class="form-field">
+                    <div class="select-wrap">
+                      <div class="icon"><span class="fa fa-chevron-down"></span></div>
+                      <select name="" id="" class="form-control">
+                        <option value="">সেবা নির্বাচন করুন</option>
+                        <option value="">কৃষি সরঞ্জাম ভাড়া</option>
+                        <option value="">ফসলের গুদাম বুকিং</option>
+                        <option value="">ফসল পূর্বাভাস</option>
+                        <option value="">সার পরামর্শ</option>
+                        <option value="">আবহাওয়া আপডেট</option>
+                        <option value="">বিশেষজ্ঞ পরামর্শ</option>
+                      </select>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <div class="input-wrap">
-                  <div class="icon"><span class="fa fa-user"></span></div>
-                  <input type="text" class="form-control" placeholder="আপনার নাম">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="input-wrap">
+                    <div class="icon"><span class="fa fa-user"></span></div>
+                    <input type="text" class="form-control" placeholder="আপনার নাম">
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="input-wrap">
+                    <div class="icon"><span class="fa fa-paper-plane"></span></div>
+                    <input type="text" class="form-control" placeholder="ইমেইল ঠিকানা">
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="input-wrap">
+                    <div class="icon"><span class="fa fa-calendar"></span></div>
+                    <input type="text" class="form-control appointment_date" placeholder="তারিখ">
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="input-wrap">
+                    <div class="icon"><span class="fa fa-clock-o"></span></div>
+                    <input type="text" class="form-control appointment_time" placeholder="সময়">
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="form-group">
+                  <textarea name="" id="" cols="30" rows="7" class="form-control" placeholder="বার্তা"></textarea>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="form-group">
+                  <input type="submit" value="বার্তা পাঠান" class="btn btn-primary py-3 px-4">
                 </div>
               </div>
             </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <div class="input-wrap">
-                  <div class="icon"><span class="fa fa-paper-plane"></span></div>
-                  <input type="text" class="form-control" placeholder="ইমেইল ঠিকানা">
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <div class="input-wrap">
-                  <div class="icon"><span class="fa fa-calendar"></span></div>
-                  <input type="text" class="form-control appointment_date" placeholder="তারিখ">
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <div class="input-wrap">
-                  <div class="icon"><span class="fa fa-clock-o"></span></div>
-                  <input type="text" class="form-control appointment_time" placeholder="সময়">
-                </div>
-              </div>
-            </div>
-            <div class="col-md-12">
-              <div class="form-group">
-                <textarea name="" id="" cols="30" rows="7" class="form-control" placeholder="বার্তা"></textarea>
-              </div>
-            </div>
-            <div class="col-md-12">
-              <div class="form-group">
-                <input type="submit" value="বার্তা পাঠান" class="btn btn-primary py-3 px-4">
-              </div>
-            </div>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-</section>
-
-<footer class="footer">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-6 col-lg-3 mb-4 mb-md-0">
-        <h2 class="footer-heading">FarmFriend</h2>
-        <p>আধুনিক কৃষিকাজের প্রবেশদ্বার</p>
-        <ul class="ftco-footer-social p-0">
-          <li class="ftco-animate"><a href="#" data-toggle="tooltip" data-placement="top" title="Twitter"><span
-                class="fa fa-twitter"></span></a></li>
-          <li class="ftco-animate"><a href="#" data-toggle="tooltip" data-placement="top" title="Facebook"><span
-                class="fa fa-facebook"></span></a></li>
-          <li class="ftco-animate"><a href="#" data-toggle="tooltip" data-placement="top" title="Instagram"><span
-                class="fa fa-instagram"></span></a></li>
-        </ul>
-      </div>
-      <div class="col-md-6 col-lg-3 pl-lg-5 mb-4 mb-md-0">
-        <h2 class="footer-heading">দ্রুত পৌঁছান</h2>
-        <ul class="list-unstyled">
-          <li><a href="index.html" class="py-2 d-block">হোম</a></li>
-          <li><a href="about.html" class="py-2 d-block">আমাদের সম্পর্কে</a></li>
-          <li><a href="contact.html" class="py-2 d-block">যোগাযোগ</a></li>
-        </ul>
-      </div>
-      <div class="col-md-6 col-lg-3 mb-4 mb-md-0">
-        <h2 class="footer-heading">আপনার কোন প্রশ্ন আছে?</h2>
-        <div class="block-23 mb-3">
-          <ul>
-            <li><span class="icon fa fa-map"></span><span class="text">১২১/২, ইউনুস টাওয়ার, বানানী, ঢাকা - ১২১২, বাংলাদেশ</span></li>
-            <ul>
-              <!-- Phone Numbers -->
-              <li><a href="tel:+8801713706733"><span class="icon fa fa-phone"></span><span class="text">+২ ৩৯২ ৩৯২৯ ২১০</span></a></li>
-              <!-- Emails -->
-              <li><a href="mailto:farmFriend@gmail.com"><span class="icon fa fa-paper-plane"></span><span class="text">farmFriend@gmail.com</span></a></li>
-            </ul>
-          </ul>
+          </form>
         </div>
       </div>
     </div>
-    <div class="row mt-5">
-      <div class="col-md-12 text-center">
-        <p class="copyright text-center">
-          &copy; <script>document.write(new Date().getFullYear());</script> FirmFriends. All rights reserved. | 
-          A dream project by <strong>Team ReBuggers</strong>.
-        </p>            
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 col-lg-3 mb-4 mb-md-0">
+          <h2 class="footer-heading">FarmFriend</h2>
+          <p>আধুনিক কৃষিকাজের প্রবেশদ্বার</p>
+          <ul class="ftco-footer-social p-0">
+            <li class="ftco-animate"><a href="#" data-toggle="tooltip" data-placement="top" title="Twitter"><span
+                  class="fa fa-twitter"></span></a></li>
+            <li class="ftco-animate"><a href="#" data-toggle="tooltip" data-placement="top" title="Facebook"><span
+                  class="fa fa-facebook"></span></a></li>
+            <li class="ftco-animate"><a href="#" data-toggle="tooltip" data-placement="top" title="Instagram"><span
+                  class="fa fa-instagram"></span></a></li>
+          </ul>
+        </div>
+        <div class="col-md-6 col-lg-3 pl-lg-5 mb-4 mb-md-0">
+          <h2 class="footer-heading">দ্রুত পৌঁছান</h2>
+          <ul class="list-unstyled">
+            <li><a href="index.html" class="py-2 d-block">হোম</a></li>
+            <li><a href="about.html" class="py-2 d-block">আমাদের সম্পর্কে</a></li>
+            <li><a href="contact.html" class="py-2 d-block">যোগাযোগ</a></li>
+          </ul>
+        </div>
+        <div class="col-md-6 col-lg-3 mb-4 mb-md-0">
+          <h2 class="footer-heading">আপনার কোন প্রশ্ন আছে?</h2>
+          <div class="block-23 mb-3">
+            <ul>
+              <li><span class="icon fa fa-map"></span><span class="text">১২১/২, ইউনুস টাওয়ার, বানানী, ঢাকা - ১২১২,
+                  বাংলাদেশ</span></li>
+              <ul>
+                <!-- Phone Numbers -->
+                <li><a href="tel:+8801713706733"><span class="icon fa fa-phone"></span><span class="text">+২ ৩৯২ ৩৯২৯
+                      ২১০</span></a></li>
+                <!-- Emails -->
+                <li><a href="mailto:farmFriend@gmail.com"><span class="icon fa fa-paper-plane"></span><span
+                      class="text">farmFriend@gmail.com</span></a></li>
+              </ul>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="row mt-5">
+        <div class="col-md-12 text-center">
+          <p class="copyright text-center">
+            &copy;
+            <script>document.write(new Date().getFullYear());</script> FirmFriends. All rights reserved. |
+            A dream project by <strong>Team ReBuggers</strong>.
+          </p>
+        </div>
       </div>
     </div>
-  </div>
-</footer>
+  </footer>
 
 
-    <style>
-      .footer {
-        background-image: url('path-to-your-gif.gif');
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-position: center;
-        position: relative;
-        padding: 50px 0;
-        color: #fff;
-        box-shadow: inset 0 0 50px rgba(255, 255, 255, 0.3);
-      }
+  <style>
+    .footer {
+      background-image: url('path-to-your-gif.gif');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      position: relative;
+      padding: 50px 0;
+      color: #fff;
+      box-shadow: inset 0 0 50px rgba(255, 255, 255, 0.3);
+    }
 
-      .footer:before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(255, 255, 255, 0.1);
-        pointer-events: none;
-        z-index: 1;
-      }
+    .footer:before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.1);
+      pointer-events: none;
+      z-index: 1;
+    }
 
-      .footer .container {
-        position: relative;
-        z-index: 2;
-      }
+    .footer .container {
+      position: relative;
+      z-index: 2;
+    }
 
-      .footer-heading {
-        text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
-      }
-    </style>
+    .footer-heading {
+      text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+    }
+  </style>
 
 
-    <!-- loader -->
-    <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
-        <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
-        <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10"
-          stroke="#F96D00" />
-      </svg></div>
+  <!-- loader -->
+  <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
+      <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
+      <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10"
+        stroke="#F96D00" />
+    </svg></div>
 
-    <script src="js2/script.js"></script>
-    <script src="js2/jquery.min.js"></script>
-    <script src="js2/jquery-migrate-3.0.1.min.js"></script>
-    <script src="js2/popper.min.js"></script>
-    <script src="js2/bootstrap.min.js"></script>
-    <script src="js2/jquery.easing.1.3.js"></script>
-    <script src="js2/jquery.waypoints.min.js"></script>
-    <script src="js2/jquery.stellar.min.js"></script>
-    <script src="js2/jquery.animateNumber.min.js"></script>
-    <script src="js2/bootstrap-datepicker.js"></script>
-    <script src="js2/jquery.timepicker.min.js"></script>
-    <script src="js2/owl.carousel.min.js"></script>
-    <script src="js2/jquery.magnific-popup.min.js"></script>
-    <script src="js2/scrollax.min.js"></script>
-    <script
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-    <script src="js2/google-map.js"></script>
-    <script src="js2/main.js"></script>
+  <script src="js2/script.js"></script>
+  <script src="js2/jquery.min.js"></script>
+  <script src="js2/jquery-migrate-3.0.1.min.js"></script>
+  <script src="js2/popper.min.js"></script>
+  <script src="js2/bootstrap.min.js"></script>
+  <script src="js2/jquery.easing.1.3.js"></script>
+  <script src="js2/jquery.waypoints.min.js"></script>
+  <script src="js2/jquery.stellar.min.js"></script>
+  <script src="js2/jquery.animateNumber.min.js"></script>
+  <script src="js2/bootstrap-datepicker.js"></script>
+  <script src="js2/jquery.timepicker.min.js"></script>
+  <script src="js2/owl.carousel.min.js"></script>
+  <script src="js2/jquery.magnific-popup.min.js"></script>
+  <script src="js2/scrollax.min.js"></script>
+  <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+  <script src="js2/google-map.js"></script>
+  <script src="js2/main.js"></script>
 
 </body>
 
