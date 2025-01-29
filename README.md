@@ -1,24 +1,35 @@
-﻿# FarmFriend-Frontend
-Think about the most common occupation in Bangladesh. Now think about the most
- underdeveloped and overlooked one. The answer to both of them is Agriculture and
- Farming. Even though there are many initiatives to increase the production from the fields,
- we focus on the magicians behind it who often remain unnoticed, the Farmers. To ensure the
- well-being of farmers and to make sure that they get the proper appraisement they deserve,
- we present, Farm-Friend. 
-Farm-Friend is a smart digital platform designed to make farming easier and more efficient
- for Bangladeshi farmers. Our goal is to solve real problems farmers face every day, like
- deciding what crops to grow, dealing with weather surprises, getting the right tool and
- equipment, and most importantly, the right price for their produce.
- Farm-Friend provides crop recommendations based on past data and farming techniques. It
- sends real-time weather alerts to help farmers plan their activities and avoid losses. Farmers
- can also use our platform to rent or share farming tools, saving money and resources.
- The system goes further by suggesting fertilizers based on soil tests, ensuring crops get the
- nutrients they need. It provides up-to-date market prices, while connecting farmers, so they
- can communicate and sell their crops at the best rates. It also connects farmers directly to
- storage owners, making it easier to store and sell their harvest without any middlemen. 
-Farm-Friend is more than just a tool—it’s a way to make farming smarter and more
- sustainable. By promoting modern farming methods and reducing waste, it helps improve
- farmers' lives and supports Sustainable Development Goals (SDGs) like Zero Hunger and
- Decent Work and Economic Growth. With simple easy-to-use features, Farm-Friend is
- designed to bring astonishing benefits to farmers, helping them grow more, earn more, and
- live a better, prosperous life
+﻿ Farm-Friend offers a variety of features designed to address the diverse challenges faced
+ by farmers. Each feature is optimized for efficiency, sustainability, and usability.
+ Services:
+ 1. Crop Recommendation System Suggests suitable crops based on soil type, pH
+ level, and climate, ensuring optimized yield and sustainable practices.
+ 2. Weather-Based Alerts Provides real-time weather updates to help farmers pre
+pare for rainfall, droughts, or extreme events along with past year information.
+ 3. Equipment Sharing Platform Enables farmers to rent or share machinery, re
+ducing ownership costs and improving resource efficiency.
+ 4. Expert Advice Connects farmers with agricultural specialists for instant guidance
+ on pest control, irrigation, and crop management.
+ 5. Storage Facility Booking Offers access to modern storage spaces with features
+ like temperature control and pest management to prevent post-harvest losses.
+ 6. Fertilizer Recommendation System Suggests fertilizers tailored to specific crop
+ needs and weather conditions, promoting cost-effective and healthy growth.
+Selling Points and Unique Aspects
+ FarmFriend offers a variety of unique features that distinguish it as an innovative and
+ comprehensive platform for modern farming:
+ • Integrated Platform:– Combines essential tools like crop recommendations, weather updates, equip
+ment sharing, and expert advice into one platform.– Seamless workflows enhance productivity by eliminating the need to switch
+ between multiple apps.
+ • AI-Driven Insights:– Machine learning analyzes inputs like soil, weather, and crop requirements to
+ provide tailored recommendations.– Automates decision-making, saving time and reducing errors in planning.
+ • Resource Sharing:– Allows farmers to rent or share equipment, lowering costs and reducing re
+source wastage.– Amarketplace fosters collaboration and efficient resource use.
+ • Accessibility:– User-friendly interface caters to various technical skill levels.– Multi-language support and mobile-first design make it accessible even in areas
+ with limited connectivity.
+ • Sustainability:– Optimizes resource use, contributing to eco-friendly farming practices.– Reduces post-harvest losses and promotes food security.
+ • Economic Empowerment:– Increases income potential through better planning, reduced costs, and new
+ market access.– Enhances productivity and helps farmers compete in a changing market.
+ • Alignment with Sustainable Development Goals (SDGs):– Zero Hunger (SDG 2): Improves agricultural productivity and food secu
+rity.– Decent Work and Economic Growth (SDG 8): Empowers farmers to
+ improve livelihoods and economic opportunities.– Industry, Innovation, and Infrastructure (SDG 9): Strengthens agri
+cultural infrastructure through technology integration
+ 
